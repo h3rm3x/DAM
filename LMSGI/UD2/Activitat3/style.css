@@ -32,7 +32,6 @@ nav {
 }
 
 nav ul {
-  list-style: none;
   padding: 10px 0;
 }
 
@@ -43,14 +42,12 @@ nav ul li {
 
 nav ul li a {
   color: white;
-  text-decoration: none;
   padding: 15px;
 }
 
 /* 5. Main */
 main {
-  display: flex;
-  justify-content: center;
+  display: inline-block;
   gap: 10px;
 }
 
