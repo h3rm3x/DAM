@@ -18,12 +18,17 @@ public class TrianguloPascal {
                 triangulo[i][j] = triangulo[i - 1][j - 1] + triangulo[i - 1][j];
             }
         }
-        for (int i = 0; i <= filas; i++) {
-            for (int j = 0; j <=i ; j++) {
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < (filas -1)-i ; j++) {
+                System.out.print(" ");
+            }
+            for (int j=0; j<=i; j++) {
                 System.out.print(triangulo[i][j] + " ");
             }
             System.out.println();
+            }
+
 
         }
     }
-}
+
