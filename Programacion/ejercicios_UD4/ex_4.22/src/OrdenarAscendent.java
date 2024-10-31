@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class OrdenarDescendent {
+public class OrdenarAscendent {
     private static final int[] llistaEnters = new int[10];
 
     public static void llegirLlista() {
@@ -31,22 +31,23 @@ public class OrdenarDescendent {
         }
     }
 
-    public static void mostrarLlista() {
+    public static void mostrarLlista(int lista []) {
         System.out.print("L'array ordenat és: [ ");
-        for (int i = 0; i < llistaEnters.length; i++) {
-            System.out.print(llistaEnters[i] + " ");
+        for (int i = 0; i < lista.length; i++) {
+            System.out.print(lista[i] + " ");
         }
         System.out.println("]");
     }
 
     public static void menosquelamitad() {
-        int mayor = llistaEnters[llistaEnters.length - 1]; // El último elemento (el mayor después de ordenar)
+        int   mayor = llistaEnters[llistaEnters.length - 1]; // El último elemento (el mayor después de ordenar)
         int menorquemitad = 0;
         int[] menoresqmitad = new int[10];
         int index = 0;
+        float upperlimit = mayor/2;
 
         for (int num : llistaEnters) {
-            if (num < mayor / 2) {
+            if (num < upperlimit) {
                 menoresqmitad[index] = num;
                 index++;
                 menorquemitad++;
@@ -64,7 +65,7 @@ public class OrdenarDescendent {
     public static void main(String[] args) {
         llegirLlista();
         ordenarLlista();
-        mostrarLlista();
+        mostrarLlista(llistaEnters);
         menosquelamitad();
     }
 }
