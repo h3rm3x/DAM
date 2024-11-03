@@ -57,6 +57,6 @@ public class ex4_21 {
 
         }
 
-    System.out.println("Con un total de: " + numero_billetes + " billetes");
+        System.out.println("Con un total de: " + numero_billetes + " billetes");
     }
 }

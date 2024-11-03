@@ -17,11 +17,15 @@
       <module fileurl="file://$PROJECT_DIR$/ex_4.14/ex_4.14.iml" filepath="$PROJECT_DIR$/ex_4.14/ex_4.14.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4.18/ex_4.18.iml" filepath="$PROJECT_DIR$/ex_4.18/ex_4.18.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4.19/ex_4.19.iml" filepath="$PROJECT_DIR$/ex_4.19/ex_4.19.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ex_4.20/ex_4.20.iml" filepath="$PROJECT_DIR$/ex_4.20/ex_4.20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ex_4.20/ex_4.21/ex_4.21.iml" filepath="$PROJECT_DIR$/ex_4.20/ex_4.21/ex_4.21.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4.22/ex_4.22.iml" filepath="$PROJECT_DIR$/ex_4.22/ex_4.22.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ex_4.23/ex_4.23.iml" filepath="$PROJECT_DIR$/ex_4.23/ex_4.23.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4.9/ex_4.9.iml" filepath="$PROJECT_DIR$/ex_4.9/ex_4.9.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4_3/ex_4_3.iml" filepath="$PROJECT_DIR$/ex_4_3/ex_4_3.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4_4/ex_4_4.iml" filepath="$PROJECT_DIR$/ex_4_4/ex_4_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4_5/ex_4_5.iml" filepath="$PROJECT_DIR$/ex_4_5/ex_4_5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primos_entre_dos_numeros/primos_entre_dos_numeros.iml" filepath="$PROJECT_DIR$/primos_entre_dos_numeros/primos_entre_dos_numeros.iml" />
       <module fileurl="file://$PROJECT_DIR$/triangulo_pascal/triangulo_pascal.iml" filepath="$PROJECT_DIR$/triangulo_pascal/triangulo_pascal.iml" />
     </modules>
   </component>
