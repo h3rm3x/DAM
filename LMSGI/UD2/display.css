@@ -1,0 +1,29 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+h1{
+  padding: 10px;
+}
+html{
+ /*  font-size: 50px*/
+}
+body{
+  height: 100vH;
+  font-size: 20px;
+}
+header , footer{
+ background-color: aquamarine;
+ height: 15%;
+ font-size: 1rem;
+}
+main {
+  background-color: aliceblue;
+  /*height: calc(100vH - 200px);*/
+  height: 70%;
+  font-size: 1em;
+}
+#testlletra{
+  font-size: 1em;
+}

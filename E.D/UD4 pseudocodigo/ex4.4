@@ -1,0 +1,50 @@
+ALGORITHM persona mas grande por fecha de nacimiento
+VAR
+  nombre1 string
+  nombre2 string
+  dia_nac1 real
+  mes_nac1 real
+  año_nac1 real
+  dia_nac2 real
+  mes_nac2 real
+  año_nac2 real
+endVar
+
+write("escribe el nombre de la primera persona")
+read(nombre1)
+write("escribe el dia de nacimiento de la primera persona")
+read(dia_nac1)
+write("escribe el mes de nacimiento de la primera persona")
+read(mes_nac2)
+write("escribe el año de nacimiento de la primera persona")
+read(año_nac1)
+write("escribe el nombre de la segunda persona")
+read(nombre2)
+write("escribe el dia de nacimiento de la segunda persona")
+read(dia_nac2)
+write("escribe el mes de nacimiento de la segunda persona")
+read(mes_nac2)
+write("escribe el año de nacimiento de la segunda persona")
+read(año_nac2)
+If (año_nac1> año_nac2)
+ Then write(" la persona mas mayor es " , nombre1")
+ else If (año_nac2> año_nac1)
+   Then write(" la persona mas mayor es " , nombre2")
+   else If(mes_nac1> mes_nac2)
+    Then write(" la persona mas mayor es " , nombre1")
+    else If(mes_nac2>mes_nac1)
+      Then write(" la persona mas mayor es " , nombre2")
+      else If(dia_nac1>dia_nac2)
+        Then write(" la persona mas mayor es " , nombre1")
+        else If(dia_nac2>dia_nac1)
+          Then write(" la persona mas mayor es " , nombre2")
+          else write("las dos personas han nacido el mismo dia")
+          endIf
+        endIf
+      endIf
+    endIf
+  endIf
+endIf
+
+
+

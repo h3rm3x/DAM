@@ -1,0 +1,16 @@
+ALGORITHM descuento
+const
+    precio_minimo_descuento <- 100
+    descuento <- 8
+endconst
+
+var
+    precio_compra real
+endvar
+write(“escribe el precio total de la compra)
+read(precio_compra)
+If precio_compra = precio_minimo_descuento 
+    Then precio_compra<- precio_compra - (precio_compra*descuento/100) 
+    write("con el descuento de"+ descuento+ "% el precio de la compra es "+ precio_compra)
+    Else write("no hay descuento aplicado")
+Endif

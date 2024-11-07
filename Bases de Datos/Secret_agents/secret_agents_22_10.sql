@@ -1,4 +1,3 @@
-
 CREATE TABLE `secret_user` (
   `user_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `first_name` varchar(30) ,

@@ -1,0 +1,25 @@
+ALGORITHM adivinar_numero
+    const
+    numero_secreto <- RANDOM_INT
+Endconst
+var
+    numero_adivinado real
+    intentos <- 0
+    es_correcto<- False
+    es_entero logic
+endvar
+
+While es_correcto Is False And intentos<=5
+    numero_adivinado<- read("escribe un numero ")
+    es_entero<- comprueba_real(numero_adivinado)
+    if es_entero = true 
+        Then If numero_adivinado = numero_secreto
+                  Then
+        	     es_correcto <- True
+        	     write("has adivinado el numero")
+     Else 
+        intentos<- intentos+1
+        write("ERROR, el numero es incorrecto, te quedan " (5 - intentos)  " intentos")
+     Endif
+    Else write(“ERROR, el numero no es real, escribe otro numero”)
+Endwhile

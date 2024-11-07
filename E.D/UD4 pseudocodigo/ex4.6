@@ -1,0 +1,22 @@
+ALGORITHM suma y producto de pares entre dos limites
+
+VAR
+  producto int
+  limite_inf int
+  limite_sup int
+  suma int
+ENDVAR
+suma <- 0 
+producto <-1
+write("escribe el limite inferior")
+read(limite_inf)
+write(" escribe le limite superior")
+read(limite_sup)
+FOR index € (limite_inf .. limite_sup) paso 2
+  IF(limite_inf%2 no es 0)
+    THEN limite_inf = limite_inf + 1
+  ENDIF
+  suma = suma + index
+  producto = producto * index
+ENDFOR
+write(" la suma de todos los pares entere " limite_inf " y " limite_sup " es " suma " y el producto es " producto)

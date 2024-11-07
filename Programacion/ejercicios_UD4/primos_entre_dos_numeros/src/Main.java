@@ -26,7 +26,6 @@ public static void main(String[] args) {
         if (esPrimo(numero)) {
             System.out.println("el "+ (contador+1) + "º numero primo es "+ numero);
             contador++;
-
         }
         numero++;
     }
