@@ -4,6 +4,7 @@ public class ex4_18_cambio_a_baseN {
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe un numero: ");
         int num = sc.nextInt();
+        sc.nextLine();
         System.out.println("Escribe la base en la que quieres que se transforme ");
         int n = sc.nextInt();
         int resultado = 0;
@@ -11,9 +12,11 @@ public class ex4_18_cambio_a_baseN {
         int i = 0;
         do {
 
-            resultado = num % n;
+            baseN[i] = num % n;
+            //resultado = num % n;
             num /= n;
-            baseN[i] = resultado;
+            //baseN[i] = resultado;
+
             i++;
 
 

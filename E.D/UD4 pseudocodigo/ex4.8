@@ -1,0 +1,52 @@
+ALGORITHM temperatura_media
+CONST
+meses : tabla_meses
+ENDCONST
+VAR
+temperatura_media decimal
+temperaturas : tabla_temperaturas
+
+contador_meses int
+temperatura_min int
+temperatura_media decimal
+temperatura_max int
+mas_que_media : tabla_mas_que_media
+menos_que_media: tabla_menos_que_media
+contador_menor int
+contador_mayor int 
+
+ENDVAR
+TYPE
+tabla_meses : ARRAY [1...12] OF cadena
+tabla_temperaturas: ARRAY [1...12] OF decimal
+tabla_mas_que_media: ARRAY [1...12] OF cadena
+tabla_menos_que_media: ARRAY [1...12] OF cadena
+ENDTYPE
+contador_mayor= 0
+contador_menor= 0
+meses = {enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciciembre}
+contador_meses = 0
+WHILE(contador_meses<12)
+  write("Escribe la temperatura_media del mes de", meses[contador_meses] )
+  read(tabla_temperaturas[contador_meses])
+  temperatura_media= temperatura_media + temperaturas[contador_meses]
+  contador_meses = contador_meses + 1
+ENDWHILE
+temperatura_media= temperatura_media/12
+contador_meses = 0
+WHILE(contador_meses<12)
+  IF(temperaturas[contador_meses]<temperatura_media) THEN 
+    temperatura_min[contador_menor]= tabla_meses[contador_meses]
+    contador_menor = contador_menor + 1
+    ELSE IF(temperaturas[contador_meses0]>temperatura_media) THEN
+      temperatura_max[contador_mayor] = meses[contador_meses]
+      contador_mayor = contador_mayor + 1
+    ENDIF
+  ENDIF
+  contador_meses = contador_meses +1
+ENDWHILE
+
+write("Los meses con temperatura mayor a la media anual de ", temperatura_media," son: ", temperatura_max )
+write("Los meses con temperatura menor a la media anual de ", temperatura_media," son: ", temperatura_min )
+ENDALGORITHM
+

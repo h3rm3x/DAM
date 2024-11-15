@@ -6,6 +6,7 @@ public class ex_4_26 {
         String texto ;
         System.out.print("Introduzca el texto: ");
         texto=sc.nextLine();
+        texto=texto.toLowerCase();
         return texto;
     }
     public static String[] contar_letras() {
@@ -19,10 +20,11 @@ public class ex_4_26 {
         int indiceComprobadas = 0;
 
         for (int i = 0; i < texto.length(); i++) {
-            if (Objects.equals(texto.charAt(i), ' ')) {continue;}
+            if (Objects.equals(texto.charAt(i), ' ') || Objects.equals(texto.charAt(i), (char) 9)) {continue;}
             letra = String.valueOf(texto.charAt(i));
             boolean yaComprobada = false;
             for (int k = 0; k < indiceComprobadas; k++) {
+
                 if (letra.equals(letras_comprobadas[k])) {
                     yaComprobada = true;
                     break;
@@ -54,7 +56,6 @@ public class ex_4_26 {
 
         return new String[]{letramasrepetida, Objects.toString(maxrepeticiones) };
     }
-
     public static void main(String[] args) {
        while (true) {
           String[] letras_repetidas = contar_letras();

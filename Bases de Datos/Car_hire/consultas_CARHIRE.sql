@@ -14,3 +14,11 @@ WHERE car_id NOT IN (
  SELECT AVG(price_per_day)
  FROM reservation
  WHERE MONTH(initial_date) = 8;
+ -- cars that have bbeen booked in the last 3 months
+ SELECT *
+ FROM car
+ WHERE car_id IN (
+     SELECT car_id
+     FROM reservation
+     WHERE initial_date >=  DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND final_date <= CURDATE()
+ );

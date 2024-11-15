@@ -5,9 +5,9 @@ public class ex4_17_cambio_a_binario {
         System.out.println("Escribe un numero: ");
         int num = sc.nextInt();
         int resultado=0;
-        int[] binario = new int[100];
+        int[] binario = new int[1000];
         int i = 0;
-
+// tambien es posible hacerlo mediante while simple
         do {
 
             resultado = num % 2;

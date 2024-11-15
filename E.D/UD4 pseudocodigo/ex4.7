@@ -1,0 +1,43 @@
+ALGORITHM notas_clase
+ CONST 
+ MAX_ALUMNOS <- 28
+ VAR
+  contador_suspensos int
+  contador_aprovado int
+  contador_notable int
+  contador_excelente int
+  notas : tabla_notas
+  contador_alumnos int
+ ENDVAR
+ TYPE
+ tabla_notas: ARRAY [1...MAX_ALUMNOS] OF int
+ ENDTYPE
+ 
+
+  contador_alumnos <- 0
+  contador_aprovado <- 0
+  contador_excelente <- 0
+  contador_notable <- 0
+  contador_suspensos <- 0
+  WHILE (contador_alumnos < MAX_ALUMNOS OR notas[contador_alumnos-1] <> -1) DO
+    write("Escribe la siguiente nota")
+    read notas[contador_alumnos]
+    
+    IF rating < 5 THEN
+      contador_suspensos <- contador_suspensos + 1
+    ELSE IF rating >= 5 AND rating < 7 THEN
+      contador_aprovado <- contador_aprovado + 1
+    ELSE IF rating >= 7 AND rating < 9 THEN
+      contador_notable <- contador_notable + 1
+    ELSE IF rating >= 9 AND rating <= 10 THEN
+      contador_excelente <- contador_excelente + 1
+    END IF
+
+    contador_alumnos <- contador_alumnos+1
+  END WHILE
+
+  
+  write "Supunsos: ", contador_suspensos
+  write "Aprovados: ", contador_aprovado
+  write "Notables: ", contador_notable
+  write "Excelente: ", contador_excelente

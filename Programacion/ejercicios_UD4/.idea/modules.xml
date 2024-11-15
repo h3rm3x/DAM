@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Ex_4.11/Ex_4.11.iml" filepath="$PROJECT_DIR$/Ex_4.11/Ex_4.11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Matrices/Matrices.iml" filepath="$PROJECT_DIR$/Matrices/Matrices.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ejercicios_UD4.iml" filepath="$PROJECT_DIR$/.idea/ejercicios_UD4.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex4.11/ex4.11.iml" filepath="$PROJECT_DIR$/ex4.11/ex4.11.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex4.12/ex4.12.iml" filepath="$PROJECT_DIR$/ex4.12/ex4.12.iml" />
@@ -24,10 +25,16 @@
       <module fileurl="file://$PROJECT_DIR$/ex_4.23/ex_4.23.iml" filepath="$PROJECT_DIR$/ex_4.23/ex_4.23.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4.25/ex_4.25.iml" filepath="$PROJECT_DIR$/ex_4.25/ex_4.25.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4.26/ex_4.26.iml" filepath="$PROJECT_DIR$/ex_4.26/ex_4.26.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ex_4.27/ex_4.27.iml" filepath="$PROJECT_DIR$/ex_4.27/ex_4.27.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ex_4.28/ex_4.28.iml" filepath="$PROJECT_DIR$/ex_4.28/ex_4.28.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ex_4.29/ex_4.29.iml" filepath="$PROJECT_DIR$/ex_4.29/ex_4.29.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ex_4.30/ex_4.30.iml" filepath="$PROJECT_DIR$/ex_4.30/ex_4.30.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4.9/ex_4.9.iml" filepath="$PROJECT_DIR$/ex_4.9/ex_4.9.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4_3/ex_4_3.iml" filepath="$PROJECT_DIR$/ex_4_3/ex_4_3.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4_4/ex_4_4.iml" filepath="$PROJECT_DIR$/ex_4_4/ex_4_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_4_5/ex_4_5.iml" filepath="$PROJECT_DIR$/ex_4_5/ex_4_5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extra_2/extra_2.iml" filepath="$PROJECT_DIR$/extra_2/extra_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extra_3/extra_3.iml" filepath="$PROJECT_DIR$/extra_3/extra_3.iml" />
       <module fileurl="file://$PROJECT_DIR$/primos_entre_dos_numeros/primos_entre_dos_numeros.iml" filepath="$PROJECT_DIR$/primos_entre_dos_numeros/primos_entre_dos_numeros.iml" />
       <module fileurl="file://$PROJECT_DIR$/triangulo_pascal/triangulo_pascal.iml" filepath="$PROJECT_DIR$/triangulo_pascal/triangulo_pascal.iml" />
     </modules>
