@@ -85,11 +85,6 @@ main {
   color: #222;
 }
 
-.nba-news p {
-  margin-bottom: 30px;
-  color: #555;
-}
-
 .articles-grid {
   display: flex;
   flex-wrap: wrap;
@@ -98,7 +93,7 @@ main {
 }
 .Autor {
   font-size: 12px;
-  color: #aaa;
+  color: var(--color_fondo);
   margin-bottom: 10px;
   font-style: italic;
   text-align: left;
@@ -111,13 +106,26 @@ main img {
 }
 
 article {
-  background-color: #fff;
+  background-color: var(--color_primario);
   border: 1px solid #ddd;
   padding: 15px;
   width: 30%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.like-button {
+  display: block;
+  margin: 10px auto;
+  padding: 5px 10px;
+  background-color:var(--accent_color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+article .like-button:hover {
+background-color: #2910c2;
+}
 .image-placeholder {
   width: 100%;
   height: 150px;
@@ -128,17 +136,17 @@ article {
 article h2 {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #333;
+  color:var(--color_secundario);
 }
 
 article p {
   font-size: 14px;
-  color: #555;
+  color: var(--color_fondo);
   margin-bottom: 10px;
 }
 
 .read-more {
-  color: #007bff;
+  color:var(--accent_color);
   text-decoration: none;
   font-weight: bold;
 }

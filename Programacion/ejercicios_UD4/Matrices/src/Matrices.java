@@ -95,10 +95,10 @@ public class Matrices {
         if (n == 1) {
             return matriz[0][0];
         }
-        if (n == 2) {
+        /*if (n == 2) {
             return matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
         }
-
+*/
         int determinante = 0;
         for (int i = 0; i < n; i++) {
             int[][] subMatriz = obtenerSubMatriz(matriz, 0, i);
