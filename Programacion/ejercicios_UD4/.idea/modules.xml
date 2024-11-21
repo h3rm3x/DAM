@@ -36,6 +36,7 @@
       <module fileurl="file://$PROJECT_DIR$/examen_2023/examen_2023.iml" filepath="$PROJECT_DIR$/examen_2023/examen_2023.iml" />
       <module fileurl="file://$PROJECT_DIR$/extra_2/extra_2.iml" filepath="$PROJECT_DIR$/extra_2/extra_2.iml" />
       <module fileurl="file://$PROJECT_DIR$/extra_3/extra_3.iml" filepath="$PROJECT_DIR$/extra_3/extra_3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nombres/nombres.iml" filepath="$PROJECT_DIR$/nombres/nombres.iml" />
       <module fileurl="file://$PROJECT_DIR$/primos_entre_dos_numeros/primos_entre_dos_numeros.iml" filepath="$PROJECT_DIR$/primos_entre_dos_numeros/primos_entre_dos_numeros.iml" />
       <module fileurl="file://$PROJECT_DIR$/triangulo_pascal/triangulo_pascal.iml" filepath="$PROJECT_DIR$/triangulo_pascal/triangulo_pascal.iml" />
     </modules>

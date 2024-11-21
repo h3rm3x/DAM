@@ -1,0 +1,21 @@
+ALGORRITHM
+  VAR
+    frase cadena
+    index int
+    espalidromo boolean
+  ENDVAR
+  espalidromo = true
+  input (frase)
+  FOR index in [0...length(frase)/2]
+    IF(frase[index]<>frase[frase(length)-index-1]) THEN
+      espalidromo = false
+    ENDIF
+  ENDFOR
+  IF(espalidromo = true) THEN
+    write("la frase ", frase, "es un palindromo")
+    ELSE
+      write("la frase ", frase, " NO es un palindromo")
+  ENDIF
+ENDALGORITHM
+
+

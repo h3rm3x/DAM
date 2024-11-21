@@ -1,11 +1,14 @@
 import java.util.Scanner;
+
+import static java.lang.Float.parseFloat;
+
 public class Examen_Alan_rabinerson {
     public static float[] notas = new float[300]; // array para guardar todas las notas introducidas
     public static int index = 0; // se define una variable para guardar el numero de notas introducidas
     static Scanner sc = new Scanner(System.in);
     public static float añadirnotas(){
         System.out.println("Introduzca una nota: ");
-        float nota = sc.nextFloat();
+        float nota= sc.nextFloat();
         while (nota>10 || nota<0){ // mientras la nota no este entre 0 y 10 se pide que entre un nuevo valor
             System.out.println("ERROR, la nota ha de ser entre 0 y 10 ");
             System.out.println("Introduzca una nota: ");
@@ -22,6 +25,7 @@ public class Examen_Alan_rabinerson {
         for (int i = 0; i < index; i++) {
             System.out.print(notas[i] +", ");
         }
+
         System.out.println();
     }
     public static void calcularEstadisticas(){

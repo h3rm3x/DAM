@@ -28,6 +28,15 @@ header nav{
   width: 200px;
   padding-left: 10px;
 }
+#btnMenu:hover{
+  cursor: pointer;
+}
+#btn-close:hover{
+  cursor: pointer;
+}
+.nav-visible{
+  display: block;
+}
 header nav ul li{
   padding: 10px;
 }
@@ -80,12 +89,16 @@ nav button{
   border: none;
   background-color: transparent;
 }
+nav div button{
+  display: block;
+  width: 100%;
+}
 nav div:last-child button{
   display: block;
   width: 90%;
   padding: 10px;
   margin: 0 auto;
-}
+ }
 @media (min-width: 640px){
   main picture img, main section{
     width: 40%;
@@ -94,5 +107,38 @@ nav div:last-child button{
   } 
   main section {
     left:0;
+  }
+  #btnMenu, #btn-close,header nav ul li ul{
+    display: none;
+  }
+  header nav{
+    display: initial;
+    position: static;
+  }
+  header > nav > ul >li, header > nav > ul, nav div button, nav div{
+    display: inline-block;
+  }
+  nav div{
+    position: fixed;
+    right: 10px;
+    top: 0;
+  }
+  nav div button{
+    width: auto;
+  }
+  img[alt=logo]{
+    position: relative;
+    top: 10px;
+  }
+  header nav ul li{
+    padding: 0 20px
+  }
+  header nav ul li:hover, nav div button:hover{
+    color: var(--Almost-Black);
+    cursor: pointer;
+  
+  }
+  header nav ul li ul{
+    display: initial;
   }
 }

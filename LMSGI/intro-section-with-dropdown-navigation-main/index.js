@@ -1,6 +1,10 @@
-btnMenu = document.querySelector('#btn-menu');
-console.log(btnMenu);
-btnMenu.addEventListener('click', () => {
-  const nav = document.querySelector('.nav');
-  nav.classList.toggle('nav--visible');
+btnMenu = document.querySelector('#btnMenu');
+navHeader = document.querySelector('#nav-header');
+btnClose = document.querySelector('#btn-close img');
+
+btnMenu.addEventListener('click', () =>{ 
+    navHeader.classList.add('nav-visible');
+});
+btnClose.addEventListener('click', () => { 
+  navHeader.classList.remove('nav-visible');
 });

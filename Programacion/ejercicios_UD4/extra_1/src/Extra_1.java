@@ -7,6 +7,7 @@ public class Extra_1 {
     }
     public static boolean comprobar_palindromo(String frase){
         frase = frase.toLowerCase();
+
         for (int i = 0; i < frase.length()/2 ; i++) {
             if (frase.charAt(i) != frase.charAt(frase.length()-i-1)) {
                 return false;

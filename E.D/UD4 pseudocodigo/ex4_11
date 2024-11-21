@@ -1,0 +1,84 @@
+ALGORITHM
+  TYPE
+    libro: REGISTER(
+      titulo: cadena
+      autor: cadena
+      prestado: boolean
+      fecha-inicio: cadena
+      fecha_fin: cadena)
+
+    tabla_libreria: ARRAY[1..1000] OF libro  
+
+  ENDTYPE
+  VAR
+    libro: datos_libro
+    libreria: tabla_libreria
+    index: integer
+    elemento: cadena
+    opcion: integer
+  ENDVAR 
+  index = 1
+  WHILE elemento <> "fin"
+    WRITE "Introduzca la opcion de programa que quiere usar: "
+    WRITE "0. Introducir un libro"
+    WRITE "1. Mostrar todos los libros de un autor"
+    WRITE "2. Prestar un libro"
+    WRITE "3. Marcar un libro como devuelto/no prestado"
+
+    IF opcion = 0 THEN  
+      WRITE "Introduzca el titulo del libro: "
+      READ libro[index].titulo
+      WRITE "Introduzca el autor del libro: "
+      READ libro[index].autor = libro
+      WRITE "Introduzca si el libro esta prestado (true/false): "
+      READ libro.prestado
+      IF libro.prestado = true THEN
+        WRITE "Introduzca la fecha de inicio del prestamo: "
+        READ libro.fecha-inicio
+        WRITE "Introduzca la fecha de fin del prestamo: "
+        READ libro.fecha_fin
+      ENDIF
+      index = index + 1
+    ENDIF
+    IF opcion = 1 THEN
+      WRITE "Introduzca el autor del libro que quiere buscar: "
+      READ elemento
+      FOR i in 0...1000
+        IF libro[index].autor = elemento THEN
+          WRITE libro[index].titulo
+        ENDIF
+      ENDFOR
+    IF opcion = 2 THEN
+      WRITE "Introduzca el titulo del libro que quiere prestar: "
+      READ elemento
+      FOR i in 0...1000
+        IF libro[index].titulo = elemento THEN
+          IF libro[index].prestado = true THEN
+            WRITE "El libro: ", libro[index].titulo ya esta siendo prestado"
+          ELSE
+            libro[index].prestado = true
+            WRITE "Introduzca la fecha de inicio del prestamo: "
+            READ libro[index].fecha-inicio
+            break
+          ENDIF
+        ENDIF
+      ENDFOR
+    ENDIF
+    IF opcion = 3 THEN
+      WRITE "Introduzca el titulo del libro que quiere devolver: "
+      READ elemento
+      FOR i in 0...1000
+        IF libro[i].titulo = elemento THEN
+          IF libro[i].prestado = false THEN
+            WRITE "El libro: ", libro[i].titulo no esta siendo prestado"
+          ELSE
+            libro[i].prestado = false
+            WRITE "Introduzca la fecha de fin del prestamo: "
+            READ libro[i].fecha_fin
+            break
+          ENDIF
+        ENDIF
+      ENDFOR
+    ENDIF
+  ENDWHILE
+ENDALGORITHM

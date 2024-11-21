@@ -1,0 +1,33 @@
+ALGORITHM
+  CONST 
+    medida int
+  ENDCOST
+
+  VAR
+    index int
+    index_repeticion int
+    tabla : tabla_numeros
+    tabla_limpia : tabla_sin_repeticiones
+    repetido int
+    contador_repeticion int
+  ENDVAR
+  TYPE
+    tabla_numeros : ARRAY [1...medida] of int
+    tabla_sin_repeticiones : ARRAY [1...medida] of int 
+  ENDTYPE
+  index = 0
+  contador_repeticion = 0
+  FOR index in [0..medida-1]
+    repetido = tabla[index]
+    FOR index_repeticion in [index. medida-1]
+      IF (tabla[index_repeticion]=tabla[index] AND contador_repeticion=0) THEN
+        tabla_limpia[index]= tabla[index]
+      ENDIF
+    ENDFOR
+  ENDFOR
+  write(tabla_limpia)
+ENDALGORITHM
+
+
+  
+  
