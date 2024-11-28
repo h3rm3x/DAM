@@ -1,6 +1,6 @@
 import java.util.Objects;
 import java.util.Scanner;
-public class ex_4_23 {
+public class ex_4_24 {
     static Scanner sc = new Scanner(System.in);
     public static double Lllegireuros (){
         double euros;

@@ -1,0 +1,42 @@
+ALGORITHM Poligono
+  TYPE
+   Coordenada REGISTER(
+      x: int
+      y: int
+    )
+  
+
+   Lado REGISTER(
+      coord_inicio: Coordenada
+      coord_fin: Coordenada
+    )
+  
+   Poligono REGISTER(
+      n int
+      lados: ARRAY[1..30] OF Lado
+    )
+  END TYPE
+
+  VAR
+    p Poligono
+  ENDVAR
+
+  BEGIN
+    PRINT "Introduce el número de lados del polígono (máximo 30): "
+    READ p.n
+    IF p.n > 0 AND p.n <= 30 THEN
+      FOR i in [1...p.n]
+        PRINT "Introduce la coordenada x del punto inicial del lado ", i, ": "
+        READ p.lados[i].coord_inicio.x
+        PRINT "Introduce la coordenada y del punto inicial del lado ", i, ": "
+        READ p.lados[i].coord_inicio.y
+        PRINT "Introduce la coordenada x del punto final del lado ", i, ": "
+        READ p.lados[i].coord_fin.x
+        PRINT "Introduce la coordenada y del punto final del lado ", i, ": "
+        READ p.lados[i].coord_fin.y
+      END FOR
+    ELSE
+      PRINT "Número de lados no válido."
+    END IF
+  END
+END ALGORITHM

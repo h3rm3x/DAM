@@ -5,10 +5,10 @@ ALGORITHM
       autor: cadena
       prestado: boolean
       fecha-inicio: cadena
-      fecha_fin: cadena)
+      fecha_fin: cadena
+      )
 
     tabla_libreria: ARRAY[1..1000] OF libro  
-
   ENDTYPE
   VAR
     libro: datos_libro

@@ -1,0 +1,48 @@
+ALGORITHM Cambio_divisa
+  FUNCTION leer_euros : decimal
+    decimal cantidad
+    WRITE("Escribe la cantidad de euros que quieres convertir")
+    READ cantidad
+    RETURN cantidad
+  ENDFUNCTION
+
+  FUNCTION leer_divisa : cadena
+    cadena divisa
+    WRITE(" Escribe la divisa a la que quiere convertir esat cantidad (yens, libras o dolares)")
+    READ divisa
+    RETURN divisa
+  ENDFUNCTION
+
+  FUNCTION conversor : void
+    decimal euros = leer_euros()
+    cadena moneda = leer_divisa()
+
+    decimal conversion
+
+    IF moneda = "yens" THEN
+      conversion = euros * 136.43
+      WRITE euros, "€ en Yens son ", conversion, " yens"
+      RETURN
+    ENDIF
+
+    IF moneda = libras
+      conversion = euros*0.87
+      WRITE euros, "€ en libras son ", conversion, " libras"
+      RETURN
+    ENDIF
+
+    IF moneda = dolares
+      conversion = euros*1.09
+      WRITE euros, "€ en Dolares son ", conversion, "$"
+      RETURN
+    ENDIF
+  ENDFUNCTION
+
+ conversor() 
+ .
+ENDALGORITHM
+
+
+
+
+    
