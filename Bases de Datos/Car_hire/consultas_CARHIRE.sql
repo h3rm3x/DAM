@@ -22,3 +22,19 @@ WHERE car_id NOT IN (
      FROM reservation
      WHERE initial_date >=  DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND final_date <= CURDATE()
  );
+
+ -- invoices for all resrvations
+    SELECT Cu.name , Cu.surname, Cu.nif, R.*, Ca.brand, Ca.model
+    FROM reservations AS R
+    INNER JOIN clients AS Cu ON Cu.id_client = R.id_client
+    INNER JOIN cars AS Ca ON Ca.car_id = R.car_id;
+-- invoices for all reservations w/ Forename in uppercase
+    SELECT Cu.name , UCASE(Cu.surname), Cu.nif, R.*, Ca.brand, Ca.model 
+    FROM reservations AS R 
+    INNER JOIN clients AS Cu ON Cu.id_client = R.id_client 
+    INNER JOIN cars AS Ca ON Ca.car_id = R.car_id;
+-- invoices for all reservations w/ Forename in uppercase and total price
+    SELECT Cu.name , UCASE(Cu.surname), Cu.nif, R.*, Ca.brand, Ca.model, DATEDIFF(R.final_date,R.initial_date)*R.price_per_day AS total_price
+    FROM reservations AS R 
+    INNER JOIN clients AS Cu ON Cu.id_client = R.id_client 
+    INNER JOIN cars AS Ca ON Ca.car_id = R.car_id;
