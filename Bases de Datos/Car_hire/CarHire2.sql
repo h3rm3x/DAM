@@ -1,3 +1,6 @@
+drop table if exists reservation;
+drop table if exists client;
+drop table if exists car;
 
 CREATE TABLE `car` (
   `car_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMNENT,
@@ -18,7 +21,7 @@ CREATE TABLE `car` (
 -- Dumping data for table `car`
 --
 
-INSERT INTO `car` (`car_id`, `brand`, `model`, `colour`, `plate`, `seats`, `doors`, `fuel`, `localizacion`, `itv`, `state`, `price_per_day`) VALUES
+INSERT INTO `car` (`car_id`, `brand`, `model`, `colour`, `plate`, `seats`, `doors`, `fuel`, `location`, `itv`, `state`, `price_per_day`) VALUES
 (1, 'toyota', 'corolla', 'blanco', '1234BCD', 5, 4, 'gasolina', 'Aeropuerto', 1, 'Disponible', '80'),
 (2, 'ford ', 'fiesta', 'black', '4567DWP', 5, 4, 'Diesel', 'Airport', 1, 'Availiable', '75'),
 (3, 'BMW', 'X5', 'blue', '7897GHL', 4, 5, 'Gaoil', 'Hotel', 0, 'Maintenence', '95'),
@@ -76,8 +79,8 @@ CREATE TABLE `reservation` (
   `price_per_day` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
   `car_id` int(11) NOT NULL,
-  FOREIGN KEY 'id_client' REFERENCES 'client'('id_client'),
-  FOREIGN KEY 'car_id' REFERENCES 'car'('car_id')
+  FOREIGN KEY (`id_client`) REFERENCES `client`(`id_client`),
+  FOREIGN KEY (`car_id`) REFERENCES `car`(`car_id`)
 ) ;
 
 --
