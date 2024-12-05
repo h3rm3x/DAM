@@ -9,8 +9,7 @@ public static void main(String[] args) {
         System.out.println("1. Ingresar nuevo Jugador");
         System.out.println("2. Ingresar nuevo miembro del Staff");
         System.out.println("3. Ingresar nuevo miembro de la directiva");
-        System.out.println("4. Ingresar nuevo miembro del equipo");
-        System.out.println("5. Ver equipo");
+    System.out.println("4. Ver equipo");
         int opcion;
         do{
             opcion = sc.nextInt();
@@ -79,28 +78,16 @@ public static void main(String[] args) {
                     index++;
                     break;
                 }
-                case 4: {
-                    System.out.println("Ingresar nuevo Miembro del equipo");
-                    System.out.println("Escriba el nombre del miembro del equipo");
-                    String nombre_equipo = sc.next();
-                    System.out.println("Escriba el nombre del miembro del equipo");
-                    String nombre = sc.nextLine();
-                    System.out.println("Escriba el apellido del miembro del equipo");
-                    String apellido = sc.nextLine();
-                    System.out.println("Escriba el DNI del miembro del equipo");
-                    String dni = sc.nextLine();
-                    System.out.println("Escriba la fecha de nacimiento");
-                    String fecha_nacimiento = sc.nextLine();
-                    equipo[index] = new Miembros_equipo(nombre_equipo,nombre, apellido, dni, fecha_nacimiento);
-                    index++;
-                    break;
-                }
                 case 5: {
                     System.out.println("Los miembros del equipo son :");
                     for (int i = 0; i < index; i++) {
                         equipo[i].mostrarInformacion();
                         System.out.println();
                     }
+                }
+                default: {
+                    System.out.println("ERROR, la opcion indicada no existe. Escribe una opcion valida");
+                    break;
                 }
 
 
