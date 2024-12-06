@@ -1,9 +1,9 @@
 public abstract class Musica {
-    private String titulo;
-    private String autor;
-    private String genero;
-    private int ano;
+    double duracion;
 
+    public Musica(double duracion) {
+        this.duracion = duracion;
+    }
     public void reproducir() {
     }
 
