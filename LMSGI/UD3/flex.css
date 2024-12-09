@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+}
+.flex-container{
+    background-color: black;
+    display: flex;
+    flex-direction: row;/* column, column-reverse, row-reverse */
+    gap: 10px;
+    padding: 5px 0; 
+    /*height: 500px;/* si no se pone altura, se ajusta al contenido */
+    align-items: center; /* center, flex-start, flex-end, stretch, baseline */
+    justify-content: center; /* center, flex-start, flex-end, space-around, space-between, space-evenly */
+    flex-wrap: wrap;
+}
+.flex-item{
+    background-color: red;
+    color: white;
+    flex-basis: 100px; /* referencia a los elementos (por defecto tiene valor 0*/
+    /*flex-shrink: 1; /* 0 no se encoge, 1 se encoge (por defecto es 1) */
+    /*flex-grow: 0; /* aumenta el tamaño para ocupar todo el espacio, con valor 0 no crece, con 1 crece (por defecto es 0) */
+    /*flex: 0 1 200px; /* flex-grow, flex-shrink, flex-basis */
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.flex-item:first-child{
+    /*flex-grow:2;/* si hay espacio ocupara el doble que los demas */
+    /*flex: 1 0 200px; /*abreviacion de las tres propiedades flex-grow, flex-shrink, flex-basis */
+    height: 50%;
+    /*align-self: self-end;*/ 
+    
+
+}
