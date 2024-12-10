@@ -1,3 +1,11 @@
+:root{
+    --lila: #6a4c93;
+    --magenta: #b56576;
+    --crema: #eaac8b;
+    --negro: #000;
+    --blanco: #fff;
+
+}
 *{
     margin: 0;
     padding: 0;
@@ -5,16 +13,17 @@
 }
 
 header, footer {
-    background-color: #6a4c93;
-    color: white;
+    background-color:var(--lila);
+    color: var(--blanco);
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    align-items: center;
+    height: 55px;
 }
 
 a{
     text-decoration: none;
-    color: #000;
+    color: var(--negro);
 }
 
 main{
@@ -27,41 +36,42 @@ main{
 
 
 aside {
-    background-color: #b56576;
-    padding: 20px;
+    background-color: var(--magenta);
+    gap: 10px;
     width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
+    padding: 20px;
 }
 
-aside a{
-    margin-bottom: 10px;
-}
+
 
 section {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    /*otra opcion align-items: flex-end; */
     width: 80%; 
     height: 100%;
-    background-color: #fff;
+    background-color: var(--blanco);
     flex-wrap: wrap;
     gap: 20px;
+    align-content: center;
+
 }
 
 section div{
-    width: 40%;
+    flex-basis: 45%;
+    /*otra opcion width: 40%;*/
     height: 20%;
-    background-color: #eaac8b;
+    background-color: var(--crema);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
 }
 
-section div:nth-child(3), section div:nth-child(4){
+/* section div:nth-child(3), section div:nth-child(4){
     align-self: flex-start;
-}
+} */
 
