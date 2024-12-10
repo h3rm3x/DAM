@@ -111,14 +111,14 @@ INSERT INTO `customer` (`first_name`, `last_name`, `email`, `username`, `passwor
 ('Jane', 'Williams', 'janewilliams@outlook.com', 'janewilliams', '123456', '1234567890');
 
 INSERT INTO `product` (`name`, `description`, `price`, `stock`, `supplier`) VALUES
-('football', 'Description 1', 10.00, 100, 'Supplier 1'),
-('basketball', 'Description 2', 20.00, 200, 'Supplier 2'),
-('Product 3', 'Description 3', 30.00, 300, 'Supplier 3'),
-('Product 4', 'Description 4', 40.00, 400, 'Supplier 4'),
-('Product 5', 'Description 5', 50.00, 500, 'Supplier 5'),
-('Product 6', 'Description 6', 60.00, 600, 'Supplier 6'),
-('Product 7', 'Description 7', 70.00, 700, 'Supplier 7'),
-('Product 8', 'Description 8', 80.00, 800, 'Supplier 8'),
-('Product 9', 'Description 9', 90.00, 900, 'Supplier 9'),
-('Product 10', 'Description 10', 100.00, 1000, 'Supplier 10');	
+('Laliga football', 'Official laliga ball', 120.00, 100, 'Supplier 1'),
+('Wilson basketball', 'Official Wilson NBA game ball', 115.00, 200, 'Supplier 2'),
+('Garden Goal', 'Small goal to play football outdoors', 30.00, 300, 'Supplier 3'),
+('Nike sleeveless Shirt', 'Basic white sleeveless nike shirt', 40.00, 400, 'Supplier 4'),
+('Spalding indoor ball', 'Spalding indoor basketball', 50.00, 500, 'Supplier 2'),
+('Tennis Racket', 'Wilson Tennis Racket', 60.00, 600, 'Supplier 4'),
+('Sports Socks', 'White adidas sports socks', 5.00, 700, 'Supplier 1'),
+('FC Barlona Home Kit', 'Official nike Fc Barrcelona 2024/25 Home kit', 80.00, 800, 'Supplier 3'),
+('LA Lakers 2024/25 city edition', 'Official 2024/25 LA Lakers Nike city edition jersey', 170.00, 900, 'Supplier 3'),
+('Jordan 1 white/red', 'Nike Air Jordan 1 shoes red/white', 100.00, 1000, 'Supplier 1');	
 
