@@ -74,7 +74,7 @@ CREATE TABLE `payment_customer`(
 CREATE TABLE `category`(
     `category_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `name` varchar(100) NOT NULL,
-    `description` varchar(100) NOT NULL
+    `description` varchar(100) NOT NULL,
 ) ;
 
 CREATE TABLE `product_category`(
@@ -130,7 +130,9 @@ INSERT INTO `category` (`name`, `description`) VALUES
 ('Tennis', 'All tennis related products'),
 ('Clothing', 'All clothing related products'),
 ('Footwear', 'All footwear related products'),
-('Outdoor', 'All outdoor related products');
+('Outdoor', 'All outdoor related products'),
+('Golf', 'All golf related products'),
+('Running', 'All running related products');
 
 
 INSERT INTO `product_category` (`product_id`, `category_id`) VALUES
@@ -170,7 +172,7 @@ INSERT INTO `adress_customer` (`adress_id`, `customer_id`) VALUES
 (7, 7),
 (8, 8),
 (9, 9),
-(10, 10)
+(10, 10),
 (1, 9),
 (3, 10),
 (5, 1),
