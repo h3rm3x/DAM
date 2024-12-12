@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6087c9a5-ddac-41ab-805d-8cdd0a19ee58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Acepta_el_Reto.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Asalto_al_castillo/Asalto_al_castillo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Asalto_al_castillo/src/Asalto_al_castillo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chicles_De_Regalo/Chicles_De_Regalo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chicles_De_Regalo/src/Chicle_Regalo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hola_Muundo/Hola_Muundo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hola_Muundo/src/Hola_Mundo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Nochevieja/Nochevieja.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Nochevieja/src/Nochevieja.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problemas_de_ser_rico/Problemas_de_ser_rico.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problemas_de_ser_rico/src/solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feliz_no_cumpleanos/feliz_no_cumpleanos.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feliz_no_cumpleanos/src/no_cumpleanos.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Alan-Rabinerson&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/h3rm3x/DAM.git&quot;,
+    &quot;accountId&quot;: &quot;b04e0b70-5619-46dd-9abd-44599191848b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2q2OZnD4Yamstjc7yv7dXJ99yxr" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Asalto_al_castillo.executor": "Run",
+    "Application.Chicle_Regalo.executor": "Run",
+    "Application.Hola_Mundo.executor": "Run",
+    "Application.Nochevieja.executor": "Run",
+    "Application.no_cumpleanos.executor": "Run",
+    "Application.solution.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "programacion",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/alanr/Documents/DAM/Programacion/Acepta_el_Reto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "configurable.group.build",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6087c9a5-ddac-41ab-805d-8cdd0a19ee58" name="Changes" comment="" />
+      <created>1733857262681</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733857262681</updated>
+      <workItem from="1733857264138" duration="22000" />
+      <workItem from="1733857382677" duration="409000" />
+      <workItem from="1733857831004" duration="4387000" />
+      <workItem from="1733870610057" duration="7792000" />
+      <workItem from="1733918122936" duration="10799000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
