@@ -34,6 +34,7 @@ public class voyager {
             }
             long valor = Long.parseLong(numero);
             return valor < 0 || valor >= 1000000000;
+
         } catch (NumberFormatException e) {
             return true;
         }
