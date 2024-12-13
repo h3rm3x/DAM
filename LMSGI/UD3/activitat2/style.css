@@ -24,7 +24,7 @@ body {
 }
 
 header {
-  position: relative;
+  display: flex;
   padding: 20px;
 }
 
@@ -203,25 +203,39 @@ main section div img {
   }
 
   main {
-    padding: 20px 60px;
-    position: relative;
-  }
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+}
 
   main picture img, main section {
     width: 42%;
     display: flex;
   }
 
-  main picture img {
-    position: absolute;
-    right: 60px;
-  }
+  main picture {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
 
-  main section {
-    position: absolute;
-    left: 60px;
-    text-align: left;
-  }
+
+main picture img {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  right: 0;
+}
+
+main section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  text-align: left;
+}
+
 
   main section h2 {
     font-size: 70px;
@@ -283,9 +297,9 @@ main section div img {
     width: auto;
   }
 
-  .btn-container {
+  div.btn-container {
     display: flex;
-    bottom: 15px;
+    top: 20px;
     position: absolute;
     right: 20px;
   }
