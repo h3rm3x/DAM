@@ -86,6 +86,7 @@ img[alt="close-menu"]{
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  top: 15px;
 }
 
 .ul-visible li {
@@ -232,7 +233,10 @@ main section div img {
 
   main section div {
     margin-top: 100px;
-
+  }
+  main section div img {
+    padding: 0 15px;
+    height: 20px;
   }
 
   header nav {
@@ -281,7 +285,7 @@ main section div img {
 
   .btn-container {
     display: flex;
-
+    bottom: 15px;
     position: absolute;
     right: 20px;
   }
