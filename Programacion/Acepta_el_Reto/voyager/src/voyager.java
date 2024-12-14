@@ -15,7 +15,7 @@ public class voyager {
                     return true;
                 }
 
-                if (esNumeroValido(numeros[0]) || esNumeroValido(numeros[1]) || esNumeroValido(numeros[2])) {
+                if (NoesNumeroValido(numeros[0]) || NoesNumeroValido(numeros[1]) || NoesNumeroValido(numeros[2])) {
                     System.out.println("RUIDO COSMICO");
                     return true;
                 }
@@ -27,7 +27,7 @@ public class voyager {
         }
     } // casoDePrueba
 
-    public static boolean esNumeroValido(String numero) {
+    public static boolean NoesNumeroValido(String numero) {
         try {
             if (numero.isEmpty() || numero.length() > 10) {
                 return true;
@@ -75,3 +75,4 @@ public class voyager {
     } // main
 
 } // class solution
+2
