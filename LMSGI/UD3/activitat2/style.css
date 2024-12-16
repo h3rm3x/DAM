@@ -1,7 +1,7 @@
 :root {
-  --almost-white: hsl(0, 0%, 98%);
-  --medium-gray: hsl(0, 0%, 41%);
-  --almost-Black: hsl(0, 0%, 8%);
+  --almost-white: #fafafa;
+  --medium-gray: #696969;
+  --almost-Black: #141414;
 }
 
 @font-face {
@@ -19,12 +19,12 @@
 }
 
 body {
-  background-color: var(--almost-white);
   color: var(--almost-Black);
+  background-color: var(--almost-white);
 }
 
 header {
-  display: flex;
+  position: relative;
   padding: 20px;
 }
 
@@ -39,7 +39,6 @@ header nav {
 }
 
 .back {
-  background-color: rgba(0, 0, 0, 0.75);
   position: absolute;
   left: 0;
   top: 0;
@@ -48,20 +47,20 @@ header nav {
 }
 
 .front {
-  background-color: var(--almost-white);
   width: 240px;
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
   padding: 20px;
+  background-color: var(--almost-white);
 }
 
 .front > ul {
   margin-top: 50px;
 }
 
-header nav ul li {
+header nav>ul>li {
   cursor: pointer;
   margin-bottom: 26px;
 }
@@ -147,9 +146,8 @@ main picture img{
 
 main section {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  padding: 40px 20px;
+  padding: 60px 20px 0 20px;
   justify-content: center;
   align-items: center;
 }
@@ -202,40 +200,33 @@ main section div img {
     display: none;
   }
 
-  main {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: row-reverse;
-}
-
-  main picture img, main section {
-    width: 42%;
-    display: flex;
+  header{
+    display: flex;;
   }
 
-  main picture {
-    flex: 1;
+  main {
+    padding: 10px;
     display: flex;
-    justify-content: flex-end;
-}
+    justify-content: space-around;
+    flex-direction: row-reverse;
+  }
 
+  main picture img, main section {
+    display: flex;
+  }
+  
+  main picture, main section{
+    width: 35%;
+  }
 
-main picture img {
-  max-width: 100%;
-  height: auto;
-  position: relative;
-  right: 0;
-}
+  main picture img {
+    width: 90%;
+  }
+ 
 
-main section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  left: 0;
-  text-align: left;
-}
-
+  main section {
+    text-align: left;
+  }
 
   main section h2 {
     font-size: 70px;
@@ -257,9 +248,12 @@ main section {
     display: flex;
     margin-left: 40px;
   }
+  nav ul{
+    display: flex;
+    position: relative;
+  }
 
   .back {
-    background-color: var(--almost-white);
     position: static;
     width: auto;
     height: auto;
@@ -269,6 +263,7 @@ main section {
     position: static;
     width: auto;
     padding: 0;
+    display: flex;
   }
 
   #btn-close {
@@ -278,11 +273,44 @@ main section {
   .front ul {
     margin-top: 10px;
   }
+  .ul-submenu{
+    position: absolute;
+    top: 100%; 
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid #ffffff;
+    box-shadow: inset;
+    border-radius: 10px;
+    z-index: 10;
+  }
+  .ul-features li{
+    margin: 0;
+    padding: 10px;
+  }
 
-  header nav ul li {
+  .ul-features{
+    left: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+  }
+
+  .ul-company{
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+  }
+  .ul-company li{
+    margin: 0;
+    padding: 5px;
+  }
+
+  header nav ul li  {
     margin: 0 20px;
     align-items: center;
   }
+  header nav ul li:hover > ul {
+    display: flex;
+ }
   
   img[alt="arrow-down"], img[alt="arrow-up"] { 
     height: 5px;
@@ -297,32 +325,10 @@ main section {
     width: auto;
   }
 
-  div.btn-container {
+  .btn-container {
     display: flex;
-    top: 20px;
+    bottom: 15px;
     position: absolute;
     right: 20px;
   }
-
-  header nav ul li {
-    position: relative;
-  }
-
-  .ul-visible {
-    /* display: block; */
-    position: absolute;
-    right: 0;
-    background-color: var(--almost-white);
-    border-radius: 0.5em;
-    z-index: 1000;
-    width: max-content;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-  }
-
-  .ul-visible li {
-    /* display: block; */
-    padding: 10px 0;
-  }
-
 }
