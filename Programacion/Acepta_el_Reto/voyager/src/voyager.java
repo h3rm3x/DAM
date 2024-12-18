@@ -75,4 +75,3 @@ public class voyager {
     } // main
 
 } // class solution
-2
