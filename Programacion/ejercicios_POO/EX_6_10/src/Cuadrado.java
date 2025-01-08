@@ -15,4 +15,8 @@ public class Cuadrado extends Figuras_geometrticas {
         double perimetro = lado * 4;
     }
 
+    public String toString() {
+        return "Cuadrado con lado " + lado + " y centro en " + super.toString();
+    }
+
 }

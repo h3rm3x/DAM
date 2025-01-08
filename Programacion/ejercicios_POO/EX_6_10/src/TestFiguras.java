@@ -37,6 +37,7 @@ public class TestFiguras {
 
                     f[contador_figuras].area();
                     f[contador_figuras].perimetro();
+                    System.out.println(f[contador_figuras]);
                     contador_figuras++;
                     break;
                 }
@@ -56,6 +57,7 @@ public class TestFiguras {
 
                     f[contador_figuras].area();
                     f[contador_figuras].perimetro();
+                    System.out.println(f[contador_figuras]);
 
                     contador_figuras++;
                     break;
@@ -76,6 +78,7 @@ public class TestFiguras {
 
                     f[contador_figuras].area();
                     f[contador_figuras].perimetro();
+                    System.out.println(f[contador_figuras]);
                     contador_figuras++;
                     break;
                 }
@@ -99,6 +102,7 @@ public class TestFiguras {
 
                     f[contador_figuras].area();
                     f[contador_figuras].perimetro();
+                    System.out.println(f[contador_figuras]);
                     contador_figuras++;
                     break;
                 }

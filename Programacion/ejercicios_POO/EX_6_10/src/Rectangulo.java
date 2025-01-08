@@ -17,4 +17,8 @@ public class Rectangulo extends Figuras_geometrticas {
         System.out.println("Perimetro: " + perimetro);
     }
 
+    public String toString() {
+        return "Rectangulo con alto " + alto + " y ancho " + ancho + " y centro en " + super.toString();
+    }
+
 }

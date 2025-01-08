@@ -10,4 +10,8 @@ public abstract class Figuras_geometrticas {
     public abstract void area();
 
     public abstract void perimetro();
+
+    public String toString() {
+        return "El centro de la figura es" + x + ", " + y + ")";
+    }
 }

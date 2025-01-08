@@ -16,4 +16,8 @@ public class Rombo extends Figuras_geometrticas {
         double perimetro = Math.sqrt(Math.pow(Dmayor, 2) + Math.pow(Dmenor, 2));
         System.out.println("Perimetro Rombo: " + perimetro);
     }
+
+    public String toString() {
+        return "Rombo: " + super.toString();
+    }
 }

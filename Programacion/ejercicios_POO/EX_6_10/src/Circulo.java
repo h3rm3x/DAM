@@ -14,4 +14,8 @@ public class Circulo extends Figuras_geometrticas {
     public void perimetro() {
         double perimetro = 2 * Math.PI * radio;
     }
+
+    public String toString() {
+        return "Circulo con radio " + radio + " y centro en " + super.toString();
+    }
 }
