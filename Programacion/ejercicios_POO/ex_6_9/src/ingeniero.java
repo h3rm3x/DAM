@@ -8,4 +8,8 @@ public class ingeniero extends Trabajador {
         System.out.println("Resuelve problemas tecnicos y diseña soluciones ");
     }
 
+    public String toString() {
+        return "Ingeniero: " + super.toString();
+    }
+
 }

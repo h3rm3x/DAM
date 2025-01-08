@@ -1,4 +1,4 @@
-public abstract class Trabajador {
+public class Trabajador {
     private String nombre;
     private double salario;
 
@@ -21,6 +21,10 @@ public abstract class Trabajador {
 
     public void trabajar() {
         System.out.println("Este trabajador realiza tareas generales");
+    }
+
+    public String toString() {
+        return "Nombre: " + nombre + "\n" + ", Salario: " + salario;
     }
 
 
