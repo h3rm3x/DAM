@@ -21,3 +21,26 @@ GROUP BY YEAR(order_date);
 SELECT  COUNT(*), QUARTER(order_date) as QUARTER
 FROM order_view
 GROUP BY QUARTER(order_date);
+-- top 10 customers
+SELECT sum(total_price) AS total_money_spent, customer_id
+FROM order_view
+GROUP BY customer_id
+ORDER BY 1 DESC
+LIMIT 10;
+-- TOP 10 highest grossing product
+SELECT sum(total_price) AS total_revenue, product_id
+FROM order_view
+GROUP BY product_id
+ORDER BY 1 DESC
+LIMIT 10;
+-- top 10 highest sold products
+SELECT sum(quantity) AS total_units_sold, product_id
+FROM order_view
+GROUP BY product_id
+ORDER BY 1 DESC
+LIMIT 10;
+-- total revenue per month
+SELECT  SUM(total_price), MONTHNAME(order_date) as MONTH
+FROM order_view
+GROUP BY MONTH(order_date);
+-- total revenue per day
