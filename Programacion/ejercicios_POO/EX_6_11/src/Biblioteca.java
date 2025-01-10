@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Biblioteca {
     static Scanner sc = new Scanner(System.in);
-
+    // declaracion de los armarios
     static ArmarioLibros Aventura = new ArmarioLibros("Aventura");
     static ArmarioLibros CienciaFiccion = new ArmarioLibros("Ciencia Ficcion");
     static ArmarioLibros Historia = new ArmarioLibros("Historia");
@@ -19,6 +19,7 @@ public class Biblioteca {
             System.out.println("2. Eliminar libro");
             System.out.println("3. Mostrar libros");
             System.out.println("4. Salir");
+            Libro libro;
             int opcion = Integer.parseInt(System.console().readLine());
             switch (opcion) {
                 case 1: {
@@ -28,9 +29,10 @@ public class Biblioteca {
                     String autor = sc.nextLine();
                     System.out.println("Introduce el ISBN del libro");
                     int ISBN = sc.nextInt();
+                    sc.nextLine();
                     System.out.println("Introduce el genero del libro");
                     String genero = sc.nextLine();
-                    Libro libro = new Libro(titulo, autor, ISBN, genero);
+                    libro = new Libro(titulo, autor, ISBN, genero);
                     anadirLibro(libro);
                     break;
                 }
@@ -44,6 +46,9 @@ public class Biblioteca {
                 case 3: {
                     mostrarLibros();
                     break;
+                }
+                case 4: {
+                    System.exit(0);
                 }
             }
         }

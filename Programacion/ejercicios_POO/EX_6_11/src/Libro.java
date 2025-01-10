@@ -1,4 +1,4 @@
-public class Libro extends ArmarioLibros {
+public class Libro {
     private String titulo;
     private String autor;
     private int ISBN;
@@ -9,7 +9,8 @@ public class Libro extends ArmarioLibros {
         this.titulo = titulo;
         this.autor = autor;
         this.ISBN = ISBN;
-        super(genero);
+        this.genero = genero;
+
     }
 
     public String getTitulo() {
@@ -37,7 +38,7 @@ public class Libro extends ArmarioLibros {
     }
 
     public String toString() {
-        return "Titulo: " + titulo + "\nAutor: " + autor + "\nISBN: " + ISBN;
+        return "Titulo: " + titulo + "\nAutor: " + autor + "\nGenero:" + genero + "\nISBN: " + ISBN;
     }
 
     public String getGenero() {
