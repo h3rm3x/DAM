@@ -1,0 +1,16 @@
+:root{
+    :root{
+        --color_primario: #ee6611;
+        --color_secundario: #020024;
+        --color_fondo: #fafafa;
+        --color_texto: #050505;
+        --accent_color: #0010c2;
+    }
+
+    @font-face {
+        font-family: "inter";
+        src: url(https://fonts.google.com/specimen/Inter);
+    }
+
+    
+}
