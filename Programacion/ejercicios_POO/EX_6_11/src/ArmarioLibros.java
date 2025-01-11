@@ -14,6 +14,10 @@ public class ArmarioLibros {
                 libros[i] = libro;
                 break;
             }
+            if (i == libros.length - 1) {
+                System.out.println("No hay espacio para más libros");
+            }
+
         }
     }
 

@@ -13,6 +13,7 @@ public class Libro {
 
     }
 
+
     public String getTitulo() {
         return titulo;
     }
@@ -23,6 +24,10 @@ public class Libro {
 
     public int getISBN() {
         return ISBN;
+    }
+
+    public String getGenero() {
+        return genero;
     }
 
     public void setTitulo(String titulo) {
@@ -37,15 +42,15 @@ public class Libro {
         this.ISBN = ISBN;
     }
 
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
     public String toString() {
         return "Titulo: " + titulo + "\nAutor: " + autor + "\nGenero:" + genero + "\nISBN: " + ISBN;
     }
 
-    public String getGenero() {
-        return genero;
-    }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
+
+
 }

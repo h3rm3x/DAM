@@ -18,7 +18,8 @@ public class Biblioteca {
             System.out.println("1. Añadir libro");
             System.out.println("2. Eliminar libro");
             System.out.println("3. Mostrar libros");
-            System.out.println("4. Salir");
+            System.out.println("4. Modificar libro");
+            System.out.println("5. Salir");
             Libro libro;
             int opcion = Integer.parseInt(System.console().readLine());
             switch (opcion) {
@@ -36,6 +37,7 @@ public class Biblioteca {
                     anadirLibro(libro);
                     break;
                 }
+
                 case 2: {
                     System.out.println("Introduce el ISBN del libro que quieres eliminar");
                     int ISBN = sc.nextInt();
@@ -44,12 +46,33 @@ public class Biblioteca {
                 }
 
                 case 3: {
-                    mostrarLibros();
+                    System.out.println("Escribe el genero del armaro que quieres ver");
+                    String genero = sc.nextLine();
+                    mostrarLibros(genero);
                     break;
                 }
+
                 case 4: {
+                    System.out.println("Introduce el ISBN del libro que quieres modificar");
+                    int ISBN = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("Introduce el titulo del libro");
+                    String titulo = sc.nextLine();
+                    System.out.println("Introduce el autor del libro");
+                    String autor = sc.nextLine();
+                    System.out.println("Introduce el genero del libro");
+                    String genero = sc.nextLine();
+                    libro = new Libro(titulo, autor, ISBN, genero);
+                    eliminarLibro(ISBN);
+                    anadirLibro(libro);
+                    break;
+                }
+                case 5: {
                     System.exit(0);
                 }
+                default:
+                    System.out.println("Opcion no valida");
+                    break;
             }
         }
     }
@@ -77,6 +100,9 @@ public class Biblioteca {
             case "Biografia":
                 Biografia.anadirLibro(libro);
                 break;
+            default:
+                System.out.println("Genero no valido");
+                break;
         }
 
     }
@@ -89,23 +115,34 @@ public class Biblioteca {
         Terror.eliminarLibro(ISBN);
         Fantasia.eliminarLibro(ISBN);
         Biografia.eliminarLibro(ISBN);
-
     }
 
-    public static void mostrarLibros() {
-        System.out.println("Aventura");
-        System.out.println(Aventura.toString());
-        System.out.println("Ciencia Ficcion");
-        System.out.println(CienciaFiccion.toString());
-        System.out.println("Historia");
-        System.out.println(Historia.toString());
-        System.out.println("Novela Negra");
-        System.out.println(NovelaNegra.toString());
-        System.out.println("Terror");
-        System.out.println(Terror.toString());
-        System.out.println("Fantasia");
-        System.out.println(Fantasia.toString());
-        System.out.println("Biografia");
-        System.out.println(Biografia.toString());
+    public static void mostrarLibros(String genero) {
+        switch (genero) {
+            case "Aventura":
+                System.out.println(Aventura);
+                break;
+            case "Ciencia Ficcion":
+                System.out.println(CienciaFiccion);
+                break;
+            case "Historia":
+                System.out.println(Historia);
+                break;
+            case "Novela Negra":
+                System.out.println(NovelaNegra);
+                break;
+            case "Terror":
+                System.out.println(Terror);
+                break;
+            case "Fantasia":
+                System.out.println(Fantasia);
+                break;
+            case "Biografia":
+                System.out.println(Biografia);
+                break;
+            default:
+                System.out.println("Genero no valido");
+                break;
+        }
     }
 }
