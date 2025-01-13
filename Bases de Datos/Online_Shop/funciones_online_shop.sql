@@ -1,0 +1,3 @@
+CREATE FUNCTION full_name (first_name VARCHAR(100),last_name VARCHAR (100))
+RETURNS VARCHAR(210) DETERMINISTIC
+RETURN CONCAT_WS(first_name,last_name);

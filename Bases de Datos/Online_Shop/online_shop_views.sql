@@ -21,3 +21,9 @@ FROM `shopping_cart` SC
 INNER JOIN `customer` C ON SC.customer_id = C.customer_id
 INNER JOIN `product` P ON SC.product_id = P.product_id;
 
+DROP VIEW IF EXISTS	total_income_per_month; -- (also taking in account the year)
+CREATE VIEW total_income_per_month AS
+SELECT  SUM(total_price) AS total_income, MONTH(order_date) as MONTH, YEAR(order_date) as YEAR
+FROM order_view
+GROUP BY YEAR(order_date), MONTH(order_date)
+ORDER BY 2,3 asc;

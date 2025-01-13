@@ -17,7 +17,8 @@ CREATE TABLE `customer` (
   `email` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `phone` varchar(100) NOT NULL
+  `phone` varchar(100) NOT NULL,
+  `birth_date` date DEFAULT NULL
 ) ;
 
 CREATE TABLE `product`(
@@ -101,17 +102,17 @@ CREATE TABLE `order`(
 ) ;
 
 
-INSERT INTO `customer` (`first_name`, `last_name`, `email`, `username`, `password`, `phone`) VALUES
-('John', 'Doe', 'example@gmail.com', 'johndoe', '123456', '1234567890'),
-('Jane', 'Doe', 'example@hotmail.com', 'janedoe', '123456', '1234567890'),
-('John', 'Smith', 'example@outlook.com', 'johnsmith', '123456', '1234567890'),
-('Jane', 'Smith', 'janesmith@gmail.com', 'janesmith', '123456', '1234567890'),
-('John', 'Johnson', 'johnjohnson@outlook.com', 'johnjohnson', '123456', '1234567890'),
-('Jane', 'Johnson', 'janejohnson@gmail.com', 'janejohnson', '123456', '1234567890'),
-('John', 'Brown', 'johnbrown@gmail.com', 'johnbrown', '123456', '1234567890'),
-('Jane', 'Brown', 'janebrown@gmail.com', 'janebrown', '123456', '1234567890'),
-('John', 'Williams', 'johnwilliams@hotmail.com', 'johnwilliams', '123456', '1234567890'),
-('Jane', 'Williams', 'janewilliams@outlook.com', 'janewilliams', '123456', '1234567890');
+INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `email`, `username`, `password`, `phone`, `birth_date`) VALUES
+(1, 'John', 'Doe', 'example@gmail.com', 'johndoe', '123456', '1234567890', '1965-11-25'),
+(2, 'Jane', 'Doe', 'example@hotmail.com', 'janedoe', '123456', '1234567890', '1999-06-11'),
+(3, 'John', 'Smith', 'example@outlook.com', 'johnsmith', '123456', '1234567890', '1985-03-30'),
+(4, 'Jane', 'Smith', 'janesmith@gmail.com', 'janesmith', '123456', '1234567890', '1977-11-22'),
+(5, 'John', 'Johnson', 'johnjohnson@outlook.com', 'johnjohnson', '123456', '1234567890', '1983-09-22'),
+(6, 'Jane', 'Johnson', 'janejohnson@gmail.com', 'janejohnson', '123456', '1234567890', '1980-03-09'),
+(7, 'John', 'Brown', 'johnbrown@gmail.com', 'johnbrown', '123456', '1234567890', '1999-10-06'),
+(8, 'Jane', 'Brown', 'janebrown@gmail.com', 'janebrown', '123456', '1234567890', '1998-09-26'),
+(9, 'John', 'Williams', 'johnwilliams@hotmail.com', 'johnwilliams', '123456', '1234567890', '1989-08-22'),
+(10, 'Jane', 'Williams', 'janewilliams@outlook.com', 'janewilliams', '123456', '1234567890', '2001-12-27');
 
 INSERT INTO `product` (`name`, `description`, `price`, `stock`, `supplier`) VALUES
 ('Laliga football', 'Official laliga ball', 120.00, 100, 'Supplier 1'),
