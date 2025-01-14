@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.grid-container{
+    display: grid;
+    /* grid-template-columns: 33% 33% 33%; */
+    /* grid-template-columns: auto auto auto; */
+    /* grid-template-columns: 1fr 5fr 5fr; */
+    grid-template-columns: 100px 200px 200px;
+    /* grid-template-rows: 1fr 2fr; */
+    gap: 20px 40px;
+    height: 100vh;
+    /* justify-content: stretch;*/
+    align-items: baseline; 
+    justify-items: center;
+    /* align-content: center; */ 
+}
+
+.grid-item{
+    background-color: gray;
+    border: 1px solid black;
+    padding: 20px;
+}
