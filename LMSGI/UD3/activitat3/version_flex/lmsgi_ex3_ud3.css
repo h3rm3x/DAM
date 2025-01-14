@@ -168,4 +168,7 @@ img[alt="art"]{
   .card:nth-child(7){
     width: calc(66.666% - 20px);
   } 
+  .card:nth-child(8){
+    width: calc(100% - 20px);
+  }
 }
