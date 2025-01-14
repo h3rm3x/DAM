@@ -49,4 +49,7 @@ ORDER BY 2,3 asc;
 -- full name and age of all the customers
 SELECT customer_id, full_name(first_name,last_name) AS full_name, age(birth_date) AS age
 FROM customer;
+-- membership level for all customers
+SELECT customer_id, full_name, total_money_spent, membership_level(total_money_spent)
+FROM total_money_spent_view;
 

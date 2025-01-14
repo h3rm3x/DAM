@@ -21,9 +21,18 @@ FROM `shopping_cart` SC
 INNER JOIN `customer` C ON SC.customer_id = C.customer_id
 INNER JOIN `product` P ON SC.product_id = P.product_id;
 
-DROP VIEW IF EXISTS	total_income_per_month; -- (also taking in account the year)
+DROP VIEW IF EXISTS	total_income_per_month_view; -- (also taking in account the year)
 CREATE VIEW total_income_per_month AS
 SELECT  SUM(total_price) AS total_income, MONTH(order_date) as MONTH, YEAR(order_date) as YEAR
 FROM order_view
 GROUP BY YEAR(order_date), MONTH(order_date)
 ORDER BY 2,3 asc;
+
+DROP VIEW IF EXISTS total_money_spent_view;
+CREATE VIEW total_money_spent_view AS
+SELECT  customer_id, full_name(first_name,last_name) AS full_name,sum(total_price) AS total_money_spent, YEAR(order_date) as YEAR
+FROM order_view
+WHERE YEAR(order_date) = 2024
+GROUP BY customer_id
+ORDER BY 1 DESC
+

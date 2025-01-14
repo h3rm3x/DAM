@@ -1,7 +1,7 @@
 -- day of week where the highest maginutude earthquakes happened
 SELECT occurred_on, DAYOFWEEK(occurred_on), magnitude
  FROM `earthquake_details` 
- WHERE magnitude = (SELECT MAX(magnitude) FROM earthquake_details)
+ WHERE magnitude = (SELECT MAX(magnitude) FROM earthquake_details);
  ---  avg earthquakes that happened on every weekday rounded
 SELECT ROUND(AVG(magnitude), 2), DAYOFWEEK(occurred_on) 
 FROM earthquake_details 
@@ -17,3 +17,8 @@ GROUP BY
     day_of_week
 ORDER BY 
     WEEKDAY(STR_TO_DATE(occurred_on, '%Y-%m-%d %H:%i:%s'));
+-- place and tome where it ocurred, depth, magnitude and category
+DROP VIEW IF EXISTS simplified_view;
+CREATE VIEW simplified_view AS
+SELECT occurred_on, place, depth, magnitude, category(magnitude) AS category
+FROM earthquake_details;
