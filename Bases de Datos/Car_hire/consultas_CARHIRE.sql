@@ -38,3 +38,19 @@ WHERE car_id NOT IN (
     FROM reservations AS R 
     INNER JOIN clients AS Cu ON Cu.id_client = R.id_client 
     INNER JOIN cars AS Ca ON Ca.car_id = R.car_id;
+    -- invoice view
+    DROP VIEW IF EXISTS invoice_view;
+    CREATE VIEW invoice_view AS
+    SELECT Cu.name , Cu.surname, Cu.nif, R.*, Ca.brand, Ca.model 
+    FROM reservation AS R 
+    INNER JOIN client AS Cu ON Cu.id_client = R.id_client 
+    INNER JOIN car AS Ca ON Ca.car_id = R.car_id;
+    --  reservation view
+    DROP VIEW IF EXISTS reservation_view;
+    CREATE VIEW reservation_view AS
+    SELECT Cu.name , Cu.surname, Cu.nif ,DATEDIFF(R.final_date,R.initial_date) AS total_days, subtotal(DATEDIFF(R.final_date,R.initial_date), R.price_per_day) AS subtotal, Ca.brand, Ca.model
+    FROM reservation AS R
+    INNER JOIN client AS Cu ON Cu.id_client = R.id_client
+    INNER JOIN car AS Ca ON Ca.car_id = R.car_id;
+    
+    

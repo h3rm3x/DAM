@@ -20,5 +20,9 @@ ORDER BY
 -- place and tome where it ocurred, depth, magnitude and category
 DROP VIEW IF EXISTS simplified_view;
 CREATE VIEW simplified_view AS
-SELECT occurred_on, place, depth, magnitude, category(magnitude) AS category
+SELECT occurred_on, depth, magnitude,  SUBSTRING_INDEX(place, ',', 1) AS Region,  SUBSTRING_INDEX(place, ',', -1) AS Country, category(magnitude) AS category
 FROM earthquake_details;
+-- risk level per region
+SELECT country, count(*) AS number_of_eartquakes, risk_level(country)
+FROM simplified_view
+GROUP BY country
