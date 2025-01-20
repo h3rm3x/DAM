@@ -5,6 +5,7 @@ public abstract class Miembros_equipo {
     private String DNI;
     private String fecha_nac;
 
+
     public Miembros_equipo(String nombre_equipo, String nombre, String apellido, String dni, String fecha_nac) {
         this.nombre = nombre;
         this.DNI = dni;
@@ -57,7 +58,7 @@ public abstract class Miembros_equipo {
 
     // Método para mostrar información
     public String toString() {
-        return "Nombre Equipo" + nombre_equipo + "Nombre: " + nombre + ", Apellido: " + apellido + ", DNI: " + DNI + ", Edad: " + fecha_nac;
+        return "Nombre: " + nombre + ", Apellido: " + apellido + ", DNI: " + DNI + ", Fecha Nacimiento: " + fecha_nac;
     }
 }
 

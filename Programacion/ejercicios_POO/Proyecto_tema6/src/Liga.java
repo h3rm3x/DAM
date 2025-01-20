@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.Random;
 public class Liga {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -12,6 +12,8 @@ public class Liga {
         // Crear un array con los equipos de la liga
         equipo[] Liga = {FC_barcelona, Real_madrid, Atletico_madrid, Sevilla, Valencia};
         int index = 0;
+        // Inicializar los equipos con jugadores, staff y directiva
+        inicializarEquipos(Liga);
         // Menú
 
         int opcion;
@@ -23,7 +25,7 @@ public class Liga {
             System.out.println("3. Ingresar nuevo miembro de la directiva");
             System.out.println("4. Ver equipo");
             System.out.println("5. Ver Liga");
-            System.out.println("6. Jugar partido");
+            System.out.println("6. Ingresar resultado de un partido");
             System.out.println("7. Ver clasificación");
             System.out.println("Escriba el número de la opción que desea realizar");
             opcion = sc.nextInt();
@@ -155,19 +157,19 @@ public class Liga {
                     String nombre_equipo = sc.nextLine();
                     switch (nombre_equipo) {
                         case "FC Barcelona":
-                            FC_barcelona.verEquipo();
+                            System.out.println(FC_barcelona);
                             break;
                         case "Real Madrid":
-                            Real_madrid.verEquipo();
+                            System.out.println(Real_madrid);
                             break;
                         case "Atletico Madrid":
-                            Atletico_madrid.verEquipo();
+                            System.out.println(Atletico_madrid);
                             break;
                         case "Sevilla":
-                            Sevilla.verEquipo();
+                            System.out.println(Sevilla);
                             break;
                         case "Valencia":
-                            Valencia.verEquipo();
+                            System.out.println(Valencia);
                             break;
                         default:
                             System.out.println("El equipo no existe");
@@ -176,18 +178,29 @@ public class Liga {
                     break;
                 }
                 case 5: {
-                    System.out.println("Ver Liga");
+                    System.out.println("Eliminar Jugador");
+                    System.out.println("Escriba el DNI del jugador que desea eliminar");
+                    String dni = sc.nextLine();
+
                     for (equipo equipo : Liga) {
-                        equipo.verEquipo();
+                        equipo.eliminarJugador(dni);
                     }
                     break;
                 }
+
                 case 6: {
+                    System.out.println("Ver Liga");
+                    for (equipo equipo : Liga) {
+                        System.out.println(equipo);
+                    }
+                    break;
+                }
+                case 7: {
                     System.out.println("Jugar partido");
                     System.out.println("Escriba el nombre del equipo local");
-                    String nombre_equipo_local = sc.next();
+                    String nombre_equipo_local = sc.nextLine();
                     System.out.println("Escriba el nombre del equipo visitante");
-                    String nombre_equipo_visitante = sc.next();
+                    String nombre_equipo_visitante = sc.nextLine();
                     System.out.println("Escriba el resultado del partido");
                     int resultado = sc.nextInt();
                     switch (resultado) {
@@ -275,9 +288,54 @@ public class Liga {
                                     break;
                                 }
                             }
+                            break;
+                        case 2:
+                            switch (nombre_equipo_visitante) {
+                                case "FC Barcelona":
+                                    FC_barcelona.PartidoGanado();
+                                    break;
+                                case "Real Madrid":
+                                    Real_madrid.PartidoGanado();
+                                    break;
+                                case "Atletico Madrid":
+                                    Atletico_madrid.PartidoGanado();
+                                    break;
+                                case "Sevilla":
+                                    Sevilla.PartidoGanado();
+                                    break;
+                                case "Valencia":
+                                    Valencia.PartidoGanado();
+                                    break;
+                                default:
+                                    System.out.println("El equipo no existe");
+                                    break;
+                            }
+                            switch (nombre_equipo_local) {
+                                case "FC Barcelona":
+                                    FC_barcelona.PartidoPerdido();
+                                    break;
+                                case "Real Madrid":
+                                    Real_madrid.PartidoPerdido();
+                                    break;
+                                case "Atletico Madrid":
+                                    Atletico_madrid.PartidoPerdido();
+                                    break;
+                                case "Sevilla":
+                                    Sevilla.PartidoPerdido();
+                                    break;
+                                case "Valencia":
+                                    Valencia.PartidoPerdido();
+                                    break;
+                                default:
+                                    System.out.println("El equipo no existe");
+                                    break;
+                            }
+                            break;
+
                     }
+                    // no hay un break en el case 6 dado que se necesita ver la clasificación después de cada partido para comprobar si se ha actualizado correctamente
                 }
-                case 7: {
+                case 8: {
                     System.out.println("Ver clasificación");
                     for (int i = 0; i < Liga.length - 1; i++) {
                         for (int j = 0; j < Liga.length - 1 - i; j++) {
@@ -289,12 +347,15 @@ public class Liga {
                         }
                     }
                     for (equipo equipo : Liga) {
-                        System.out.println(equipo.getNombre_equipo() + " " + equipo.getPuntos());
+                        System.out.println(equipo.getNombre_equipo() + " - Puntos: " + equipo.getPuntos() +
+                                ", Partidos Jugados: " + equipo.getPartidos_jugados() +
+                                ", Ganados: " + equipo.getPartidos_ganados() +
+                                ", Empatados: " + equipo.getPartidos_empatados() +
+                                ", Perdidos: " + equipo.getPartidos_perdidos());
                     }
                     break;
-
-
                 }
+
                 default: {
                     System.out.println("ERROR, la opcion indicada no existe. Escribe una opcion valida");
                     break;
@@ -304,5 +365,20 @@ public class Liga {
             }
         } while (opcion != 0);
 
+    }
+
+    private static void inicializarEquipos(equipo[] Liga) {
+        final String[] POSICIONES = {"portero", "defensa", "lateral", "mediocentro", "extremo", "delantero"};
+
+        for (equipo equipo : Liga) {
+
+            equipo.ingresarStaff(equipo.getNombre_equipo(), "Staff1", "Apellido1", "DNI12", "Fecha12", "deportivo", "Entrenador");
+            equipo.ingresarStaff(equipo.getNombre_equipo(), "Staff2", "Apellido2", "DNI13", "Fecha13", "medico", "Fisioterapeuta");
+            equipo.ingresarDirectiva(equipo.getNombre_equipo(), "Directivo1", "Apellido1", "DNI14", "Fecha14", "Presidente");
+            equipo.ingresarDirectiva(equipo.getNombre_equipo(), "Directivo2", "Apellido2", "DNI15", "Fecha15", "CEO");
+            for (int i = 1; i <= 11; i++) {
+                equipo.ingresarJugador(equipo.getNombre_equipo(), "Jugador" + i, "Apellido" + i, "DNI" + i, "Fecha" + i, POSICIONES[new Random().nextInt(POSICIONES.length)], i);
+            }
+        }
     }
 }

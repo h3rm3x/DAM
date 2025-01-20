@@ -25,7 +25,8 @@ public class Jugador extends Miembros_equipo {
         this.dorsal = dorsal;
     }
 
+
     public String toString() {
-        return super.toString() + ", Posicion: " + posicion + ", Dorsal: " + dorsal;
+        return "Jugador" + super.toString() + ", Posicion: " + posicion + ", Dorsal: " + dorsal;
     }
 }

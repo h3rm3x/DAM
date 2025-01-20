@@ -16,6 +16,6 @@ public class directiva extends Miembros_equipo {
     }
 
     public String toString() {
-        return super.toString() + ", Cargo: " + cargo;
+        return " Directivo: " + super.toString() + ", Cargo: " + cargo;
     }
 }

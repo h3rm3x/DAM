@@ -25,7 +25,7 @@ public class staff extends Miembros_equipo {
     }
 
     public String toString() {
-        return super.toString() + ", Ambito: " + ambito + ", Rol: " + rol;
+        return "Staff: " + super.toString() + ", Ambito: " + ambito + ", Rol: " + rol;
     }
 
 }
