@@ -1,0 +1,80 @@
+:root{
+    --soft-red: #fe7867;
+    --yellow: #fad400;
+    --dark-desaturated-cyan: #25564b;
+    --dark-blue: #19536b;
+    --dark-moderate-cyan: #458c7e;
+    --cyan: #90d4c5;
+    --very-dark-desaturated-blue: #23303e;
+    --very-dark-grayish-blue: #5a636c;
+    --dark-grayish-blue: #818498;
+    --grayish-blue: #a7abae;
+    --white: #ffffff;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url(./Fonts/Barlow/Barlow-Regular.ttf); /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Fraunces';
+    src: url(./Fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf); /* IE9 Compat Modes */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px;
+    height: 100vh;
+}
+/*mobile*/
+header{
+    background-image: url(./Images/mobile/image-header.jpg);
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    background-size: cover;
+    padding: 15px;
+    color: var(--white);
+}
+
+h1{
+    font-family: 'Fraunces', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 800;
+    padding: 50px 0;
+    text-align: center;
+}
+
+header div{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+header nav{
+    display: none;
+}
+
+header section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+footer{
+    background-color: var(--cyan);
+}
+
+/*desktop*/
+@media (width>=1440px){
+    
+}

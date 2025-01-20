@@ -147,7 +147,7 @@ img[alt="art"]{
 @media (min-width: 768px) {
   .cards {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: 150px repeat(2, 1fr);
     grid-template-areas: 
       "tarjeta1 tarjeta2 tarjeta3"
       "tarjeta4 tarjeta4 tarjeta5"

@@ -151,24 +151,18 @@ img[alt="art"]{
     gap: 20px;
   }
 
-  .card:first-child, .card:nth-child(2), .card:nth-child(3){
+  .card {
     width: calc(33.333% - 20px);
+    
   }
- 
-  .card:nth-child(5){
-    width: calc(33.333% - 20px);
-  }
-  .card:nth-child(4){
+
+  .card.large{
     width: calc(66.666% - 20px);
-    height: 50%;
   }
-  .card:nth-child(6){
-    width: calc(33.333% - 20px);
-  }
-  .card:nth-child(7){
-    width: calc(66.666% - 20px);
-  } 
-  .card:nth-child(8){
+  
+
+  
+  .card.extralarge{
     width: calc(100% - 20px);
   }
 }
