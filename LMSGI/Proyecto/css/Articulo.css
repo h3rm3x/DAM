@@ -24,11 +24,18 @@
 }
     
 main{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(4, auto);
     align-items: center;
     justify-content: space-between;
-    margin-top: 5em;
+    margin-top: 20px;
+    grid-template-areas: 
+    " intro "
+    " activos-traspasables "
+    " dificultades-traspaso-y-opciones "
+    " results-table ";
+    gap: 20px;
 }
 
 h1, h2, h3 {
@@ -54,15 +61,33 @@ main p{
    flex-wrap: wrap;
    flex-direction: column;
    font-size: 1.2em;
-   text-align: center;
+   text-align: left;
    padding: 10px;               
 }    
 
 main img{
-    max-width: 100vh;
-    height: auto;
+    width: 350px;
     margin-top: 20px;
-    
+}
+
+#intro{
+    grid-area: intro;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#activos-traspasables{
+    grid-area: activos-traspasables;
+}
+
+#dificultades-traspaso-y-opciones{
+    grid-area: dificultades-traspaso-y-opciones;
+}
+
+.results-table{
+    grid-area: results-table;
 }
 
 
