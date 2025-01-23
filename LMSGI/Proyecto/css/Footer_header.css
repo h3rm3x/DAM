@@ -1,17 +1,18 @@
 :root{
-    --color_primario: #ee6611;
-    --color_secundario: #020024;
-    --color_fondo: #fafafa;
-    --color_texto: #050505;
-    --accent_color: #0010c2;
+  --color_primario: #ee6611;
+  --color_secundario: #020024;
+  --color_fondo: #fafafa;
+  --color_texto: #050505;
+  --accent_color: #0010c2;
 }
 @font-face {
-    font-family: "inter";
-    src: url(https://fonts.google.com/specimen/Inter);
+  font-family: "inter";
+  src: url(./fonts/Inter/Inter-VariableFont_opsz\,wght.ttf);
 }
-  @font-face {
-    font-family: "poppins";
-    src: url(https://fonts.google.com/specimen/Poppins);
+
+@font-face {
+  font-family: "poppins";
+  src: url(./fonts/Poppins/Poppins-Regular.ttf);
 }
 
 * {
@@ -27,8 +28,8 @@ h1, h2, h3 {
 }
   
 header {
-    display: flex;
-    text-align: center;
+  display: flex;
+  text-align: center;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -36,7 +37,7 @@ header {
     background-color: var(--accent_color);
     color: var(--color_fondo);
     padding: 10px;
-}
+  }
   
  header h1, header nav {
     align-items: center;
@@ -57,29 +58,29 @@ header h1 {
 }
   
 header>div{
-    width: 6.25em;
+ width: 6.25em;
 }
 
 header img[alt=logo] {
-    width: 5em;
+ width: 5em;
 }
   
 header>button{
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }
   
 header>button:hover{
-    cursor: pointer;
+  cursor: pointer;
 }
   
 #lista-paginas {
-    display: flex;
-    padding-left: 10px;
-    justify-content: flex-end;
+ display: flex;   padding-left: 10px;
+ justify-content: space-between;
+ gap: 10px;
 }
 
-#lista-paginas ul {
+#lista-paginas.menu-hidden ul {
     display: none;
 }
 #lista-paginas button{
@@ -98,14 +99,29 @@ header>button:hover{
     background-color: transparent;
 }
 
-.div-visible{
-    display: block;
+
+#lista-paginas.menu-visible {
+  transform: translateX(0);
 }
-  
-  
+
+.menu-visible ul {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--accent_color);
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  transform: translateX(100%);
+}
+
 header ul li {
-    display: inline-block;
-    margin-right: 1em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 1em;
 }
   
 header ul li a {
@@ -202,7 +218,7 @@ footer img {
       text-align: center;
       
     }
-  
+
     #lista-paginas ul li img{
       height: 25px;
     }
@@ -224,7 +240,7 @@ footer img {
     }
   
     #lista-paginas ul {
-      display: inline;;
+      display: flex;
     }
   
     #lista-paginas ul li {
@@ -265,29 +281,3 @@ footer img {
     }
 }
 
-@media (min-width: 700px) AND (max-width: 1023px) {
-  header{
-    height: 10vh;
-    width: 100vw;
-  }
-  header h1{
-    font-size: 2.5em;
-    vertical-align: middle;
-  }
-  header>div{
-    width: 5em;
-  }
-
-  header img[alt=logo]{
-    width: 6em;
-  }
-
-
-  header>button:hover{
-    cursor: pointer;
-  }
-
-  .login-button{
-    padding: 10px 20px;
-  }
-}

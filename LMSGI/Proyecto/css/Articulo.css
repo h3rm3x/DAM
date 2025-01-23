@@ -66,7 +66,7 @@ main p{
 }    
 
 main img{
-    width: 350px;
+    width:380px;
     margin-top: 20px;
 }
 
@@ -88,6 +88,51 @@ main img{
 
 .results-table{
     grid-area: results-table;
+}
+
+#activos-traspasables ul{
+    padding: 20px;
+}
+
+#dificultades-traspaso-y-opciones ul{
+    padding: 20px;
+}
+
+#activos-traspasables ul li{
+    margin-top: 10px;
+}
+
+@media (min-width: 1024px){
+    main{
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(4, auto);
+        grid-template-areas: 
+        " intro intro "
+        " results-table activos-traspasables "
+        " results-table dificultades-traspaso-y-opciones "
+        " results-table dificultades-traspaso-y-opciones ";
+    }
+
+    #intro{
+        text-align: left;
+    }
+
+    #activos-traspasables ul{
+        padding: 0;
+    }
+
+    #dificultades-traspaso-y-opciones ul{
+        padding: 0;
+    }
+
+    #activos-traspasables ul li{
+        margin-top: 0;
+    }
+
+    main img{
+        width: 70%;
+    }
+    
 }
 
 
