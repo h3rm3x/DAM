@@ -38,9 +38,10 @@ main{
     gap: 20px;
 }
 
-h1, h2, h3 {
+ h2, h3 {
     font-family: "poppins", sans-serif;
     text-align: center;
+    color: var(--accent_color);
 }
 
 ul li {
@@ -79,15 +80,19 @@ main img{
 }
 
 #activos-traspasables{
+    display: flex;
+    flex-direction: column;
     grid-area: activos-traspasables;
 }
 
 #dificultades-traspaso-y-opciones{
+    display: flex;
+    flex-direction: column;
     grid-area: dificultades-traspaso-y-opciones;
 }
 
-.results-table{
-    grid-area: results-table;
+#tabla-articulo{
+    grid-area: tabla-articulo;
 }
 
 #activos-traspasables ul{
@@ -102,19 +107,24 @@ main img{
     margin-top: 10px;
 }
 
+#articulos-recomendados {
+  display: none;
+}
+
 @media (min-width: 1024px){
     main{
         grid-template-columns: repeat(2, auto);
         grid-template-rows: repeat(4, auto);
         grid-template-areas: 
-        " intro intro "
-        " results-table activos-traspasables "
-        " results-table dificultades-traspaso-y-opciones "
-        " results-table dificultades-traspaso-y-opciones ";
+        "intro tabla-articulo"
+        "activos-traspasables tabla-articulo"
+        "dificultades-traspaso-y-opciones tabla-articulo"
+        "dificultades-traspaso-y-opciones tabla-articulo";
     }
 
     #intro{
         text-align: left;
+        gap: 10px;
     }
 
     #activos-traspasables ul{
@@ -130,15 +140,52 @@ main img{
     }
 
     main img{
-        width: 70%;
-    }
-
-    #results-table{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        width: 80%;
     }
     
+   .tabla-articulo{
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        justify-content:center;
+        width: 100%;
+    }
+
+
+    #articulos-recomendados{
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background-color: var(--color_fondo);
+        border-top: 1px solid var(--color_primario);
+        align-self: flex-end
+    }
+    
+    #articulos-recomendados h3 {
+        font-family: "poppins", sans-serif;
+        text-align: center;
+        color: var(--accent_color);
+        margin-bottom: 10px;
+    }
+    
+    #articulos-recomendados ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    #articulos-recomendados ul li {
+        margin: 10px 0;
+    }
+    
+    #articulos-recomendados ul li a {
+        text-decoration: none;
+        color: var(--accent_color);
+        font-size: 1.2em;
+    }
+    
+    #articulos-recomendados ul li a:hover {
+        text-decoration: underline;
+    }
 }
 
 

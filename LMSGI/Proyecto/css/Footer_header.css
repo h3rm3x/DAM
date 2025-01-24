@@ -62,7 +62,7 @@ header>div{
 }
 
 header img[alt=logo] {
- width: 5em;
+ width: 7em;
 }
   
 header>button{
@@ -180,11 +180,11 @@ footer img {
   
 }
 
-.results-table{
+#results-table{
   grid-area: results-table;
 }
 
-.results-table table {
+#results-table table {
   width: 100%;
   border-collapse: collapse;
   background-color: #fff;
@@ -192,13 +192,13 @@ footer img {
   font-size: 1em;
 }
 
-.results-table table th, .results-table table td {
+#results-table table td {
   padding: 5px;
   text-align: center;
   border: 1px solid #ddd;
 }
 
-.results-table table tbody tr:nth-child(even) {
+#results-table table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
@@ -216,7 +216,6 @@ footer img {
       flex: 1;
       justify-content: center;
       text-align: center;
-      
     }
 
     #lista-paginas ul li img{
@@ -239,7 +238,7 @@ footer img {
       width: auto;
     }
   
-    #lista-paginas ul {
+    #lista-paginas.menu-hidden ul {
       display: flex;
     }
   
