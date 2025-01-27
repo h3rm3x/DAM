@@ -1,80 +1,223 @@
+/*Common styles*/
+@font-face {
+    font-family: Barlow;
+    src: url("fonts/Barlow/Barlow-Medium.ttf");
+}
+  
+@font-face {
+    font-family: Faunces;
+    src: url("fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf");
+}
+  
 :root{
-    --soft-red: #fe7867;
-    --yellow: #fad400;
-    --dark-desaturated-cyan: #25564b;
-    --dark-blue: #19536b;
-    --dark-moderate-cyan: #458c7e;
+    /*Primary colours*/
+    --soft-red: hsl(7, 99%, 70%);
+    --yellow: hsl(51, 100%, 49%);
+    --dark-desaturated-cyan: hsl(167, 40%, 24%); /*graphic design text*/
+    --dark-blue: hsl(198, 62%, 26%); /*photography text*/
+    --dark-moderate-cyan: hsl(168, 34%, 41%); /*footer*/
     --cyan: #90d4c5;
-    --very-dark-desaturated-blue: #23303e;
-    --very-dark-grayish-blue: #5a636c;
-    --dark-grayish-blue: #818498;
-    --grayish-blue: #a7abae;
-    --white: #ffffff;
+  
+    /*Neutral colours*/
+    --very-dark-desaturated-blue: hsl(212, 27%, 19%);
+    --very-dark-grayish-blue: hsl(213, 9%, 39%);
+    --dark-grayish-blue: hsl(232, 10%, 55%);
+    --grayish-blue: hsl(210, 4%, 67%);
+    --white: hsl(0, 0%, 100%);
 }
-
-@font-face {
-    font-family: 'Barlow';
-    src: url(./Fonts/Barlow/Barlow-Regular.ttf); /* IE9 Compat Modes */
-}
-
-@font-face {
-    font-family: 'Fraunces';
-    src: url(./Fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf); /* IE9 Compat Modes */
-}
-
-*{
+  
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-body{
-    font-family: 'Barlow', sans-serif;
+  
+body {
     font-size: 18px;
-    height: 100vh;
+    height: 100vH;
+    font-family: Barlow;
 }
-/*mobile*/
-header{
-    background-image: url(./Images/mobile/image-header.jpg);
-    display: flex;
-    flex-direction: column;
-    height: 50%;
-    background-size: cover;
-    padding: 15px;
-    color: var(--white);
+  
+h1, h2 {
+    font-family: Faunces;
+    text-align: center;
+    font-weight: 800;
 }
 
 h1{
-    font-family: 'Fraunces', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    font-weight: 800;
     padding: 50px 0;
-    text-align: center;
+    font-size: 2rem;
 }
 
-header div{
+h2{
+    font-size: 1.6rem;
+}
+  
+.bg-image {
+    background-size: cover;
+}
+  
+/*Mobile styles*/
+/*Header*/
+header {
+    background-image: url("images/mobile/image-header.jpg");
+    height: 50%;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+  
+header div {
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
+    padding: 15px 0;
 }
-
-header nav{
-    display: none;
-}
-
-header section{
+  
+header section {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-
-footer{
-    background-color: var(--cyan);
+  
+img[alt*="arrow"] {
+    width: fit-content;
 }
 
-/*desktop*/
-@media (width>=1440px){
+header #nav-menu{
+    display: none;
+}
+
+/*Main*/
+main section.transform{
+    background-image: url("./images/mobile/image-transform.jpg");
+
+}
+
+main section.stand-out{
+    background-image: url("./images/mobile/image-stand-out.jpg");
+}
+
+main section.stand-out, main section.transform{
+    height: 280px;
     
+}
+
+main section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.main-section-info,  .main-section-info button{
+    color: var(--very-dark-desaturated-blue);
+}
+
+.main-section-info p{
+    color: var(--very-dark-grayish-blue);
+}
+
+.main-section-info button{
+    background-color: transparent;
+    border: none;
+    font-family: Fraunces;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1em;
+    position: relative;
+    cursor: pointer;
+}
+
+.main-section-info button::after{
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    height: 5px;
+    left: -5px;
+    right: -5px;
+    width: 110%;
+    text-decoration: underline;
+    opacity: 10;
+}
+
+main section.transform + section button::after{
+    background-color: var(--yellow);
+}
+
+main section.stand-out + section button::after{
+    background-color: var(--soft-red);
+}
+
+.main-section-info button:hover::after{
+    opacity: 10;
+}
+
+main section.graphic-design{
+    background-image: url("./images/mobile/image-graphic-design.jpg");
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: var(--dark-desaturated-cyan);
+    text-align: center;
+}
+
+main section.photography{
+    background-image: url("./images/mobile/image-photography.jpg");
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: var(--dark-blue);
+    text-align: center;
+}
+
+.photography p , .graphic-design p{
+    font-size: 12px;
+    line-height: 1.5em;
+    font-weight: 550;
+    
+}
+
+/*Footer*/
+footer {
+    background-color: var(--cyan);
+    color: var(--dark-desaturated-cyan);
+    padding: 45px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+  
+.footer-logo {
+    background-color: var(--dark-desaturated-cyan);
+    mask: url("./images/logo.svg") no-repeat center;
+    -webkit-mask: url("./images/logo.svg") no-repeat center; /* Compatibilidad con Safari */
+    height: 25px;
+    width: 100%; /*És nececessari especificar un ample concret*/
+}
+  
+footer div {
+    display: flex;
+    gap: 30px;
+}
+  
+footer span:hover, footer img:hover {
+    cursor: pointer;
+    color: var(--white);
+}
+  
+/*Desktop styles*/
+@media (width >= 1440px){
+    header {
+      background-image: url("images/desktop/image-header.jpg");
+      background-size: cover;
+    }
+  
 }
