@@ -38,7 +38,7 @@ body {
     font-family: Barlow;
 }
   
-h1, h2 {
+h1, h2, h3{
     font-family: Faunces;
     text-align: center;
     font-weight: 800;
@@ -87,9 +87,50 @@ img[alt*="arrow"] {
     width: fit-content;
 }
 
-header #nav-menu{
+.nav-menu{
     display: none;
 }
+
+header button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.nav-visible{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 100px;
+    width: calc(100% - 30px);
+    background-color: var(--white);
+    align-items: center;
+    height: fit-content;
+}
+
+.nav-visible button{
+    color: var(--grayish-blue);
+    border: none;
+    font-size: .7em;
+    font-family: Barlow;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-visible button:last-of-type{
+    background-color: var(--yellow);
+    color: var(--very-dark-desaturated-blue);
+    border-radius: 100%;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: .8em;
+    font-weight: 800;
+    width: 40%;
+}
+
+
+
 
 /*Main*/
 main section.transform{
@@ -157,6 +198,8 @@ main section.stand-out + section button::after{
     opacity: 10;
 }
 
+
+
 main section.graphic-design{
     background-image: url("./images/mobile/image-graphic-design.jpg");
     height: 450px;
@@ -184,6 +227,72 @@ main section.photography{
     
 }
 
+main section.client-testimonials{
+    height:800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: var(--white);
+    text-align: center;
+    gap: 40px;
+}
+
+.testimonial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.testimonial nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.client-testimonials h2{
+    color: var(--grayish-blue);
+    font-size: .7em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.client-testimonials p{
+    color: var(--very-dark-grayish-blue);
+    font-size: .8em;
+    line-height: 1.5em;
+    font-weight: 580;
+}
+
+.client-testimonials h3{
+    color: var(--very-dark-desaturated-blue);
+    font-size: .7em;
+    font-weight: 800;   
+}
+
+.client-testimonials h4{
+    color: var(--grayish-blue);
+    font-size: .5em;
+    letter-spacing: 0.2em;
+}
+
+.client-testimonials img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+main section.cuadro-imagenes{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px;
+    padding: 0;
+}
+
+.cuadro-imagenes img{
+    width: 100%;
+    height: 100%;
+}
 /*Footer*/
 footer {
     background-color: var(--cyan);

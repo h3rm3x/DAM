@@ -6,7 +6,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./style.css">
-  
+  <script src="./index.js" defer></script>
   <title>Frontend Mentor | Sunnyside agency landing page</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -19,13 +19,13 @@
   <header class="bg-image">
     <div>
     <img src="images/logo.svg" alt="Header logo">
-    <nav id="nav-menu">
+    <nav id="nav-menu" class="nav-menu">
     <button>About</button>
     <button>Services</button>
     <button>Projects</button>
     <button class="contact-btn">Contact</button>
     </nav>
-    <img id="mobile-menu-btn" src="images/icon-hamburger.svg" alt="Menu icon">
+    <button  id="mobile-menu-btn"><img src="images/icon-hamburger.svg" alt="Menu icon"></button>
     </div>
     <section>
     <h1>We are creatives</h1>
@@ -59,24 +59,50 @@
 </section>
 
 <section class="photography bg-image">
-  <h2>Photography</h2>
+  <h3>Photography</h3>
   <p>Increase your credibility by getting the most stunning, high-quality photos that improve your business image.</p>
 </section>
+<section class="client-testimonials">
 
+  <h2>Client testimonials</h2>
+  <img src="./images/image-emily.jpg" alt=""> 
+  <div class="testimonial">
+  <p>We put our trust in Sunnyside and they delivered, making sure our needs were met and deadlines were always hit.  </p>
+  <nav class="testimonial-info">
+  <h3>Emily R.</h3>
+  <h4>Marketing Director </h4>    
+  </nav>
 
-  Client testimonials
+  
+  </div>
 
-  We put our trust in Sunnyside and they delivered, making sure our needs were met and deadlines were always hit.
-  Emily R.
-  Marketing Director
+  <div class="testimonial">
+    <img src="./images/image-thomas.jpg" alt="">
+    <p>Sunnyside’s enthusiasm coupled with their keen interest in our brand’s success made it a satisfying and enjoyable experience.  </p>
+    <nav class="testimonial-info">
+    <h3>Thomas S.</h3>
+    <h4>Chief Operating Officer </h4>       
+    </nav>
+  
+    
+  </div>
 
-  Sunnyside’s enthusiasm coupled with their keen interest in our brand’s success made it a satisfying and enjoyable experience.
-  Thomas S.
-  Chief Operating Officer
+  <div class="testimonial">
+    <img src="./images/image-jennie.jpg" alt="">
+    <p>Incredible end result! Our sales increased over 400% when we worked with Sunnyside. Highly recommended!  </p>
+    <nav class="testimonial-info">
+      <h3>Jennie F.</h3>
+      <h4>Business Owner </h4>     
+    </nav>
+  </div>
+</section>
 
-  Incredible end result! Our sales increased over 400% when we worked with Sunnyside. Highly recommended!
-  Jennie F.
-  Business Owner
+<section class="cuadro-imagenes">
+  <img src="./images/mobile/image-gallery-milkbottles.jpg" alt="">
+  <img src="./images/mobile/image-gallery-orange.jpg" alt="">
+  <img src="./images/mobile/image-gallery-cone.jpg" alt="">
+  <img src="./images/mobile/image-gallery-sugar-cubes.jpg" alt="">
+</section>
 </main>
   
 <footer>
