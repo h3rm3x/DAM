@@ -13,9 +13,9 @@ public class inventario {
         do {
             System.out.println("1. Añadir electrodomesticos:");
             System.out.println("2. Mostrar electrodomesticos:");
-            System.out.println("3. Mostrar lavadoras:");
-            System.out.println("4. Mostrar neveras:");
-            System.out.println("5. Mostrar nº de electrodomesticos de cada tipo:");
+            System.out.println("3. Mostrar nº de electrodomesticos de cada tipo:");
+            System.out.println("4. Mostrar lavadoras:");
+            System.out.println("5. Mostrar neveras:");
             System.out.println("6. Precio total por categoria:");
             System.out.println("7. Precio total :");
             System.out.println("8. Enviar electrodomestico a reparacion:");
@@ -48,7 +48,7 @@ public class inventario {
 
                         for (int i = 0; i < lista_electrodomesticos.length; i++) {
                             if (lista_electrodomesticos[i] == null) {
-                                System.out.println("Añadiendo lavadora");
+
                                 lista_electrodomesticos[i] = new lavadora(marca, modelo, precio, capacidad, revoluciones, tieneSecadora);
                                 break;
                             }
@@ -123,8 +123,9 @@ public class inventario {
                     }
                     System.out.println("Precio total de lavadoras: " + precio_lavadoras);
                     System.out.println("Precio total de neveras: " + precio_neveras);
-                    break;
+
                 }
+                break;
                 case 7: {
                     int precio_total = 0;
                     for (Electrodomesticos listaElectrodomestico : lista_electrodomesticos) {
@@ -138,8 +139,6 @@ public class inventario {
                 case 8: {
                     System.out.println("Introduce el tipo de electrodomestico (lavadora/nevera):");
                     tipo = sc.nextLine();
-                    System.out.println("Introduce el numero de horas de reparacion:");
-                    int horas = sc.nextInt();
                     sc.nextLine();
                     if (tipo.equals("lavadora")) {
                         System.out.println("Introduce la posicion de la lavadora a reparar:");
@@ -167,9 +166,10 @@ public class inventario {
                     int horas = sc.nextInt();
                     sc.nextLine();
                     System.out.println("Precio de la reparacion: " + enReparacion.reparar(horas));
-                    break;
+
 
                 }
+                break;
                 case 10: {
                     System.out.println("Saliendo...");
                     break;
@@ -177,12 +177,13 @@ public class inventario {
 
                 default: {
                     System.out.println("Opcion no valida");
-                    break;
+
                 }
+                break;
             }
 
 
-        } while (opcion != 9);
+        } while (opcion != 10);
 
 
     }

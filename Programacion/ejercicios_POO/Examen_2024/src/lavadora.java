@@ -23,10 +23,6 @@ public class lavadora extends Electrodomesticos implements enReparacion {
         return tieneSecadora;
     }
 
-    public boolean enReparacion() {
-        enReparacion = true;
-        return enReparacion;
-    }
 
     public String toString() {
         if (enReparacion) {

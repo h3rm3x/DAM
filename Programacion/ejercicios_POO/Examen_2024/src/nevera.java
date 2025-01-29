@@ -17,14 +17,25 @@ public class nevera extends Electrodomesticos implements enReparacion {
         return tieneCongelador;
     }
 
-
     public String toString() {
-        return "nevera{" +
-                "marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", precio=" + precio +
-                ", capacidad=" + capacidad +
-                ", tieneCongelador=" + tieneCongelador +
-                '}';
+        if (enReparacion) {
+            return "nevera{" +
+                    "marca='" + marca + '\'' +
+                    ", modelo='" + modelo + '\'' +
+                    ", precio=" + precio +
+                    ", capacidad=" + capacidad +
+                    ", tieneCongelador=" + tieneCongelador +
+                    ", Estado: en reparacion" +
+                    '}';
+        } else {
+            return "nevera{" +
+                    "marca='" + marca + '\'' +
+                    ", modelo='" + modelo + '\'' +
+                    ", precio=" + precio +
+                    ", capacidad=" + capacidad +
+                    ", tieneCongelador=" + tieneCongelador +
+                    ", Estado: reparado" +
+                    '}';
+        }
     }
 }
