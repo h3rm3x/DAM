@@ -201,7 +201,7 @@ public class Liga {
                     String nombre_equipo_local = sc.nextLine();
                     System.out.println("Escriba el nombre del equipo visitante");
                     String nombre_equipo_visitante = sc.nextLine();
-                    System.out.println("Escriba el resultado del partido");
+                    System.out.println("Escriba el resultado del partido (1: Victoria Local - 0: Empate - 2: Victoria Visitante)");
                     int resultado = sc.nextInt();
                     switch (resultado) {
                         case 1:
