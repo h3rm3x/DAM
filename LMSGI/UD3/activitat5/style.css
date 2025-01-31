@@ -11,19 +11,19 @@
   
 :root{
     /*Primary colours*/
-    --soft-red: hsl(7, 99%, 70%);
-    --yellow: hsl(51, 100%, 49%);
-    --dark-desaturated-cyan: hsl(167, 40%, 24%); /*graphic design text*/
-    --dark-blue: hsl(198, 62%, 26%); /*photography text*/
-    --dark-moderate-cyan: hsl(168, 34%, 41%); /*footer*/
+    --soft-red: #fe7867;
+    --yellow: #fad400;
+    --dark-desaturated-cyan: #25564b; /*graphic design text*/
+    --dark-blue: #19536b; /*photography text*/
+    --dark-moderate-cyan: #458c7e; /*footer*/
     --cyan: #90d4c5;
   
     /*Neutral colours*/
-    --very-dark-desaturated-blue: hsl(212, 27%, 19%);
+    --very-dark-desaturated-blue: #23303e;
     --very-dark-grayish-blue: #5a636c;
     --dark-grayish-blue: #818498;
     --grayish-blue: #a7abae;
-    --white: hsl(0, 0%, 100%);
+    --white: #ffffff;
 }
   
 * {
@@ -366,12 +366,17 @@ footer span:hover, footer img:hover {
     #nav-menu button:last-of-type{
         background-color: var(--white);
         color: var(--very-dark-desaturated-blue);
-        border-radius: 20px;
-        padding: 12px;
+        border-radius: 25px;
+        padding: 15px;
         text-transform: uppercase;
         font-size: .7em;
         font-weight: 600;
         width: 45%;
+    }
+
+    #nav-menu button:last-of-type:hover{
+        background-color: #a7abae7e;
+        color: var(--white);
     }
 
     /*Main*/
@@ -389,7 +394,7 @@ footer span:hover, footer img:hover {
         background-position: center;
     }
 
-    .transform {
+    main section.transform {
         background-image: url('./images/desktop/image-transform.jpg');
         background-size: cover;
         grid-column-start: 2;
@@ -397,47 +402,59 @@ footer span:hover, footer img:hover {
         grid-row: 1;
     }
 
-    .stand-out {
+    main section.stand-out {
         background-image: url('./images/desktop/image-stand-out.jpg');
     }
 
     main section.stand-out, main section.transform {
-        height: 300px;
+        height: 500px;
     }
 
-    .graphic-design {
+    main section.graphic-design {
         background-image: url('./images/desktop/image-graphic-design.jpg');
         padding: 50px;
         text-align: center;
         color: var(--dark-desaturated-cyan);
+        
     }
 
-    .photography {
+    main section.photography {
         background-image: url('./images/desktop/image-photography.jpg');
         padding: 50px;
         text-align: center;
         color: var(--dark-blue);
     }
 
+    main section.graphic-design, main section.photography {
+        height: 500px;
+    }
+
     .main-section-info{
         justify-content: center;
-        height: 300px;
+        height: 500px;
     }
 
     main section.client-testimonials {
         text-align: center;
-        flex-direction: row;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         background-color: var(--white);
+        height: 400px;
         padding: 50px 20px;
-        grid-column: 1;
+        grid-column-start: 1;
+        grid-column-end: 3;
         grid-row: 4;
     }
 
     .client-testimonials h2 {
-        font-size: 24px;
+        font-size: 12px;
         text-transform: uppercase;
         color: var(--dark-grayish-blue);
         margin-bottom: 50px;
+        letter-spacing: .2em;
+        grid-column: 1/4;
+        align-self: baseline
     }
 
 
@@ -453,11 +470,17 @@ footer span:hover, footer img:hover {
         flex-direction: row;
         grid-row: 5;
         grid-column: 1/2;
+        gap: 0;
+        align-items: flex-end;
     }
 
     main section.cuadro-imagenes img {
-        height: auto;
+        width: 52%;
+        height: 100%;
     }
+
+    
+
 
     /* Footer */
     footer {
