@@ -19,19 +19,13 @@ header {
   justify-content: space-between;
 }
 
-.nav-logo {
-  display: flex;
-  align-items: center;
-}
-
-.nav-icons {
+.nav-logo, .nav-icons {
   display: flex;
   align-items: center;
 }
 
 .logo-square {
   height: 80px;
-  display: none;
 }
 
 .logo-landscape {
@@ -50,13 +44,11 @@ header {
   text-decoration: underline;
 }
 
-.nav-primary{
+.nav-primary, .nav-text, .logo-square{
   display: none;
 }
 
-.nav-text {
-  display: none;
-}
+
 
 /* Main */
 
@@ -104,7 +96,7 @@ a:hover {
 
 
 /*tablet*/
-@media (min-width: 768px)  AND (max-width: 991px) {
+@media (min-width: 768px) {
   /*header*/
   header {
     height: 100px;
@@ -134,15 +126,8 @@ a:hover {
   header {
     height: 120px;
   }
-  .icon{
-    display: none;
-  }
 
-  .nav-logo {
-    justify-self: center;
-  }
-
-  .nav-logo .logo-landscape {
+  .nav-logo .logo-landscape, .icon {
     display: none;
   }
 
@@ -157,12 +142,12 @@ a:hover {
   }
 
   .nav-icons .icon{
-    display: flex;
+    display: initial;
     gap: 10px;
   }
 
   .nav-text{
-    display: flex;
+    display: initial;
   }
 
   .nav-icons .menu-item{
@@ -176,26 +161,14 @@ a:hover {
     flex-direction: row-reverse;
   }
 
-  main aside {
-    display: flex;
+  aside nav {
     width: 200px;
     height:calc(100vh - 120px);
-  }
-
-  aside nav {
-   align-self: flex-end;
-  }
-
-  main .products-container {
-    width: 90%;
-  }
-
-  .products-container .item{
-    height: fit-content;
+    justify-content: flex-end;
   }
 
   .products-container{
-    justify-content: center;
+    align-items: center;
   }
 
    
