@@ -1,0 +1,208 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  text-decoration: none;
+}
+
+body {
+  color: #252323;
+  background-color: #FEF9FF;
+  height: 100vh;
+}
+/* Header */
+header {  
+  color:#CAD178;
+  height: 70px;
+  background-color: #434960;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+}
+
+.logo-square {
+  height: 80px;
+  display: none;
+}
+
+.logo-landscape {
+  height: 25px;  
+}
+
+.menu-item {
+  margin: 0 10px;  
+}
+
+.menu-item:hover {
+  cursor: pointer;
+}
+
+.nav-primary .menu-item:hover {
+  text-decoration: underline;
+}
+
+.nav-primary{
+  display: none;
+}
+
+.nav-text {
+  display: none;
+}
+
+/* Main */
+
+main {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+}
+
+aside {
+  padding: 10px;
+  background-color: #CAD178;
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  padding: 10px 0;
+  color: #252323;
+}
+
+a:hover {
+  font-weight: bold;  
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  padding: 100px;
+  margin: 10px;
+  background-color: #95818D;
+}
+
+.item:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+
+/*tablet*/
+@media (min-width: 768px)  AND (max-width: 991px) {
+  /*header*/
+  header {
+    height: 100px;
+  }
+  .menu-item{
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  .nav-text {
+    display: flex;
+  }
+
+  .logo-landscape {
+    display: none;
+  }
+
+  
+}
+
+/*desktop*/
+@media (min-width: 992px) {
+
+
+  /*header*/
+  header {
+    height: 120px;
+  }
+  .icon{
+    display: none;
+  }
+
+  .nav-logo {
+    justify-self: center;
+  }
+
+  .nav-logo .logo-landscape {
+    display: none;
+  }
+
+  .nav-logo .logo-square {
+    display: flex;
+  }
+
+  .nav-primary {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .nav-icons .icon{
+    display: flex;
+    gap: 10px;
+  }
+
+  .nav-text{
+    display: flex;
+  }
+
+  .nav-icons .menu-item{
+    display: flex;
+    gap: 5px;
+  }
+
+  /*main*/
+  main {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  main aside {
+    display: flex;
+    width: 200px;
+    height:calc(100vh - 120px);
+  }
+
+  aside nav {
+   align-self: flex-end;
+  }
+
+  main .products-container {
+    width: 90%;
+  }
+
+  .products-container .item{
+    height: fit-content;
+  }
+
+  .products-container{
+    justify-content: center;
+  }
+
+   
+
+
+
+
+
+
+}
