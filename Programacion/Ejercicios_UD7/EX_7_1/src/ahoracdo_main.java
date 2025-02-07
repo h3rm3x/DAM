@@ -21,11 +21,8 @@ public class ahoracdo_main {
         while (!ahorcado.isJuegoTerminado()) {
             System.out.println(ahorcado.getPalabraOculta());
             System.out.println("Letras intentadas: " + Ahorcado.getLetrasIntentadas());
-            System.out.println("Introduce una letra: ");
             Ahorcado.pintarLinea();
             System.out.println(Ahorcado.MostrarDibujo());
-            char letra = sc.nextLine().charAt(0);
-            ahorcado.intentarLetra(letra);
 
             if (Ahorcado.intentosIncorrectos == 6) {
                 System.out.println("Has perdido");
@@ -46,6 +43,17 @@ public class ahoracdo_main {
                         System.out.println("Incorrecto, escriba otra letra");
                     }
                 }
+            }
+            else {
+                System.out.println("Introduce una letra: ");
+                Ahorcado.pintarLinea();
+                char letra = sc.nextLine().charAt(0);
+                ahorcado.intentarLetra(letra);
+
+            }
+
+            if (ahorcado.isJuegoTerminado()) {
+                System.out.println("Enhorabuena has adivinado correctamente la palabra: " + ahorcado.getPalabraOculta());
             }
         }
     }
