@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2024 at 04:17 PM
+-- Generation Time: Feb 11, 2025 at 06:02 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,8 +18,20 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `alquilercoches2`
+-- Database: `carhire`
 --
+
+DELIMITER $$
+--
+-- Functions
+--
+CREATE DEFINER=`Alan`@`localhost` FUNCTION `subtotal` (`var_total_days` INT, `var_price_per_day` INT) RETURNS INT(11) DETERMINISTIC BEGIN
+RETURN var_total_days*var_price_per_day;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `total_days` (`date_in` DATE, `date_out` DATE) RETURNS INT(11)  RETURN DATE_DIFF(date_in, date_out)$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -36,7 +48,7 @@ CREATE TABLE `car` (
   `seats` int(11) NOT NULL,
   `doors` int(11) NOT NULL,
   `fuel` varchar(50) NOT NULL,
-  `localizacion` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL,
   `itv` tinyint(1) NOT NULL,
   `state` varchar(50) NOT NULL,
   `price_per_day` varchar(50) NOT NULL
@@ -46,7 +58,7 @@ CREATE TABLE `car` (
 -- Dumping data for table `car`
 --
 
-INSERT INTO `car` (`car_id`, `brand`, `model`, `colour`, `plate`, `seats`, `doors`, `fuel`, `localizacion`, `itv`, `state`, `price_per_day`) VALUES
+INSERT INTO `car` (`car_id`, `brand`, `model`, `colour`, `plate`, `seats`, `doors`, `fuel`, `location`, `itv`, `state`, `price_per_day`) VALUES
 (1, 'toyota', 'corolla', 'blanco', '1234BCD', 5, 4, 'gasolina', 'Aeropuerto', 1, 'Disponible', '80'),
 (2, 'ford ', 'fiesta', 'black', '4567DWP', 5, 4, 'Diesel', 'Airport', 1, 'Availiable', '75'),
 (3, 'BMW', 'X5', 'blue', '7897GHL', 4, 5, 'Gaoil', 'Hotel', 0, 'Maintenence', '95'),
@@ -94,6 +106,26 @@ INSERT INTO `client` (`id_client`, `name`, `surname`, `nif`, `driver_liscense_nu
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `invoice_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `invoice_view` (
+`name` text
+,`surname` text
+,`nif` varchar(9)
+,`id_reservation` int(11)
+,`initial_date` date
+,`final_date` date
+,`price_per_day` int(11)
+,`id_client` int(11)
+,`car_id` int(11)
+,`brand` varchar(100)
+,`model` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reservation`
 --
 
@@ -122,6 +154,40 @@ INSERT INTO `reservation` (`id_reservation`, `initial_date`, `final_date`, `pric
 (9, '2024-12-22', '2024-10-31', 88, 10, 10),
 (10, '2024-10-31', '2024-11-02', 73, 7, 1);
 
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `reservation_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `reservation_view` (
+`name` text
+,`surname` text
+,`nif` varchar(9)
+,`total_days` int(7)
+,`subtotal` int(11)
+,`brand` varchar(100)
+,`model` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `invoice_view`
+--
+DROP TABLE IF EXISTS `invoice_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW `invoice_view`  AS SELECT `cu`.`name` AS `name`, `cu`.`surname` AS `surname`, `cu`.`nif` AS `nif`, `r`.`id_reservation` AS `id_reservation`, `r`.`initial_date` AS `initial_date`, `r`.`final_date` AS `final_date`, `r`.`price_per_day` AS `price_per_day`, `r`.`id_client` AS `id_client`, `r`.`car_id` AS `car_id`, `ca`.`brand` AS `brand`, `ca`.`model` AS `model` FROM ((`reservation` `r` join `client` `cu` on(`cu`.`id_client` = `r`.`id_client`)) join `car` `ca` on(`ca`.`car_id` = `r`.`car_id`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `reservation_view`
+--
+DROP TABLE IF EXISTS `reservation_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW `reservation_view`  AS SELECT `cu`.`name` AS `name`, `cu`.`surname` AS `surname`, `cu`.`nif` AS `nif`, to_days(`r`.`final_date`) - to_days(`r`.`initial_date`) AS `total_days`, `subtotal`(to_days(`r`.`final_date`) - to_days(`r`.`initial_date`),`r`.`price_per_day`) AS `subtotal`, `ca`.`brand` AS `brand`, `ca`.`model` AS `model` FROM ((`reservation` `r` join `client` `cu` on(`cu`.`id_client` = `r`.`id_client`)) join `car` `ca` on(`ca`.`car_id` = `r`.`car_id`)) ;
+
 --
 -- Indexes for dumped tables
 --
@@ -136,8 +202,7 @@ ALTER TABLE `car`
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`id_client`),
-  ADD UNIQUE KEY `nif` (`nif`);
+  ADD PRIMARY KEY (`id_client`);
 
 --
 -- Indexes for table `reservation`
