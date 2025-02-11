@@ -35,18 +35,47 @@ h2 {
   color: var(--red);
   font-size: 1.5em;
 }
+main{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 50px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.container{
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+aside{
+  width: 25%;
+}
+
+.product-section{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-direction: row;
+}
 
 /*Estils contenidor producte*/
-div{
+.product-card{
   display: flex;
+  flex-direction: column;
+  width: calc(33.333% - 20px);
+  flex-grow: 1;
   border: none;
   border-radius: 8px;
   position: relative;  
+  gap: 4px;
 } 
 
 /*Imatge del producte*/
-.imagen{
-  
+.product-card img{
   max-width: 100%; 
   height: auto; 
   object-fit: cover; 
@@ -54,12 +83,12 @@ div{
 }  
 
 /*Imatge seleccionada. El fitxer javaScript afegeix o treu la classe .selected*/
-.selected{
+.product-card img.selected{
   border: solid 2px var(--red); 
 } 
 
 /*Botó del producte*/
-div button{
+.add-to-cart{
   background-color: white;
   color: var(--rose-900);
   font-weight: 500;
@@ -71,80 +100,119 @@ div button{
   transition: background-color 0.3s;
   position: absolute;
   bottom: 73px; 
+  display: flex;
+  justify-content: center;
 }
 
 /*Botó del producte en passar el cursor per damunt*/
-div button:hover{
+.add-to-cart:hover{
   background-color: var(--red);
   color: white;
   border-color: var(--red); 
 }  
 
 /*Textos dels productes*/
-div h3{
+.product-card span{
   color: var(--rose-500);
   font-size: 0.9em;
   margin-top: 20px; 
 }
-  
+
 
 /*Text 2*/
-  /* font-size: 1em;
+.product-card h3{
+font-size: 1em;
   font-weight: 600;
-  color: var(--rose-900); */
+  color: var(--rose-900); 
+}
 
 /*Text 3*/
-  /* font-weight: 700;
-  color: var(--red); */
-
+.product-card .price{
+  font-weight: 700;
+  color: var(--red); 
+}
 /*Carret*/
-/* border: none;
-border-radius: 8px;
-padding: 20px;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-background-color: white; */
+.cart-section{
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 /*Per a cada element del carret*/
-/* border-bottom: 1px solid #ddd;
-  padding: 10px 0; */
-
+.cart-section ul{
+  list-style: none;
+}
+.cart-section li{
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 /*Unitats*/
-/* font-size: 0.9em;
+.cart-units{
+  font-size: 0.9em;
   color: var(--red);
-  font-weight: 500; */
+  font-weight: 500;
+} 
 
 /*Nom*/
-/* font-size: 0.9em;
+.cart-item{ 
+  font-size: 0.9em;
   color: var(--rose-500);
-  margin-left: 10px; */
-
+  margin-left: 10px; 
+}
 /*Preu*/
-/* font-weight: 500;
-  color: var(--rose-500); */
+.cart-price{
+ font-weight: 500;
+  color: var(--rose-500);
+}
 
 /*Linía total*/
-/* padding: 10px 0;
-  color: var(--rose-900); */
+.total{
+  padding: 10px 0;
+  color: var(--rose-900); 
+  display: flex;
+  justify-content: space-between;
+}
 
 /*Import total*/
-/* font-weight: bold; */
+.total-import {
+  font-weight: bold;
+}
 
 /*Text informació carbon-neutral*/
-/* background-color: var(--rose-50);
-  padding: 20px;
-  border-radius: 8px; */
+.cart-section .cart-info{
+    background-color: var(--rose-50);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+ } 
 
 /*Text remarcat info carbon-neutral*/
-/* font-weight: 500; */
+.carbon-neutral{
+  font-weight: 500;
+}  
 
 /*Botó carret compra*/
-/* background-color: var(--red);
+.cart-section button{
+  background-color: var(--red);
   color: white;
-  border: 1px solid var(--red);
+  border: none;
   border-radius: 20px;
-  cursor: pointer;
   padding: 10px 20px;
-  transition: filter 0.3s ease; */
-
+  cursor: pointer;
+  transition: filter 0.3s ease;
+} 
 /*Botó en passar ratolí per damunt*/
-  /* background-color: color-mix(in srgb, var(--red) 90%, black 10%); */
+.cart-section button:hover{
+   background-color: color-mix(in srgb, var(--red) 90%, black 10%);
+}

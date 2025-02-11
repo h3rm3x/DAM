@@ -4,14 +4,12 @@ body{
     margin: 0;
     padding: 0;
     gap: 10px;
-    grid-template-columns: 1fr;
-    grid-template-rows: .5fr repeat(5, 1fr) .5fr ;
+    grid-template-columns: 1fr; /* tambien valido grid-template-columns: auto; */
+    /* grid-template-rows: .5fr repeat(5, 1fr) .5fr ; */
+    grid-template-rows: 80px 120px 1fr 80px;
     grid-template-areas: 
     "header"
     "sidebar"
-    "main"
-    "main"
-    "main"
     "main"
     "footer";
 }
@@ -22,6 +20,7 @@ body{
 }
 .header{
     grid-area: header;
+    padding: 20px;
 
 }
 
@@ -85,13 +84,19 @@ body{
 }
 
 @media (min-width: 768px){
+    body{
+        grid-template-rows: 80px 1fr 120px  80px;
+        grid-template-areas: 
+        "header"
+        "main"
+        "sidebar"
+        "footer";
+    }
     .grid-container{
         grid-template-columns: 1fr 2fr 1fr;
-        grid-template-rows: repeat(8, 1fr);
     }
 
     .box:first-child{
-        grid-row: 2;
         grid-column: 1/span 3;
     }
 
@@ -102,12 +107,11 @@ body{
 
     .box:nth-child(5){
         grid-row: 6;
-        grid-column: 1/span 2;
     }
 
     .box:nth-child(6){
         grid-row: 7/span 2;
-        grid-column: 1/span 3;
+        grid-column: span 3;
     }
 
     .box:nth-child(7){
@@ -125,37 +129,27 @@ body{
 @media (min-width: 1400px){
     body{
         height: 100vh;
-        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: 1fr 4fr;
         gap: 0;
-        grid-template-rows: repeat(9, 1fr);
+        grid-template-rows: 80px 1fr 80px;
         grid-template-areas: 
-        "header header header header"
-        "sidebar main main main"
-        "sidebar main main main"
-        "sidebar main main main"
-        "sidebar main main main"
-        "sidebar main main main"
-        "sidebar main main main"
-        "sidebar main main main"
-        "footer footer footer footer";
+        "header header"
+        "sidebar main"
+        "footer footer ";
     }
+    
     .grid-container{
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(10, auto);
-        grid-auto-rows: 5px;
+        grid-template-rows: repeat(10, 1fr);
     }
 
     .box:first-child{
-        grid-row: 2;
         grid-column: 1/span 4;
     }
-    .box:nth-child(2){
-        grid-column: 1/span 2;
+    .box:nth-child(2), .box:nth-child(3){
+        grid-column: span 2;
     }
-    .box:nth-child(3){
-        grid-row: 1;
-        grid-column: 3/span 2;
-    }
+   
 
     .box:nth-child(4){
         grid-row: 3/span 2;
@@ -163,17 +157,16 @@ body{
     }
 
     .box:nth-child(6){
-        grid-row: 7/span 23;
+        grid-row: 8/span 3;
         grid-column: 1/span 4;
     }
 
     .box:nth-child(7){
         grid-row: 5;
-        grid-column: 2;
     }
     
     .box:nth-child(8){
-        grid-row: 3/span 4;
+        grid-row: 3/span 5;
         grid-column: 4;
     }
 }
