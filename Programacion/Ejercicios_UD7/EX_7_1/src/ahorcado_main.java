@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class ahoracdo_main {
+public class ahorcado_main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
