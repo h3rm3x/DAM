@@ -1,15 +1,23 @@
+import java.util.Scanner;
 public class ex_7_5 {
     public static void main(String[] args) {
-        System.out.println("Algoritmos de ordenación");
-        System.out.println("1. Burbuja");
-        System.out.println("2. Selección directa");
-        System.out.println("3. Inserción");
-        System.out.println("4. Salir");
+        Scanner sc = new Scanner(System.in);
 
+        int[] array = new int[10];
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("Introduce un número: ");
+            array[i] = sc.nextInt(); ;
+            sc.nextLine();
+        }
         int opcion = 0;
         while (opcion != 4) {
+            System.out.println("Algoritmos de ordenación");
+            System.out.println("1. Burbuja");
+            System.out.println("2. Selección directa");
+            System.out.println("3. Inserción");
+            System.out.println("4. Salir");
             System.out.println("Introduce una opción: ");
-            int[] array = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+
             int n = array.length;
             opcion = new java.util.Scanner(System.in).nextInt();
             switch (opcion) {
@@ -37,15 +45,19 @@ public class ex_7_5 {
                     break;
                 case 2: {
                     System.out.println("Has seleccionado Selección directa");
-                    int i, j, menor;
-                    for (i = 0; i < n - 1; i++) {
-                        menor = i;
-                        for (j = i + 1; j < n; j++) {
+                    int iteraciones = 1;
+                    for (int i = 0; i < array.length - 1; i++) {
+                        int menor = i;
+                        for (int j = i + 1; j < array.length; j++) {
                             if (array[j] < array[menor]) {
                                 menor = j;
                             }
                         }
-
+                        int aux = array[menor];
+                        array[menor] = array[i];
+                        array[i] = aux;
+                        System.out.println("Iteración " + iteraciones + ": " + java.util.Arrays.toString(array));
+                        iteraciones++;
                     }
                 }
                     break;
