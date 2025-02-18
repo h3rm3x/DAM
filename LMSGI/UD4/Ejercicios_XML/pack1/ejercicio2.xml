@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<informacion_nutricional>
+<carta>
     <plato>
         <nombre>Gofres Belgas</nombre>
         <precio>5.95</precio>
@@ -30,4 +30,4 @@
         <descripcion> Dos huevos, bacon o salchicha, tostada y patatas fritas </descripcion>
         <calorias>950</calorias>
     </plato>
-</informacion_nutricional>   
+</carta>   
