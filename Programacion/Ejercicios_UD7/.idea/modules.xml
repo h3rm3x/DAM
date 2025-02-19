@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EX_7_1/EX_7_1.iml" filepath="$PROJECT_DIR$/EX_7_1/EX_7_1.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_7_5_menu_algorritmos_ordenacion/EX_7_5_menu_algorritmos_ordenacion.iml" filepath="$PROJECT_DIR$/EX_7_5_menu_algorritmos_ordenacion/EX_7_5_menu_algorritmos_ordenacion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_7_6_quuicksort/EX_7_6_quuicksort.iml" filepath="$PROJECT_DIR$/EX_7_6_quuicksort/EX_7_6_quuicksort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_7_7problema_8_reinas/EX_7_7problema_8_reinas.iml" filepath="$PROJECT_DIR$/EX_7_7problema_8_reinas/EX_7_7problema_8_reinas.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Ejercicios_UD7.iml" filepath="$PROJECT_DIR$/.idea/Ejercicios_UD7.iml" />
       <module fileurl="file://$PROJECT_DIR$/algoritmos_ordenacion/algoritmos_ordenacion.iml" filepath="$PROJECT_DIR$/algoritmos_ordenacion/algoritmos_ordenacion.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_7_3/ex_7_3.iml" filepath="$PROJECT_DIR$/ex_7_3/ex_7_3.iml" />
