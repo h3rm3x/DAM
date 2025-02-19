@@ -51,24 +51,38 @@ CREATE TABLE `car` (
   `location` varchar(50) NOT NULL,
   `itv` tinyint(1) NOT NULL,
   `state` varchar(50) NOT NULL,
-  `price_per_day` varchar(50) NOT NULL
+  `price_per_day` varchar(50) NOT NULL,
+  `car_class` ENUM('business','economy','luxury', 'superlux') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `car`
 --
 
-INSERT INTO `car` (`car_id`, `brand`, `model`, `colour`, `plate`, `seats`, `doors`, `fuel`, `location`, `itv`, `state`, `price_per_day`) VALUES
-(1, 'toyota', 'corolla', 'blanco', '1234BCD', 5, 4, 'gasolina', 'Aeropuerto', 1, 'Disponible', '80'),
-(2, 'ford ', 'fiesta', 'black', '4567DWP', 5, 4, 'Diesel', 'Airport', 1, 'Availiable', '75'),
-(3, 'BMW', 'X5', 'blue', '7897GHL', 4, 5, 'Gaoil', 'Hotel', 0, 'Maintenence', '95'),
-(4, 'Audi', 'A3', 'Grey', '2358LMP', 4, 5, 'Diesel', 'Airport', 1, 'Availiable', '80'),
-(5, 'Volkswagen', 'Golf', 'Red', '8527KKK', 5, 5, 'Gasoil', 'Airport', 1, 'Availiable', '68'),
-(6, 'Mercedes', 'C-Class', 'Silver', '4569KKL', 4, 5, 'Gasoil', 'Airport', 1, 'Availiable', '87'),
-(7, 'Renault', 'Clio', 'green', '9657LLC', 4, 5, 'Diesel', 'Office', 0, 'Maintenance', '64'),
-(8, 'Seat', 'Leon', 'Orange', '3141PYP', 5, 5, 'diesel', 'Airport', 1, 'Availiable', '59'),
-(9, 'Peugeot', '308', 'white', '24101RLP', 4, 5, 'Diesel', 'Office', 1, 'Availiable', '67'),
-(10, 'Tesla', 'Model 3', 'Black', '6421GGW', 5, 5, 'Electrical', 'Airport', 1, 'Availiable', '91');
+INSERT INTO `car` (`car_id`, `brand`, `model`, `colour`, `plate`, `seats`, `doors`, `fuel`, `location`, `itv`, `state`, `price_per_day`, `car_class`, `class_id`) VALUES
+(1, 'toyota', 'corolla', 'blanco', '1234BCD', 5, 4, 'gasolina', 'Aeropuerto', 1, 'Disponible', '80', 'economy', 1),
+(2, 'ford ', 'fiesta', 'black', '4567DWP', 5, 4, 'Diesel', 'Airport', 1, 'Availiable', '75', 'economy', 1),
+(3, 'BMW', 'X5', 'blue', '7897GHL', 4, 5, 'Gaoil', 'Hotel', 0, 'Maintenence', '95', 'business', 2),
+(4, 'Audi', 'A3', 'Grey', '2358LMP', 4, 5, 'Diesel', 'Airport', 1, 'Availiable', '80', 'business', 2),
+(5, 'Volkswagen', 'Golf', 'Red', '8527KKK', 5, 5, 'Gasoil', 'Airport', 1, 'Availiable', '68', 'economy', 1),
+(6, 'Mercedes', 'C-Class', 'Silver', '4569KKL', 4, 5, 'Gasoil', 'Airport', 1, 'Availiable', '87', 'business', 2),
+(7, 'Renault', 'Clio', 'green', '9657LLC', 4, 5, 'Diesel', 'Office', 0, 'Maintenance', '64', 'economy', 1),
+(8, 'Seat', 'Leon', 'Orange', '3141PYP', 5, 5, 'diesel', 'Airport', 1, 'Availiable', '59', 'economy', 1),
+(9, 'Peugeot', '308', 'white', '24101RLP', 4, 5, 'Diesel', 'Office', 1, 'Availiable', '67', 'economy', 1),
+(10, 'Tesla', 'Model 3', 'Black', '6421GGW', 5, 5, 'Electrical', 'Airport', 1, 'Availiable', '91', 'luxury', 3);
+
+
+-- table `car_class`
+CREATE TABLE IF NOT EXISTS	car_class (
+    car_id INT,
+	class_id INT ,
+    class_name ENUM('business','economy','luxury', 'superlux'),
+    class_price_per_day INT
+)  PRIMARY KEY (car_id, class_id) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE car_class ADD 
+FOREIGN KEY car_id REFERENCES car(car_id);
+
 
 -- --------------------------------------------------------
 
