@@ -58,5 +58,15 @@ WHERE car_id NOT IN (
     INNER JOIN client AS Cu ON Cu.id_client = R.id_client
     GROUP BY Cu.name, Cu.surname
     HAVING total_income > 100;
-    
-    
+-- avaliable car per class in a given date span
+    SELECT c.car_id, r.id_client
+    FROM car_2 C 
+    LEFT JOIN reservation R ON c.car_id = r.car_id
+    WHERE r.date_in<= var_date_out AND r.date_out>= var_date_in AND r.id_client IS NULL
+-- avaliable car per class in a given date span
+    SELECT car_class, COUNT(car_id) AS Number_of_cars
+    FROM car_2
+    WHERE car_id NOT IN (SELECT car_id FROM reservation WHERE date_in<= var_date_out AND date_out >= var_date_in)
+    GROUP BY car_class
+
+        
