@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <empresa>
-<compra id="1">
-    <titulo unidades="1">Footballl Manager 24 </titulo>
-    <proveedor></proveedor>
+    <compra id="1">
+        <titulos>
+            <titulo unidades="1">Libro 1 </titulo>
+            <titulo unidades="3">Libro 2 </titulo>  
+        </titulos>
+        <fecha >
+            <dia> 24</dia>
+            <mes> 10</mes>
+            <año> 2024</año>    
+        </fecha>
+
+    </compra>
+
+    <venta >
+        <titulos>
+            <titulo unidades="2">Libro 1 </titulo>
+            <titulo unidades="4">Libro 3 </titulo>  
+        </titulos>
+        <unidades_totales>6</unidades_totales>
+        <importe moneda="€">65</importe>
+        <entregado>Si</entregado>
+    </venta>
+
+    <venta >
+        <titulos>
+            <titulo unidades="1">Libro 2 </titulo>
+            <titulo unidades="2">Libro 3 </titulo>  
+        </titulos>
+        <unidades_totales>3</unidades_totales>
+        <importe moneda="$">48</importe>
+    </venta>    
 
 
-</compra>
 </empresa>
