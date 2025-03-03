@@ -7,6 +7,7 @@ public class problema_8_reinasv2 {
     static int totalQueens = 8;
     static boolean solucionEncontrada = false; // Variable de control para detener la búsqueda
     static Scanner sc = new Scanner(System.in);
+    static int reinas = 0;
 
 
     public static void main(String[] args) {
@@ -24,7 +25,10 @@ public class problema_8_reinasv2 {
         }
         for (int i = 0; i < totalQueens; i++) { // Intenta colocar una reina en cada fila de la columna actual
             solucion[n] = i; // Coloca la reina en la fila i de la columna n
+            //System.out.println("intento colocar la reina en la posicion" + n + " "+ i);
             if (judge(n)) { // Verifica si no hay conflicto
+                reinas++;
+              //  System.out.println("reina nº" + reinas +" colocada en la fila " + n + " columna "+ i);
                 check(n + 1); // Llama recursivamente para colocar la siguiente reina
             }
         }
@@ -34,6 +38,8 @@ public class problema_8_reinasv2 {
         for (int i = 0; i < n; i++) { // Verifica todas las reinas colocadas anteriormente
             if (solucion[i] == solucion[n] || Math.abs(solucion[i] - solucion[n]) == Math.abs(i - n)) {
                 return false; // Hay conflicto si están en la misma fila o en la misma diagonal
+            } else {
+             //   System.out.println("hay conflicto entre la reina"+ solucion[n] + " " + solucion[i]+" y la poscicion" + n +"."+ i);
             }
         }
         return true; // No hay conflicto
