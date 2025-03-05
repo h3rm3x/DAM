@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<elementos>
+    <entrega>
+        <lote>
+            <pales>
+                <numero_cajas>10</numero_cajas>              
+                <peso></peso>
+                <forma_manipulacion></forma_manipulacion>
+                <contenido>
+                    <nombre_componente></nombre_componente>
+                    <procedencia></procedencia>
+                    <numero_serie></numero_serie>
+                    <peso unidades="kg"></peso>
+                </contenido>
+            </pales>
+        </lote>
+    </entrega>
+
+
+</elementos>
