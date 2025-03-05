@@ -1,3 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE comanda [
+    <!ELEMENT comanda (tractor*)>
+    <!ELEMENT tractor (componente+)>
+    <!ELEMENT componente (fecha_entrega, peso, numero_serie)>
+    <!ATTLIST componente fabricante CDATA #REQUIRED>
+    <!ATTLIST componente fragil CDATA #REQUIRED>
+    <!ELEMENT fecha_entrega (dia?, mes, año)>
+    <!ELEMENT dia (#PCDATA)>
+    <!ELEMENT mes (#PCDATA)>
+    <!ELEMENT año (#PCDATA)>
+    <!ELEMENT peso (#PCDATA)>
+    <!ELEMENT numero_serie (#PCDATA)>
+
+]>
 <comanda>
     <tractor>
         <componente fabricante="John Deere" fragil="no">
@@ -17,7 +32,7 @@
             <peso>2400</peso>
             <numero_serie>14578</numero_serie>
         </componente>
-        <componente>
+        <componente fabricante="John Deere" fragil="no">
             <fecha_entrega>  
                 <mes> 03</mes>
                 <año> 2025</año>

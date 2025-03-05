@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE empresa [
+    <!ELEMENT empresa (compra*, venta*)>
+    <!ELEMENT compra (id, titulos, fecha)>
+    <!ELEMENT id (#PCDATA)>
+    <!ELEMENT venta (titulos, unidades_totales, importe, entregado?)>
+    <!ELEMENT titulos (titulo+)>
+    <!ELEMENT titulo (#PCDATA)>
+    <!ATTLIST titulo unidades CDATA #REQUIRED>
+    <!ELEMENT fecha (dia, mes, año)>
+    <!ELEMENT dia (#PCDATA)>
+    <!ELEMENT mes (#PCDATA)>
+    <!ELEMENT año (#PCDATA)>
+    <!ELEMENT unidades_totales (#PCDATA)>
+    <!ELEMENT importe (#PCDATA)>
+    <!ATTLIST importe moneda CDATA #REQUIRED>
+    <!ELEMENT entregado (#PCDATA)>
+]>
 <empresa>
-    <compra id="1">
+    <compra>
+        <id>1</id>
         <titulos>
             <titulo unidades="1">Libro 1 </titulo>
             <titulo unidades="3">Libro 2 </titulo>  
