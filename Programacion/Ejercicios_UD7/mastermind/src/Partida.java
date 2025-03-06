@@ -53,10 +53,13 @@ public class Partida {
                 control[i] = true;
             }
         }
+
         for (int i=0; i<3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if(!control[i] && combinacionSecreta[j] == combinacionIntentada[j]) {
-                    malColocados++;
+            if (!control[i]) {
+                for (int j = 0; j < 3; j++) {
+                    if (combinacionSecreta[i] == combinacionIntentada[j]) {
+                        malColocados++;
+                    }
                 }
             }
         }
@@ -66,4 +69,5 @@ public class Partida {
         }
         return new int[]{aciertos, malColocados};
     }
+
 }
