@@ -6,7 +6,7 @@ public class Tirada {
     public Tirada(char[] combinacionInentada) {
         Tirada.combinacionInentada = combinacionInentada;
         this.respuestaOrdenador = new int[2];
-        this.resultadoTirada = 0;
+        resultadoTirada = 0;
     }
 
     public static char[] getCombinacionInentada() {
@@ -17,7 +17,7 @@ public class Tirada {
         return respuestaOrdenador;
     }
 
-    public int getResultadoTirada() {
+    public static int getResultadoTirada() {
         return resultadoTirada;
     }
 
@@ -28,5 +28,6 @@ public class Tirada {
     public void setRespuestaOrdenador(int[] respuestaOrdenador) {
         this.respuestaOrdenador = respuestaOrdenador;
     }
+
 
 }

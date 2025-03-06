@@ -1,4 +1,6 @@
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 public class Partida {
     private final String nombreJugador;
@@ -10,14 +12,15 @@ public class Partida {
 
     public Partida(String nombreJugador) {
         this.nombreJugador = nombreJugador;
+
+
         this.combinacionSecreta = new char[4];
         for (int i = 0; i < 4; i++) {
-            Random random = new Random();
+           Random random = new Random();
             int index = random.nextInt(6);
-            combinacionSecreta[i] = colores[index];
+          combinacionSecreta[i] = colores[index];
         }
         this.listaTiradas = new ArrayList<Tirada>();
-        this.puntuacion = 0;
         this.EstadoFinal = false;
     }
 
@@ -41,6 +44,10 @@ public class Partida {
         return combinacionSecreta;
     }
 
+    public char[] getColores() {
+        return colores;
+    }
+
     public int[] comprobar(Tirada tirada) {
         int aciertos = 0;
         int malColocados = 0;
@@ -54,16 +61,18 @@ public class Partida {
             }
         }
 
-        for (int i=0; i<3; i++) {
+        for (int i=0; i<4; i++) {
             if (!control[i]) {
-                for (int j = 0; j < 3; j++) {
-                    if (combinacionSecreta[i] == combinacionIntentada[j]) {
+
+                for (int j = 0; j < 4; j++) {
+                    if (combinacionSecreta[j] == combinacionIntentada[i]) {
                         malColocados++;
                     }
                 }
             }
         }
         Tirada.setResultadoTirada(aciertos*2+malColocados);
+        puntuacion += Tirada.getResultadoTirada();
         if (aciertos == 4) {
             EstadoFinal = true;
         }
