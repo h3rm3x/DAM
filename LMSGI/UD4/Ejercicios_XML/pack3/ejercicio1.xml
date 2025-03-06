@@ -1,19 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!DOCTYPE elementos [
+    <!ELEMENT elementos (entrega*)>
+    <!ELEMENT entrega (lote*)>
+    <!ELEMENT lote (pale*)>
+    <!ELEMENT pale (numero_cajas, peso, forma_manipulacion, contenido*)>
+    <!ELEMENT numero_cajas (#PCDATA)>
+    <!ELEMENT peso (#PCDATA)>
+    <!ELEMENT forma_manipulacion (#PCDATA)>
+    <!ELEMENT contenido (nombre_componente, procedencia, numero_serie, peso)>
+    <!ELEMENT nombre_componente (#PCDATA)>
+    <!ELEMENT procedencia (pais*)>
+    <!ELEMENT pais (#PCDATA)>
+    <!ELEMENT numero_serie (#PCDATA)>
+    <!ATTLIST peso unidades CDATA #IMPLIED>
+    <!ATTLIST lote id CDATA #REQUIRED>
+    <!ATTLIST pale id CDATA #REQUIRED>
+]>
 <elementos>
     <entrega>
-        <lote>
-            <pales>
+        <lote id="1">
+            <pale id="1"> 
                 <numero_cajas>10</numero_cajas>              
-                <peso></peso>
-                <forma_manipulacion></forma_manipulacion>
+                <peso >1000</peso>
+                <forma_manipulacion>enfardado</forma_manipulacion>
                 <contenido>
-                    <nombre_componente></nombre_componente>
-                    <procedencia></procedencia>
-                    <numero_serie></numero_serie>
+                    <nombre_componente>copas</nombre_componente>
+                    <procedencia>
+                        <pais>Italia</pais>
+                    </procedencia>
+                    <numero_serie>123</numero_serie>
                     <peso unidades="kg"></peso>
                 </contenido>
-            </pales>
+            </pale>
+
+            <pale id="2"> 
+                <numero_cajas>14</numero_cajas>              
+                <peso >2500</peso>
+                <forma_manipulacion>co-packaging</forma_manipulacion>
+                <contenido>
+                    <nombre_componente>valvulas de motor</nombre_componente>
+                    <procedencia>
+                        <pais>Francia</pais>
+                        <pais>Italia</pais>
+                    </procedencia>
+                    <numero_serie>12445</numero_serie>
+                    <peso >40</peso>
+                </contenido>
+            </pale>
+        </lote>
+
+        <lote id="2">
+            <pale id="1">
+                <numero_cajas>20</numero_cajas>              
+                <peso >1000</peso>
+                <forma_manipulacion>enfardados</forma_manipulacion>
+                <contenido>
+                    <nombre_componente>Pastillas para la tos</nombre_componente>
+                    <procedencia>
+                        <pais>Alemania</pais>
+                    </procedencia>
+                    <numero_serie>14557</numero_serie>
+                    <peso unidades="kg">25</peso>
+                </contenido>
+            </pale>
         </lote>
     </entrega>
 

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55570742-9999-4f20-8e27-fd55d570e21b" name="Changes" comment="corregido el algorritmo de seleccion directa y terminado el ejericio 7_5" />
+    <list default="true" id="a1931935-c30c-4f3e-8e9d-d73cd7c3a64d" name="Changes" comment="algorritmos inserciony seleccion directa">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,22 +20,9 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$/../.." source="lmsgi" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="programacion" />
+        <entry key="$PROJECT_DIR$/../.." value="BBDD" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -51,10 +40,9 @@
   }
 }</component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2szr2oLbS5kyEpVDmp3xUGKvk2D" />
+  <component name="ProjectId" id="2sdIbyg3rUCqJTxfKWcS84F1Nks" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -64,14 +52,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ex_7_3_seleccion_directa.executor": "Run",
-    "Application.ex_7_4_selccion_directa.executor": "Run",
-    "Application.ex_7_5.executor": "Run",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "lmsgi",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/alanr/Documents/DAM/Programacion",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,80 +67,43 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="EX_7_1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="EX_7_1" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
-        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="55570742-9999-4f20-8e27-fd55d570e21b" name="Changes" comment="" />
-      <created>1739469039925</created>
+      <changelist id="a67985bd-aaf6-4cd3-a4a9-b0969bb943e2" name="Changes" comment="Progrmama mastermind comenzada" />
+      <created>1738779099537</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1739469039925</updated>
-      <workItem from="1739469041037" duration="608000" />
-      <workItem from="1739469746392" duration="2268000" />
-      <workItem from="1739544077188" duration="3500000" />
+      <updated>1738779099537</updated>
+      <workItem from="1738779100695" duration="2102000" />
+      <workItem from="1738856993342" duration="48000" />
+      <workItem from="1741214975444" duration="38000" />
     </task>
-    <task id="LOCAL-00001" summary="Terminados los primeros 3 tipos de algorritmos de ordenacion ( burbuja, insercion directa, seleccion directa)">
+    <task id="LOCAL-00001" summary="Primeros pasos del porgrama del ahorcado">
       <option name="closed" value="true" />
-      <created>1739471683225</created>
+      <created>1738781419045</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1739471683225</updated>
+      <updated>1738781419045</updated>
     </task>
-    <task id="LOCAL-00002" summary="corregido el algorritmo de seleccion directa y terminado el ejericio 7_5">
-      <option name="closed" value="true" />
-      <created>1739546332295</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1739546332295</updated>
-    </task>
-    <task id="LOCAL-00003" summary="corregido el algorritmo de seleccion directa y terminado el ejericio 7_5">
-      <option name="closed" value="true" />
-      <created>1739548860619</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1739548860619</updated>
-    </task>
-    <task id="LOCAL-00004" summary="corregido el algorritmo de seleccion directa y terminado el ejericio 7_5">
-      <option name="closed" value="true" />
-      <created>1739548867614</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1739548867614</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Terminados los primeros 3 tipos de algorritmos de ordenacion ( burbuja, insercion directa, seleccion directa)" />
-    <MESSAGE value="corregido el algorritmo de seleccion directa y terminado el ejericio 7_5" />
-    <option name="LAST_COMMIT_MESSAGE" value="corregido el algorritmo de seleccion directa y terminado el ejericio 7_5" />
+    <MESSAGE value="examen tema 5 y 6" />
+    <MESSAGE value="Primeros pasos del porgrama del ahorcado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Primeros pasos del porgrama del ahorcado" />
   </component>
 </project>

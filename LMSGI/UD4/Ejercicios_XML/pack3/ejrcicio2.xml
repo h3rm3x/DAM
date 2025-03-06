@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instituto [
+    <!ELEMENT instituto (listacursos)>
+    <!ELEMENT listacursos (curso*)>
+    <!ELEMENT curso (alumno*)>
+    <!ELEMENT alumno (nombre, apellido1, apellido2?, dni, asignatura*)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT apellido1 (#PCDATA)>
+    <!ELEMENT apellido2 (#PCDATA)>
+    <!ELEMENT dni (#PCDATA)>
+    <!ELEMENT asignatura (nombre_asignatura, profesor)>
+    <!ELEMENT nombre_asignatura (#PCDATA)>
+    <!ELEMENT NRP (#PCDATA)>
+    <!ELEMENT nombre_profesor (#PCDATA)>
+    <!ELEMENT apellido1_profesor (#PCDATA)>
+    <!ELEMENT apellido2_profesor (#PCDATA)>
+    <!ATTLIST asignatura codigo CDATA #REQUIRED>
+    <!ELEMENT profesor (NRP, nombre_profesor, apellido1_profesor, apellido2_profesor?)>
+]>
+<instituto>
+    <listacursos>
+        <curso>
+            <alumno>
+                <nombre>Pepe</nombre>
+                <apellido1>Perez</apellido1>
+                <apellido2>Garcia</apellido2>
+                <dni>12345678A</dni>
+                <asignatura codigo="1">
+                    <nombre_asignatura>Matematicas</nombre_asignatura>
+                    <profesor>
+                        <NRP>12345678A</NRP>
+                        <nombre_profesor>Juan</nombre_profesor>
+                        <apellido1_profesor>Perez</apellido1_profesor>
+                    </profesor>
+                </asignatura>
+                <asignatura codigo="2">
+                    <nombre_asignatura>Ingles</nombre_asignatura>
+                    <profesor>
+                        <NRP>12345678A</NRP>
+                        <nombre_profesor>Alberto</nombre_profesor>
+                        <apellido1_profesor>Diaz</apellido1_profesor>
+                        <apellido2_profesor>Montero</apellido2_profesor>
+                    </profesor>
+                </asignatura>
+            </alumno>
+
+            <alumno>
+                <nombre>Carmen</nombre>
+                <apellido1>Lopez</apellido1>
+                <dni>1785678A</dni>
+                <asignatura codigo="1">
+                    <nombre_asignatura>Matematicas</nombre_asignatura>
+                    <profesor>
+                        <NRP>12345678A</NRP>
+                        <nombre_profesor>Antonio</nombre_profesor>
+                        <apellido1_profesor>Nuñez</apellido1_profesor>
+                    </profesor>
+                </asignatura>
+                <asignatura codigo="2">
+                    <nombre_asignatura>Aleman</nombre_asignatura>
+                    <profesor>
+                        <NRP>6587478A</NRP>
+                        <nombre_profesor>Diego</nombre_profesor>
+                        <apellido1_profesor>Weiss</apellido1_profesor>
+                    </profesor>
+                </asignatura>
+            </alumno>
+        </curso>
+    </listacursos>
+</instituto>
+
+
+    
+
+
+   
