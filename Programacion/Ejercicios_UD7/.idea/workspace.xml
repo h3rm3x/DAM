@@ -4,27 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1931935-c30c-4f3e-8e9d-d73cd7c3a64d" name="Changes" comment="algorritmos inserciony seleccion directa">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0b754158-d6fe-41dc-b749-a64a17417457" name="Changes" comment="Mastermind v1 terminado" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/../.." value="BBDD" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -40,9 +26,9 @@
   }
 }</component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="2sdIbyg3rUCqJTxfKWcS84F1Nks" />
+  <component name="ProjectId" id="2twY5raryER5omw5dLlvUmWbC93" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -50,23 +36,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "lmsgi",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/alanr/Documents/DAM/Programacion",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Mastermind.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;programacion&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -78,22 +62,22 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a67985bd-aaf6-4cd3-a4a9-b0969bb943e2" name="Changes" comment="Progrmama mastermind comenzada" />
-      <created>1738779099537</created>
+      <changelist id="0b754158-d6fe-41dc-b749-a64a17417457" name="Changes" comment="" />
+      <created>1741264424161</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1738779099537</updated>
-      <workItem from="1738779100695" duration="2102000" />
-      <workItem from="1738856993342" duration="48000" />
-      <workItem from="1741214975444" duration="38000" />
+      <updated>1741264424161</updated>
+      <workItem from="1741264425265" duration="1928000" />
+      <workItem from="1741283740225" duration="9629000" />
+      <workItem from="1741301281303" duration="52000" />
     </task>
-    <task id="LOCAL-00001" summary="Primeros pasos del porgrama del ahorcado">
+    <task id="LOCAL-00001" summary="Mastermind v1 terminado">
       <option name="closed" value="true" />
-      <created>1738781419045</created>
+      <created>1741301319879</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1738781419045</updated>
+      <updated>1741301319879</updated>
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -102,8 +86,7 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="examen tema 5 y 6" />
-    <MESSAGE value="Primeros pasos del porgrama del ahorcado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Primeros pasos del porgrama del ahorcado" />
+    <MESSAGE value="Mastermind v1 terminado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mastermind v1 terminado" />
   </component>
 </project>

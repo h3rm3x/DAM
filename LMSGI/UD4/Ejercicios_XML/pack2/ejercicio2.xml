@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE comanda [
-    <!ELEMENT comanda (tractor*)>
-    <!ELEMENT tractor (componente+)>
-    <!ELEMENT componente (fecha_entrega, peso, numero_serie)>
-    <!ATTLIST componente fabricante CDATA #REQUIRED>
-    <!ATTLIST componente fragil CDATA #REQUIRED>
-    <!ELEMENT fecha_entrega (dia?, mes, año)>
-    <!ELEMENT dia (#PCDATA)>
-    <!ELEMENT mes (#PCDATA)>
-    <!ELEMENT año (#PCDATA)>
-    <!ELEMENT peso (#PCDATA)>
-    <!ELEMENT numero_serie (#PCDATA)>
-
-]>
+<?xml-model href="ejercicio2.dtd" type="application/xml-dtd"?>
 <comanda>
     <tractor>
         <componente fabricante="John Deere" fragil="no">
@@ -58,6 +45,7 @@
             </fecha_entrega>
             <peso>2700</peso>
             <numero_serie>214103</numero_serie>
+            <kmmaximos>50000</kmmaximos>
         </componente>
         <componente fabricante="John Deere" fragil="no">
             <fecha_entrega>  

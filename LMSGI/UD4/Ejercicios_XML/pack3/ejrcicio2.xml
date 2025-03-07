@@ -1,22 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE instituto [
-    <!ELEMENT instituto (listacursos)>
-    <!ELEMENT listacursos (curso*)>
-    <!ELEMENT curso (alumno*)>
-    <!ELEMENT alumno (nombre, apellido1, apellido2?, dni, asignatura*)>
-    <!ELEMENT nombre (#PCDATA)>
-    <!ELEMENT apellido1 (#PCDATA)>
-    <!ELEMENT apellido2 (#PCDATA)>
-    <!ELEMENT dni (#PCDATA)>
-    <!ELEMENT asignatura (nombre_asignatura, profesor)>
-    <!ELEMENT nombre_asignatura (#PCDATA)>
-    <!ELEMENT NRP (#PCDATA)>
-    <!ELEMENT nombre_profesor (#PCDATA)>
-    <!ELEMENT apellido1_profesor (#PCDATA)>
-    <!ELEMENT apellido2_profesor (#PCDATA)>
-    <!ATTLIST asignatura codigo CDATA #REQUIRED>
-    <!ELEMENT profesor (NRP, nombre_profesor, apellido1_profesor, apellido2_profesor?)>
-]>
+<?xml-model href="ejercicio2.dtd" type="application/xml-dtd"?>
 <instituto>
     <listacursos>
         <curso>
