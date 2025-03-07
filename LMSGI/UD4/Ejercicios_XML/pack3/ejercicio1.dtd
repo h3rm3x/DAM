@@ -5,7 +5,7 @@
 <!ELEMENT numero_cajas (#PCDATA)>
 <!ELEMENT peso (#PCDATA)>
 <!ELEMENT forma_manipulacion (#PCDATA)>
-<!ELEMENT contenido (nombre_componente, procedencia, numero_serie, peso)>
+<!ELEMENT contenido (nombre_componente, procedencia?, numero_serie, peso)> <!-- puede hacerse o con el asterisco o interrogante en procedencia o en el el subelemento pais-->
 <!ELEMENT nombre_componente (#PCDATA)>
 <!ELEMENT procedencia (pais*)>
 <!ELEMENT pais (#PCDATA)>

@@ -12,17 +12,17 @@
                     <nombre_asignatura>Matematicas</nombre_asignatura>
                     <profesor>
                         <NRP>12345678A</NRP>
-                        <nombre_profesor>Juan</nombre_profesor>
-                        <apellido1_profesor>Perez</apellido1_profesor>
+                        <nombre>Juan</nombre>
+                        <apellido1>Perez</apellido1>
                     </profesor>
                 </asignatura>
                 <asignatura codigo="2">
                     <nombre_asignatura>Ingles</nombre_asignatura>
                     <profesor>
                         <NRP>12345678A</NRP>
-                        <nombre_profesor>Alberto</nombre_profesor>
-                        <apellido1_profesor>Diaz</apellido1_profesor>
-                        <apellido2_profesor>Montero</apellido2_profesor>
+                        <nombre>Alberto</nombre>
+                        <apellido1>1_Diaz</apellido1>
+                        <apellido2>Montero</apellido2>
                     </profesor>
                 </asignatura>
             </alumno>
@@ -35,25 +35,19 @@
                     <nombre_asignatura>Matematicas</nombre_asignatura>
                     <profesor>
                         <NRP>12345678A</NRP>
-                        <nombre_profesor>Antonio</nombre_profesor>
-                        <apellido1_profesor>Nuñez</apellido1_profesor>
+                        <nombre>Antonio</nombre>
+                        <apellido1>Nuñez</apellido1>
                     </profesor>
                 </asignatura>
                 <asignatura codigo="2">
                     <nombre_asignatura>Aleman</nombre_asignatura>
                     <profesor>
                         <NRP>6587478A</NRP>
-                        <nombre_profesor>Diego</nombre_profesor>
-                        <apellido1_profesor>Weiss</apellido1_profesor>
+                        <nombre>Diego</nombre>
+                        <apellido1>Weiss</apellido1>
                     </profesor>
                 </asignatura>
             </alumno>
         </curso>
     </listacursos>
 </instituto>
-
-
-    
-
-
-   

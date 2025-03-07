@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE empresa [
-    <!ELEMENT empresa (compra+, venta+)>
+    <!ELEMENT empresa (compra|venta)+>
     <!ELEMENT compra (id, titulos, fecha)>
     <!ELEMENT id (#PCDATA)>
     <!ELEMENT venta (titulos, unidades_totales, importe, entregado?)>

@@ -8,5 +8,6 @@
 <!ELEMENT mes (#PCDATA)>
 <!ELEMENT año (#PCDATA)>
 <!ELEMENT peso (#PCDATA)>
+<!ATTLIST peso unidades (Kilos| Libras) #REQUIRED>
 <!ELEMENT numero_serie (#PCDATA)>
 <!ELEMENT kmmaximos (#PCDATA)>

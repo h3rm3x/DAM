@@ -8,7 +8,7 @@
                 <mes> 02</mes>
                 <año> 2025</año>
             </fecha_entrega>
-            <peso>2000</peso>
+            <peso unidades="Kilos">2000</peso>
             <numero_serie>123478</numero_serie>
         </componente>
         <componente fabricante="Mitsubishi" fragil="si">
@@ -16,7 +16,7 @@
                 <mes> 02</mes>
                 <año> 2025</año>
             </fecha_entrega>
-            <peso>2400</peso>
+            <peso unidades="Libras">2400</peso>
             <numero_serie>14578</numero_serie>
         </componente>
         <componente fabricante="John Deere" fragil="no">
@@ -24,7 +24,7 @@
                 <mes> 03</mes>
                 <año> 2025</año>
             </fecha_entrega>
-            <peso>1000</peso>
+            <peso unidades="Kilos">1000</peso>
             <numero_serie>456472</numero_serie>
         </componente>
     </tractor>
@@ -35,7 +35,7 @@
                 <mes> 07</mes>
                 <año> 2025</año>
             </fecha_entrega>
-            <peso>2400</peso>
+            <peso unidades="Libras">2400</peso>
             <numero_serie>478121</numero_serie>
         </componente>
         <componente fabricante="Wolkswagen" fragil="si">
@@ -43,7 +43,7 @@
                 <mes> 03</mes>
                 <año> 2025</año>
             </fecha_entrega>
-            <peso>2700</peso>
+            <peso unidades="Kilos">2700</peso>
             <numero_serie>214103</numero_serie>
             <kmmaximos>50000</kmmaximos>
         </componente>
@@ -52,7 +52,7 @@
                 <mes> 05</mes>
                 <año> 2025</año>
             </fecha_entrega>
-            <peso>1400</peso>
+            <peso unidades="Kilos">1400</peso>
             <numero_serie>245689</numero_serie>
         </componente>
     </tractor>
