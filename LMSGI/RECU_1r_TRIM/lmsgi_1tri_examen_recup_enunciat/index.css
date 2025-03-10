@@ -1,0 +1,159 @@
+:root{
+    --tomato: hsl(4, 100%, 67%);
+    --Dark_Slate_Grey: hsl(234, 29%, 20%);
+    --Charcoal_Grey: hsl(235, 18%, 26%);
+    --Grey: hsl(231, 7%, 60%);
+    --White: hsl(0, 0%, 100%);
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(./assets/fonts/Roboto-Regular.ttf);
+}
+
+*{
+  font-size: 16px;  
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--Dark_Slate_Grey);
+    font-family: 'Roboto';
+}
+
+
+header{
+    background-color: var(--tomato);
+    color: var(--Dark_Slate_Grey);
+    height: 100px;
+    position: fixed ; 
+    width: 100%;
+    z-index: 10;
+}
+
+header button{
+    background-color: transparent;
+    border: none;
+}
+
+header button:hover{
+    cursor: pointer;
+    font-style: underline;
+}
+
+header nav{
+    position: relative;
+    top: 50%;
+    transform: translate(50% - 50%);
+}
+
+
+
+header nav div:first-of-type{
+    padding: 10px;
+    display: inline;
+}
+
+header nav div:first-of-type button{
+    margin-right: 15px;
+}
+
+header nav div:nth-of-type(2){
+    position: absolute;
+    right: 20px;
+    display: inline;
+}
+
+main{
+    position: relative;
+    top: 120px;
+    display: block;
+}
+
+main section.stay_updated, main section.thanks{
+    position: relative;
+    background-color: var(--White);
+    text-align: center;
+    padding: 20px;
+    border: white 1px solid;
+    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+main section.stay_updated{
+    position: relative;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: inline-block;
+    
+
+}
+
+main section.stay_updated{
+    display: inline-block;
+}
+
+main section.stay_updated img{
+    position: relative;
+    display: inline-block;
+}
+
+main section.stay_updated h1{
+    font-size: 2.5em;
+    color: var(--Dark_Slate_Grey);
+}
+
+main section.stay_updated nav{
+    position: relative;
+    width: auto;
+}
+
+main section.stay_updated p{
+    color: var(--Charcoal_Grey);
+}
+
+main section.stay_updated ul{
+    text-align: left;
+    display: block;
+}
+
+main section.stay_updated ul li{
+    text-align: left;
+    margin-right: 10px;
+}
+
+main section.stay_updated form{
+    display: block;
+}
+
+main section.stay_updated form button{
+    background-color: var(--tomato);
+    padding: 10px;
+    border: none;
+}
+
+main section.stay_updated form label{
+    font-size: 1.5em;
+}
+
+main section.stay_updated form label{
+    height: 40px;
+}
+
+main section.thanks{
+    margin-top: 50px;
+    height: 500px;
+    width: 50%;
+    text-align: left ;
+}
+
+
+
+
+
+
