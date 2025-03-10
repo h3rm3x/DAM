@@ -124,18 +124,29 @@ div:nth-of-type(4) {
     bottom: 30px;   
 }
 
-
 .centered-container {
-    margin-top: 20px;
-    position: relative;
-    height: 500px;
-    width: 100vw;
+    /* Cambiamos estos valores para centrar todo el contenedor */
+    position: relative; /* Cambiado de relative a fixed para centrarlo en la ventana */
+    height: 300px; /* Ajustado altura para que coincida con la imagen */
+    width: 100%; /* Ajustado anchura */
     background-color: azure;
+    /* Eliminar margin-top */
+    
+    /* Propiedades para centrar */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Ajustar z-index para que aparezca por encima de otros elementos */
+    z-index: 20;
+    
+    /* Añadir borde para hacerlo similar a la imagen */
+    border: 1px solid #ccc;
 }
 
 .centered-container .centered-content {
     position: absolute;
-    width: 20%;
+    width: auto; /* Cambiado de porcentaje a auto */
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -144,4 +155,3 @@ div:nth-of-type(4) {
     border: 1px solid black;
     z-index: 10;
 }
-
