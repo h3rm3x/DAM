@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE factura [
+    <!ELEMENT factura (encabezado, lineas, resumen_total)>
+    <!ELEMENT encabezado (fecha, info_cliente, info_proveedor)>
+    <!ELEMENT lineas (linea+)>
+    <!ELEMENT resumen_total (subtotal, total_sin_iva, total_con_iva)>
+    <!ELEMENT linea (articulo, num_unidades, importe_total, articulo_ref)>
+    <!ATTLIST encabezado id_factura ID #REQUIRED>
+    <!ELEMENT fecha EMPTY>
+    <!ATTLIST fecha dia CDATA #REQUIRED
+                        mes CDATA #REQUIRED
+                        año CDATA #REQUIRED>
+    <!ELEMENT info_cliente EMPTY>
+    <!ATTLIST info_cliente nombre_fiscal CDATA #REQUIRED
+                            nombre_comercial CDATA #IMPLIED
+                            NIF CDATA #REQUIRED>
+    <!ELEMENT info_proveedor EMPTY>
+    <!ATTLIST info_proveedor nombre_fiscal CDATA #REQUIRED
+                            nombre_comercial CDATA #IMPLIED
+                            NIF CDATA #REQUIRED>
+    
+    <!ATTLIST linea id_linea ID #REQUIRED>
+    <!ELEMENT articulo_ref (#PCDATA)>
+    <!ELEMENT articulo (descripcion, precio_sin_iva, precio_con_iva)>
+    <!ATTLIST articulo id_articulo ID #REQUIRED>
+    <!ELEMENT descripcion (#PCDATA)>
+    <!ELEMENT precio_sin_iva (#PCDATA)>
+    <!ELEMENT precio_con_iva (#PCDATA)>
+    <!ATTLIST precio_con_iva tipo_iva (4|10|21) #REQUIRED>
+    <!ELEMENT num_unidades (#PCDATA)>
+    <!ELEMENT importe_total (#PCDATA)>
+    <!ELEMENT subtotal (con_iva_4, con_iva_10, con_iva_21)>
+    <!ELEMENT total_sin_iva (#PCDATA)>
+    <!ELEMENT total_con_iva (#PCDATA)>
+    <!ELEMENT con_iva_4 (#PCDATA)>
+    <!ELEMENT con_iva_10 (#PCDATA)>
+    <!ELEMENT con_iva_21 (#PCDATA)>
+    
+
+]>
+<factura>
+    <encabezado id_factura="A123">
+        <fecha dia="" mes="" año="" />
+        <info_cliente nombre_fiscal="" NIF="" nombre_comercial=""/>
+        <info_proveedor nombre_fiscal="" NIF="" nombre_comercial=""/>
+    </encabezado>
+    <lineas >
+        <linea id_linea="B123" >
+            <articulo id_articulo="C12">
+                <descripcion></descripcion>
+                <precio_sin_iva></precio_sin_iva>
+                <precio_con_iva tipo_iva="4"></precio_con_iva>
+            </articulo>
+           
+            <num_unidades></num_unidades>
+            <importe_total></importe_total>
+            <articulo_ref>C12</articulo_ref>
+        </linea>
+    </lineas>
+    <resumen_total>
+        <subtotal>
+            <con_iva_4></con_iva_4>
+            <con_iva_10></con_iva_10>
+            <con_iva_21></con_iva_21>
+        </subtotal>
+        <total_sin_iva></total_sin_iva>
+        <total_con_iva></total_con_iva>
+
+    </resumen_total>
+</factura>
