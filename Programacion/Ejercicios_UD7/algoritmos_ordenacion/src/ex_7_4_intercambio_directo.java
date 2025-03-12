@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ex_7_4_intercambio_directo {
     public static void main(String[] args) {
         int[] array = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
@@ -15,10 +17,9 @@ public class ex_7_4_intercambio_directo {
                     array[i] = array[j];
                     array[j] = aux;
                 }
-                System.out.println("Iteración " + (i + 1) + ": " + java.util.Arrays.toString(array));
-
             }
 
-        }
+
+        }System.out.println(Arrays.toString(array));
     }
 }
