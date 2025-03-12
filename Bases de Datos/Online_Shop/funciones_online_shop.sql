@@ -36,6 +36,33 @@ END;
 
 -- Insert data into the order table
 CREATE PROCEDURE order_data_dump ()
+DELIMITER $$
+BEGIN
+    DECLARE var_customer_id INT;
+    DECLARE var_product_id INT;
+    DECLARE var_quantity INT;
+    DECLARE var_adress_id INT;
+    DECLARE var_payment_method_id INT;
+
+    DECLARE i INT;
+
+    SET i = 1;
+
+    WHILE i <= 50 DO
+        SET var_customer_id = (SELECT customer_id FROM shopping_cart ORDER BY RAND() LIMIT 1);
+        IF var_customer_id IS NOT NULL THEN
+            SET var_product_id = (SELECT product_id FROM shopping_cart WHERE customer_id = var_customer_id ORDER BY RAND() LIMIT 1);
+            SET var_quantity =  (SELECT quantity FROM shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id LIMIT 1);
+            SET var_adress_id = (SELECT adress_id FROM adress_customer WHERE customer_id = var_customer_id LIMIT 1);
+            SET var_payment_method_id = (SELECT method_id FROM payment_customer WHERE customer_id = var_customer_id LIMIT 1);
+            SET i = i + 1;
+            INSERT INTO order_table (customer_id, product_id, quantity, order_date, adress_id, method_id)
+            VALUES (var_customer_id, var_product_id, var_quantity, NOW(), var_adress_id, var_payment_method_id );
+            DELETE FROM shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id LIMIT 1;
+        END IF;
+    END WHILE;
+	SELECT * FROM order_view;
+END$$
 
 
 
