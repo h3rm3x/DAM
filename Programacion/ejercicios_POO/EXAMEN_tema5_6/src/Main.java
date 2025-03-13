@@ -44,6 +44,7 @@ public class Main {
                             } else {
                                 System.out.println(" no hay mas espacio en la galeria");
                             }
+                            break;
                         }
                         case "Fotografia": {
                             System.out.println("Escriba el nombre de la Fotografia: ");
@@ -63,6 +64,7 @@ public class Main {
                             }
 
                         }
+                        break;
                         case "Pintura": {
                             System.out.println("Escriba el nombre de la Pintura: ");
                             String nombre = sc.nextLine();
@@ -80,6 +82,7 @@ public class Main {
                                 System.out.println(" no hay mas espacio en la galeria");
                             }
                         }
+                        break;
                     }
 
                 }
