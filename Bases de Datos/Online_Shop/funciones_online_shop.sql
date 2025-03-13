@@ -20,17 +20,10 @@ BEGIN
         SET var_product_id = FLOOR(1+RAND()*10);
         SET var_quantity = FLOOR(1+RAND()*10);
         SET i = i + 1;
-        IF var_customer_id IS IN (SELECT customer_id FROM shopping_cart WHERE product_id = var_product_id) AND var_product_id IS IN (SELECT product_id FROM shopping_cart WHERE customer_id = var_customer_id) THEN
-            UPDATE shopping_cart
-            SET quantity = quantity + var_quantity
-            WHERE customer_id = var_customer_id AND product_id = var_product_id;
-        ELSE
-            INSERT INTO shopping_cart (customer_id, product_id, quantity)
-            VALUES (var_customer_id, var_product_id, var_quantity);            
-        END IF;   
+        INSERT INTO shopping_cart (customer_id, product_id, quantity)
+        VALUES (var_customer_id, var_product_id, var_quantity);  
+        ON DUPLICATE KEY UPDATE quantity = var_quantity + quantity  
     END WHILE;
-
-    
 END;
 
 
@@ -39,10 +32,7 @@ CREATE PROCEDURE order_data_dump ()
 DELIMITER $$
 BEGIN
     DECLARE var_customer_id INT;
-    DECLARE var_product_id INT;
-    DECLARE var_quantity INT;
-    DECLARE var_adress_id INT;
-    DECLARE var_payment_method_id INT;
+	DECLARE var_product_id INT;
 
     DECLARE i INT;
 
@@ -50,21 +40,16 @@ BEGIN
 
     WHILE i <= 50 DO
         SET var_customer_id = (SELECT customer_id FROM shopping_cart ORDER BY RAND() LIMIT 1);
+        SET var_product_id = (SELECT product_id FROM shopping_cart WHERE customer_id = var_customer_id ORDER BY RAND() LIMIT 1);
         IF var_customer_id IS NOT NULL THEN
-            SET var_product_id = (SELECT product_id FROM shopping_cart WHERE customer_id = var_customer_id ORDER BY RAND() LIMIT 1);
-            SET var_quantity =  (SELECT quantity FROM shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id LIMIT 1);
-            SET var_adress_id = (SELECT adress_id FROM adress_customer WHERE customer_id = var_customer_id LIMIT 1);
-            SET var_payment_method_id = (SELECT method_id FROM payment_customer WHERE customer_id = var_customer_id LIMIT 1);
-            SET i = i + 1;
             INSERT INTO order_table (customer_id, product_id, quantity, order_date, adress_id, method_id)
-            VALUES (var_customer_id, var_product_id, var_quantity, NOW(), var_adress_id, var_payment_method_id );
-            DELETE FROM shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id LIMIT 1;
+            SELECT customer_id, product_id, quantity, NOW(), get_address(var_customer_id), get_payment_method(customer_id)
+            FROM shopping_cart
+            WHERE customer_id = var_customer_id AND product_id = var_product_id;
+            DELETE FROM shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id ;
+            SET i = i + 1;   
         END IF;
     END WHILE;
 	SELECT * FROM order_view;
 END$$
-
-
-
-
-
+DELIMITER ;
