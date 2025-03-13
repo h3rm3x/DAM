@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class ex_7_4_intercambio_directo {
     public static void main(String[] args) {
-        int[] array = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        int[] array = {7,3,1,4,9,22,5,8,10,6,45,14,2,41};
         int n = array.length;
         int i, j, aux;
         for (i = 0; i < n - 1; i++) {

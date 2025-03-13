@@ -30,6 +30,7 @@ public class EdadInvalidaException extends Exception {
 
     // Sobrescritura de getMessage para incluir información adicional
     public String getMessage() {
+
         return super.getMessage() + " (Recibida: " + edad + ", Requerida: " + edadMinima + ")";
     }
 
