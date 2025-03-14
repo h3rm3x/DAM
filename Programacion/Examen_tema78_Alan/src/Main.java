@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.util.*;
 
 public class Main {
@@ -51,11 +50,7 @@ public class Main {
                 switch (opcion) {
                     case 1:
                         insertarGastotal();
-                        //for (Cliente cliente : clientes) { // si uno de los clientes no tiene asignado gastototal se lanza la excepcion MissingDataException
-                        //    if ((cliente.getGastoTotal().isNull)) { // no recuerdo el metodo para comprobar si un atributo existe o si es nulo
-                        //    throw new  MissingDataException() }}
-
-
+                       // clientes[rand.nextInt(clientes.length-1)].setGastoTotal(0); // se asigna un gasto total de 0 a un cliente aleatorio
                         break;
                     case 2:
                         //imprime la lista sin ordenar
@@ -65,13 +60,13 @@ public class Main {
                          tiempoAnterior = System.nanoTime();
                         mostrarlistaOrdenadaInsercionDirecta();
                          tiempoFinal = System.nanoTime();
-                        System.out.println("Ordenar la lista mediante Insercion directa ha costado: "+ (tiempoFinal-tiempoAnterior)+ " Nano Segundos");
+                        System.out.println("Ordenar la lista mediante Insercion directa ha costado: "+ ((tiempoFinal-tiempoAnterior)/1000)+ " Nano Segundos");
                         break;
                     case 4:
                         tiempoAnterior = System.nanoTime();
                         mostrarlistaOrdenadaBurbija();
                         tiempoFinal = System.nanoTime();
-                        System.out.println("Ordenar la lista mediante el metodo Burbuja ha costado: "+ (tiempoFinal-tiempoAnterior)+ " Nano Segundos");
+                        System.out.println("Ordenar la lista mediante el metodo Burbuja ha costado: "+ ((tiempoFinal-tiempoAnterior)/1000)+ " Nano Segundos");
                         break;
                     case 5:
                         Cliente[] clientes_ordenada = clientes.clone();
@@ -79,8 +74,8 @@ public class Main {
                         Arrays.sort(clientes_ordenada);
                         tiempoFinal = System.nanoTime();
                         mostrarClientes(clientes_ordenada);
-                        System.out.println("Ordenar la lista mediante Arrays.sort ha costado: "+ (tiempoFinal-tiempoAnterior)+ "Nano Segundos");
-
+                        System.out.println("Ordenar la lista mediante Arrays.sort ha costado: "+ ((tiempoFinal-tiempoAnterior)/1000)+ "Mili Segundos");
+                        break;
 
                     case 6:
                         System.out.println("Saliendo...");
@@ -92,9 +87,8 @@ public class Main {
 
             } catch (InputMismatchException e) { // si hay un error se imprime el mensaje y se sale del loop
                 System.out.println("Error opción no válida");
-                break;
-        //       } catch (MissingDataException m) {
-        //            System.out.println("Error faltan cleintes por introducir el gasto total");
+                sc.next();
+                opcion = 0;
             }
         }
     }
@@ -116,7 +110,7 @@ public class Main {
 
     public static void insertarGastotal() { // metodo para asignar un gasto total  a todos los clientes
         for (Cliente cliente : clientes) {
-            cliente.setGastoTotal(rand.nextInt(100) + 1); // asignamos un entero entre 1 y 100 al gasto de cada cliente
+            cliente.setGastoTotal(rand.nextDouble(100) + 1); // asignamos un entero entre 1 y 100 al gasto de cada cliente
         }
     }
 
@@ -132,7 +126,7 @@ public class Main {
 
     public static void mostrarlistaOrdenadaInsercionDirecta() {
         Cliente[] clientes_copia = clientes.clone(); // creamos una copia para mantener la lista original desordenada
-
+        validarClientes(clientes_copia); // se valida que todos los clientes tengan un gasto total asignado
 
         for (int i = 0; i < clientes_copia.length - 1; i++) { // recorremos el array
             int menor = i;
@@ -169,5 +163,17 @@ public class Main {
             }
 
         }mostrarClientes(clientes_copia); // se imprime la lista ordenada
+    }
+
+    public static void validarClientes(Cliente[] clientes) {
+        try {
+            for (Cliente c : clientes) {
+                if (c.getGastoTotal() == 0) {
+                    throw new MissingDataException("Error faltan cleintes por introducir el gasto total");
+                }
+            }
+        }catch (MissingDataException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
