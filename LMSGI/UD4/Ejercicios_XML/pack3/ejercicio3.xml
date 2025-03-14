@@ -6,7 +6,7 @@
         <numero>29</numero>
     </lapiz>
     <cuaderno></cuaderno>
-    <cuaderno num_hojas="250"></cuaderno>
+    <cuaderno num_hojas="250" />
     <lapiz>
         <numero>15</numero>
     </lapiz>

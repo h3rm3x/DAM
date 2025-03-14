@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="ejercicio4.dtd" type="application/xml-dtd"?>
-<listado>
+<acciones>
     <futuro precio="400">
         <producto>Accion NVIDIA</producto>
         <mercado nombre="Nueva_York" />
@@ -46,4 +46,4 @@
         <tipo_interes>5%</tipo_interes>
     </letra>
     
-</listado>
+</acciones>
