@@ -10,6 +10,7 @@ public class Alumno extends Persona{
     public void setNivel(String nivel) {
         this.nivel = nivel;
     }
+
     public void imprimir() {
         super.mostrarInformacion();
         System.out.println("Nivel: " + nivel);
