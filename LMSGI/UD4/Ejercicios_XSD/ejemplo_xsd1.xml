@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mensaje
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamespaceSchemaLocation="mensaje.xsd">
+    <emisor>
+        <nombre>Pepe</nombre>
+        <apellido>Pérez</apellido>
+    </emisor>
+    <texto>
+        <p>Esto es un mensaje</p>
+        <p>Esto es un mensaje</p>
+    </texto>
+    <destinatario>Pepe</destinatario>
+    <fecha dia="10">
+        <año>2025</año>
+    </fecha>
+</mensaje>

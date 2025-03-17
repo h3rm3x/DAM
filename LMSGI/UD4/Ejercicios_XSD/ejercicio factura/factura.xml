@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factura
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamespaceSchemaLocation="factura.xsd">
+    <encabezado id_factura="A123">
+        <fecha dia="11" mes="3" año="2025" />
+        <info_cliente nombre_fiscal="Nombre1" NIF="12345678A" nombre_comercial="nombre comercial 1"/>
+        <info_proveedor nombre_fiscal="Nombre2" NIF="12345679B" nombre_comercial="Nombre comercial 2"/>
+    </encabezado>
+    
+    <linea id_linea="B123" articulo_ref="C12">
+        <articulo id_articulo="C12">
+            <descripcion>Descripcion del articulo</descripcion>
+            <precio_sin_iva>100</precio_sin_iva>
+            <precio_con_iva tipo_iva="4">104</precio_con_iva>
+        </articulo>
+        <num_unidades></num_unidades>
+        <importe_total></importe_total>
+            
+    </linea>
+    <resumen_total>
+        <subtotal>
+            <con_iva_4>200</con_iva_4>
+            <con_iva_10></con_iva_10>
+            <con_iva_21></con_iva_21>
+        </subtotal>
+        <total_sin_iva></total_sin_iva>
+        <total_con_iva></total_con_iva>
+    </resumen_total>
+</factura>
