@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2025 at 06:02 PM
+-- Generation Time: Mar 17, 2025 at 05:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -22,6 +22,14 @@ SET time_zone = "+00:00";
 --
 
 DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `avaliable_cars_per_class` (IN `var_date_in` DATE, IN `var_date_out` DATE)   SELECT car_class, COUNT(car_id) AS Number_of_cars
+FROM car_2
+WHERE car_id NOT IN (SELECT car_id FROM reservation WHERE initial_date<= var_date_out AND final_date >= var_date_in)
+GROUP BY car_class$$
+
 --
 -- Functions
 --
@@ -50,39 +58,95 @@ CREATE TABLE `car` (
   `fuel` varchar(50) NOT NULL,
   `location` varchar(50) NOT NULL,
   `itv` tinyint(1) NOT NULL,
-  `state` varchar(50) NOT NULL,
-  `price_per_day` varchar(50) NOT NULL,
-  `car_class` ENUM('business','economy','luxury', 'superlux') NOT NULL
+  `state` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `car`
 --
 
-INSERT INTO `car` (`car_id`, `brand`, `model`, `colour`, `plate`, `seats`, `doors`, `fuel`, `location`, `itv`, `state`, `price_per_day`, `car_class`, `class_id`) VALUES
-(1, 'toyota', 'corolla', 'blanco', '1234BCD', 5, 4, 'gasolina', 'Aeropuerto', 1, 'Disponible', '80', 'economy', 1),
-(2, 'ford ', 'fiesta', 'black', '4567DWP', 5, 4, 'Diesel', 'Airport', 1, 'Availiable', '75', 'economy', 1),
-(3, 'BMW', 'X5', 'blue', '7897GHL', 4, 5, 'Gaoil', 'Hotel', 0, 'Maintenence', '95', 'business', 2),
-(4, 'Audi', 'A3', 'Grey', '2358LMP', 4, 5, 'Diesel', 'Airport', 1, 'Availiable', '80', 'business', 2),
-(5, 'Volkswagen', 'Golf', 'Red', '8527KKK', 5, 5, 'Gasoil', 'Airport', 1, 'Availiable', '68', 'economy', 1),
-(6, 'Mercedes', 'C-Class', 'Silver', '4569KKL', 4, 5, 'Gasoil', 'Airport', 1, 'Availiable', '87', 'business', 2),
-(7, 'Renault', 'Clio', 'green', '9657LLC', 4, 5, 'Diesel', 'Office', 0, 'Maintenance', '64', 'economy', 1),
-(8, 'Seat', 'Leon', 'Orange', '3141PYP', 5, 5, 'diesel', 'Airport', 1, 'Availiable', '59', 'economy', 1),
-(9, 'Peugeot', '308', 'white', '24101RLP', 4, 5, 'Diesel', 'Office', 1, 'Availiable', '67', 'economy', 1),
-(10, 'Tesla', 'Model 3', 'Black', '6421GGW', 5, 5, 'Electrical', 'Airport', 1, 'Availiable', '91', 'luxury', 3);
+INSERT INTO `car` (`car_id`, `brand`, `model`, `colour`, `plate`, `seats`, `doors`, `fuel`, `location`, `itv`, `state`) VALUES
+(1, 'toyota', 'corolla', 'blanco', '1234BCD', 5, 4, 'gasolina', 'Aeropuerto', 1, 'Disponible'),
+(2, 'ford ', 'fiesta', 'black', '4567DWP', 5, 4, 'Diesel', 'Airport', 1, 'Availiable'),
+(3, 'BMW', 'X5', 'blue', '7897GHL', 4, 5, 'Gaoil', 'Hotel', 0, 'Maintenence'),
+(4, 'Audi', 'A3', 'Grey', '2358LMP', 4, 5, 'Diesel', 'Airport', 1, 'Availiable'),
+(5, 'Volkswagen', 'Golf', 'Red', '8527KKK', 5, 5, 'Gasoil', 'Airport', 1, 'Availiable'),
+(6, 'Mercedes', 'C-Class', 'Silver', '4569KKL', 4, 5, 'Gasoil', 'Airport', 1, 'Availiable'),
+(7, 'Renault', 'Clio', 'green', '9657LLC', 4, 5, 'Diesel', 'Office', 0, 'Maintenance'),
+(8, 'Seat', 'Leon', 'Orange', '3141PYP', 5, 5, 'diesel', 'Airport', 1, 'Availiable'),
+(9, 'Peugeot', '308', 'white', '24101RLP', 4, 5, 'Diesel', 'Office', 1, 'Availiable'),
+(10, 'Tesla', 'Model 3', 'Black', '6421GGW', 5, 5, 'Electrical', 'Airport', 1, 'Availiable');
 
+-- --------------------------------------------------------
 
--- table `car_class`
-CREATE TABLE IF NOT EXISTS	car_class (
-    car_id INT,
-	class_id INT ,
-    class_name ENUM('business','economy','luxury', 'superlux'),
-    class_price_per_day INT
-)  PRIMARY KEY (car_id, class_id) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+--
+-- Table structure for table `car_class`
+--
 
-ALTER TABLE car_class ADD 
-FOREIGN KEY car_id REFERENCES car(car_id);
+CREATE TABLE `car_class` (
+  `car_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `class_name` enum('business','economy','luxury','superlux') DEFAULT NULL,
+  `class_price_per_day` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `car_class`
+--
+
+INSERT INTO `car_class` (`car_id`, `class_id`, `class_name`, `class_price_per_day`) VALUES
+(1, 1, 'economy', 60),
+(2, 1, 'economy', 60),
+(3, 2, 'business', 80),
+(4, 2, 'business', 80),
+(5, 1, 'economy', 60),
+(6, 2, 'business', 80),
+(7, 1, 'economy', 60),
+(8, 1, 'economy', 60),
+(9, 1, 'economy', 60),
+(10, 3, 'luxury', 100);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `car_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `car_view` (
+`car_id` int(11)
+,`brand` varchar(100)
+,`model` varchar(100)
+,`colour` varchar(100)
+,`plate` varchar(10)
+,`seats` int(11)
+,`doors` int(11)
+,`fuel` varchar(50)
+,`location` varchar(50)
+,`itv` tinyint(1)
+,`state` varchar(50)
+,`class_name` enum('business','economy','luxury','superlux')
+,`price_per_day` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class`
+--
+
+CREATE TABLE `class` (
+  `class_id` int(11) NOT NULL,
+  `class_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`class_id`, `class_name`) VALUES
+(1, 'economy'),
+(2, 'business'),
+(3, 'luxury');
 
 -- --------------------------------------------------------
 
@@ -140,6 +204,17 @@ CREATE TABLE `invoice_view` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `long_term_customers`
+-- (See below for the actual view)
+--
+CREATE TABLE `long_term_customers` (
+`id_client` int(11)
+,`total_days` int(7)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reservation`
 --
 
@@ -178,11 +253,21 @@ CREATE TABLE `reservation_view` (
 `name` text
 ,`surname` text
 ,`nif` varchar(9)
+,`id_client` int(11)
 ,`total_days` int(7)
 ,`subtotal` int(11)
 ,`brand` varchar(100)
 ,`model` varchar(100)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `car_view`
+--
+DROP TABLE IF EXISTS `car_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `car_view`  AS SELECT `c`.`car_id` AS `car_id`, `c`.`brand` AS `brand`, `c`.`model` AS `model`, `c`.`colour` AS `colour`, `c`.`plate` AS `plate`, `c`.`seats` AS `seats`, `c`.`doors` AS `doors`, `c`.`fuel` AS `fuel`, `c`.`location` AS `location`, `c`.`itv` AS `itv`, `c`.`state` AS `state`, `cc`.`class_name` AS `class_name`, `cc`.`class_price_per_day` AS `price_per_day` FROM (`car` `c` join `car_class` `cc`) WHERE `cc`.`car_id` = `c`.`car_id` ;
 
 -- --------------------------------------------------------
 
@@ -196,11 +281,20 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `long_term_customers`
+--
+DROP TABLE IF EXISTS `long_term_customers`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `long_term_customers`  AS SELECT DISTINCT `c`.`id_client` AS `id_client`, `r`.`total_days` AS `total_days` FROM (`client` `c` join `reservation_view` `r` on(`r`.`id_client` = `c`.`id_client`)) WHERE `r`.`total_days` > (select ceiling(avg(`reservation_view`.`total_days`)) from `reservation_view`) ORDER BY `r`.`total_days` DESC ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `reservation_view`
 --
 DROP TABLE IF EXISTS `reservation_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW `reservation_view`  AS SELECT `cu`.`name` AS `name`, `cu`.`surname` AS `surname`, `cu`.`nif` AS `nif`, to_days(`r`.`final_date`) - to_days(`r`.`initial_date`) AS `total_days`, `subtotal`(to_days(`r`.`final_date`) - to_days(`r`.`initial_date`),`r`.`price_per_day`) AS `subtotal`, `ca`.`brand` AS `brand`, `ca`.`model` AS `model` FROM ((`reservation` `r` join `client` `cu` on(`cu`.`id_client` = `r`.`id_client`)) join `car` `ca` on(`ca`.`car_id` = `r`.`car_id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW `reservation_view`  AS SELECT `cu`.`name` AS `name`, `cu`.`surname` AS `surname`, `cu`.`nif` AS `nif`, `r`.`id_client` AS `id_client`, to_days(`r`.`final_date`) - to_days(`r`.`initial_date`) AS `total_days`, `subtotal`(to_days(`r`.`final_date`) - to_days(`r`.`initial_date`),`r`.`price_per_day`) AS `subtotal`, `ca`.`brand` AS `brand`, `ca`.`model` AS `model` FROM ((`reservation` `r` join `client` `cu` on(`cu`.`id_client` = `r`.`id_client`)) join `car` `ca` on(`ca`.`car_id` = `r`.`car_id`)) ;
 
 --
 -- Indexes for dumped tables
@@ -211,6 +305,19 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 ALTER TABLE `car`
   ADD PRIMARY KEY (`car_id`);
+
+--
+-- Indexes for table `car_class`
+--
+ALTER TABLE `car_class`
+  ADD PRIMARY KEY (`car_id`,`class_id`),
+  ADD KEY `class_id` (`class_id`);
+
+--
+-- Indexes for table `class`
+--
+ALTER TABLE `class`
+  ADD PRIMARY KEY (`class_id`);
 
 --
 -- Indexes for table `client`
@@ -237,6 +344,12 @@ ALTER TABLE `car`
   MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
@@ -251,6 +364,13 @@ ALTER TABLE `reservation`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `car_class`
+--
+ALTER TABLE `car_class`
+  ADD CONSTRAINT `car_class_FK` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`),
+  ADD CONSTRAINT `car_class_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
 
 --
 -- Constraints for table `reservation`
