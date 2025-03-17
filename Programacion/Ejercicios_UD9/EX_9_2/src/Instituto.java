@@ -5,7 +5,7 @@ import java.util.Vector;
 public class Instituto {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        HashMap<Persona,String> personas = new HashMap<Persona,String>();
+        HashMap<Persona,String> personas = new HashMap<Persona,String>(4);
         System.out.println("0 - Salir");
         System.out.println("1 - Crear Persona");
         System.out.println("2 - Listar todas las personas");
@@ -52,13 +52,13 @@ public class Instituto {
                         System.out.println("Escribe la edad");
                         int edad = sc.nextInt();
                         sc.nextLine();
-                        personas.put( new Persona(nombre, dni, edad),dni);
+                        personas.put(new Persona(nombre, dni, edad),dni);
 
                     }
                     break;
                 }
                 case 2:{
-                    //for (int i = 0; i < personas.wait(); i++ ) {
+                    for (int i = 0; i < personas.size(); i++ ) {
                         System.out.println(personas.get(i));
                     }
                     break;
