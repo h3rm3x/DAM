@@ -53,3 +53,40 @@ BEGIN
 	SELECT * FROM order_view;
 END$$
 DELIMITER ;
+
+-- function to get the address of the customer
+CREATE FUNCTION get_address (var_customer_id INT)
+RETURNS INT DETERMINISTIC
+BEGIN
+    DECLARE var_address_id INT;
+    SET var_address_id = (SELECT address_id FROM customer WHERE customer_id = var_customer_id);
+    RETURN var_address_id;
+END;
+
+-- function to get the payment method of the customer
+CREATE FUNCTION get_payment_method (var_customer_id INT)
+RETURNS INT DETERMINISTIC
+BEGIN
+    DECLARE var_payment_method_id INT;
+    SET var_payment_method_id = (SELECT payment_method_id FROM customer WHERE customer_id = var_customer_id);
+    RETURN var_payment_method_id;
+END;
+
+-- procedure to place orders automatically
+CREATE PROCEDURE automaticOrders ()
+BEGIN
+	DECLARE var_number_of_added_items INT ; 
+    DECLARE var_number_of_orders INT;
+    
+    SET var_number_of_added_items = FLOOR(16*RAND()+5);
+    SET var_number_of_orders = FLOOR(5+RAND()*2);
+    
+    CALL shopping_cart_data_dump(var_number_of_added_items);
+    CALL order_data_dump(var_number_of_orders);
+END;
+
+-- event to place orders automatically every day
+DROP EVENT IF EXISTS `insert_test_data`;
+CREATE DEFINER=`root`@`localhost` EVENT `insert_test_data` ON SCHEDULE EVERY 1 DAY STARTS '2025-03-17 15:45:48' ENDS '2025-06-20 15:42:48' 
+ON COMPLETION PRESERVE ENABLE DO CALL automatic_orders()
+
