@@ -14,17 +14,26 @@
             <precio_sin_iva>100</precio_sin_iva>
             <precio_con_iva tipo_iva="4">104</precio_con_iva>
         </articulo>
-        <num_unidades></num_unidades>
-        <importe_total></importe_total>
+        <num_unidades>10</num_unidades>
+        <importe_total>1040</importe_total>
+            
+    </linea>
+    <linea id_linea="B124" articulo_ref="A22">
+        <articulo id_articulo="A22">
+            <descripcion>Descripcion del articulo</descripcion>
+            <precio_sin_iva>80</precio_sin_iva>
+            <precio_con_iva tipo_iva="21">96.8</precio_con_iva>
+        </articulo>
+        <num_unidades>5</num_unidades>
+        <importe_total>484</importe_total>
             
     </linea>
     <resumen_total>
         <subtotal>
-            <con_iva_4>200</con_iva_4>
-            <con_iva_10></con_iva_10>
-            <con_iva_21></con_iva_21>
+            <con_iva_4>1040</con_iva_4>
+            <con_iva_21>484</con_iva_21>
         </subtotal>
-        <total_sin_iva></total_sin_iva>
-        <total_con_iva></total_con_iva>
+        <total_sin_iva>1400</total_sin_iva>
+        <total_con_iva>1524</total_con_iva>
     </resumen_total>
 </factura>
