@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="expedients">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="expedient" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="titulacio" type="titulaciones_type"/>
+                            <xs:element name="estudiant"/>
+                            <xs:element name="moduls">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="modul" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="nom" type="xs:string"/>
+                                                <xs:attribute name="aprovat" type="xs:boolean"/>
+                                                <xs:attribute name="curs" type="cursos_type"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="titulaciones_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DAM"/>
+            <xs:enumeration value="DAW"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="cursos_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Primer"/>
+            <xs:enumeration value="Segon"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

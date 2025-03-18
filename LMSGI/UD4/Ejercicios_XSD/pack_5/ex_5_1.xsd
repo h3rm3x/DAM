@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="registre_temperatura">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="provincia" type="xs:string"/>
+                <xs:element name="data" type="xs:date"/>
+                <xs:element name="temperatura_minima" type="xs:integer"/>
+                <xs:element name="temperatura_maxima" type="xs:integer"/>
+                <xs:element name="incidencies">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="incidencia" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="nom" type="xs:string"/>
+                                    <xs:attribute name="severitat">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="baixa"/>
+                                                <xs:enumeration value="mitja"/>
+                                                <xs:enumeration value="alta"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
