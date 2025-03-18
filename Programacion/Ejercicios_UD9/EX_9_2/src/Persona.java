@@ -1,16 +1,16 @@
+// Persona.java
 public class Persona {
     private String nombre;
     private String dni;
-    private int edat;
+    private int edad;
 
-    // Constructor
-    public Persona(String nombre, String dni, int edat) {
+    public Persona(String nombre, String dni, int edad) {
         this.nombre = nombre;
         this.dni = dni;
-        this.edat = edat;
+        this.edad = edad;
     }
 
-    // Getters y Setters
+    // Getters and setters
     public String getNombre() {
         return nombre;
     }
@@ -28,15 +28,6 @@ public class Persona {
     }
 
     public int getEdad() {
-        return edat;
-    }
-
-    public void setEdat(int edad) {
-        this.edat = edad;
-    }
-
-    // Método para mostrar información
-    public String toString() {
-       return ("Nom: " + nombre + ", DNI: " + dni + ", Edat: " + edat);
+        return edad;
     }
 }

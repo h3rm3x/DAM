@@ -1,6 +1,7 @@
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.Vector;
+
 
 public class Instituto {
     static Scanner sc = new Scanner(System.in);
@@ -11,7 +12,9 @@ public class Instituto {
         System.out.println("2 - Listar todas las personas");
         System.out.println();
         int opcion = 1;
+
         while (opcion != 0) {
+            try{
             opcion = sc.nextInt();
             switch (opcion) {
                 case 0:
@@ -62,10 +65,14 @@ public class Instituto {
                         System.out.println(personas.get(i));
                     }
                     break;
-
                 }
             }
+            }catch (InputMismatchException e) {
+                System.out.println("Error: Debes introducir un número");
+                sc.nextLine();
+            }
         }
+
     }
 }
 
