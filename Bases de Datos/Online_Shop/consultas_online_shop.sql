@@ -52,4 +52,15 @@ FROM customer;
 -- membership level for all customers
 SELECT customer_id, full_name, total_money_spent, membership_level(total_money_spent)
 FROM total_money_spent_view;
-
+-- total income per quarter
+CREATE VIEW total_income_per_quarter AS
+SELECT  SUM(total_price) AS total_income, QUARTER(order_date) as QUARTER, YEAR(order_date) as YEAR
+FROM order_view
+GROUP BY YEAR(order_date), QUARTER(order_date)
+ORDER BY 2,3 asc;
+-- total income per product
+CREATE VIEW total_income_per_product AS
+SELECT sum(total_price) AS total_income, product_id, name
+FROM order_view
+GROUP BY product_id
+ORDER BY 1 DESC;

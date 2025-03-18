@@ -46,7 +46,7 @@ BEGIN
             SELECT customer_id, product_id, quantity, NOW(), get_address(var_customer_id), get_payment_method(customer_id)
             FROM shopping_cart
             WHERE customer_id = var_customer_id AND product_id = var_product_id;
-            DELETE FROM shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id ;
+            DELETE FROM shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id;
             SET i = i + 1;   
         END IF;
     END WHILE;
@@ -90,3 +90,19 @@ DROP EVENT IF EXISTS `insert_test_data`;
 CREATE DEFINER=`root`@`localhost` EVENT `insert_test_data` ON SCHEDULE EVERY 1 DAY STARTS '2025-03-17 15:45:48' ENDS '2025-06-20 15:42:48' 
 ON COMPLETION PRESERVE ENABLE DO CALL automatic_orders()
 
+-- procedure to change order dates to random dates throughout the year 2024
+CREATE PROCEDURE change_order_dates ()
+BEGIN
+    DECLARE var_order_id INT;
+    DECLARE var_new_date DATE;
+    DECLARE i INT;
+
+    SET i = 1;
+
+    WHILE i <= 50 DO
+        SET var_order_id = (SELECT order_number FROM order_table ORDER BY RAND() LIMIT 1);
+        SET var_new_date = (SELECT DATE_ADD('2024-01-01', INTERVAL FLOOR(RAND() * 365) DAY));
+        UPDATE order_table SET order_date = var_new_date WHERE order_number = var_order_id;
+        SET i = i + 1;
+    END WHILE;
+END;
