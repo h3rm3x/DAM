@@ -1,1 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ex_5_3.xsd" type="application/xml-schema"?>
+<subasta xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="ex_5_3.xsd">
+    <productos>
+        <producto>
+            <propietario>Pepe</propietario>
+            <precio>100.00</precio>
+        </producto>
+        <producto>
+            <propietario>Manolo</propietario>
+            <precio>200.00</precio>
+            <precio_min>110.00</precio_min>
+        </producto>
+    </productos>
+</subasta>
