@@ -61,8 +61,9 @@ public class Instituto {
                         break;
                     }
                     case 2: {
-                        for (int i = 0; i < personas.capacity(); i++) {
-                            System.out.println(personas.get(i));
+                        Iterator<Persona> it = personas.iterator();
+                        while (it.hasNext()) {
+                            Persona persona = (Persona) it.next();
                         }
                         break;
 

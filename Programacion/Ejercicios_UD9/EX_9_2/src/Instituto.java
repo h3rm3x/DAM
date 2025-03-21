@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Instituto {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        HashMap<Persona,String> personas = new HashMap<Persona,String>(4);
+        HashMap<String,Persona> personas = new HashMap<>(4);
         System.out.println("0 - Salir");
         System.out.println("1 - Crear Persona");
         System.out.println("2 - Listar todas las personas");
@@ -32,7 +32,7 @@ public class Instituto {
                         sc.nextLine();
                         System.out.println("Escribe el nivel: ESO, CFGM, CFGS, Universidad");
                         String nivel = sc.nextLine();
-                        personas.put( new Alumno(nombre, dni, edad, nivel), dni);
+                        personas.put(  dni,new Alumno(nombre, dni, edad, nivel));
 
                     }
                     else if (persona.equals("profesor")) {
@@ -45,7 +45,7 @@ public class Instituto {
                         sc.nextLine();
                         System.out.println("Escribe la asignatura imparte");
                         String asignatura = sc.nextLine();
-                        personas.put( new Persona(nombre, dni, edad),dni);
+                        personas.put( dni,new Persona(nombre, dni, edad));
                     }
                     else {
                         System.out.println("Escribe el nombre de la persona");
@@ -55,14 +55,14 @@ public class Instituto {
                         System.out.println("Escribe la edad");
                         int edad = sc.nextInt();
                         sc.nextLine();
-                        personas.put(new Persona(nombre, dni, edad),dni);
+                        personas.put(dni,new Persona(nombre, dni, edad));
 
                     }
                     break;
                 }
                 case 2:{
-                    for (int i = 0; i < personas.size(); i++ ) {
-                        System.out.println(personas.get(i));
+                    for (Persona persona : personas.values()) {
+                        System.out.println(persona);
                     }
                     break;
                 }

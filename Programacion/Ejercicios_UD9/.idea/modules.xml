@@ -8,8 +8,10 @@
       <module fileurl="file://$PROJECT_DIR$/EX_9_4/EX_9_4.iml" filepath="$PROJECT_DIR$/EX_9_4/EX_9_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_9_5/EX_9_5.iml" filepath="$PROJECT_DIR$/EX_9_5/EX_9_5.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_9_6/EX_9_6.iml" filepath="$PROJECT_DIR$/EX_9_6/EX_9_6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_9_7/EX_9_7.iml" filepath="$PROJECT_DIR$/EX_9_7/EX_9_7.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_9_8/EX_9_8.iml" filepath="$PROJECT_DIR$/EX_9_8/EX_9_8.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Ejercicios_UD9.iml" filepath="$PROJECT_DIR$/.idea/Ejercicios_UD9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mastermind/Mastermind.iml" filepath="$PROJECT_DIR$/Mastermind/Mastermind.iml" />
     </modules>
   </component>
 </project>

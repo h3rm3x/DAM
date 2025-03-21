@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 public class Partida {
     private final String nombreJugador;
