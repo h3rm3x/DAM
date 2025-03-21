@@ -30,10 +30,11 @@
     </linea>
     <resumen_total>
         <subtotal>
-            <con_iva_4>1040</con_iva_4>
-            <con_iva_21>484</con_iva_21>
+            <con_iva_4>1040.00</con_iva_4>
+            <con_iva_10>0.00</con_iva_10>
+            <con_iva_21>484.00</con_iva_21>
         </subtotal>
-        <total_sin_iva>1400</total_sin_iva>
-        <total_con_iva>1524</total_con_iva>
+        <total_sin_iva>1400.00</total_sin_iva>
+        <total_con_iva>1524.00</total_con_iva>
     </resumen_total>
 </factura>

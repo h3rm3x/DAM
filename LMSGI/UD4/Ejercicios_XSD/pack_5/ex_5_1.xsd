@@ -2,11 +2,23 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="registre_temperatura">
         <xs:complexType>
-            <xs:sequence>
+            <xs:all>
                 <xs:element name="provincia" type="xs:string"/>
                 <xs:element name="data" type="xs:date"/>
-                <xs:element name="temperatura_minima" type="xs:integer"/>
-                <xs:element name="temperatura_maxima" type="xs:integer"/>
+                <xs:element name="temperatura_minima">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="-50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="temperatura_maxima" >
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="incidencies">
                     <xs:complexType>
                         <xs:sequence>
@@ -27,7 +39,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-            </xs:sequence>
+            </xs:all>
         </xs:complexType>
     </xs:element>
 </xs:schema>

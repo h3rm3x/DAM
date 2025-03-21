@@ -54,6 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "lmsgi",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/alanr/Documents/DAM/Programacion/Ejercicios_UD9/EX_9_2/src",
     "node.js.detected.package.eslint": "true",
@@ -104,6 +105,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ex_9_1 terminado y comenzado ex9_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="ex_9_1 terminado y comenzado ex9_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

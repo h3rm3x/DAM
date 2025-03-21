@@ -28,7 +28,7 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="id_factura" type="xs:string" use="required"/>
+                        <xs:attribute name="id_factura" type="xs:ID" use="required"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="linea" maxOccurs="unbounded">
@@ -52,10 +52,10 @@
                                     <xs:attribute name="id_articulo" type="xs:ID"/>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="num_unidades" type="xs:integer"/>
+                            <xs:element name="num_unidades" type="xs:positiveInteger"/>
                             <xs:element name="importe_total" type="xs:decimal"/>
                         </xs:sequence>
-                        <xs:attribute name="id_linea" type="xs:string"/>
+                        <xs:attribute name="id_linea" type="xs:ID"/>
                         <xs:attribute name="articulo_ref" type="xs:IDREF"/>
                     </xs:complexType>
                 </xs:element>

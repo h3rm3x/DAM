@@ -25,6 +25,7 @@
 
     <xs:simpleType name="dec">
         <xs:restriction base="xs:decimal">
+            <xs:maxExclusive value="10000.00"/>
             <xs:totalDigits value="6"></xs:totalDigits>
             <xs:fractionDigits value="2"></xs:fractionDigits>
         </xs:restriction>
