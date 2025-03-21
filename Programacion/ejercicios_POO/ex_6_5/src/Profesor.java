@@ -1,8 +1,8 @@
-public class Profesor extends Persona {
-    String asignatura;
+public class Profesor extends Persona{
+    private String asignatura;
 
-    public Profesor(String nombre, String dni, int edad, String asignatura) {
-        super(nombre, dni, edad);
+    public Profesor(String nombre, String DNI, int edad, String asignatura) {
+        super(nombre, DNI, edad);
         this.asignatura = asignatura;
     }
     public String getAsignatura() {
@@ -11,10 +11,8 @@ public class Profesor extends Persona {
     public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
-
-    @Override
-    public void mostrarInformacion() {
-        super.mostrarInformacion();
+    public void mostrar() {
+        super.mostrar();
         System.out.println("Asignatura: " + asignatura);
     }
 }

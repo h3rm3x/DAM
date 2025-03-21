@@ -1,14 +1,18 @@
-CREATE TABLE `chitter_user` (
-  `user_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-  `username` varchar(15) DEFAULT NULL,
-  `encrypted_pw` varchar(20) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `date_joined` datetime DEFAULT NULL
-)
---
--- Dumping data for table `chitter_user`
---
+DROP TABLE IF EXISTS `follower`, `post`,`chitter_user`;
 
+
+
+
+DROP TABLE IF EXISTS `chitter_user`;
+CREATE TABLE `chitter_user` (
+  `user_id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+  `username` VARCHAR(15) DEFAULT NULL,
+  `encrypted_pw` VARCHAR(20) DEFAULT NULL,
+  `email` VARCHAR(50) DEFAULT NULL,
+  `date_joined` DATETIME DEFAULT NULL
+);
+
+-- Insertando datos en la tabla `chitter_user`
 INSERT INTO `chitter_user` (`user_id`, `username`, `encrypted_pw`, `email`, `date_joined`) VALUES
 (1, 'user1', 'password1', 'fakemail@fakeadress.com', '2024-10-16 21:17:05'),
 (2, 'user2', 'password2', 'fakemail1@fakeadress.com', '2024-10-16 21:08:03'),
@@ -28,12 +32,13 @@ INSERT INTO `chitter_user` (`user_id`, `username`, `encrypted_pw`, `email`, `dat
 --
 
 CREATE TABLE `follower` (
-  `follower_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`follower_id`,`user_id`),
-  FOREIGN KEY follower_id REFERENCES chitter_user(user_id),
-  FOREIGN KEY user_id REFERENCES chitter_user(user_id)
-  );
+  `follower_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  PRIMARY KEY (`follower_id`, `user_id`),
+  FOREIGN KEY (`follower_id`) REFERENCES `chitter_user`(`user_id`),
+  FOREIGN KEY (`user_id`) REFERENCES `chitter_user`(`user_id`)
+);
+
 
 --
 -- Dumping data for table `follower`
@@ -59,12 +64,13 @@ INSERT INTO `follower` (`follower_id`, `user_id`) VALUES
 --
 
 CREATE TABLE `post` (
-  `post_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL DEFAULT 5,
-  `content` varchar(300) DEFAULT NULL,
-  `posted_at` datetime DEFAULT current_timestamp(),
-  FOREIGN KEY user_id REFERENCES chitter_user(user_id)
-) ;
+  `post_id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL DEFAULT 5,
+  `content` VARCHAR(300) DEFAULT NULL,
+  `posted_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES `chitter_user`(`user_id`)
+);
+
 
 --
 -- Dumping data for table `post`
@@ -83,10 +89,10 @@ INSERT INTO `post` (`post_id`, `user_id`, `content`, `posted_at`) VALUES
 (10, 10, ' “The best revenge is massive success.” – Frank Sinatra', '2024-10-28 19:44:26'),
 (11, 1, 'The greatest glory in living lies not in never falling but in rising every time we fall. -Nelson Mandela ', '2024-10-11 04:22:15'),
 (12, 3, 'The way to get started is to quit talking and begin doing. -Walt Disney ', '2024-11-14 16:39:47'),
-(13, 2, 'Your time is limited, so don\'t waste it living someone else\'s life. Don\'t be trapped by dogma – which is living with the results of other people\'s thinking. -Steve Jobs \n3,The future belongs to those who believe in the beauty of their dreams. -Eleanor Roosevelt ', '2024-12-21 11:53:39'),
-(14, 4, 'If you look at what you have in life, you\'ll always have more. If you look at what you don\'t have in life, you\'ll never have enough. -Oprah Winfrey ', '2024-10-12 07:17:44'),
-(15, 5, 'If you set your goals ridiculously high and it\'s a failure, you will fail above everyone else\'s success. -James Cameron ', '2024-12-06 09:41:21'),
-(16, 6, 'You may say I\'m a dreamer, but I\'m not the only one. I hope someday you\'ll join us. And the world will live as one. -John Lennon', '2024-11-03 14:59:20'),
+(13, 2, 'Your time is limited, so dont waste it living someone else^s life. Do not be trapped by dogma  which is living with the results of other people^s thinking. -Steve Jobs n3,The future belongs to those who believe in the beauty of their dreams. -Eleanor Roosevelt ', '2024-12-21 11:53:39'),
+(14, 4, 'If you look at what you have in life, you will always have more. If you look at what you do not have in life, you will never have enough. -Oprah Winfrey ', '2024-10-12 07:17:44'),
+(15, 5, 'If you set your goals ridiculously high and it is a failure, you will fail above everyone else^s success. -James Cameron ', '2024-12-06 09:41:21'),
+(16, 6, 'You may say I am a dreamer, but I am not the only one. I hope someday you will join us. And the world will live as one. -John Lennon', '2024-11-03 14:59:20'),
 (17, 7, 'You must be the change you wish to see in the world. -Mahatma Gandhi ', '2024-12-19 06:20:33'),
 (18, 8, 'Spread love everywhere you go. Let no one ever come to you without leaving happier. -Mother Teresa', '2024-11-08 20:50:10'),
 (19, 9, 'The only thing we have to fear is fear itself. -Franklin D. Roosevelt', '2024-10-26 08:33:46'),
@@ -126,7 +132,7 @@ INSERT INTO `post` (`post_id`, `user_id`, `content`, `posted_at`) VALUES
 (53, 4, '“Life is either a daring adventure or nothing at all  – Helen Keller ', '2024-11-28 21:43:56'),
 (54, 4, ' “When you have a dream you’ve got to grab it and never let go. – Carol Burnett', '2024-12-16 23:35:41'),
 (55, 4, '  “Limit your ‘always’ and your nevers. – Amy Poehler', '2024-12-05 15:57:09'),
-(56, 4, ' “Nothing is impossible. The word itself says I\'m possible! – Audrey Hepburn', '2024-10-14 08:31:48'),
+(56, 4, ' “Nothing is impossible. The word itself says I am possible! – Audrey Hepburn', '2024-10-14 08:31:48'),
 (57, 4, '“Life is a dream for the wise a game for the fool a comedy for the rich a tragedy for the poor. – Sholom Aleichem ', '2024-11-04 17:25:12'),
 (58, 4, ' “You are never too old to set another goal or to dream a new dream. – C.S. Lewis', '2024-12-22 19:28:47'),
 (59, 4, '  “Try to be a rainbow in someone else’s cloud.  – Maya Angelou', '2024-11-05 22:37:39'),

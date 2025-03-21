@@ -1,44 +1,33 @@
-// Clase base Persona
 public class Persona {
     private String nombre;
-    private String dni;
-    private int edat;
-
-    // Constructor
-    public Persona(String nombre, String dni, int edat) {
+    private String DNI;
+    private int edad;
+    public Persona(String nombre, String DNI, int edad) {
         this.nombre = nombre;
-        this.dni = dni;
-        this.edat = edat;
+        this.DNI = DNI;
+        this.edad = edad;
     }
-
-    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getDni() {
-        return dni;
+    public String getDNI() {
+        return DNI;
     }
-
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
     }
-
     public int getEdad() {
-        return edat;
+        return edad;
     }
-
-    public void setEdat(int edad) {
-        this.edat = edad;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
-
-    // Método para mostrar información
-    public void mostrarInformacion() {
-        System.out.println("Nom: " + nombre + ", DNI: " + dni + ", Edat: " + edat);
+    public void mostrar() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("DNI: " + DNI);
+        System.out.println("Edad: " + edad);
     }
 }
-

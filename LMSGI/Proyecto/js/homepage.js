@@ -1,11 +1,15 @@
-const btnMenu = document.querySelector('#menu');
-const navHeader = document.querySelector('#lista-paginas');
-const btnClose = document.querySelector('#cerrar-menu');
+document.addEventListener("DOMContentLoaded", function() {
+    const menuButton = document.getElementById("menu");
+    const closeButton = document.getElementById("cerrar-menu");
+    const menu = document.getElementById("lista-paginas");
 
-btnMenu.addEventListener('click', () => { 
-    navHeader.classList.add('div-visible');
-});
+    menuButton.addEventListener("click", function() {
+        menu.classList.remove("menu-hidden");
+        menu.classList.add("menu-visible");
+    });
 
-btnClose.addEventListener('click', () => { 
-    navHeader.classList.remove('div-visible');
+    closeButton.addEventListener("click", function() {
+        menu.classList.remove("menu-visible");
+        menu.classList.add("menu-hidden");
+    });
 });

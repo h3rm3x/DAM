@@ -40,7 +40,10 @@ public class Fecha {
         return dias;
     }
     private boolean Esbisiesto(int ano) {
-        return ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0;
+        if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0) {
+            return true;
+        }
+        return false;
     }
     public void SetDia(int dia) {
         this.dia = dia;
@@ -64,8 +67,7 @@ public class Fecha {
         dia+=1;
         if (dia>DiasDelMes(mes)) {
             dia=1;
-            mes++;
-
+            mes+=1;
             if (mes>12){
                 mes=1;
                 ano+=1;

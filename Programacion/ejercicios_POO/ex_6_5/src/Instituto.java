@@ -1,75 +1,77 @@
 import java.util.Scanner;
 
 public class Instituto {
-    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        Persona[] personas = new Persona[100];
-        int index = 0;
         Scanner sc = new Scanner(System.in);
+        Persona[] personas= new Persona[100];
+        int index=0;
 
-        System.out.println("MENU");
-        System.out.println("0 - Salir");
-        System.out.println("1 - Crear Persona");
-        System.out.println("2 - Listar todas las personas");
-        System.out.println();
-        int opcion = 1;
-        while (opcion != 0) {
-            opcion = sc.nextInt();
-            switch (opcion) {
-                case 0:
-                    break;
+        int opcion=1;
+        while(opcion!=0){
+            System.out.println("MENU");
+            System.out.println("0. Salir");
+            System.out.println("1. Añadir Persona");
+            System.out.println("2. Crear alumno");
+            System.out.println("3. Crear profesor");
+            System.out.println("4. Ver todas las personas");
+            System.out.println("\nIntroduce la opcion: ");
+            opcion=sc.nextInt();
+            sc.nextLine();
+            switch(opcion){
+                case 0: break;
                 case 1: {
-                    System.out.println("Introduzca el si quiere añadir una persona, alumno o profesor");
-                    String persona = sc.nextLine().toLowerCase();
-                    if (persona.equals("alumno")) {
-                        System.out.println("Escribe el nombre del alumno");
-                        String nombre = sc.nextLine();
-                        System.out.println("Escribe el DNI");
-                        String dni = sc.nextLine();
-                        System.out.println("Escribe la edad");
-                        int edad = sc.nextInt();
-                        sc.nextLine();
-                        System.out.println("Escribe el nivel: ESO, CFGM, CFGS, Universidad");
-                        String nivel = sc.nextLine();
-                        personas[index] = new Alumno(nombre, dni, edad, nivel);
-                        index++;
-                    }
-                    else if (persona.equals("profesor")) {
-                        System.out.println("Escribe el nombre del profesor");
-                        String nombre = sc.nextLine();
-                        System.out.println("Escribe el DNI");
-                        String dni = sc.nextLine();
-                        System.out.println("Escribe la edad");
-                        int edad = sc.nextInt();
-                        sc.nextLine();
-                        System.out.println("Escribe la asignatura imparte");
-                        String asignatura = sc.nextLine();
-                        index++;
-                    }
-                    else {
-                        System.out.println("Escribe el nombre de la persona");
-                        String nombre = sc.nextLine();
-                        System.out.println("Escribe el DNI");
-                        String dni = sc.nextLine();
-                        System.out.println("Escribe la edad");
-                        int edad = sc.nextInt();
-                        sc.nextLine();
-                        personas[index] = new Persona(nombre, dni, edad);
-                        index++;
-                    }
+                    System.out.println("AÑADIR NUEVA PERSONA");
+                    System.out.println("Introduzca un Nombre");
+                    String nombre = sc.nextLine();
+                    System.out.println("Introduzca el DNI");
+                    String dni = sc.nextLine();
+                    System.out.println("Introduzca la edad");
+                    int edad = sc.nextInt();
+                    sc.nextLine();
+                    personas[index] = new Persona(nombre, dni, edad);
+                    index++;
                     break;
-                    }
-                    case 2:{
-                        for ( int i = 0; i < index; i++ ) {
-                            personas[i].mostrarInformacion();
-                        }
-                        break;
 
+                }
+                case 2: {
+                    System.out.println("AÑADIR NUEVO ALUMNO");
+                    System.out.println("Introduzca un Nombre");
+                    String nombre = sc.nextLine();
+                    System.out.println("Introduzca el DNI");
+                    String dni = sc.nextLine();
+                    System.out.println("Introduzca la edad");
+                    int edad = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("Introduzca el nivel educativo del alumno");
+                    String nivel = sc.nextLine();
+                    personas[index] = new alumno(nombre, dni, edad, nivel);
+                    index++;
+                    break;
+
+                }
+                case 3: {
+                    System.out.println("AÑADIR NUEVO PROFESOR");
+                    System.out.println("Introduzca un Nombre");
+                    String nombre = sc.nextLine();
+                    System.out.println("Introduzca el DNI");
+                    String dni = sc.nextLine();
+                    System.out.println("Introduzca la edad");
+                    int edad = sc.nextInt();
+                    System.out.println("Introduzca la asignatura que imparte el profesor");
+                    String asignatura = sc.nextLine();
+                    personas[index] = new Profesor(nombre, dni, edad, asignatura);
+                    index++;
+                    break;
+
+                }
+                case 4: {
+                    System.out.println("Ver todas las personas");
+                    for (int i = 0; i < index; i++) {
+                            personas[i].mostrar();
+                            System.out.println();
                     }
                 }
             }
         }
     }
-
-
-
+}

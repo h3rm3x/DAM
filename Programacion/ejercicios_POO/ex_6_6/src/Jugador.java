@@ -1,11 +1,16 @@
-public class Jugador extends Miembros_equipo{
-
-    private String posicion;
+public class Jugador extends Persona{
     private int dorsal;
-
-    public Jugador(String nombre_equipo ,String nombre, String apellido, String DNI, String fecha_nac, String posicion, int dorsal) {
-        super(nombre_equipo, nombre, apellido, DNI, fecha_nac );
+    private String posicion;
+    public Jugador(String nombre, String apellido, int edad, int dorsal, String posicion){
+        super(nombre, apellido, edad);
+        this.dorsal = dorsal;
         this.posicion = posicion;
+
+    }
+    public int getDorsal() {
+        return dorsal;
+    }
+    public void setDorsal(int dorsal) {
         this.dorsal = dorsal;
     }
     public String getPosicion() {
@@ -14,15 +19,9 @@ public class Jugador extends Miembros_equipo{
     public void setPosicion(String posicion) {
         this.posicion = posicion;
     }
-    public int getDorsal() {
-        return dorsal;
-    }
-    public void setDorsal(int dorsal) {
-        this.dorsal = dorsal;
-    }
-
-    public void mostrarInformacion(){
-        super.mostrarInformacion();
-        System.out.print(", Posicion: " + posicion+ ", Dorsal: " + dorsal);
+    public void mostrar(){
+        super.mostrar();
+        System.out.println("Dorsal: " + dorsal);
+        System.out.println("Posicion: " + posicion);
     }
 }

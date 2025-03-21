@@ -76,8 +76,8 @@ CREATE TABLE `reservation` (
   `price_per_day` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
   `car_id` int(11) NOT NULL,
-  FOREIGN KEY id_client REFERENCES client(id_client),
-  FOREIGN KEY car_id REFERENCES car(car_id)
+  FOREIGN KEY 'id_client' REFERENCES 'client'('id_client'),
+  FOREIGN KEY 'car_id' REFERENCES 'car'('car_id')
 ) ;
 
 --
