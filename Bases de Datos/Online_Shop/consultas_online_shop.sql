@@ -45,7 +45,7 @@ ORDER BY 2;
 SELECT  SUM(total_price) AS total_income, MONTHNAME(order_date) as MONTH, YEAR(order_date) as YEAR
 FROM order_view
 GROUP BY YEAR(order_date), MONTHNAME(order_date)
-ORDER BY 2,3 asc;
+ORDER BY 2,MONTH() asc;
 -- full name and age of all the customers
 SELECT customer_id, full_name(first_name,last_name) AS full_name, age(birth_date) AS age
 FROM customer;

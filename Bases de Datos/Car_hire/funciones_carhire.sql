@@ -46,5 +46,31 @@ BEGIN
     RETURN var_availability;
 END$$DELIMITER ;
 
+-- procedure that returns the openings in the avaliability for a given car
+DELIMITER $$
+CREATE PROCEDURE showCarsFreeDates ()
+BEGIN
+    DECLARE var_car_id INT;
+    DECLARE var_initial_date DATE;
+    DECLARE var_final_date DATE;
+
+    DECLARE i INT DEFAULT 0;
+    DECLARE attempts INT DEFAULT 0;
+    DECLARE max_attempts INT DEFAULT 100;
+
+    WHILE (i < 10 AND attempts < max_attempts) DO
+        SET attempts = attempts + 1;
+        SET var_car_id = (SELECT car_id FROM car ORDER BY RAND() LIMIT 1);
+        SET var_initial_date = DATE_ADD('2024-01-01', INTERVAL FLOOR(RAND() * DATEDIFF('2026-12-31', '2024-01-01')) DAY);
+        SET var_final_date = (SELECT DATE_ADD(var_initial_date, INTERVAL FLOOR(RAND() * 7) DAY));
+        
+        IF car_avaliability(var_car_id, var_initial_date, var_final_date) THEN
+            SELECT var_car_id, var_initial_date, var_final_date;
+            SET i = i + 1;
+        END IF;
+    END WHILE;
+
+
+END$$
 
     

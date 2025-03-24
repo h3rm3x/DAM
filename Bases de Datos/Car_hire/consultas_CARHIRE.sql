@@ -92,3 +92,9 @@ WHERE car_id NOT IN (
     FROM reservation
     GROUP BY car_id
     ORDER BY total_days_rented DESC;
+-- openings in all cars
+SELECT r.car_id, r.date_out AS free_date_in, (SELECT re.date_in                                                                     
+                                              FROM reservation re 
+                                              WHERE re.car_id = r.car_id AND re.date_in > r.date_out ORDER BY re.date_in LIMIT 1)  AS free_date_out 
+FROM reservation r
+ORDER BY 1;

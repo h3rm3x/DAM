@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2025 at 12:10 AM
+-- Generation Time: Mar 24, 2025 at 05:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,8 +29,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addReservations` ()   BEGIN
     DECLARE var_reservation_id INT;
     DECLARE var_car_id INT;
     DECLARE var_customer_id INT;
-    DECLARE var_initial_date DATE;
-    DECLARE var_final_date DATE;
+    DECLARE var_date_in DATE;
+    DECLARE var_date_out DATE;
     DECLARE var_price_per_day INT;
 
     DECLARE i INT DEFAULT 0;
@@ -41,15 +41,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addReservations` ()   BEGIN
         SET attempts = attempts + 1;
         SET var_car_id = (SELECT car_id FROM car ORDER BY RAND() LIMIT 1);
         SET var_customer_id = (SELECT client_id FROM client ORDER BY RAND() LIMIT 1);
-        SET var_initial_date = DATE_ADD('2024-01-01', 
+        SET var_date_in = DATE_ADD('2024-01-01', 
                                 INTERVAL FLOOR(RAND() * DATEDIFF('2026-12-31', '2024-01-01')) DAY);
-        SET var_final_date = (SELECT DATE_ADD(var_initial_date, INTERVAL FLOOR(RAND() * 7) DAY));
+        SET var_date_out = (SELECT DATE_ADD(var_date_in, INTERVAL FLOOR(RAND() * 7) DAY));
         SET var_price_per_day = (SELECT class_price_per_day FROM car_class WHERE car_id = var_car_id);
         
         
 
-        IF car_avaliability(var_car_id, var_initial_date, var_final_date) THEN
-            INSERT INTO reservation (car_id, client_id, initial_date, final_date, price_per_day) VALUES (var_car_id, var_customer_id, var_initial_date, var_final_date, var_price_per_day);
+        IF car_avaliability(var_car_id, var_date_in, var_date_out) THEN
+            INSERT INTO reservation (car_id, client_id, date_in, date_out, price_per_day) VALUES (var_car_id, var_customer_id, var_date_in, var_date_out, var_price_per_day);
             SET i = i + 1;
         END IF;
     END WHILE;
@@ -57,14 +57,41 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `avaliable_cars_per_class` (IN `var_date_in` DATE, IN `var_date_out` DATE)   SELECT car_class, COUNT(car_id) AS Number_of_cars
 FROM car_2
-WHERE car_id NOT IN (SELECT car_id FROM reservation WHERE initial_date<= var_date_out AND final_date >= var_date_in)
+WHERE car_id NOT IN (SELECT car_id FROM reservation WHERE date_in<= var_date_out AND date_out >= var_date_in)
 GROUP BY car_class$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `showCarsFreeDates` ()   BEGIN
+    DECLARE var_car_id INT;
+    DECLARE var_date_in DATE;
+    DECLARE var_date_out DATE;
+    DECLARE var_price_per_day INT;
+
+    DECLARE i INT DEFAULT 0;
+    DECLARE attempts INT DEFAULT 0;
+    DECLARE max_attempts INT DEFAULT 100;
+
+    WHILE (i < 10 AND attempts < max_attempts) DO
+        SET attempts = attempts + 1;
+        SET var_car_id = (SELECT car_id FROM car ORDER BY RAND() LIMIT 1);
+        SET var_date_in = DATE_ADD('2024-01-01', 
+                                INTERVAL FLOOR(RAND() * DATEDIFF('2026-12-31', '2024-01-01')) DAY);
+        SET var_date_out = (SELECT DATE_ADD(var_date_in, INTERVAL FLOOR(RAND() * 7) DAY));
+        SET var_price_per_day = (SELECT class_price_per_day FROM car_class WHERE car_id = var_car_id);
+        
+        IF car_avaliability(var_car_id, var_date_in, var_date_out) THEN
+            SELECT var_car_id, var_date_in, var_date_out;
+            SET i = i + 1;
+        END IF;
+    END WHILE;
+
+
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_reservation_dates` ()   BEGIN
     DECLARE done INT DEFAULT FALSE;
     DECLARE var_reservation_id INT;
-    DECLARE var_initial_date DATE;
-    DECLARE var_final_date DATE;
+    DECLARE var_date_in DATE;
+    DECLARE var_date_out DATE;
     DECLARE duration INT;
     
     -- Cursor para recorrer todas las reservas
@@ -86,11 +113,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `update_reservation_dates` ()   BEGI
         END IF;
         
         -- Generar una fecha inicial aleatoria entre 2024-01-01 y 2025-12-31
-        SET var_initial_date = DATE_ADD('2024-01-01', 
+        SET var_date_in = DATE_ADD('2024-01-01', 
                                 INTERVAL FLOOR(RAND() * DATEDIFF('2026-12-31', '2024-01-01')) DAY);
         
         -- Obtener la duración actual de la reserva
-        SELECT DATEDIFF(final_date, initial_date) INTO duration 
+        SELECT DATEDIFF(date_out, date_in) INTO duration 
         FROM reservation 
         WHERE reservation_id = var_reservation_id;
         
@@ -100,12 +127,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `update_reservation_dates` ()   BEGI
         END IF;
         
         -- Calcular la fecha final basada en la duración original
-        SET var_final_date = DATE_ADD(var_initial_date, INTERVAL duration DAY);
+        SET var_date_out = DATE_ADD(var_date_in, INTERVAL duration DAY);
         
         -- Actualizar la reserva con las nuevas fechas
         UPDATE reservation 
-        SET initial_date = var_initial_date,
-            final_date = var_final_date
+        SET date_in = var_date_in,
+            date_out = var_date_out
         WHERE reservation_id = var_reservation_id;
     END LOOP;
     
@@ -118,10 +145,10 @@ END$$
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `car_avaliability` (`var_car_id` INT, `var_initial_date` DATE, `var_final_date` DATE) RETURNS TINYINT(1) DETERMINISTIC BEGIN
+CREATE DEFINER=`root`@`localhost` FUNCTION `car_avaliability` (`var_car_id` INT, `var_date_in` DATE, `var_date_out` DATE) RETURNS TINYINT(1) DETERMINISTIC BEGIN
     DECLARE var_availability BOOLEAN;
     SET var_availability = TRUE;
-    IF (SELECT COUNT(*) FROM reservation WHERE car_id = var_car_id AND initial_date <= var_final_date AND final_date >= var_initial_date) > 0 THEN
+    IF (SELECT COUNT(*) FROM reservation WHERE car_id = var_car_id AND date_in <= var_date_out AND date_out >= var_date_in) > 0 THEN
         SET var_availability = FALSE;
     END IF;
     RETURN var_availability;
@@ -301,8 +328,8 @@ CREATE TABLE `long_term_customers` (
 
 CREATE TABLE `reservation` (
   `reservation_id` int(11) NOT NULL,
-  `initial_date` date NOT NULL,
-  `final_date` date NOT NULL,
+  `date_in` date NOT NULL,
+  `date_out` date NOT NULL,
   `price_per_day` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
   `car_id` int(11) NOT NULL
@@ -312,7 +339,7 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`reservation_id`, `initial_date`, `final_date`, `price_per_day`, `client_id`, `car_id`) VALUES
+INSERT INTO `reservation` (`reservation_id`, `date_in`, `date_out`, `price_per_day`, `client_id`, `car_id`) VALUES
 (1, '2025-12-21', '2025-12-28', 65, 6, 7),
 (2, '2024-09-22', '2024-09-29', 80, 1, 8),
 (3, '2025-01-30', '2025-02-06', 64, 2, 4),
@@ -496,7 +523,57 @@ INSERT INTO `reservation` (`reservation_id`, `initial_date`, `final_date`, `pric
 (181, '2024-04-23', '2024-04-23', 100, 5, 10),
 (182, '2026-12-08', '2026-12-11', 60, 5, 7),
 (183, '2025-02-10', '2025-02-12', 80, 3, 4),
-(184, '2024-01-09', '2024-01-12', 60, 9, 2);
+(184, '2024-01-09', '2024-01-12', 60, 9, 2),
+(185, '2025-05-20', '2025-05-22', 60, 10, 9),
+(186, '2025-05-11', '2025-05-15', 60, 6, 9),
+(187, '2024-05-14', '2024-05-14', 60, 2, 9),
+(188, '2024-12-08', '2024-12-10', 80, 3, 4),
+(189, '2025-01-10', '2025-01-10', 80, 2, 4),
+(190, '2024-04-16', '2024-04-22', 60, 10, 7),
+(191, '2026-03-24', '2026-03-28', 80, 5, 6),
+(192, '2025-10-20', '2025-10-25', 80, 3, 4),
+(193, '2026-08-15', '2026-08-17', 60, 5, 2),
+(194, '2025-03-04', '2025-03-08', 60, 8, 5),
+(195, '2024-01-12', '2024-01-16', 100, 4, 10),
+(196, '2025-07-15', '2025-07-20', 100, 8, 10),
+(197, '2026-07-13', '2026-07-19', 60, 6, 9),
+(198, '2026-04-05', '2026-04-08', 100, 9, 10),
+(199, '2026-04-17', '2026-04-22', 80, 5, 4),
+(200, '2024-01-21', '2024-01-25', 60, 9, 5),
+(201, '2026-06-29', '2026-06-29', 60, 10, 8),
+(202, '2026-10-07', '2026-10-08', 60, 5, 5),
+(203, '2026-02-05', '2026-02-10', 60, 7, 7),
+(204, '2024-12-28', '2024-12-29', 100, 9, 10),
+(205, '2025-09-06', '2025-09-11', 80, 10, 3),
+(206, '2026-01-11', '2026-01-16', 60, 8, 1),
+(207, '2026-06-16', '2026-06-18', 60, 6, 5),
+(208, '2026-10-21', '2026-10-24', 80, 10, 6),
+(209, '2024-10-26', '2024-10-29', 80, 8, 6),
+(210, '2025-12-02', '2025-12-08', 80, 10, 3),
+(211, '2026-04-16', '2026-04-19', 80, 1, 6),
+(212, '2024-12-25', '2024-12-31', 60, 2, 8),
+(213, '2024-05-23', '2024-05-28', 80, 9, 3),
+(214, '2025-03-19', '2025-03-24', 60, 5, 2),
+(215, '2025-04-26', '2025-05-01', 60, 1, 8),
+(216, '2026-08-27', '2026-09-01', 80, 8, 4),
+(217, '2025-01-04', '2025-01-07', 60, 3, 9),
+(218, '2026-03-06', '2026-03-07', 100, 5, 10),
+(219, '2025-12-09', '2025-12-15', 60, 7, 2),
+(220, '2026-04-21', '2026-04-24', 80, 10, 6),
+(221, '2024-05-13', '2024-05-18', 80, 10, 6),
+(222, '2024-07-24', '2024-07-25', 60, 6, 5),
+(223, '2026-07-20', '2026-07-24', 80, 4, 4),
+(224, '2026-12-21', '2026-12-27', 100, 2, 10),
+(225, '2024-11-19', '2024-11-21', 60, 6, 2),
+(226, '2024-01-27', '2024-01-30', 60, 6, 7),
+(227, '2026-11-24', '2026-11-28', 100, 10, 10),
+(228, '2024-08-23', '2024-08-29', 60, 3, 2),
+(229, '2025-02-21', '2025-02-21', 60, 8, 7),
+(230, '2024-02-03', '2024-02-07', 60, 4, 1),
+(231, '2025-05-13', '2025-05-18', 100, 8, 10),
+(232, '2025-03-02', '2025-03-04', 80, 7, 3),
+(233, '2025-05-10', '2025-05-11', 60, 7, 2),
+(234, '2026-04-28', '2026-05-04', 100, 3, 10);
 
 -- --------------------------------------------------------
 
@@ -505,18 +582,6 @@ INSERT INTO `reservation` (`reservation_id`, `initial_date`, `final_date`, `pric
 -- (See below for the actual view)
 --
 CREATE TABLE `reservation_view` (
-`name` text
-,`surname` mediumtext
-,`nif` varchar(9)
-,`reservation_id` int(11)
-,`initial_date` date
-,`final_date` date
-,`price_per_day` int(11)
-,`client_id` int(11)
-,`car_id` int(11)
-,`brand` varchar(100)
-,`model` varchar(100)
-,`total_price` bigint(17)
 );
 
 -- --------------------------------------------------------
@@ -526,10 +591,6 @@ CREATE TABLE `reservation_view` (
 -- (See below for the actual view)
 --
 CREATE TABLE `total_days_rented_per_car` (
-`car_id` int(11)
-,`brand` varchar(100)
-,`model` varchar(100)
-,`total_days_rented` decimal(29,0)
 );
 
 -- --------------------------------------------------------
@@ -539,10 +600,6 @@ CREATE TABLE `total_days_rented_per_car` (
 -- (See below for the actual view)
 --
 CREATE TABLE `total_income_per_car` (
-`car_id` int(11)
-,`brand` varchar(100)
-,`model` varchar(100)
-,`total_income` decimal(38,0)
 );
 
 -- --------------------------------------------------------
@@ -552,9 +609,6 @@ CREATE TABLE `total_income_per_car` (
 -- (See below for the actual view)
 --
 CREATE TABLE `total_income_per_month` (
-`year` int(4)
-,`month` varchar(9)
-,`total_income` decimal(38,0)
 );
 
 -- --------------------------------------------------------
@@ -564,8 +618,6 @@ CREATE TABLE `total_income_per_month` (
 -- (See below for the actual view)
 --
 CREATE TABLE `total_income_per_quarter` (
-`QUARTER` varchar(7)
-,`total_income` decimal(38,0)
 );
 
 -- --------------------------------------------------------
@@ -575,8 +627,6 @@ CREATE TABLE `total_income_per_quarter` (
 -- (See below for the actual view)
 --
 CREATE TABLE `total_income_per_year` (
-`year` int(4)
-,`total_income` decimal(38,0)
 );
 
 -- --------------------------------------------------------
@@ -595,7 +645,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `invoice_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW `invoice_view`  AS SELECT `cu`.`name` AS `name`, `cu`.`surname` AS `surname`, `cu`.`nif` AS `nif`, `r`.`id_reservation` AS `id_reservation`, `r`.`initial_date` AS `initial_date`, `r`.`final_date` AS `final_date`, `r`.`price_per_day` AS `price_per_day`, `r`.`id_client` AS `id_client`, `r`.`car_id` AS `car_id`, `ca`.`brand` AS `brand`, `ca`.`model` AS `model` FROM ((`reservation` `r` join `client` `cu` on(`cu`.`id_client` = `r`.`id_client`)) join `car` `ca` on(`ca`.`car_id` = `r`.`car_id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW `invoice_view`  AS SELECT `cu`.`name` AS `name`, `cu`.`surname` AS `surname`, `cu`.`nif` AS `nif`, `r`.`id_reservation` AS `id_reservation`, `r`.`date_in` AS `date_in`, `r`.`date_out` AS `date_out`, `r`.`price_per_day` AS `price_per_day`, `r`.`id_client` AS `id_client`, `r`.`car_id` AS `car_id`, `ca`.`brand` AS `brand`, `ca`.`model` AS `model` FROM ((`reservation` `r` join `client` `cu` on(`cu`.`id_client` = `r`.`id_client`)) join `car` `ca` on(`ca`.`car_id` = `r`.`car_id`)) ;
 
 -- --------------------------------------------------------
 
@@ -613,7 +663,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `reservation_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW `reservation_view`  AS SELECT `cu`.`name` AS `name`, ucase(`cu`.`surname`) AS `surname`, `cu`.`nif` AS `nif`, `r`.`reservation_id` AS `reservation_id`, `r`.`initial_date` AS `initial_date`, `r`.`final_date` AS `final_date`, `r`.`price_per_day` AS `price_per_day`, `r`.`client_id` AS `client_id`, `r`.`car_id` AS `car_id`, `ca`.`brand` AS `brand`, `ca`.`model` AS `model`, (to_days(`r`.`final_date`) - to_days(`r`.`initial_date`)) * `r`.`price_per_day` AS `total_price` FROM ((`reservation` `r` join `client` `cu` on(`cu`.`client_id` = `r`.`client_id`)) join `car` `ca` on(`ca`.`car_id` = `r`.`car_id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW `reservation_view`  AS SELECT `cu`.`name` AS `name`, ucase(`cu`.`surname`) AS `surname`, `cu`.`nif` AS `nif`, `r`.`reservation_id` AS `reservation_id`, `r`.`date_in` AS `date_in`, `r`.`date_out` AS `date_out`, `r`.`price_per_day` AS `price_per_day`, `r`.`client_id` AS `client_id`, `r`.`car_id` AS `car_id`, `ca`.`brand` AS `brand`, `ca`.`model` AS `model`, (to_days(`r`.`date_out`) - to_days(`r`.`date_in`)) * `r`.`price_per_day` AS `total_price` FROM ((`reservation` `r` join `client` `cu` on(`cu`.`client_id` = `r`.`client_id`)) join `car` `ca` on(`ca`.`car_id` = `r`.`car_id`)) ;
 
 -- --------------------------------------------------------
 
@@ -622,7 +672,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `total_days_rented_per_car`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_days_rented_per_car`  AS SELECT `reservation_view`.`car_id` AS `car_id`, `reservation_view`.`brand` AS `brand`, `reservation_view`.`model` AS `model`, sum(to_days(`reservation_view`.`final_date`) - to_days(`reservation_view`.`initial_date`) + 1) AS `total_days_rented` FROM `reservation_view` GROUP BY `reservation_view`.`car_id` ORDER BY sum(to_days(`reservation_view`.`final_date`) - to_days(`reservation_view`.`initial_date`) + 1) DESC ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_days_rented_per_car`  AS SELECT `reservation_view`.`car_id` AS `car_id`, `reservation_view`.`brand` AS `brand`, `reservation_view`.`model` AS `model`, sum(to_days(`reservation_view`.`date_out`) - to_days(`reservation_view`.`date_in`) + 1) AS `total_days_rented` FROM `reservation_view` GROUP BY `reservation_view`.`car_id` ORDER BY sum(to_days(`reservation_view`.`date_out`) - to_days(`reservation_view`.`date_in`) + 1) DESC ;
 
 -- --------------------------------------------------------
 
@@ -631,7 +681,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `total_income_per_car`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_car`  AS SELECT `reservation_view`.`car_id` AS `car_id`, `reservation_view`.`brand` AS `brand`, `reservation_view`.`model` AS `model`, sum((to_days(`reservation_view`.`final_date`) - to_days(`reservation_view`.`initial_date`)) * `reservation_view`.`price_per_day`) AS `total_income` FROM `reservation_view` GROUP BY `reservation_view`.`car_id` ORDER BY sum((to_days(`reservation_view`.`final_date`) - to_days(`reservation_view`.`initial_date`)) * `reservation_view`.`price_per_day`) DESC ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_car`  AS SELECT `reservation_view`.`car_id` AS `car_id`, `reservation_view`.`brand` AS `brand`, `reservation_view`.`model` AS `model`, sum((to_days(`reservation_view`.`date_out`) - to_days(`reservation_view`.`date_in`)) * `reservation_view`.`price_per_day`) AS `total_income` FROM `reservation_view` GROUP BY `reservation_view`.`car_id` ORDER BY sum((to_days(`reservation_view`.`date_out`) - to_days(`reservation_view`.`date_in`)) * `reservation_view`.`price_per_day`) DESC ;
 
 -- --------------------------------------------------------
 
@@ -640,7 +690,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `total_income_per_month`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_month`  AS SELECT year(`reservation`.`initial_date`) AS `year`, monthname(`reservation`.`initial_date`) AS `month`, sum((to_days(`reservation`.`final_date`) - to_days(`reservation`.`initial_date`)) * `reservation`.`price_per_day`) AS `total_income` FROM `reservation` GROUP BY year(`reservation`.`initial_date`), monthname(`reservation`.`initial_date`) ORDER BY year(`reservation`.`initial_date`) ASC, month(`reservation`.`initial_date`) ASC ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_month`  AS SELECT year(`reservation`.`date_in`) AS `year`, monthname(`reservation`.`date_in`) AS `month`, sum((to_days(`reservation`.`date_out`) - to_days(`reservation`.`date_in`)) * `reservation`.`price_per_day`) AS `total_income` FROM `reservation` GROUP BY year(`reservation`.`date_in`), monthname(`reservation`.`date_in`) ORDER BY year(`reservation`.`date_in`) ASC, month(`reservation`.`date_in`) ASC ;
 
 -- --------------------------------------------------------
 
@@ -649,7 +699,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `total_income_per_quarter`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_quarter`  AS SELECT concat('Q',quarter(`reservation`.`initial_date`),' ',year(`reservation`.`initial_date`)) AS `QUARTER`, sum((to_days(`reservation`.`final_date`) - to_days(`reservation`.`initial_date`)) * `reservation`.`price_per_day`) AS `total_income` FROM `reservation` GROUP BY year(`reservation`.`initial_date`), quarter(`reservation`.`initial_date`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_quarter`  AS SELECT concat('Q',quarter(`reservation`.`date_in`),' ',year(`reservation`.`date_in`)) AS `QUARTER`, sum((to_days(`reservation`.`date_out`) - to_days(`reservation`.`date_in`)) * `reservation`.`price_per_day`) AS `total_income` FROM `reservation` GROUP BY year(`reservation`.`date_in`), quarter(`reservation`.`date_in`) ;
 
 -- --------------------------------------------------------
 
@@ -658,7 +708,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `total_income_per_year`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_year`  AS SELECT year(`reservation`.`initial_date`) AS `year`, sum((to_days(`reservation`.`final_date`) - to_days(`reservation`.`initial_date`)) * `reservation`.`price_per_day`) AS `total_income` FROM `reservation` GROUP BY year(`reservation`.`initial_date`) ORDER BY year(`reservation`.`initial_date`) ASC ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_year`  AS SELECT year(`reservation`.`date_in`) AS `year`, sum((to_days(`reservation`.`date_out`) - to_days(`reservation`.`date_in`)) * `reservation`.`price_per_day`) AS `total_income` FROM `reservation` GROUP BY year(`reservation`.`date_in`) ORDER BY year(`reservation`.`date_in`) ASC ;
 
 --
 -- Indexes for dumped tables
@@ -723,7 +773,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
 
 --
 -- Constraints for dumped tables
@@ -747,7 +797,7 @@ DELIMITER $$
 --
 -- Events
 --
-CREATE DEFINER=`root`@`localhost` EVENT `rentacarEvent` ON SCHEDULE EVERY 3 HOUR STARTS '2025-03-18 18:50:59' ENDS '2025-03-25 09:00:00' ON COMPLETION PRESERVE ENABLE DO CALL addReservations()$$
+CREATE DEFINER=`root`@`localhost` EVENT `rentacarEvent` ON SCHEDULE EVERY 10 HOUR STARTS '2025-03-18 18:50:59' ENDS '2025-03-25 09:00:00' ON COMPLETION PRESERVE DISABLE DO CALL addReservations()$$
 
 DELIMITER ;
 COMMIT;
