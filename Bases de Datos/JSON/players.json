@@ -1,0 +1,71 @@
+[
+    
+    {
+        "name": "Lamine Yamal",
+        "position": "Winger",
+        "age": 17,
+        "stats": {
+            "games": 38,
+            "goals": 13,
+            "assists": 16
+        }
+        
+    }
+,
+    {
+        "name": "Robert Lewandowski",
+        "position": "Striker",
+        "age": 36,
+        "stats": {
+            "games": 38,
+            "goals": 35,
+            "assists": 3
+        }
+        
+    }
+,
+    {
+        "name": "Raphinha",
+        "position": "Winger",
+        "age": 28,
+        "stats": {
+            "games": 42,
+            "goals": 27,
+            "assists": 18
+        }
+    }
+,
+    {
+        "name": "Pedri",
+        "position": "Midfielder",
+        "age": 22,
+        "stats": {
+            "games": 42,
+            "goals": 5,
+            "assists": 7
+        }
+    }    
+    ,
+    {
+        "name": "Jules Koundé",
+        "position": "Defender",
+        "age": 24,
+        "stats": {
+            "games": 43,
+            "goals": 3,
+            "assists": 8
+        }
+    }
+    ,
+    {
+        "name": "Pau Cubarsí",
+        "position": "Defender",
+        "age": 18,
+        "stats": {
+            "games": 42,
+            "goals": 1,
+            "assists": 3
+        }
+    }
+
+]
