@@ -14,7 +14,7 @@ SELECT  COUNT(*) AS Number_of_Sales, YEAR(order_date) as YEAR
 FROM order_view
 GROUP BY YEAR(order_date);
 -- total sales per quarter
-SELECT  COUNT(*) AS Number_of_Sales, QUARTER(order_date) as QUARTER
+SELECT  COUNT(*) AS Number_of_Sales,CONCAT('Q', QUARTER(order_date), ' ' , YEAR(order_date) )as QUARTER
 FROM order_view
 GROUP BY QUARTER(order_date);
 -- top 10 customers by money spent
@@ -42,9 +42,9 @@ FROM order_view
 GROUP BY MONTH(order_date)
 ORDER BY 2;
 -- total income per month taking in account different years
-SELECT  SUM(total_price) AS total_income, MONTH(order_date) as MONTH, YEAR(order_date) as YEAR
+SELECT  SUM(total_price) AS total_income, MONTHNAME(order_date) as MONTH, YEAR(order_date) as YEAR
 FROM order_view
-GROUP BY YEAR(order_date), MONTH(order_date)
+GROUP BY YEAR(order_date), MONTHNAME(order_date)
 ORDER BY 2,3 asc;
 -- full name and age of all the customers
 SELECT customer_id, full_name(first_name,last_name) AS full_name, age(birth_date) AS age
@@ -54,7 +54,7 @@ SELECT customer_id, full_name, total_money_spent, membership_level(total_money_s
 FROM total_money_spent_view;
 -- total income per quarter
 CREATE VIEW total_income_per_quarter AS
-SELECT  SUM(total_price) AS total_income, QUARTER(order_date) as QUARTER, YEAR(order_date) as YEAR
+SELECT  SUM(total_price) AS total_income,CONCAT('Q', QUARTER(order_date), ' ' , YEAR(order_date) )as QUARTER
 FROM order_view
 GROUP BY YEAR(order_date), QUARTER(order_date)
 ORDER BY 2,3 asc;

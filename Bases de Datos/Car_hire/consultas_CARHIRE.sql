@@ -80,7 +80,7 @@ WHERE car_id NOT IN (
     FROM reservation
     GROUP BY YEAR(initial_date), MONTHNAME(initial_date)
     ORDER BY year ASC, MONTH(initial_date) ASC;
-    -- total income per car
+-- total income per car
     CREATE VIEW total_income_per_car AS
     SELECT car_id, brand, model, SUM(DATEDIFF(final_date,initial_date)*price_per_day) AS total_income
     FROM reservation    
