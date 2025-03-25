@@ -108,7 +108,20 @@ WHERE car_id NOT IN (
             ORDER BY CURDATE() ASC LIMIT 1) AS car_price_per_day 
     FROM reservation r
     WHERE r.date_out > CURDATE()
--- special offer for gaps of up to 7 days
-SELECT r.car_id, r.free_date_in, r.free_date_out, (car_price_per_day * 0.5) AS price_per_day
+-- view for applying discounts
+CREATE VIEW special_offer_discounts_view AS
+SELECT r.car_id, r.free_date_in, r.free_date_out, (CASE                                                                     , (CASE  
+                                                        WHEN r.days_until_free_date_in <=3 THEN r.car_price_per_day * 0.5           WHEN r.days_until_free_date_in <=3 THEN '50%'
+                                                        WHEN r.days_until_free_date_in <=7 THEN r.car_price_per_day * 0.6           WHEN r.days_until_free_date_in <=7 THEN' 40%'
+                                                        WHEN r.days_until_free_date_in <=10 THEN r.car_price_per_day * 0.7          WHEN r.days_until_free_date_in <=15 THEN '30%'
+                                                        WHEN r.days_until_free_date_in <=30 THEN r.car_price_per_day * 0.9          WHEN r.days_until_free_date_in <=7 THEN '10%'
+                                                        ELSE r.car_price_per_day                                                    ELSE '0%'
+                                                        END) AS price_per_day,                                                      END) AS discount
+                                                                                                                           
+                                                                                                              
+                                                                                                                                
+                                                                                                                                
+                                                        
+                                                        
 FROM reservation_view_specialoffer r
-WHERE days_until_free_date_in <= 7;
+
