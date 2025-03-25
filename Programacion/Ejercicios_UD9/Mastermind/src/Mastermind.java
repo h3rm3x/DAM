@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Mastermind {
     static Scanner sc = new Scanner(System.in);
     static Partida partida = new Partida("Jugador1");
-    static HashMap<Integer, Partida> partidas = new HashMap<>();
+    static HashMap<String, Partida> partidas = new HashMap<>();
     static char[] combinacionIntentada = new char[4];
     public static void main(String[] args) {
         while (true) {
@@ -30,9 +30,6 @@ public class Mastermind {
                     break;
             }
         }
-
-
-
     }
 
 
@@ -64,6 +61,7 @@ public class Mastermind {
                 break;
             }
         }
+        partidas.put(partida.getNombreJugador(), partida);
         if (partida.getEstadoFinal()) {
             System.out.println("Has ganado la partida");
         } else {

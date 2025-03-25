@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 public class Partida {
     private final String nombreJugador;
@@ -81,7 +82,7 @@ public class Partida {
     public String toString() {
         return "Partida{" +
                 "nombreJugador='" + nombreJugador + '\'' +
-                ", combinacionSecreta=" + combinacionSecreta +
+                ", combinacionSecreta=" + Arrays.toString(combinacionSecreta) +
                 ", listaTiradas=" + listaTiradas +
                 ", puntuacion=" + puntuacion +
                 ", Resultado=" + EstadoFinal +
