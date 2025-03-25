@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="cooperativa">
+        <xs:complexType>    
+            <xs:sequence>
+                <xs:element name="granja" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="productor" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="id" type="xs:ID" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>                                 
+                            </xs:element>
+                            <xs:element name="animales">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:choice>
+                                            <xs:element name="gato" maxOccurs="2" type="tipo_gato_perro"/>
+                                            <xs:element name="perro" type="tipo_gato_perro"/>
+                                        </xs:choice>
+                                        <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                            <xs:element name="cerdo" >
+                                                <xs:complexType>
+                                                    <xs:simpleContent>
+                                                        <xs:extension base="xs:string">
+                                                            <xs:attribute name="cantidad" type="xs:positiveInteger" use="optional"/>
+                                                        </xs:extension>
+                                                    </xs:simpleContent>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="cerdo" maxOccurs="unbounded">
+                                                <xs:complexType/>
+                                            </xs:element>
+                                        </xs:choice>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>            
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="tipo_gato_perro">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="decompania" type="xs:boolean"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    
+</xs:schema>
