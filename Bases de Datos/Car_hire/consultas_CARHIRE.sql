@@ -107,11 +107,8 @@ WHERE car_id NOT IN (
             WHERE cc.car_id = r.car_id  
             ORDER BY CURDATE() ASC LIMIT 1) AS car_price_per_day 
     FROM reservation r
-    WHERE r.date_out > CURDATE() AND (SELECT re.date_in 
-       FROM reservation re 
-       WHERE re.car_id = r.car_id AND re.date_in > r.date_out 
-       ORDER BY re.date_in LIMIT 1) IS NOT NULL;
+    WHERE r.date_out > CURDATE()
 -- special offer for gaps of up to 7 days
-SELECT r.* , (car_price_per_day * 0.5) AS price_per_day
+SELECT r.car_id, r.free_date_in, r.free_date_out, (car_price_per_day * 0.5) AS price_per_day
 FROM reservation_view_specialoffer r
 WHERE days_until_free_date_in <= 7;
