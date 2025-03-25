@@ -78,4 +78,14 @@ public class Partida {
         return new int[]{aciertos, malColocados};
     }
 
+    public String toString() {
+        return "Partida{" +
+                "nombreJugador='" + nombreJugador + '\'' +
+                ", combinacionSecreta=" + combinacionSecreta +
+                ", listaTiradas=" + listaTiradas +
+                ", puntuacion=" + puntuacion +
+                ", Resultado=" + EstadoFinal +
+                '}';
+    }
+
 }

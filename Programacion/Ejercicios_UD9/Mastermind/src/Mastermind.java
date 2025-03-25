@@ -1,11 +1,46 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 public class Mastermind {
+    static Scanner sc = new Scanner(System.in);
+    static Partida partida = new Partida("Jugador1");
+    static HashMap<Integer, Partida> partidas = new HashMap<>();
+    static char[] combinacionIntentada = new char[4];
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Partida partida = new Partida("Jugador1");
+        while (true) {
+            System.out.println("1. Jugar");
+            System.out.println("2. Ver partidas");
+            System.out.println("3. Salir");
+            int opcion = sc.nextInt();
+            sc.nextLine();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ingrese el nombre del jugador: ");
+                    Partida partida = new Partida(sc.nextLine());
+                    partida();
+                    break;
+                case 2:
+                    verPartidas();
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        }
 
-        char[] combinacionIntentada = new char[4];
+
+
+    }
+
+
+    public static boolean esColorValido(String color) {
+        return color.equals("R") || color.equals("B") || color.equals("G") || color.equals("M") || color.equals("Y") || color.equals("C");
+    }
+
+    public static void partida() {
         int intentos = 0;
         while (intentos < 16) {
             System.out.println("Introduce tu combinación de colores: (R red, B blue, G green, M magenta, Y yellow, C cyan)");
@@ -37,9 +72,10 @@ public class Mastermind {
         }
     }
 
-
-    public static boolean esColorValido(String color) {
-        return color.equals("R") || color.equals("B") || color.equals("G") || color.equals("M") || color.equals("Y") || color.equals("C");
+    public static void verPartidas() {
+        for (Partida partida : partidas.values()) {
+            System.out.println(partida);
+        }
     }
 }
 
