@@ -65,7 +65,7 @@ public class Partida {
             if (!control[i]) {
 
                 for (int j = 0; j < 4; j++) {
-                    if (combinacionSecreta[j] == combinacionIntentada[i]) {
+                    if (combinacionSecreta[i] == combinacionIntentada[j]) {
                         malColocados++;
                     }
                 }

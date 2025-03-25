@@ -12,12 +12,12 @@ public class Partida {
         this.nombreJugador = nombreJugador;
 
 
-        this.combinacionSecreta = new char[4];
-        for (int i = 0; i < 4; i++) {
-           Random random = new Random();
-            int index = random.nextInt(6);
-          combinacionSecreta[i] = colores[index];
-        }
+        this.combinacionSecreta = new char[]{'B', 'R', 'C', 'G'};
+//        for (int i = 0; i < 4; i++) {
+//           Random random = new Random();
+//            int index = random.nextInt(6);
+//          combinacionSecreta[i] = colores[index];
+//        }
         this.listaTiradas = new ArrayList<Tirada>();
         this.EstadoFinal = false;
     }
@@ -63,7 +63,7 @@ public class Partida {
             if (!control[i]) {
 
                 for (int j = 0; j < 4; j++) {
-                    if (combinacionSecreta[j] == combinacionIntentada[i]) {
+                    if (combinacionSecreta[i] == combinacionIntentada[j]) {
                         malColocados++;
                     }
                 }

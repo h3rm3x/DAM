@@ -35,13 +35,14 @@ public class Mastermind {
                     System.out.println("Error entrada incorrecta ");
                     continue;
             }
+            }
             if (partida.getEstadoFinal()) {
                 System.out.println("Has ganado la partida");
             } else {
                 System.out.println("Has perdido la partida");
                 System.out.println(" La combinacion secreta es" + Arrays.toString(partida.getCombinacionSecreta()));
             }
-        }
+
     }
 
 
