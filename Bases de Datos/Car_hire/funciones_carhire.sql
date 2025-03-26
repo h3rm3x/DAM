@@ -73,4 +73,43 @@ BEGIN
 
 END$$
 
+-- function to dsiconunt the price of a car depending on the days until the reservation
+DELIMITER $$
+CREATE FUNCTION apply_discount (var_days_until_free_date_in INT, var_car_price_per_day INT)
+RETURNS INT DETERMINISTIC
+BEGIN
+    IF var_days_until_free_date_in <= 3 THEN
+        SET var_car_price_per_day = var_car_price_per_day * 0.5;
+    ELSEIF var_days_until_free_date_in <= 7 THEN
+        SET var_car_price_per_day = var_car_price_per_day * 0.6;
+    ELSEIF var_days_until_free_date_in <= 10 THEN
+        SET var_car_price_per_day = var_car_price_per_day * 0.7;
+    ELSEIF var_days_until_free_date_in <= 30 THEN
+        SET var_car_price_per_day = var_car_price_per_day * 0.9;
+    END IF;
+    RETURN var_car_price_per_day;
+END$$
+DELIMITER ;
+
+-- function to add the discount to the reservation
+DELIMITER $$
+CREATE FUNCTION add_discount (var_days_until_free_date_in INT)
+RETURNS VARCHAR(10) DETERMINISTIC
+BEGIN
+    DECLARE var_discount VARCHAR(10);
+    IF var_days_until_free_date_in <= 3 THEN
+        SET var_discount = '50%';
+    ELSEIF var_days_until_free_date_in <= 7 THEN
+        SET var_discount = '40%';
+    ELSEIF var_days_until_free_date_in <= 15 THEN
+        SET var_discount = '30%';
+    ELSEIF var_days_until_free_date_in <= 30 THEN
+        SET var_discount = '10%';
+    ELSE
+        SET var_discount = '0%';
+    END IF;
+    RETURN var_discount;
+END$$
+DELIMITER ;
+                                             
     

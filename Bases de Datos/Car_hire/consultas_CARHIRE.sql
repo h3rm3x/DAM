@@ -98,30 +98,40 @@ WHERE car_id NOT IN (
            DATE_ADD(r.date_out, INTERVAL 1 DAY) AS free_date_in, 
            DATE_SUB((SELECT re.date_in 
                      FROM reservation re 
-                     WHERE re.car_id = r.car_id AND re.date_in > r.date_out 
+                     WHERE re.car_id = r.car_id AND DATEDIFF(re.date_in, r.date_out) > 1 
                      ORDER BY re.date_in LIMIT 1), INTERVAL 1 DAY) AS free_date_out, 
            DATEDIFF(r.date_out, CURDATE()) AS days_until_free_date_in, 
            (SELECT price_per_day 
             FROM class c 
-            JOIN car_class cc ON c.class_name = cc.car_class 
+            JOIN car_class cc ON c.class_name = cc.class_name 
             WHERE cc.car_id = r.car_id  
             ORDER BY CURDATE() ASC LIMIT 1) AS car_price_per_day 
     FROM reservation r
-    WHERE r.date_out > CURDATE()
+    WHERE free_date_out > CURDATE()
+
+-- view for viewing the price per day and days until free date in
+CREATE VIEW special_offer_view AS
+SELECT 
+    r.car_id, 
+    (CASE WHEN r.free_date_in < CURDATE() THEN CURDATE() ELSE r.free_date_in END) AS free_date_in, r.free_date_out,
+    (CASE WHEN r.free_date_in < CURDATE() THEN 0 ELSE DATEDIFF(r.free_date_in,CURDATE()) END) AS days_until_free_date_in,
+    (SELECT c.class_price
+     FROM class c
+     JOIN car_class cc ON c.class_name = cc.class_name
+     WHERE cc.car_id = r.car_id
+       AND CURDATE() BETWEEN c.start_date AND c.end_date LIMIT 1) AS car_price_per_day
+FROM 
+    reservation_view_gaps r
+WHERE 
+    r.free_date_out > CURDATE()  
 -- view for applying discounts
-CREATE VIEW special_offer_discounts_view AS
-SELECT r.car_id, r.free_date_in, r.free_date_out, (CASE                                                                     , (CASE  
-                                                        WHEN r.days_until_free_date_in <=3 THEN r.car_price_per_day * 0.5           WHEN r.days_until_free_date_in <=3 THEN '50%'
-                                                        WHEN r.days_until_free_date_in <=7 THEN r.car_price_per_day * 0.6           WHEN r.days_until_free_date_in <=7 THEN' 40%'
-                                                        WHEN r.days_until_free_date_in <=10 THEN r.car_price_per_day * 0.7          WHEN r.days_until_free_date_in <=15 THEN '30%'
-                                                        WHEN r.days_until_free_date_in <=30 THEN r.car_price_per_day * 0.9          WHEN r.days_until_free_date_in <=7 THEN '10%'
-                                                        ELSE r.car_price_per_day                                                    ELSE '0%'
-                                                        END) AS price_per_day,                                                      END) AS discount
-                                                                                                                           
-                                                                                                              
-                                                                                                                                
-                                                                                                                                
-                                                        
-                                                        
-FROM reservation_view_specialoffer r
+    CREATE VIEW special_offer_discounts_view AS
+    SELECT r.*, apply_discount(days_until_free_date_in, car_price_per_day) AS discounted_price_per_day, apply_discount(days_until_free_date_in) AS discount                                       
+    FROM reservation_view_specialoffer r
+
+
+
+
+
+
 
