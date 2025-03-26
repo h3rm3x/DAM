@@ -92,7 +92,7 @@ WHERE car_id NOT IN (
     FROM reservation
     GROUP BY car_id
     ORDER BY total_days_rented DESC;
--- Special offers where cars are not rented
+-- View for Gaps where cars are not rented
     CREATE VIEW reservation_view_specialoffer AS
     SELECT r.car_id, 
            DATE_ADD(r.date_out, INTERVAL 1 DAY) AS free_date_in, 
@@ -100,14 +100,8 @@ WHERE car_id NOT IN (
                      FROM reservation re 
                      WHERE re.car_id = r.car_id AND DATEDIFF(re.date_in, r.date_out) > 1 
                      ORDER BY re.date_in LIMIT 1), INTERVAL 1 DAY) AS free_date_out, 
-           DATEDIFF(r.date_out, CURDATE()) AS days_until_free_date_in, 
-           (SELECT price_per_day 
-            FROM class c 
-            JOIN car_class cc ON c.class_name = cc.class_name 
-            WHERE cc.car_id = r.car_id  
-            ORDER BY CURDATE() ASC LIMIT 1) AS car_price_per_day 
     FROM reservation r
-    WHERE free_date_out > CURDATE()
+    WHERE r.date_out < CURDATE()
 
 -- view for viewing the price per day and days until free date in
 CREATE VIEW special_offer_view AS
