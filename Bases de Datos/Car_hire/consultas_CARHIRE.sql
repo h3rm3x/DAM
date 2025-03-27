@@ -93,7 +93,7 @@ WHERE car_id NOT IN (
     GROUP BY car_id
     ORDER BY total_days_rented DESC;
 -- View for Gaps where cars are not rented
-    CREATE VIEW reservation_view_specialoffer AS
+    CREATE VIEW reservation_view_gaps AS
     SELECT r.car_id, 
            DATE_ADD(r.date_out, INTERVAL 1 DAY) AS free_date_in, 
            DATE_SUB((SELECT re.date_in 
@@ -101,10 +101,10 @@ WHERE car_id NOT IN (
                      WHERE re.car_id = r.car_id AND DATEDIFF(re.date_in, r.date_out) > 1 
                      ORDER BY re.date_in LIMIT 1), INTERVAL 1 DAY) AS free_date_out, 
     FROM reservation r
-    WHERE r.date_out < CURDATE()
+    WHERE r.date_out < CURDATE() 
 
 -- view for viewing the price per day and days until free date in
-CREATE VIEW special_offer_view AS
+CREATE VIEW reservation_view_specialoffer AS
 SELECT 
     r.car_id, 
     (CASE WHEN r.free_date_in < CURDATE() THEN CURDATE() ELSE r.free_date_in END) AS free_date_in, r.free_date_out,
@@ -117,10 +117,10 @@ SELECT
 FROM 
     reservation_view_gaps r
 WHERE 
-    r.free_date_out > CURDATE()  
+    r.free_date_out > CURDATE() OR r.free_date_out IS NULL
 -- view for applying discounts
     CREATE VIEW special_offer_discounts_view AS
-    SELECT r.*, apply_discount(days_until_free_date_in, car_price_per_day) AS discounted_price_per_day, apply_discount(days_until_free_date_in) AS discount                                       
+    SELECT r.*, apply_discount(days_until_free_date_in, car_price_per_day) AS discounted_price_per_day, apply_discount_percentage(days_until_free_date_in) AS discount                                       
     FROM reservation_view_specialoffer r
 
 

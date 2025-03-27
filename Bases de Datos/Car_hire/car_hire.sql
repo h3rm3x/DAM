@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2025 at 07:50 PM
+-- Generation Time: Mar 27, 2025 at 08:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -145,6 +145,35 @@ END$$
 --
 -- Functions
 --
+CREATE DEFINER=`root`@`localhost` FUNCTION `apply_discount` (`var_days_until_free_date_in` INT, `var_car_price_per_day` INT) RETURNS INT(11) DETERMINISTIC BEGIN
+    IF var_days_until_free_date_in <= 3 THEN
+        SET var_car_price_per_day = var_car_price_per_day * 0.5;
+    ELSEIF var_days_until_free_date_in <= 7 THEN
+        SET var_car_price_per_day = var_car_price_per_day * 0.6;
+    ELSEIF var_days_until_free_date_in <= 10 THEN
+        SET var_car_price_per_day = var_car_price_per_day * 0.7;
+    ELSEIF var_days_until_free_date_in <= 30 THEN
+        SET var_car_price_per_day = var_car_price_per_day * 0.9;
+    END IF;
+    RETURN var_car_price_per_day;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `apply_discount_percentage` (`var_days_until_free_date_in` INT) RETURNS VARCHAR(10) CHARSET utf8mb4 COLLATE utf8mb4_general_ci DETERMINISTIC BEGIN
+    DECLARE var_discount VARCHAR(10);
+    IF var_days_until_free_date_in <= 3 THEN
+        SET var_discount = '50%';
+    ELSEIF var_days_until_free_date_in <= 7 THEN
+        SET var_discount = '40%';
+    ELSEIF var_days_until_free_date_in <= 15 THEN
+        SET var_discount = '30%';
+    ELSEIF var_days_until_free_date_in <= 30 THEN
+        SET var_discount = '10%';
+    ELSE
+        SET var_discount = '0%';
+    END IF;
+    RETURN var_discount;
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `car_avaliability` (`var_car_id` INT, `var_date_in` DATE, `var_date_out` DATE) RETURNS TINYINT(1) DETERMINISTIC BEGIN
     DECLARE var_availability BOOLEAN;
     SET var_availability = TRUE;
@@ -243,14 +272,14 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`class_name`, `class_price`, `start_date`, `end_date`) VALUES
-('economy', 60.00, '2025-05-01', '2025-10-31'),
-('business', 80.00, '2025-05-01', '2025-10-31'),
-('luxury', 100.00, '2025-05-01', '2025-10-31'),
-('economy', 40.00, '2025-01-01', '2025-04-30'),
 ('business', 60.00, '2025-01-01', '2025-04-30'),
-('luxury', 80.00, '2025-01-01', '2025-04-30'),
-('economy', 40.00, '2025-11-01', '2025-12-31'),
+('business', 80.00, '2025-05-01', '2025-10-31'),
 ('business', 60.00, '2025-11-01', '2025-12-31'),
+('economy', 40.00, '2025-01-01', '2025-04-30'),
+('economy', 60.00, '2025-05-01', '2025-10-31'),
+('economy', 40.00, '2025-11-01', '2025-12-31'),
+('luxury', 80.00, '2025-01-01', '2025-04-30'),
+('luxury', 100.00, '2025-05-01', '2025-10-31'),
 ('luxury', 80.00, '2025-11-01', '2025-12-31');
 
 -- --------------------------------------------------------
@@ -443,7 +472,7 @@ INSERT INTO `reservation` (`reservation_id`, `date_in`, `date_out`, `price_per_d
 (125, '2026-01-25', '2026-01-31', 80, 3, 4),
 (126, '2026-07-28', '2026-08-02', 80, 9, 4),
 (127, '2024-10-05', '2024-10-09', 60, 2, 8),
-(128, '2025-06-07', '2025-06-08', 60, 10, 1),
+(128, '2025-06-07', '2025-06-20', 60, 10, 1),
 (129, '2024-08-04', '2024-08-05', 60, 1, 1),
 (130, '2026-03-23', '2026-03-27', 60, 8, 5),
 (131, '2024-03-21', '2024-03-26', 60, 5, 5),
@@ -549,7 +578,7 @@ INSERT INTO `reservation` (`reservation_id`, `date_in`, `date_out`, `price_per_d
 (231, '2025-05-13', '2025-05-18', 100, 8, 10),
 (232, '2025-03-02', '2025-03-04', 80, 7, 3),
 (233, '2025-05-10', '2025-05-11', 60, 7, 2),
-(234, '2026-04-28', '2026-05-04', 100, 3, 10),
+(234, '2026-04-28', '2026-05-04', 100, 3, 10);
 
 -- --------------------------------------------------------
 
@@ -575,6 +604,18 @@ CREATE TABLE `reservation_view` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `reservation_view_gaps`
+-- (See below for the actual view)
+--
+CREATE TABLE `reservation_view_gaps` (
+`car_id` int(11)
+,`free_date_in` date
+,`free_date_out` date
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `reservation_view_specialoffer`
 -- (See below for the actual view)
 --
@@ -583,7 +624,23 @@ CREATE TABLE `reservation_view_specialoffer` (
 ,`free_date_in` date
 ,`free_date_out` date
 ,`days_until_free_date_in` int(7)
-,`car_price_per_day` int(11)
+,`car_price_per_day` decimal(8,2)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `special_offer_discounts_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `special_offer_discounts_view` (
+`car_id` int(11)
+,`free_date_in` date
+,`free_date_out` date
+,`days_until_free_date_in` int(7)
+,`car_price_per_day` decimal(8,2)
+,`discounted_price_per_day` int(11)
+,`discount` varchar(10)
 );
 
 -- --------------------------------------------------------
@@ -658,11 +715,29 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `reservation_view_gaps`
+--
+DROP TABLE IF EXISTS `reservation_view_gaps`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `reservation_view_gaps`  AS SELECT `r`.`car_id` AS `car_id`, `r`.`date_out`+ interval 1 day AS `free_date_in`, (select `re`.`date_in` from `reservation` `re` where `re`.`car_id` = `r`.`car_id` and to_days(`re`.`date_in`) - to_days(`r`.`date_out`) > 1 order by `re`.`date_in` limit 1) - interval 1 day AS `free_date_out` FROM `reservation` AS `r` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `reservation_view_specialoffer`
 --
 DROP TABLE IF EXISTS `reservation_view_specialoffer`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `reservation_view_specialoffer`  AS SELECT `r`.`car_id` AS `car_id`, `r`.`date_out`+ interval 1 day AS `free_date_in`, (select `re`.`date_in` from `reservation` `re` where `re`.`car_id` = `r`.`car_id` and `re`.`date_in` > `r`.`date_out` order by `re`.`date_in` limit 1) - interval 1 day AS `free_date_out`, to_days(`r`.`date_out`) - to_days(curdate()) AS `days_until_free_date_in`, (select `r`.`price_per_day` from (`class` `c` join `car_class` `cc` on(`c`.`class_name` = `cc`.`class_name`)) where `cc`.`car_id` = `r`.`car_id` order by curdate() limit 1) AS `car_price_per_day` FROM `reservation` AS `r` WHERE `r`.`date_out` > curdate() AND (select `re`.`date_in` from `reservation` `re` where `re`.`car_id` = `r`.`car_id` AND `re`.`date_in` > `r`.`date_out` order by `re`.`date_in` limit 1) is not null ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `reservation_view_specialoffer`  AS SELECT `r`.`car_id` AS `car_id`, CASE WHEN `r`.`free_date_in` < curdate() THEN curdate() ELSE `r`.`free_date_in` END AS `free_date_in`, `r`.`free_date_out` AS `free_date_out`, CASE WHEN `r`.`free_date_in` < curdate() THEN 0 ELSE to_days(`r`.`free_date_in`) - to_days(curdate()) END AS `days_until_free_date_in`, (select `c`.`class_price` from (`class` `c` join `car_class` `cc` on(`c`.`class_name` = `cc`.`class_name`)) where `cc`.`car_id` = `r`.`car_id` and curdate() between `c`.`start_date` and `c`.`end_date` limit 1) AS `car_price_per_day` FROM `reservation_view_gaps` AS `r` WHERE `r`.`free_date_out` > curdate() OR `r`.`free_date_out` is null ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `special_offer_discounts_view`
+--
+DROP TABLE IF EXISTS `special_offer_discounts_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `special_offer_discounts_view`  AS SELECT `r`.`car_id` AS `car_id`, `r`.`free_date_in` AS `free_date_in`, `r`.`free_date_out` AS `free_date_out`, `r`.`days_until_free_date_in` AS `days_until_free_date_in`, `r`.`car_price_per_day` AS `car_price_per_day`, `apply_discount`(`r`.`days_until_free_date_in`,`r`.`car_price_per_day`) AS `discounted_price_per_day`, `apply_discount_percentage`(`r`.`days_until_free_date_in`) AS `discount` FROM `reservation_view_specialoffer` AS `r` ;
 
 -- --------------------------------------------------------
 
@@ -708,6 +783,22 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `total_income_per_year`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_income_per_year`  AS SELECT year(`reservation`.`date_in`) AS `year`, sum((to_days(`reservation`.`date_out`) - to_days(`reservation`.`date_in`)) * `reservation`.`price_per_day`) AS `total_income` FROM `reservation` GROUP BY year(`reservation`.`date_in`) ORDER BY year(`reservation`.`date_in`) ASC ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `class`
+--
+ALTER TABLE `class`
+  ADD PRIMARY KEY (`class_name`,`start_date`,`end_date`);
+
+--
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`reservation_id`);
 
 DELIMITER $$
 --
