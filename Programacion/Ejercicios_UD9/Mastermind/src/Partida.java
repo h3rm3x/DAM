@@ -6,7 +6,7 @@ public class Partida {
     private final String nombreJugador;
     private final char[] combinacionSecreta;
     private ArrayList<Tirada> listaTiradas;
-    private int puntuacion;
+    private int puntuacion=0;
     private boolean EstadoFinal;
     private char[] colores = {'R', 'B', 'G', 'M', 'Y', 'C'};
 
@@ -63,9 +63,8 @@ public class Partida {
 
         for (int i=0; i<4; i++) {
             if (!control[i]) {
-
                 for (int j = 0; j < 4; j++) {
-                    if (combinacionSecreta[i] == combinacionIntentada[j]) {
+                    if (combinacionSecreta[i] == combinacionIntentada[j] && !control[j]) {
                         malColocados++;
                     }
                 }

@@ -37,6 +37,7 @@ public class Mastermind {
 
     public static void partida() {
         int intentos = 0;
+
         while (intentos < 16) {
             System.out.println("Introduce tu combinación de colores: (R red, B blue, G green, M magenta, Y yellow, C cyan)");
             for (int i = 0; i < 4; i++) {
@@ -55,6 +56,7 @@ public class Mastermind {
             System.out.println("Aciertos: " + resultado[0] + " Mal colocados: " + resultado[1]);
             System.out.println("Puntuación: " + partida.getPuntuacion());
             intentos++;
+//            System.out.println(partida.getCombinacionSecreta());
             if (partida.getEstadoFinal()) {
                 break;
             }
