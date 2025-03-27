@@ -24,7 +24,8 @@ public class libreria {
         clientes.add(new Cliente("Ana", 920751));
         clientes.add(new Cliente("Luis", 468032));
 
-        System.out.println(libros);
+
+        libros.forEach(System.out::println);
 
         int opcion = 0;
         Scanner sc = new Scanner(System.in);
