@@ -1,10 +1,10 @@
 public class Cliente {
     private String nombre;
-    private Integer ID;
+    private Integer NIF;
 
     public Cliente(String nombre, Integer ID) {
         this.nombre = nombre;
-        this.ID = ID;
+        this.NIF = ID;
     }
 
     public String getNombre() {
@@ -15,15 +15,15 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getNIF() {
+        return NIF;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setNIF(Integer NIF) {
+        this.NIF = NIF;
     }
 
     public String toString() {
-        return "Nombre: " + nombre + "\nID: " + ID;
+        return "Nombre: " + nombre + "\nNIF: " + NIF;
     }
 }

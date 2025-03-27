@@ -1,6 +1,4 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 public class Mastermind {
     static Scanner sc = new Scanner(System.in);
     static Partida partida = new Partida("Jugador1");

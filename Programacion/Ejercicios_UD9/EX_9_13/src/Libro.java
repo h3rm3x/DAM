@@ -27,6 +27,10 @@ public class Libro {
         return stock;
     }
 
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
     public String toString() {
         return "Titulo: " + titulo + "\nAutor: " + autor + "\nISBN: " + ISBN + "\nStock: " + stock;
     }
