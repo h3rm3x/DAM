@@ -70,8 +70,8 @@ public class Partida {
                 }
             }
         }
-        Tirada.setResultadoTirada(aciertos*2+malColocados);
-        puntuacion += Tirada.getResultadoTirada();
+        tirada.setResultadoTirada(aciertos*2+malColocados);
+        puntuacion += tirada.getResultadoTirada();
         if (aciertos == 4) {
             EstadoFinal = true;
         }
