@@ -9,6 +9,9 @@
         </fecha_inicio>
         <puesto>Analista de sistemas</puesto>
         <puesto_anterior>Analista de sistemas</puesto_anterior>
+        <titulacioAcademica>
+            <titulo>Ingeniero Técnico en Informática de Sistemas</titulo>
+        </titulacioAcademica>
         <superior_directo id="B223"/>
         <sueldo>2000</sueldo>
         <sede>Valencia</sede>
