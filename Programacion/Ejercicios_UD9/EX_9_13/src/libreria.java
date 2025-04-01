@@ -30,14 +30,13 @@ public class libreria {
         int opcion = 0;
         Scanner sc = new Scanner(System.in);
 
-        while (opcion != 4) {
+        while (opcion != 5) {
             try {
-
-
                 System.out.println("1. Mostrar inventario");
                 System.out.println("2. Realizar compra");
                 System.out.println("3. Mostrar compras");
-                System.out.println("4. Salir");
+                System.out.println("4. Introducir libro");
+                System.out.println("5. Salir");
                 System.out.print("Opcion: ");
                 opcion = sc.nextInt();
                 sc.nextLine();
@@ -72,7 +71,7 @@ public class libreria {
                         sc.nextLine();
                         Libro libro = inventario.get(titulo);
                         if (libro != null) {
-                            if (libro.getStock() >= cantidad) {
+                            if (inventario.get(libro.getTitulo()).getStock() >= cantidad) {
                                 libro.setStock(libro.getStock() - cantidad);
                                 compra.put(cliente, libro);
                             } else {
@@ -89,6 +88,22 @@ public class libreria {
                         }
                         break;
                     case 4:
+                        System.out.print("Titulo del libro: ");
+                        String tituloLibro = sc.nextLine();
+                        System.out.print("Autor del libro: ");
+                        String autor = sc.nextLine();
+                        System.out.print("ISBN del libro: ");
+                        int ISBN = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Stock del libro: ");
+                        int stock = sc.nextInt();
+                        sc.nextLine();
+                        if (inventario.containsKey(tituloLibro)) {
+                            System.out.println("El libro ya existe en el inventario");
+                            break;
+                        } else {
+                            Libro nuevoLibro = new Libro(tituloLibro, autor, ISBN, stock);
+                        }
                         break;
                     default:
                         System.out.println("Opcion no valida");

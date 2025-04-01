@@ -1,4 +1,7 @@
-public class Libro {
+public class Libro  implements Comparable<Object> {
+
+
+
     private String titulo;
     private String autor;
     private Integer ISBN;
@@ -33,5 +36,18 @@ public class Libro {
 
     public String toString() {
         return "Titulo: " + titulo + "\nAutor: " + autor + "\nISBN: " + ISBN + "\nStock: " + stock;
+    }
+
+    public int compareTo(Object obj) {
+        if (this == obj) {
+            return 0;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return 1;
+        }
+        Libro libro = (Libro) obj;
+        return this.titulo.compareTo(libro.titulo);
+
+
     }
 }
