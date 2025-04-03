@@ -1,6 +1,11 @@
 (: a :)
-(: //compte[@id="20-A"]/saldoactual/number() :)
+(: //fons[compteassociat="20-A"]/dades/quantitatdipositada/number() :)
 
 (: b :)
-//saldoactual/@moneda
+(: distinct-values(//fons/dades/moneda/text()) :)
  
+(: c :)
+(: //saldoactual[@moneda="euros"]/..//titular/@dni :)
+
+(: d :)
+//fons[dades/moneda="Euros" and dades/quantitatdipositada<21000]
