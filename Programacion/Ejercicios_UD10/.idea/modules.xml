@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EX_10.1/EX_10.1.iml" filepath="$PROJECT_DIR$/EX_10.1/EX_10.1.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_10.2/EX_10.2.iml" filepath="$PROJECT_DIR$/EX_10.2/EX_10.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_10.3/EX_10.3.iml" filepath="$PROJECT_DIR$/EX_10.3/EX_10.3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_10.5/EX_10.5.iml" filepath="$PROJECT_DIR$/EX_10.5/EX_10.5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_10_4/EX_10_4.iml" filepath="$PROJECT_DIR$/EX_10_4/EX_10_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Ejercicios_UD10.iml" filepath="$PROJECT_DIR$/.idea/Ejercicios_UD10.iml" />
       <module fileurl="file://$PROJECT_DIR$/ejemplo1/ejemplo1.iml" filepath="$PROJECT_DIR$/ejemplo1/ejemplo1.iml" />
     </modules>
