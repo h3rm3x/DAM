@@ -5,7 +5,8 @@
 (: distinct-values(//fons/dades/moneda/text()) :)
  
 (: c :)
-(: //saldoactual[@moneda="euros"]/..//titular/@dni :)
+(: //saldoactual[@moneda="euros"]/..//titular/@dni/string() :)
+
 
 (: d :)
 //fons[dades/moneda="Euros" and dades/quantitatdipositada<21000]

@@ -1,14 +1,14 @@
 (: a :)
-(: //nom :)
+(: //professor/nom :)
 
 (: b :)
 (: count(//alumne) :)
 
 (: c :)
-(: //professor[assignatura="XML"]/nom :)
+(: //professor[assignatura="XML"]/nom/text() :)
 
 (: d :)
-(: distinct-values(//alumne[nom[contains(text(),Pi)]]/credits/assignatura) :)
+distinct-values(//alumne[nom[contains(text(),Pi)]]/credits/assignatura)
 
 (: e :)
 (: //nom[starts-with(text(),'F')] :)
@@ -17,7 +17,7 @@
 (: //alumne[any=2010]/nom/text() :)
 
 (: g :)
-//alumne/credits[assignatura="XML"]/../nom/text()
+(: //alumne/credits[assignatura="XML"]/../nom/text() :)
 
 
 

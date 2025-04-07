@@ -17,13 +17,13 @@
 (: //producte[@codi="AAA-111"]/pes :)
 
 (: g :)
-(: //producte/pes[@unitat="g"] :)
+(: //producte/pes[@unitat="g"]/..//nom :)
 
 (: h :)
-(: //producte/nom[contains(text(),'l')] :)
+(: distinct-values(//producte/nom[contains(text(),'l')]) :)
 
 (: i :)
 (: //producte[nom="Monitor"]/@codi :)
 
 (: j :)
-//producte[pes>0.25 and pes/@unitat="kg" or pes>250 and pes/@unitat="g"]/@codi
+//producte[(pes>0.25 and pes/@unitat="kg") or (pes>250 and pes/@unitat="g")]/@codi
