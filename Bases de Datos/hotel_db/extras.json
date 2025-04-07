@@ -1,0 +1,32 @@
+[{
+    "customer_name": "John Smith",
+    "service_category": "Room Service",
+    "service_name": "Dinner",
+    "service_price": 50.00
+},
+{
+    "customer_name": "Emma Johnson",
+    "service_category": "Spa",
+    "service_name": "1h Massage",
+    "service_price": 100.00
+},
+{
+    "customer_name": "Mohammed Al-Fayez",
+    "service_category": "Room Service",
+    "service_name": "Breakfast",
+    "service_price": 20.00
+},
+{
+    "customer_name": "Ana Silva",
+    "service_category": "Gym",
+    "service_name": "1h session with Personal Trainer",
+    "service_price": 75.00
+},
+{
+    "customer_name": "James Taylor",
+    "service_category": "Laundry",
+    "service_name": "Dry Cleaning",
+    "service_price": 30.00
+}
+
+]
