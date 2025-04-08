@@ -5,11 +5,13 @@
       <module fileurl="file://$PROJECT_DIR$/EX_10.1/EX_10.1.iml" filepath="$PROJECT_DIR$/EX_10.1/EX_10.1.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_10.2/EX_10.2.iml" filepath="$PROJECT_DIR$/EX_10.2/EX_10.2.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_10.3/EX_10.3.iml" filepath="$PROJECT_DIR$/EX_10.3/EX_10.3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_10.4/EX_10.4.iml" filepath="$PROJECT_DIR$/EX_10.4/EX_10.4.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_10.5/EX_10.5.iml" filepath="$PROJECT_DIR$/EX_10.5/EX_10.5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/EX_10_4/EX_10_4.iml" filepath="$PROJECT_DIR$/EX_10_4/EX_10_4.iml" />
-      <module fileurl="file://$PROJECT_DIR$/EX_10_6/EX_10_6.iml" filepath="$PROJECT_DIR$/EX_10_6/EX_10_6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_10.6/EX_10.6.iml" filepath="$PROJECT_DIR$/EX_10.6/EX_10.6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_10.7/EX_10.7.iml" filepath="$PROJECT_DIR$/EX_10.7/EX_10.7.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Ejercicios_UD10.iml" filepath="$PROJECT_DIR$/.idea/Ejercicios_UD10.iml" />
       <module fileurl="file://$PROJECT_DIR$/ejemplo1/ejemplo1.iml" filepath="$PROJECT_DIR$/ejemplo1/ejemplo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ejemplo_leer_por_lineas/ejemplo_leer_por_lineas.iml" filepath="$PROJECT_DIR$/ejemplo_leer_por_lineas/ejemplo_leer_por_lineas.iml" />
     </modules>
   </component>
 </project>

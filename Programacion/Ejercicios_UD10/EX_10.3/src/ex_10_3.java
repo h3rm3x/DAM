@@ -11,14 +11,8 @@ public class ex_10_3 {
             while ((leidos = in.read(datos)) != -1) {
                 out.write(datos, 0, leidos);
                 iteraciones++;
-                for (int i = 0; i < datos.length; i++) {
-                    if (datos[i]== 0) {
-                        bytesleidos= i;
-                    }
-
-                }
-                bytesleidos+=(iteraciones-1)*1024;
             }
+            bytesleidos=leidos+ (iteraciones-1)*1024;
             in.close();
             out.close();
             File original = new File("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD10\\EX_10.2\\src\\EX_10_2.java");

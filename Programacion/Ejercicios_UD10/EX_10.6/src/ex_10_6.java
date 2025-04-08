@@ -13,8 +13,7 @@ public class ex_10_6 {
                 gis.write(datos, 0, leidos);
             }
             fis.close();
-            gis.close();
-            System.out.println("El archivo se ha comprimido correctamente");
+            gis.close();            System.out.println("El archivo se ha comprimido correctamente");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
