@@ -26,13 +26,14 @@ return $producto//especificaciones/concat(*,",") ),"
 ) :)
 
 (: e :)
-for $producto in //producto
+(: for $producto in //producto
 let $precio-original := $producto/detalle/precio 
 let $descuento := 0.15
 let $precio-descuento := $descuento * $precio-original
 return concat("<producto", " id= ", $producto/@codigo, """> ","
-", "<PrecioOriginal>", $precio-original," </PrecioOriginal>", "
-", "<precioDescuento>", $precio-descuento,"</precioDescuento>")
-
+  ", "<PrecioOriginal>", $precio-original," </PrecioOriginal>", "
+  ", "<precioDescuento>", $precio-descuento,"</precioDescuento>") :)
+  
+(: f :)
 
 
