@@ -1,0 +1,26 @@
+[
+    {
+        "service_category": "Room Service",
+        "service_name": "Breakfast",
+        "date": "2025-04-10",
+        "service_price": 20.00
+    },
+    {
+        "service_category": "Spa",
+        "service_name": "Facial Treatment",
+        "date": "2025-04-11",
+        "service_price": 120.00
+    },
+    {
+        "service_category": "Gym",
+        "service_name": "Yoga Class",
+        "date": "2025-04-12",
+        "service_price": 30.00
+    }
+    ,{
+        "service_category": "Gym",
+        "service_name": "Pilates Class",
+        "date": "2025-04-12",
+        "service_price": 40.00
+    }
+]

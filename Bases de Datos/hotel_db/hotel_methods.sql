@@ -20,7 +20,7 @@ BEGIN
         SET var_customer_id = (SELECT customer_id FROM customer ORDER BY RAND() LIMIT 1);
         SET var_check_in = DATE_ADD(CURDATE(), 
                                 INTERVAL FLOOR(RAND() * DATEDIFF('2026-12-31', CURDATE())) DAY);
-        SET var_check_out = (SELECT DATE_ADD(var_check_in, INTERVAL FLOOR(RAND() * 7) DAY));
+        SET var_check_out = (SELECT DATE_ADD(var_check_in, INTERVAL FLOOR(1+RAND() * 7) DAY));
         SET var_price_per_night = (SELECT price_per_night FROM category WHERE (SELECT category_id FROM room WHERE room_number = var_room_number) = category_id LIMIT 1);
         IF (SELECT category_id FROM room WHERE room_number = var_room_number) = 1 THEN
             SET var_number_of_guests = FLOOR(2+ RAND()*2);
@@ -49,3 +49,51 @@ BEGIN
     END IF;
     RETURN var_availability;
 END$$DELIMITER ;
+
+-- Swap the room of a reservation
+CREATE PROCEDURE swap_room(IN var_reservation_id INT, IN var_room_number INT)
+BEGIN
+    DECLARE var_check_in DATE;
+    DECLARE var_check_out DATE;
+    DECLARE var_price_per_night INT;
+    DECLARE var_number_of_guests INT;
+    
+    -- Get the details of the reservation
+    SELECT check_in, check_out, price_per_night, number_of_guests INTO var_check_in, var_check_out, var_price_per_night, var_number_of_guests FROM reservation WHERE reservation_id = reservation_id;
+    -- Check if the new room is available
+    IF (SELECT COUNT(*)  FROM reservation WHERE room_number = var_room_number AND check_in <=  var_check_out AND check_out >= var_check_in ) IS NULL THEN
+        -- Update the reservation with the new room number
+        UPDATE reservation SET room_number = var_room_number, price_per_night = var_price_per_night, number_of_guests = var_number_of_guests WHERE reservation_id = var_reservation_id;
+    ELSE 
+        DECLARE var_new_room_number INT;
+        SELECT room_number INTO var_new_room_number FROM room WHERE room_number != var_room_number ORDER BY RAND() LIMIT 1;
+
+    END IF;
+
+
+END;
+-- procedure that iterates the elements of the extras
+CREATE PROCEDURE iterate_extras(IN var_reservation_id INT)
+BEGIN
+    DECLARE var_service_category VARCHAR(255);
+    DECLARE var_service_name VARCHAR(255);
+    DECLARE var_service_date DATE;
+    DECLARE var_service_price DECIMAL(8,2);
+    DECLARE elements INT;
+    DECLARE counter INT DEFAULT 0;
+
+    -- Get the number of elements in the JSON array
+    SET elements = IFNULL(JSON_LENGTH((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id)), 0);
+
+    -- Iterate through the JSON array
+    WHILE counter < elements DO
+        SET var_service_category = IFNULL(JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_category'))), 'Unknown');
+        SET var_service_name = IFNULL(JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_name'))), 'Unknown');
+        SET var_service_date = IFNULL(JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_date'))), CURDATE());
+        SET var_service_price = IFNULL(JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_price'))), 0.00);
+
+        -- Perform any additional operations here (e.g., insert into another table)
+        SELECT var_service_category, var_service_name, var_service_date, var_service_price;
+        SET counter = counter + 1;
+    END WHILE;
+END;

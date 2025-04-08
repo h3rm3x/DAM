@@ -1,0 +1,21 @@
+[
+    {
+    "service_category": "Room Service",
+    "service_name": "Dinner",
+    "date": "2025-04-07",
+    "service_price": 50.00
+},
+{
+    "service_category": "Spa",
+    "service_name": "1h Massage",
+    "date": "2025-04-08",
+    "service_price": 100.00
+},
+{
+    "service_category": "Gym",
+    "service_name": "1h Class with Trainer",
+    "date": "2025-04-10",
+    "service_price": 80.00
+}
+
+]
