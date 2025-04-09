@@ -1,17 +1,9 @@
 (: a) :)
-(: for $llibre in //llibre
-return <llibre>
-  <titol>{$llibre/titol/text()}</titol>
-  <autors>
-    {
-      for $autor in $llibre/autor
-      return <autor>
-        <nom>{$autor/nom/text()}</nom>
-        <llinatges>{$autor/llinatges/text()}</llinatges>
-      </autor>
-    }
-  </autors>
-</llibre> :)
+for $llibre in //llibre
+return concat("Titol: ",  $llibre/titol/text(), " Autor ", for $autor in $llibre/autor return concat($autor/nom/text(), " ",  $autor/llinatges/text())
+   )
+ 
+
 
 (: b) Obtenir els títols de llibre dels quals consti més d'un autor.:)
 (: for $llibre in //llibre
@@ -71,8 +63,8 @@ where $llibre/editorial= "Addison-Wesley" and $llibre//any > "2005"
 return $llibre :)
 
 (: n) Obtenir el títol del llibre i l’editorial per a aquells llibres que tinguin un preu superior a 50€. :)
-for $llibre in //llibre 
+(: for $llibre in //llibre 
 where $llibre/preu > "50"
-return concat("Titol: ", $llibre/titol/text(),", Editorial: " , $llibre/editorial)  
+return concat("Titol: ", $llibre/titol/text(),", Editorial: " , $llibre/editorial) :)  
      
 
