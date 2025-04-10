@@ -24,7 +24,11 @@ public class ex_10_8 {
             FileInputStream fis = new FileInputStream("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD10\\personas.dat");
             ObjectInputStream ois = new ObjectInputStream(fis);
             ArrayList<Persona> MostrarLista = new ArrayList<>();
-            MostrarLista.add((Persona) ois.readObject());
+            for (int i = 0; i < list.size(); i++) {
+                MostrarLista.add((Persona) ois.readObject());
+            }
+
+
 
             ois.close();
             fis.close();

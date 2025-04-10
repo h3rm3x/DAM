@@ -1,4 +1,6 @@
-public class Persona  {
+import java.io.Serializable;
+
+public class Persona  implements Serializable {
     private String nombre;
     private String dni;
     private int edat;
@@ -37,6 +39,6 @@ public class Persona  {
 
     // Método para mostrar información
     public String toString() {
-        return "Nom" + nombre + ", DNI: " + dni + ", Edat: " + edat;
+        return "Nom: " + nombre + ", DNI: " + dni + ", Edat: " + edat;
     }
 }

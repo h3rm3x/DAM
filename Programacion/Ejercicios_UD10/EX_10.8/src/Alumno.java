@@ -1,4 +1,6 @@
-public class Alumno extends Persona{
+import java.io.Serializable;
+
+public class Alumno extends Persona implements Serializable {
     String nivel;
     public Alumno(String nombre, String DNI, int edad,String nivel) {
         super(nombre, DNI, edad);
