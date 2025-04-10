@@ -120,3 +120,7 @@ UPDATE reservations
 SET extras_json = SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id
 WHERE reservation_id = var_reservation_id;
 
+-- reservation view
+CREATE VIEW reservation_view AS
+SELECT r.reservation_id, r.room_number, r.customer_id, r.check_in, r.check_out, r.number_of_guests, c.first_name, c.last_name, c.email, c.phone_number, c.address, r.price_per_night*(DATEDIFF(r.check_out,r.check_in)) +iterate_extras(r.reservation_id) AS subtotal
+FROM reservation r
