@@ -79,21 +79,44 @@ BEGIN
     DECLARE var_service_name VARCHAR(255);
     DECLARE var_service_date DATE;
     DECLARE var_service_price DECIMAL(8,2);
+    DECLARE var_subtotal DECIMAL(10,2);
     DECLARE elements INT;
     DECLARE counter INT DEFAULT 0;
 
     -- Get the number of elements in the JSON array
     SET elements = IFNULL(JSON_LENGTH((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id)), 0);
+    IF elements > 0 THEN
+        CREATE TEMPORARY TABLE IF NOT EXISTS temp_extras (
+        service_category VARCHAR(255),
+        `service_name` VARCHAR(255),
+        service_date DATE,
+        service_price DECIMAL(8,2)
+    );
+    END IF;
+    
 
     -- Iterate through the JSON array
     WHILE counter < elements DO
-        SET var_service_category = IFNULL(JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_category'))), 'Unknown');
-        SET var_service_name = IFNULL(JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_name'))), 'Unknown');
-        SET var_service_date = IFNULL(JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_date'))), CURDATE());
-        SET var_service_price = IFNULL(JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_price'))), 0.00);
+        SET var_service_category = JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_category')));
+        SET var_service_name = JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_name')));
+        SET var_service_date = JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_date')));
+        SET var_service_price = JSON_UNQUOTE(JSON_EXTRACT((SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id), CONCAT('$[', counter, '].service_price')));
+        SET var_subtotal = var_subtotal + var_service_price;
+        
+        INSERT INTO temp_extras (service_category, service_name, service_date, service_price) VALUES (var_service_category, var_service_name, var_service_date, var_service_price);
 
-        -- Perform any additional operations here (e.g., insert into another table)
-        SELECT var_service_category, var_service_name, var_service_date, var_service_price;
+        
+
         SET counter = counter + 1;
     END WHILE;
+    -- Return the subtotal
+    SELECT service_category, SUM(service_price)
+    FROM temp_extras
+    GROUP BY service_category;
 END;
+
+--
+UPDATE reservations
+SET extras_json = SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id
+WHERE reservation_id = var_reservation_id;
+
