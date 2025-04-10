@@ -1,7 +1,7 @@
-public class Calculadora {
+public class Calculadora_7_3 {
     private int num1;
     private int num2;
-    public Calculadora(int a, int b) {
+    public Calculadora_7_3(int a, int b) {
         num1 = a;
         num2 = b;
     }
