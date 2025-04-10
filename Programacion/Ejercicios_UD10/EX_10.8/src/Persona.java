@@ -1,5 +1,4 @@
-// Clase base Persona
-public class Persona {
+public class Persona  {
     private String nombre;
     private String dni;
     private int edat;

@@ -5,15 +5,17 @@ public class Profesor extends Persona {
         super(nombre, dni, edad);
         this.asignatura = asignatura;
     }
+
     public String getAsignatura() {
         return asignatura;
     }
+
     public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
 
     @Override
     public String toString() {
-        return super.toString() +  "Asignatura: " + asignatura + "\n";
+        return super.toString() + "Asignatura: " + asignatura + "\n";
     }
 }
