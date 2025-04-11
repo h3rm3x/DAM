@@ -9,21 +9,19 @@ public class ex_10_10 {
 
 
             String inputLine;
-            String inputText = "";
+            StringBuilder inputText = new StringBuilder();
             while ((inputLine = br.readLine()) != null) {
-                inputText += inputLine ;
-
+                inputText.append(inputLine);
             }
             br.close();
 
-            FileInputStream fis = new FileInputStream("ex_10_10.txt");
-            BufferedReader br2 = new BufferedReader(new InputStreamReader(fis));
-
+            FileWriter fw = new FileWriter("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD10\\ex_10_10.txt");
+            fw.write(inputText.toString());
 
         }catch(Exception e){
             System.out.println("Error: " + e.getMessage());
         }
     }
 
-    }
 }
+
