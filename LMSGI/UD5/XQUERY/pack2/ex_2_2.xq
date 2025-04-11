@@ -1,7 +1,7 @@
 (: a) :)
-for $llibre in //llibre
+(: for $llibre in //llibre
 return concat("Titol: ",  $llibre/titol/text(), " Autor ", for $autor in $llibre/autor return concat($autor/nom/text(), " ",  $autor/llinatges/text())
-   )
+   ) :)
  
 
 
@@ -66,5 +66,13 @@ return $llibre :)
 (: for $llibre in //llibre 
 where $llibre/preu > "50"
 return concat("Titol: ", $llibre/titol/text(),", Editorial: " , $llibre/editorial) :)  
+
+(: o) Generar dades HTML amb la llista de títols dels llibres. :)
+<ul>{
+  for $llibre in //llibre 
+  return <li>{ $llibre/titol/text() }</li> 
+}
+
+</ul>
      
 
