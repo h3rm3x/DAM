@@ -83,7 +83,7 @@ public class Partida implements Serializable {
         return "Partida{" +
                 "nombreJugador='" + nombreJugador + '\'' +
                 ", combinacionSecreta=" + Arrays.toString(combinacionSecreta) +
-                ", listaTiradas=" + listaTiradas +
+                ", listaTiradas=" + Arrays.toString(listaTiradas.toArray()) +
                 ", puntuacion=" + puntuacion +
                 ", Resultado=" + EstadoFinal +
                 '}';

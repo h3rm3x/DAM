@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -21,7 +18,13 @@ public class Mastermind {
                 case 1:
                     System.out.println("Ingrese el nombre del jugador: ");
                     Partida partida = new Partida(sc.nextLine());
-                    partida();
+                    try {
+                        partida();
+                    } catch (IOException e) {
+                        System.out.println("Error al guardar la partida");
+                        e.printStackTrace();
+                    }
+
                     break;
                 case 2:
                     verPartidas();
@@ -43,8 +46,7 @@ public class Mastermind {
 
     public static void partida() throws IOException {
         int intentos = 0;
-        FileWriter fw = new FileWriter("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD10\\EX_10_12\\src\\partidas.txt");
-        ObjectInputStream ois = new ObjectInputStream();
+
 
         while (intentos < 16) {
             System.out.println("Introduce tu combinación de colores: (R red, B blue, G green, M magenta, Y yellow, C cyan)");
@@ -70,6 +72,11 @@ public class Mastermind {
             }
         }
         partidas.put(partida.getNombreJugador(), partida);
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD10\\EX_10_12\\src\\partidas.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(partidas);
+        oos.close();
+        fos.close();
         if (partida.getEstadoFinal()) {
             System.out.println("Has ganado la partida");
 
