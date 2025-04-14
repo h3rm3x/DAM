@@ -1,12 +1,13 @@
 (: a :)
-(: for $producto in //producto
+for $producto in //producto
 where $producto/detalle/precio/@moneda = "USD"
-return concat("Nombre producto: ", $producto/nombre , ", Precio: ", $producto/detalle/precio) :)
+return concat("Nombre producto: ", $producto/nombre , ", Precio: ", $producto/detalle/precio)
 
 (: b :)
 (: <resultado>{sum(for $producto in //producto
 where $producto/nombre/starts-with(text(),"Smart")
 return count($producto))}</resultado> :)
+
 
 (: c :)
 (: <product>{
@@ -60,11 +61,11 @@ let $preciomin := min($productosinRAM/detalle/precio)
 return <producto>{$productosinRAM[detalle/precio = $preciomin]/nombre,<precio>{$preciomin}</precio>}</producto> }</productos> :)
 
 (: h) :)
-let $productos:= //producto
+(: let $productos:= //producto
 let $preciomedio:= avg($productos/detalle/precio)
 for $producto in $productos
 where xs:double($producto/detalle/precio) < $preciomedio and $producto/detalle/especificaciones/conexion = "Wi-Fi"
-return $producto
+return $producto :)
 
 
 

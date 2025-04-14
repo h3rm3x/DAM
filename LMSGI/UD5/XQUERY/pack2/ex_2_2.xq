@@ -1,6 +1,6 @@
 (: a) :)
 (: for $llibre in //llibre
-return concat("Titol: ",  $llibre/titol/text(), " Autor ", for $autor in $llibre/autor return concat($autor/nom/text(), " ",  $autor/llinatges/text())
+return concat("Titol: ",  $llibre/titol/text(), " Autor ", for $autor in $llibre/autor return concat($autor/nom/text(), " ",  $autor/llinatges/text(), ", ")
    ) :)
  
 
@@ -29,7 +29,11 @@ return concat("Titulo: ", $llibre/titol, ", ID: ", $llibre/@id,", Nº autores", 
 (: g)Obtenir per cada llibre el seu títol i autors, tenint en compte que si el llibre té
 més d'un autor figurarà el primer autor i el text “et. Al”. :)
 (: for $llibre in //llibre
-return concat("Titulo: ", $llibre/titol, ", Autores: ", $llibre/autor[1]/nom," ", $llibre/autor[1]/llinatges," et. Al") :)
+return 
+if (count($llibre/autor)>= 2) then  
+  concat("Titulo: ", $llibre/titol, ", Autores: ", $llibre/autor[1]/nom," ", $llibre/autor[1]/llinatges," et. Al")
+else 
+  concat("Titulo: ", $llibre/titol, ", Autores: ", $llibre/autor/nom," ", $llibre/autor/llinatges) :)
 
 (: h) Obtenir el títol d'aquells llibres en els quals tots els seus autors tinguin el
 cognom Alarcon i el nom P. :)
@@ -43,11 +47,21 @@ where $llibre/autor/llinatges= "DATE"and $llibre/autor/nom = "C.J."
 return $llibre/titol/text() :)
 
 (: j) Per a aquells llibres que es titulin “Bases de dades”, obtenir tots els seus atributs i elements, excepte el d'autor. :)
+
 (: for $llibre in //llibre 
 where $llibre/titol = "Bases de Datos" 
-return (for $element in $llibre/*
+return $llibre/@*, for $element in $llibre/*
     where name($element) != 'autor'
-    return $element ) :)
+    return $element :) 
+
+   
+(: for $llibre in //llibre
+where $llibre/titol = "Bases de Datos"
+return
+<llibre>
+{ $llibre/@* }
+{ $llibre/* except $llibre/autor }
+</llibre> :)    
 
 (: k)Obtenir aquells llibres que figurin sense editorial. :)
 (: for $llibre in //llibre[not(editorial)]
@@ -64,15 +78,24 @@ return $llibre :)
 
 (: n) Obtenir el títol del llibre i l’editorial per a aquells llibres que tinguin un preu superior a 50€. :)
 (: for $llibre in //llibre 
-where $llibre/preu > "50"
-return concat("Titol: ", $llibre/titol/text(),", Editorial: " , $llibre/editorial) :)  
+where xs:decimal($llibre/preu > 50)
+return concat("Titol: ", $llibre/titol/text(),", Editorial: " , $llibre/editorial, " Precio: ", $llibre/preu) :)  
 
 (: o) Generar dades HTML amb la llista de títols dels llibres. :)
-<ul>{
-  for $llibre in //llibre 
-  return <li>{ $llibre/titol/text() }</li> 
-}
-
-</ul>
+<html>
+  <head><title>Sortida HTML</title></head>
+  <body> 
+  <ul>
+  {
+    for $llibre in //llibre 
+    return
+     <li>{ 
+     $llibre/titol/text() 
+     }</li> 
+  }
+  
+  </ul> 
+  </body>
+</html>
      
 
