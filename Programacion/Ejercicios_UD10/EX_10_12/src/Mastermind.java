@@ -8,6 +8,11 @@ public class Mastermind {
     static HashMap<String, Partida> partidas = new HashMap<>();
     static char[] combinacionIntentada = new char[4];
     public static void main(String[] args) {
+        try{
+            FileReader fr = new FileReader("partidas.txt");
+        } catch (IOException e) {
+            e.getMessage();
+        }
         while (true) {
             System.out.println("1. Jugar");
             System.out.println("2. Ver partidas");

@@ -19,7 +19,7 @@ public class Partida implements Serializable {
         for (int i = 0; i < 4; i++) {
            Random random = new Random();
             int index = random.nextInt(6);
-          combinacionSecreta[i] = colores[index];
+         combinacionSecreta[i] = colores[index];
         }
         this.listaTiradas = new ArrayList<Tirada>();
         this.EstadoFinal = false;
@@ -52,21 +52,25 @@ public class Partida implements Serializable {
     public int[] comprobar(Tirada tirada) {
         int aciertos = 0;
         int malColocados = 0;
-        boolean[] control = {false, false, false, false};
+        boolean[] controlSecreta = {false, false, false, false};
+        boolean[] controlIntentada = {false, false, false, false};
         char[] combinacionIntentada = Tirada.getCombinacionInentada();
 
         for (int i = 0; i < combinacionSecreta.length; i++) {
             if (combinacionIntentada[i] == combinacionSecreta[i]) {
                 aciertos++;
-                control[i] = true;
+                controlSecreta[i] = true;
+                controlIntentada[i] = true; // Marcar como verificada en la intentada
             }
         }
-
-        for (int i=0; i<4; i++) {
-            if (!control[i]) {
-                for (int j = 0; j < 4; j++) {
-                    if (combinacionSecreta[i] == combinacionIntentada[j] && !control[j]) {
+// Contar mal colocados
+        for (int i = 0; i < combinacionSecreta.length; i++) {
+            if (!controlSecreta[i]) { // Solo considerar posiciones no verificadas en la secreta
+                for (int j = 0; j < combinacionIntentada.length; j++) {
+                    if (!controlIntentada[j] && combinacionSecreta[i] == combinacionIntentada[j]) {
                         malColocados++;
+                        controlIntentada[j] = true; // Marcar como verificada en la intentada
+                        break;
                     }
                 }
             }
@@ -79,14 +83,18 @@ public class Partida implements Serializable {
         return new int[]{aciertos, malColocados};
     }
 
+    @Override
     public String toString() {
-        return "Partida{" +
-                "nombreJugador='" + nombreJugador + '\'' +
-                ", combinacionSecreta=" + Arrays.toString(combinacionSecreta) +
-                ", listaTiradas=" + Arrays.toString(listaTiradas.toArray()) +
-                ", puntuacion=" + puntuacion +
-                ", Resultado=" + EstadoFinal +
-                '}';
+        StringBuilder tiradas = new StringBuilder();
+        for (Tirada tirada : listaTiradas) {
+            tiradas.append(tirada.toString()).append("\n");
+        }
+        return "Partida:\n" +
+                "Jugador: " + nombreJugador + "\n" +
+                "Combinación secreta: " + Arrays.toString(combinacionSecreta) + "\n" +
+                "Puntuación: " + puntuacion + "\n" +
+                "Estado: " + (EstadoFinal ? "Ganada" : "Perdida") + "\n" +
+                "Tiradas:\n" + tiradas;
     }
 
 }
