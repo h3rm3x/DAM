@@ -85,9 +85,9 @@ public class Partida implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder tiradas = new StringBuilder();
+        String tiradas = "";
         for (Tirada tirada : listaTiradas) {
-            tiradas.append(tirada.toString()).append("\n");
+            tiradas += tirada.toString() + "\n";
         }
         return "Partida:\n" +
                 "Jugador: " + nombreJugador + "\n" +
