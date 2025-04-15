@@ -9,13 +9,26 @@
 
 (: b) :)
 (: <editoriales>{
-   distinct-values(
-    for $libro in //libro
-    let $editorial:= $libro/detalle/editorial/text()
-    order by $editorial
-    return <editorial>{ <nombre>{upper-case($editorial)}</nombre>, <ejemplares>{count($libro[detalle/editorial = $editorial]/detalle/editorial)}</ejemplares>} </editorial>
-  )
+  for $editorial in distinct-values(//libro/detalle/editorial)
+  let $ejemplares := count(//libro[detalle/editorial = $editorial])
+  order by $editorial
+  return 
+    <editorial>
+      <nombre>{upper-case($editorial)}</nombre>
+      <ejemplares>{$ejemplares}</ejemplares>
+    </editorial>
 }</editoriales> :)
+
+<editoriales>{
+  for $editorial in distinct-values(//libro/detalle/editorial)
+  let $ejemplares := count(//libro[detalle/editorial = $editorial])
+  order by $editorial
+  return 
+    <editorial>
+      <nombre>{upper-case($editorial)}</nombre>
+      <ejemplares>{$ejemplares}</ejemplares>
+    </editorial>
+}</editoriales>
 
 (: c) :)
 
@@ -27,15 +40,16 @@
 }</libro> :)
 
 (: d) :)
-<resultado>{
-  let $preciomedio:= avg(//libro/detalle/precio[@moneda = "USD"])
-  return <precioMedio>{$preciomedio}</precioMedio>,
-   <libros>{
-   for $libro in //libro[detalle/precio[@moneda = "USD"]]
-      return 
-      $libro/titulo
-   }</libros>
-
-}</resultado>
+(:<resultado>{
+   
+    let $preciomedio:= avg(//libro/detalle/precio[@moneda = "USD"])
+    return 
+      <precioMedio>{$preciomedio}</precioMedio>,
+      <libros>{
+        for $libro in //libro[detalle/precio[@moneda = "USD"]]
+        return 
+          $libro/titulo
+      }</libros>
+  :)
 
 

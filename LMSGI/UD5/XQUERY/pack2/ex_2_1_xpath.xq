@@ -8,7 +8,7 @@
 (: //autor :)
 
 (: d) llibres editats entre 1998 i 2005 :) 
-(: //llibre[llibre/any= "1998" and llibre/any = "2005"] :)
+//llibre[llibre/any= "1998" or llibre/any = "2005"]
 
 (: e) tots els valors de l'atribut id :)
 (: //@id :)
@@ -26,4 +26,4 @@
 (: //llibre[@id>2] :)
 
 (: j) llibres editats entre 1998 i 2005 :)
-//llibre[any>= "1998" and any <= "2005"]
+(: //llibre[any>= "1998" and any <= "2005"] :)
