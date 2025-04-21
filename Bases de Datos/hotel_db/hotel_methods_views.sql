@@ -86,9 +86,12 @@ BEGIN
     DECLARE ticket_index INT DEFAULT 0;
     DECLARE category_index INT DEFAULT 0;
     DECLARE total_categories INT;
+    DECLARE subtotal DECIMAL(10,2) DEFAULT 0;
 
     -- Get the JSON object containing all categories
     SET category_names = (SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id);
+
+    SET subtotal = 0;
 
     -- Check if the JSON object is not NULL
     IF category_names IS NOT NULL THEN
@@ -110,12 +113,16 @@ BEGIN
             -- Get the number of tickets in the current category
             SET ticket_count = IFNULL(JSON_LENGTH(JSON_EXTRACT(category_names, CONCAT('$."', category_name, '".tickets'))), 0);
             SET ticket_index = 0;
+            
+            SET subtotal = subtotal + (JSON_UNQUOTE(JSON_EXTRACT(category_names, CONCAT('$."', category_name, '".total'))));
 
+            
             -- Iterate through the tickets in the current category
             WHILE ticket_index < ticket_count DO
                 SET var_service_name = JSON_UNQUOTE(JSON_EXTRACT(category_names, CONCAT('$."', category_name, '".tickets[', ticket_index, '].service_name')));
                 SET var_service_date = JSON_UNQUOTE(JSON_EXTRACT(category_names, CONCAT('$."', category_name, '".tickets[', ticket_index, '].date')));
                 SET var_service_price = JSON_UNQUOTE(JSON_EXTRACT(category_names, CONCAT('$."', category_name, '".tickets[', ticket_index, '].service_price')));
+
 
                 -- Insert the ticket into the temporary table
                 INSERT INTO temp_extras (service_category, service_name, service_date, service_price)
@@ -126,10 +133,15 @@ BEGIN
 
                 SET ticket_index = ticket_index + 1;
             END WHILE;
-
+            
             SET category_index = category_index + 1;
         END WHILE;
 
+        INSERT INTO temp_extras ( service_category, service_name, service_date, service_price) 
+        SELECT 'Room', 'Room', check_in, price_per_night*DATEDIFF(check_out, check_in) FROM reservations WHERE reservation_id = var_reservation_id;
+
+        INSERT INTO temp_extras ( service_category, service_name, service_date, service_price)
+        VALUES ('Subtotal', 'Subtotal', NULL, subtotal+ (SELECT price_per_night*DATEDIFF(check_out, check_in) FROM reservations WHERE reservation_id = var_reservation_id));
         -- Return the subtotal grouped by category
         SELECT service_category, SUM(service_price) AS total_price
         FROM temp_extras
