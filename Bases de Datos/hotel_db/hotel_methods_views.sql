@@ -51,19 +51,24 @@ BEGIN
 END$$DELIMITER ;
 
 -- Swap the room of a reservation
-CREATE PROCEDURE swap_room(IN var_reservation_id INT, IN var_room_number INT)
+CREATE PROCEDURE swap_room(IN var_reservation_id INT)
 BEGIN
     DECLARE var_check_in DATE;
     DECLARE var_check_out DATE;
     DECLARE var_price_per_night INT;
     DECLARE var_number_of_guests INT;
+    DECLARE var_room_number INT;
+    DECLARE var_new_room_number INT;
     
     -- Get the details of the reservation
-    SELECT check_in, check_out, price_per_night, number_of_guests INTO var_check_in, var_check_out, var_price_per_night, var_number_of_guests FROM reservation WHERE reservation_id = reservation_id;
+    SELECT check_in, check_out, price_per_night, number_of_guests, room_number INTO var_check_in, var_check_out, var_price_per_night, var_number_of_guests, var_room_number FROM reservation WHERE reservation_id = reservation_id;
     -- Check if the new room is available
-    IF (SELECT COUNT(*)  FROM reservation WHERE room_number = var_room_number AND check_in <=  var_check_out AND check_out >= var_check_in ) IS NULL THEN
+    IF ((SELECT re.check_in FROM reservation re JOIN rooms ro ON re.room_number = ro.room_number WHERE (SELECT category_id FROM rooms WHERE room_number = var_room_number) = re.category_id )) > var_check_in THEN
+        
         -- Update the reservation with the new room number
         UPDATE reservation SET room_number = var_room_number, price_per_night = var_price_per_night, number_of_guests = var_number_of_guests WHERE reservation_id = var_reservation_id;
+
+        UPDATE reservation SET room_number = var_room_number WHERE room_number = var_room_number AND check_in <= var_check_out AND check_out >= var_check_in;
     ELSE 
         DECLARE var_new_room_number INT;
         SELECT room_number INTO var_new_room_number FROM room WHERE room_number != var_room_number ORDER BY RAND() LIMIT 1;
