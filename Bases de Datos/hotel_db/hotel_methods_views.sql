@@ -51,7 +51,8 @@ BEGIN
 END$$DELIMITER ;
 
 -- Swap the room of a reservation
-CREATE PROCEDURE swap_room(IN var_reservation_id INT)
+CREATE PROCEDURE swapRooms (IN var_reservation_id INT)
+DELIMITER $$
 BEGIN
     DECLARE var_check_in DATE;
     DECLARE var_check_out DATE;
@@ -59,24 +60,61 @@ BEGIN
     DECLARE var_number_of_guests INT;
     DECLARE var_room_number INT;
     DECLARE var_new_room_number INT;
-    
+    DECLARE var_category_id INT;
+    DECLARE found_room BOOLEAN DEFAULT FALSE;
+    DECLARE room_counter INT DEFAULT 0;
+
+    -- Get the category ID of the current room in the reservation
+    SET var_category_id = (SELECT ro.category_id 
+                           FROM reservations re 
+                           INNER JOIN rooms ro 
+                           ON ro.room_number = re.room_number 
+                           WHERE re.reservation_id = var_reservation_id);
+
     -- Get the details of the reservation
-    SELECT check_in, check_out, price_per_night, number_of_guests, room_number INTO var_check_in, var_check_out, var_price_per_night, var_number_of_guests, var_room_number FROM reservation WHERE reservation_id = reservation_id;
-    -- Check if the new room is available
-    IF ((SELECT re.check_in FROM reservation re JOIN rooms ro ON re.room_number = ro.room_number WHERE (SELECT category_id FROM rooms WHERE room_number = var_room_number) = re.category_id )) > var_check_in THEN
-        
-        -- Update the reservation with the new room number
-        UPDATE reservation SET room_number = var_room_number, price_per_night = var_price_per_night, number_of_guests = var_number_of_guests WHERE reservation_id = var_reservation_id;
+    SELECT check_in, check_out, price_per_night, number_of_guests, room_number 
+    INTO var_check_in, var_check_out, var_price_per_night, var_number_of_guests, var_room_number 
+    FROM reservations 
+    WHERE reservation_id = var_reservation_id;
 
-        UPDATE reservation SET room_number = var_room_number WHERE room_number = var_room_number AND check_in <= var_check_out AND check_out >= var_check_in;
-    ELSE 
-        DECLARE var_new_room_number INT;
-        SELECT room_number INTO var_new_room_number FROM room WHERE room_number != var_room_number ORDER BY RAND() LIMIT 1;
+    -- Check if a new room is available
+    WHILE NOT found_room AND room_counter < 50 DO
+        -- Select a random room in the same category that is not the current room
+        SET var_new_room_number = (SELECT room_number 
+                                   FROM rooms 
+                                   WHERE category_id = var_category_id 
+                                   AND room_number != var_room_number 
+                                   ORDER BY RAND() 
+                                   LIMIT 1);
 
+        -- Check if the new room is not currently checked in
+        IF (SELECT COUNT(*) 
+            FROM reservations re 
+            WHERE re.room_number = var_new_room_number 
+            AND re.status = 'check-in') = 0 THEN
+
+            -- Update the reservation with the new room number
+            UPDATE reservations 
+            SET room_number = var_new_room_number, 
+                price_per_night = (SELECT price_per_night 
+                                   FROM rooms 
+                                   WHERE room_number = var_new_room_number) 
+            WHERE reservation_id = var_reservation_id;
+
+            SET found_room = TRUE;
+        END IF;
+
+        SET room_counter = room_counter + 1;
+    END WHILE;
+
+    -- If no room was found, raise an error
+    IF NOT found_room THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No available room found for the swap.';
     END IF;
+END$$
 
-
-END;
+DELIMITER ;
 -- procedure that iterates the elements of the extras
 CREATE PROCEDURE iterate_extras(IN var_reservation_id INT)
 BEGIN
@@ -163,3 +201,7 @@ WHERE reservation_id = var_reservation_id;
 CREATE VIEW reservation_view AS
 SELECT r.reservation_id, r.room_number, r.customer_id, r.check_in, r.check_out, r.number_of_guests, c.first_name, c.last_name, c.email, c.phone_number, c.address, r.price_per_night*(DATEDIFF(r.check_out,r.check_in)) AS subtotal
 FROM reservation r
+
+
+
+
