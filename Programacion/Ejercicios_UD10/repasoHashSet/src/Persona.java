@@ -1,6 +1,7 @@
 import java.io.Serializable;
+import java.util.Objects;
 
-public class Persona  implements Serializable {
+public class Persona implements Serializable {
     private String nombre;
     private String dni;
     private int edat;
@@ -35,6 +36,16 @@ public class Persona  implements Serializable {
 
     public void setEdat(int edad) {
         this.edat = edad;
+    }
+    // Métodos hashCode y equals
+    @Override
+    public int hashCode() {
+        return Objects.hash(dni);
+    }
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        return this.dni.equals(((Persona) obj).dni);
     }
 
 

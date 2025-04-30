@@ -23,6 +23,7 @@
       <module fileurl="file://$PROJECT_DIR$/ejemplo_leer_por_lineas/ejemplo_leer_por_lineas.iml" filepath="$PROJECT_DIR$/ejemplo_leer_por_lineas/ejemplo_leer_por_lineas.iml" />
       <module fileurl="file://$PROJECT_DIR$/ejemplo_objeto_persona/ejemplo_objeto_persona.iml" filepath="$PROJECT_DIR$/ejemplo_objeto_persona/ejemplo_objeto_persona.iml" />
       <module fileurl="file://$PROJECT_DIR$/ejemplo_objetos/ejemplo_objetos.iml" filepath="$PROJECT_DIR$/ejemplo_objetos/ejemplo_objetos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/repasoHashSet/repasoHashSet.iml" filepath="$PROJECT_DIR$/repasoHashSet/repasoHashSet.iml" />
     </modules>
   </component>
 </project>
