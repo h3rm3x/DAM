@@ -127,8 +127,8 @@ BEGIN
     END WHILE;
 
     UPDATE reservations
-        SET tag = NULL
-        WHERE tag IN ('new', 'current');
+    SET tag = NULL
+    WHERE tag IN ('new', 'current');
 END$$
 
 DELIMITER ;
@@ -213,7 +213,7 @@ BEGIN
             SET var_category_id_new = var_category_id_new + 1;
         END WHILE;
     END IF;
-
+    SELECT "Room changed to: ", var_new_room_number, "in the category: ", (SELECT category_name FROM categories WHERE category_id= var_category_id_new), " whith the original price per night: ", var_price_per_night
     -- Si no se encontró ninguna habitación, lanzar un error
     IF NOT found_room THEN
         SIGNAL SQLSTATE '45000'
@@ -223,6 +223,99 @@ END$$
 
 DELIMITER ;
 
+-- procedure to downgrade the room of a reservation
+DELIMITER $$
+CREATE PROCEDURE downgradeRoom (IN var_reservation_id INT)
+BEGIN
+    DECLARE var_check_in DATE;
+    DECLARE var_check_out DATE;
+    DECLARE var_price_per_night INT;
+    DECLARE var_number_of_guests INT;
+    DECLARE var_room_number INT;
+    DECLARE var_new_room_number INT;
+    DECLARE var_new_price_per_night INT;
+    DECLARE var_category_id INT;
+    DECLARE var_category_id_new INT;
+    DECLARE found_room BOOLEAN DEFAULT FALSE;
+    DECLARE room_counter INT DEFAULT 0;
+
+    -- Obtener el ID de categoría de la habitación actual en la reserva
+    SET var_category_id = (SELECT ro.category_id 
+                           FROM reservations re 
+                           INNER JOIN rooms ro 
+                           ON ro.room_number = re.room_number 
+                           WHERE re.reservation_id = var_reservation_id);
+
+    -- Obtener los detalles de la reserva
+    SELECT check_in, check_out, price_per_night, number_of_guests, room_number 
+    INTO var_check_in, var_check_out, var_price_per_night, var_number_of_guests, var_room_number 
+    FROM reservations 
+    WHERE reservation_id = var_reservation_id;
+
+    -- Intentar encontrar una nueva habitación en la misma categoría
+    WHILE NOT found_room AND room_counter < 50 DO
+        SET var_new_room_number = (SELECT room_number 
+                                   FROM rooms 
+                                   WHERE category_id = var_category_id 
+                                   AND room_number != var_room_number 
+                                   ORDER BY RAND() 
+                                   LIMIT 1);
+
+        IF check_availability(var_new_room_number, var_check_in, var_check_out) THEN
+            -- Actualizar la reserva con la nueva habitación
+            UPDATE reservations
+            SET room_number = var_new_room_number 
+            WHERE reservation_id = var_reservation_id;
+
+            SET found_room = TRUE;
+        END IF;
+
+        SET room_counter = room_counter + 1;
+    END WHILE;
+
+    -- Si no se encontró una habitación en la misma categoría, intentar en categorías superiores
+    IF NOT found_room THEN
+        SET var_category_id_new = var_category_id - 1;
+
+        WHILE NOT found_room AND var_category_id_new <= 5 DO
+            SET room_counter = 0;
+
+            WHILE NOT found_room AND room_counter < 50 DO
+                SET var_new_room_number = (SELECT room_number 
+                                           FROM rooms 
+                                           WHERE category_id = var_category_id_new 
+                                           AND room_number != var_room_number 
+                                           ORDER BY RAND() 
+                                           LIMIT 1);
+                IF check_availability(var_new_room_number, var_check_in, var_check_out) THEN
+                    SET var_new_price_per_night = (SELECT price_per_night 
+                                                   FROM categories
+                                                   WHERE category_id = var_category_id_new); 
+                    -- Actualizar la reserva con la nueva habitación
+                    UPDATE reservations
+                    SET room_number = var_new_room_number, 
+                        price_per_night = var_new_price_per_night 
+                    FROM reservations 
+                    WHERE reservation_id = var_reservation_id;
+                    
+
+                    SET found_room = TRUE;
+                END IF;
+
+                SET room_counter = room_counter + 1;
+            END WHILE;
+
+            SET var_category_id_new = var_category_id_new + 1;
+        END WHILE;
+    END IF;
+    SELECT "Room changed to: ", var_new_room_number, " with price per night: ", var_new_price_per_night, ". There are ",(var_new_price_per_night-var_price_per_night)*DATEDIFF(var_check_out, var_check_in), "€ to be returned to the customer.";
+    -- Si no se encontró ninguna habitación, lanzar un error
+    IF NOT found_room THEN
+        SELECT "No available room found for the upgrade.";
+    END IF;
+END$$
+
+DELIMITER ;
 
 
 
