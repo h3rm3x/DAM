@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+  <libro id="1">
+    <titulo>Introducción a la Programación</titulo>
+    <autor>Juan Pérez</autor>
+    <detalle>
+      <editorial>Tecnología Moderna</editorial>
+      <precio moneda="USD">49.99</precio>
+      <especificaciones>
+        <paginas>320</paginas>
+        <formato>Tapa blanda</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Una guía completa para principiantes en programación.</descripcion>
+  </libro>
+  <libro id="2">
+    <titulo>Base de Datos Avanzadas</titulo>
+    <autor>María González</autor>
+    <detalle>
+      <editorial>Datos Globales</editorial>
+      <precio moneda="EURO">59.95</precio>
+      <especificaciones>
+        <paginas>500</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Explora las últimas técnicas y herramientas en el manejo de bases de datos.</descripcion>
+  </libro>
+  <libro id="3">
+    <titulo>Inteligencia Artificial: Fundamentos</titulo>
+    <autor>Carlos Ramírez</autor>
+    <detalle>
+      <editorial>Innovación Digital</editorial>
+      <precio moneda="USD">79.99</precio>
+      <especificaciones>
+        <paginas>400</paginas>
+        <formato>Ebook</formato>
+        <idioma>Inglés</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Un análisis profundo de los principios de la inteligencia artificial.</descripcion>
+  </libro>
+  <libro id="4">
+    <titulo>Redes de Computadoras</titulo>
+    <autor>Laura Medina</autor>
+    <detalle>
+      <editorial>Comunicaciones Avanzadas</editorial>
+      <precio moneda="USD">35.50</precio>
+      <especificaciones>
+        <paginas>250</paginas>
+        <formato>Tapa blanda</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Una introducción práctica a las redes de computadoras modernas.</descripcion>
+  </libro>
+  <libro id="5">
+    <titulo>Desarrollo Web con React</titulo>
+    <autor>Sofía Navarro</autor>
+    <detalle>
+      <editorial>Código Abierto</editorial>
+      <precio moneda="USD">45.00</precio>
+      <especificaciones>
+        <paginas>280</paginas>
+        <formato>Ebook</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Domina el desarrollo web moderno utilizando React.</descripcion>
+  </libro>
+  <libro id="6">
+    <titulo>Machine Learning Práctico</titulo>
+    <autor>Daniel López</autor>
+    <detalle>
+      <editorial>Innovación Digital</editorial>
+      <precio moneda="USD">89.99</precio>
+      <especificaciones>
+        <paginas>450</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Inglés</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Aprende a implementar soluciones prácticas de Machine Learning.</descripcion>
+  </libro>
+  <libro id="7">
+    <titulo>Diseño de Bases de Datos Relacionales</titulo>
+    <autor>Ana Morales</autor>
+    <detalle>
+      <editorial>Datos Globales</editorial>
+      <precio moneda="EURO">65.75</precio>
+      <especificaciones>
+        <paginas>380</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Guía completa sobre diseño y optimización de bases de datos relacionales.</descripcion>
+  </libro>
+  <libro id="8">
+    <titulo>JavaScript para Principiantes</titulo>
+    <autor>Pedro Castillo</autor>
+    <detalle>
+      <editorial>Código Abierto</editorial>
+      <precio moneda="USD">39.99</precio>
+      <especificaciones>
+        <paginas>300</paginas>
+        <formato>Tapa blanda</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Aprende JavaScript desde cero con ejemplos prácticos.</descripcion>
+  </libro>
+  <libro id="9">
+    <titulo>Python Avanzado</titulo>
+    <autor>Clara Ortega</autor>
+    <detalle>
+      <editorial>Tecnología Moderna</editorial>
+      <precio moneda="USD">55.00</precio>
+      <especificaciones>
+        <paginas>360</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Mejora tus habilidades con Python en proyectos avanzados.</descripcion>
+  </libro>
+  <libro id="10">
+    <titulo>Algoritmos en Java</titulo>
+    <autor>Rafael Mendoza</autor>
+    <detalle>
+      <editorial>Datos Globales</editorial>
+      <precio moneda="EURO">49.90</precio>
+      <especificaciones>
+        <paginas>420</paginas>
+        <formato>Tapa blanda</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Un manual completo de algoritmos implementados en Java.</descripcion>
+  </libro>
+  <libro id="11">
+    <titulo>Introducción al Big Data</titulo>
+    <autor>Elena Rodríguez</autor>
+    <detalle>
+      <editorial>Innovación Digital</editorial>
+      <precio moneda="USD">65.50</precio>
+      <especificaciones>
+        <paginas>310</paginas>
+        <formato>Ebook</formato>
+        <idioma>Inglés</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Los fundamentos del análisis de grandes volúmenes de datos.</descripcion>
+  </libro>
+  <libro id="12">
+    <titulo>Gestión de Proyectos Ágiles</titulo>
+    <autor>Víctor Jiménez</autor>
+    <detalle>
+      <editorial>Código Abierto</editorial>
+      <precio moneda="USD">50.00</precio>
+      <especificaciones>
+        <paginas>270</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Aprende a gestionar proyectos ágiles de forma efectiva.</descripcion>
+  </libro>
+  <libro id="13">
+    <titulo>Ingeniería de Software</titulo>
+    <autor>José Herrera</autor>
+    <detalle>
+      <editorial>Datos Globales</editorial>
+      <precio moneda="EURO">70.00</precio>
+      <especificaciones>
+        <paginas>550</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Una perspectiva moderna de la ingeniería de software.</descripcion>
+  </libro>
+  <libro id="14">
+    <titulo>Automatización con Ansible</titulo>
+    <autor>Miguel Ángel</autor>
+    <detalle>
+      <editorial>Tecnología Moderna</editorial>
+      <precio moneda="USD">42.00</precio>
+      <especificaciones>
+        <paginas>330</paginas>
+        <formato>Ebook</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Guía práctica para la automatización de procesos con Ansible.</descripcion>
+  </libro>
+  <libro id="15">
+    <titulo>Seguridad Informática</titulo>
+    <autor>Luis Pérez</autor>
+    <detalle>
+      <editorial>Comunicaciones Avanzadas</editorial>
+      <precio moneda="USD">48.99</precio>
+      <especificaciones>
+        <paginas>290</paginas>
+        <formato>Tapa blanda</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Protege tus sistemas con técnicas avanzadas de seguridad.</descripcion>
+  </libro>
+  <libro id="16">
+    <titulo>Blockchain para Negocios</titulo>
+    <autor>Andrea López</autor>
+    <detalle>
+      <editorial>Innovación Digital</editorial>
+      <precio moneda="USD">75.00</precio>
+      <especificaciones>
+        <paginas>340</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Inglés</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Implementa soluciones blockchain en el mundo empresarial.</descripcion>
+  </libro>
+  <libro id="17">
+    <titulo>Introducción al Diseño UX</titulo>
+    <autor>Beatriz Fernández</autor>
+    <detalle>
+      <editorial>Código Abierto</editorial>
+      <precio moneda="USD">35.00</precio>
+      <especificaciones>
+        <paginas>260</paginas>
+        <formato>Tapa blanda</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Domina los conceptos clave del diseño de experiencia de usuario.</descripcion>
+  </libro>
+  <libro id="18">
+    <titulo>Virtualización con VMware</titulo>
+    <autor>Fernando Ruiz</autor>
+    <detalle>
+      <editorial>Comunicaciones Avanzadas</editorial>
+      <precio moneda="USD">65.00</precio>
+      <especificaciones>
+        <paginas>400</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Configura entornos virtualizados eficientemente con VMware.</descripcion>
+  </libro>
+  <libro id="19">
+    <titulo>Metodologías DevOps</titulo>
+    <autor>Paula Torres</autor>
+    <detalle>
+      <editorial>Tecnología Moderna</editorial>
+      <precio moneda="USD">60.00</precio>
+      <especificaciones>
+        <paginas>310</paginas>
+        <formato>Tapa dura</formato>
+        <idioma>Español</idioma>
+      </especificaciones>
+    </detalle>
+    <descripcion>Integración y entrega continua con las mejores prácticas DevOps.</descripcion>
+  </libro>
+</biblioteca>

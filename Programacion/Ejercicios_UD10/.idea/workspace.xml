@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfbfa450-bcd2-40a7-9694-7d839590e88c" name="Changes" comment="ex 10.10 10.11 y empezado mastermind con ficheros" />
+    <list default="true" id="6c10afc3-3638-4721-936f-4b86cebf7938" name="Changes" comment="ejercicio repaso limpiar fichero" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,5 +125,9 @@
     <MESSAGE value="Inicio UD10 ficheros" />
     <MESSAGE value="ex 10.1 y 10.2" />
     <option name="LAST_COMMIT_MESSAGE" value="ex 10.1 y 10.2" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
