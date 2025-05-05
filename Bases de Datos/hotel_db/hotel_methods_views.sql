@@ -409,6 +409,9 @@ CREATE VIEW reservation_view AS
 SELECT r.reservation_id, r.room_number, r.customer_id, r.check_in, r.check_out, r.number_of_guests, c.first_name, c.last_name, c.email, c.phone_number, c.address, r.price_per_night*(DATEDIFF(r.check_out,r.check_in)) AS subtotal
 FROM reservation r
 
-
+-- daily check-in 15:00
+-- daily check-out 8:00
+-- Fill cleaning table for check-outs 8:00
+-- Tick cleaning table for check-outs 15:00
 
 

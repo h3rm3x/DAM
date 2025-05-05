@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2025 at 08:03 PM
+-- Generation Time: May 05, 2025 at 05:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -125,8 +125,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `downgradeRoom` (IN `var_reservation
                                            LIMIT 1);
                 IF check_availability(var_new_room_number, var_check_in, var_check_out) THEN
                     SET var_new_price_per_night = (SELECT price_per_night 
-                                                   FROM rooms 
-                                                   WHERE room_number = var_new_room_number);
+                                                   FROM categories
+                                                   WHERE category_id = var_category_id_new);
                     -- Actualizar la reserva con la nueva habitación
                     UPDATE reservations
                     SET room_number = var_new_room_number, price_per_night = var_new_price_per_night
@@ -494,34 +494,41 @@ CREATE TABLE `employees` (
   `birtdate` date NOT NULL,
   `forename` varchar(50) NOT NULL,
   `surname` varchar(50) NOT NULL,
-  `direct_superior_id` int(11) NOT NULL
+  `direct_superior_id` int(11) NOT NULL,
+  `department` set('front desk','maintenance','houskeeping','management','restauration') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`employee_id`, `position`, `birtdate`, `forename`, `surname`, `direct_superior_id`) VALUES
-(1, 'General Manager', '1975-05-12', 'Robert', 'Anderson', 0),
-(2, 'Assistant Manager', '1980-09-23', 'Jennifer', 'Martinez', 1),
-(3, 'Front Office Manager', '1982-03-15', 'Michael', 'Chen', 1),
-(4, 'Executive Housekeeper', '1978-11-20', 'Sarah', 'Johnson', 1),
-(5, 'Food & Beverage Manager', '1976-07-08', 'Thomas', 'Garcia', 1),
-(6, 'Front Desk Supervisor', '1985-02-14', 'Emily', 'Wilson', 3),
-(7, 'Front Desk Agent', '1990-06-30', 'Daniel', 'Taylor', 6),
-(8, 'Front Desk Agent', '1992-04-17', 'Olivia', 'Brown', 6),
-(9, 'Front Desk Agent', '1988-08-25', 'David', 'Rodriguez', 6),
-(10, 'Night Auditor', '1984-12-10', 'Sophia', 'Lee', 6),
-(11, 'Housekeeping Supervisor', '1983-05-05', 'James', 'White', 4),
-(12, 'Room Attendant', '1986-09-15', 'Isabella', 'Lopez', 11),
-(13, 'Room Attendant', '1989-11-22', 'William', 'Harris', 11),
-(14, 'Room Attendant', '1991-02-28', 'Mia', 'Clark', 11),
-(15, 'Laundry Attendant', '1987-07-19', 'Alexander', 'Lewis', 11),
-(16, 'Restaurant Supervisor', '1979-04-30', 'Emma', 'Walker', 5),
-(17, 'Chef', '1977-10-15', 'Lucas', 'Martin', 5),
-(18, 'Waiter', '1993-03-12', 'Ava', 'Thompson', 16),
-(19, 'Waiter', '1994-08-24', 'Noah', 'Patel', 16),
-(20, 'Bartender', '1990-01-05', 'Amelia', 'Nguyen', 16);
+INSERT INTO `employees` (`employee_id`, `position`, `birtdate`, `forename`, `surname`, `direct_superior_id`, `department`) VALUES
+(1, 'General Manager', '1975-05-12', 'Robert', 'Anderson', 0, 'management'),
+(2, 'Assistant Manager', '1980-09-23', 'Jennifer', 'Martinez', 1, 'management'),
+(3, 'Front Office Manager', '1982-03-15', 'Michael', 'Chen', 1, 'management'),
+(4, 'Executive Housekeeper', '1978-11-20', 'Sarah', 'Johnson', 1, 'management'),
+(5, 'Food & Beverage Manager', '1976-07-08', 'Thomas', 'Garcia', 1, 'management'),
+(6, 'Front Desk Supervisor', '1985-02-14', 'Emily', 'Wilson', 3, 'front desk'),
+(7, 'Front Desk Agent', '1990-06-30', 'Daniel', 'Taylor', 6, 'front desk'),
+(8, 'Front Desk Agent', '1992-04-17', 'Olivia', 'Brown', 6, 'front desk'),
+(9, 'Front Desk Agent', '1988-08-25', 'David', 'Rodriguez', 6, 'front desk'),
+(10, 'Night Auditor', '1984-12-10', 'Sophia', 'Lee', 6, 'front desk'),
+(11, 'Housekeeping Supervisor', '1983-05-05', 'James', 'White', 4, 'houskeeping'),
+(12, 'Room Attendant', '1986-09-15', 'Isabella', 'Lopez', 11, 'houskeeping'),
+(13, 'Room Attendant', '1989-11-22', 'William', 'Harris', 11, 'houskeeping'),
+(14, 'Room Attendant', '1991-02-28', 'Mia', 'Clark', 11, 'houskeeping'),
+(15, 'Laundry Attendant', '1987-07-19', 'Alexander', 'Lewis', 11, 'houskeeping'),
+(16, 'Restaurant Supervisor', '1979-04-30', 'Emma', 'Walker', 5, 'restauration'),
+(17, 'Chef', '1977-10-15', 'Lucas', 'Martin', 5, 'restauration'),
+(18, 'Waiter', '1993-03-12', 'Ava', 'Thompson', 16, 'restauration'),
+(19, 'Waiter', '1994-08-24', 'Noah', 'Patel', 16, 'restauration'),
+(20, 'Bartender', '1990-01-05', 'Amelia', 'Nguyen', 16, 'restauration'),
+(21, 'Maintenance Technician', '1987-05-12', 'Emily', 'Davis', 26, 'maintenance'),
+(22, 'Maintenance Technician', '1992-06-21', 'James', 'Wilson', 26, 'maintenance'),
+(23, 'Maintenance Technician', '1990-07-15', 'Olivia', 'Martinez', 26, 'maintenance'),
+(24, 'Maintenance Technician', '1989-09-12', 'William', 'Anderson', 26, 'maintenance'),
+(25, 'Maintenance Technician', '1982-11-20', 'Sophia', 'Thompson', 26, 'maintenance'),
+(26, 'Maintenance Supervisor', '1985-06-15', 'John', 'Smith', 1, 'maintenance');
 
 -- --------------------------------------------------------
 
@@ -821,7 +828,7 @@ INSERT INTO `reservations` (`customer_id`, `reservation_id`, `room_number`, `tag
 (1, 5837, 240, NULL, '2025-11-21', '2025-11-24', 120, 2, 'booked', NULL),
 (1, 5843, 244, NULL, '2026-02-25', '2026-02-26', 120, 5, 'booked', NULL),
 (1, 5953, 224, NULL, '2026-08-21', '2026-08-23', 120, 4, 'booked', NULL),
-(1, 5955, 406, NULL, '2025-05-03', '2025-05-07', 160, 5, 'booked', NULL),
+(1, 5955, 321, NULL, '2025-05-03', '2025-05-07', 140, 5, 'booked', NULL),
 (1, 6125, 235, NULL, '2026-09-08', '2026-09-13', 120, 3, 'booked', NULL),
 (1, 6158, 112, NULL, '2026-04-15', '2026-04-18', 100, 3, 'booked', NULL),
 (1, 6229, 115, NULL, '2025-04-25', '2025-04-27', 100, 3, 'check-out', NULL),
