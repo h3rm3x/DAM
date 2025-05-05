@@ -1,7 +1,13 @@
 const nomsMascotes = ["Max", "Bella", "Charlie", "Luna"];
 const edatsMascotes = [5, 3, 7, 2];
 
-const mascotas = { nomsMascotes, edatsMascotes };
+const mascotas = [];
+for (let i=0; i< edatsMascotes.length; i++){
+    mascotas[i]={
+        nombre: nomsMascotes[i],
+        edade: edatsMascotes[i]
+    }
+}
 console.log(mascotas);
 
 function mediaEdats(edatsMascotes) {
