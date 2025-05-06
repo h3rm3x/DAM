@@ -11386,6 +11386,25 @@ INSERT INTO `services` (`service_id`, `service_category`, `service_name`, `price
 (14, 'Restaurant', 'Dinner for 3 at Italian Restaurant', 80.00),
 (15, 'Restaurant', 'Dinner for 4 at Italian Restaurant', 100.00);
 
+
+CREATE TABLE `cleaning` (
+  `cleaning_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `room_number` int(11) NOT NULL,
+  `time_in` DATETIME ,
+  `time_out` DATETIME ,
+  `comments` varchar(250) NOT NULL
+) ;
+
+CREATE TABLE `maintenance` (
+  `maintenance_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `reported_by` int(11) NOT NULL,
+  `room_number` int(11) NOT NULL,
+  `time_reported` DATETIME ,
+  `time_fixed` DATETIME ,
+  `comments` varchar(250),
+ FOREIGN KEY (`reported_by`) REFERENCES `employees` (`employee_id`),
+  FOREIGN KEY (`room_number`) REFERENCES `rooms` (`room_number`)
+) ;
 -- --------------------------------------------------------
 
 --
