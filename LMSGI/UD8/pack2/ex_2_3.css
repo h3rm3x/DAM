@@ -1,0 +1,38 @@
+body{
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: black;
+}
+
+#contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#contenedor>#btn{
+    background-color: blue ; 
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#alerta{
+    display: none;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+
+}
+#alerta>#btn{
+    background-color: blue ; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
