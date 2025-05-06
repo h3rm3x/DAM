@@ -55,7 +55,7 @@ public class producto implements Comparable<producto>{
         this.precio = precio;
     }
 
-    public boolean equlas(Object o) {
+    public boolean equals(Object o) {
         if (o == this) return true;
         if (!(o instanceof producto)) return false;
         producto p = (producto) o;
