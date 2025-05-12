@@ -1,24 +1,24 @@
 body{
-    height: 100vh;
-    width: 100vw;
+    height: 99vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
+
 body.modal-open {
-    opacity: 0.5;
     transition: opacity 0.3s ease;
 }
 
 #contenedor {
     text-align: center;
-    margin-top: 100px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
+    
     transform: translate(-50%, -50%);
 }
 
 #boton {
-   
-    transform: translate(-50%, -50%);
     background-color: rgb(255, 255, 255);
     border: 2px solid #888;
     padding: 20px;
@@ -27,12 +27,12 @@ body.modal-open {
     transition: opacity 0.3s ease;
 }
 
-#boton.hidden {
+.hidden {
     display: none;
 }
 
 #boton.visible {
-    display: block;
+    display: flex;
 }
 
 #boton-content {

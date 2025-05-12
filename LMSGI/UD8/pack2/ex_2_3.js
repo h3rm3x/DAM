@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
         boton.classList.remove("hidden");
         boton.classList.add("visible");
         document.body.classList.add("modal-open");
+        btnMostrar.classList.add("hidden");
+        btnMostrar.classList.remove("visible");
+        // eliminar mensaje anterior
+        const mensajeAnterior = contenedor.querySelector(".confirmacion");
+        if (mensajeAnterior) {
+            contenedor.removeChild(mensajeAnterior);
+        }
     });
 
     // Aceptar acción
@@ -18,6 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
         boton.classList.remove("visible");
         boton.classList.add("hidden");
         document.body.classList.remove("modal-open");
+        btnMostrar.classList.remove("hidden");
+        btnMostrar.classList.add("visible");
+        
+        
 
         // Mostrar mensaje en la página
         const mensaje = document.createElement("p");
@@ -31,5 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         boton.classList.remove("visible");
         boton.classList.add("hidden");
         document.body.classList.remove("modal-open");
+        btnMostrar.classList.remove("hidden");
+        btnMostrar.classList.add("visible");
     });
 });
