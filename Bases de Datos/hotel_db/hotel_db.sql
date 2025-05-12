@@ -495,6 +495,7 @@ CREATE TABLE `employees` (
   `forename` varchar(50) NOT NULL,
   `surname` varchar(50) NOT NULL,
   `direct_superior_id` int(11) NOT NULL,
+  `shift` set('morning','afternoon','night') NOT NULL,
   `department` set('front desk','maintenance','houskeeping','management','restauration') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -11384,7 +11385,15 @@ INSERT INTO `services` (`service_id`, `service_category`, `service_name`, `price
 (12, 'Gym', '1h gym session', 35.00),
 (13, 'Restaurant', 'Dinner for 2 at Italian Restaurant', 60.00),
 (14, 'Restaurant', 'Dinner for 3 at Italian Restaurant', 80.00),
-(15, 'Restaurant', 'Dinner for 4 at Italian Restaurant', 100.00);
+(15, 'Restaurant', 'Dinner for 4 at Italian Restaurant', 100.00),
+(16, 'Restaurant', 'Dinner for 2 at Asian Restaurant', 60.00),
+(17, 'Restaurant', 'Dinner for 3 at Asian Restaurant', 80.00),
+(18, 'Restaurant', 'Dinner for 4 at Asian Restaurant', 100.00),
+(19, 'Restaurant', 'Dinner for 2 at Mediterranean Restaurant', 60.00),
+(20, 'Restaurant', 'Dinner for 3 at Mediterranean Restaurant', 80.00),
+(21, 'Restaurant', 'Dinner for 4 at Mediterranean Restaurant', 100.00);
+
+
 
 
 CREATE TABLE `cleaning` (

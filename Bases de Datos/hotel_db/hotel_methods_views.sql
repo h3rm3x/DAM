@@ -402,7 +402,83 @@ BEGIN
     END IF;
 END;
 
+-- Assign cleaning to a random employee
+CREATE PROCEDURE assign_cleaning(IN var_room_id INT)
+    BEGIN
+        DECLARE var_employee_id INT;
+        DECLARE var_cleaning_date DATE;
+        DECLARE var_cleaning_time TIME;
 
+        -- Get a random employee ID
+        SET var_employee_id = (SELECT employee_id FROM employees WHERE employee_shift = shift(CURDATE()) AND employee_id NOT IN (SELECT DISTINCT(employee_id) FROM cleaning WHERE cleaning_status='in_progress') ORDER BY RAND() LIMIT 1);
+        -- Get the current date and time
+        SET var_cleaning_date = CURDATE();
+        SET var_cleaning_time = CURTIME();
+        -- Insert the cleaning assignment into the cleaning table
+        INSERT INTO cleaning (employee_id, room_number, cleaning_date, cleaning_time, cleaning_status)
+        VALUES (var_employee_id, var_room_id, var_cleaning_date, var_cleaning_time, 'in_progress');
+    END;
+
+
+-- add random extras to the reservation
+CREATE PROCEDURE add_extras()
+    BEGIN
+        DECLARE var_reservation_id INT;
+        DECLARE var_service_category VARCHAR(255);
+        DECLARE var_service_name VARCHAR(255);
+        DECLARE var_service_date DATETIME;
+        DECLARE var_service_price DECIMAL(8,2);
+        DECLARE var_subtotal DECIMAL(10,2) DEFAULT 0;
+        DECLARE category_name VARCHAR(255);
+        DECLARE var_extras_json JSON;
+        DECLARE ticket JSON;
+        DECLARE category_index INT DEFAULT 0;
+        DECLARE total_categories INT;
+        DECLARE subtotal DECIMAL(10,2) DEFAULT 0;
+        DECLARE var_check_in DATE;
+        DECLARE var_check_out DATE;
+        DECLARE number_of_tickets DATE;
+        DECLARE number_of_categories INT;
+        DECLARE i INT DEFAULT 0;
+        
+
+        -- Get a random reservation ID
+        SET var_reservation_id = (SELECT reservation_id FROM reservations ORDER BY RAND() LIMIT 1);
+
+        -- Get the check-in and check-out dates of the reservation
+        SELECT check_in, check_out INTO var_check_in, var_check_out FROM reservations WHERE reservation_id = var_reservation_id;
+        -- Get the number of tickets in the reservation
+        SET number_of_tickets = (SELECT RAND() * 5) + 1;
+        
+
+        
+
+        -- Get the JSON object containing all categories
+        FOR i IN 0..number_of_tickets DO
+            SET var_service_category = (SELECT service_category FROM categories ORDER BY RAND() LIMIT 1);
+            SET var_service_name = (SELECT service_name FROM services WHERE service_category = var_service_category ORDER BY RAND() LIMIT 1);
+            SET var_service_date = (SELECT (check_in + INTERVAL FLOOR(RAND() * DATEDIFF(var_check_out, var_check_in)) DAY) FROM reservations WHERE reservation_id = var_reservation_id);
+            SET var_service_price = (SELECT service_price FROM services WHERE service_name = var_service_name);
+
+            -- Create a JSON object for the ticket
+            SET ticket = JSON_OBJECT(
+                'service_name', var_service_name,
+                'date', var_service_date,
+                'service_price', var_service_price
+            );
+
+            -- Add the ticket to the JSON object
+            SET var_extras_json = JSON_SET(var_extras_json, CONCAT('$.', var_service_category, '.tickets[', i, ']'), ticket);
+        END FOR; 
+        
+   
+        
+
+
+            
+            
+        
+    END;
 
 -- reservation view
 CREATE VIEW reservation_view AS
