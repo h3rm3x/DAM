@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Boxlayout/Boxlayout.iml" filepath="$PROJECT_DIR$/Boxlayout/Boxlayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/Calculadora/Calculadora.iml" filepath="$PROJECT_DIR$/Calculadora/Calculadora.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_11.1/EX_11.1.iml" filepath="$PROJECT_DIR$/EX_11.1/EX_11.1.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX_11.2/EX_11.2.iml" filepath="$PROJECT_DIR$/EX_11.2/EX_11.2.iml" />
