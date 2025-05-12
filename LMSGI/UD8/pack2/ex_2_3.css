@@ -1,38 +1,56 @@
 body{
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    color: black;
-}
-
-#contenedor{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
+    width: 100vw;
+}
+body.modal-open {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
 }
 
-#contenedor>#btn{
-    background-color: blue ; 
-    color: white;
-    border: none;
-    padding: 5px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+#contenedor {
+    text-align: center;
+    margin-top: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#alerta{
+#boton {
+   
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #888;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+#boton.hidden {
     display: none;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.5);
-
 }
-#alerta>#btn{
-    background-color: blue ; 
-    color: white;
-    border: none;
+
+#boton.visible {
+    display: block;
+}
+
+#boton-content {
+    animation: fadeIn 0.3s ease;
+    text-align: center;
+}
+
+button {
+    margin: 10px;
     padding: 10px 20px;
-    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+    background-color: blue ;
+    color: white;
+}
+
+.confirmacion {
+    margin-top: 20px;
+    font-weight: bold;
+    color: green;
 }
