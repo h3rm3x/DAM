@@ -11391,8 +11391,14 @@ INSERT INTO `services` (`service_id`, `service_category`, `service_name`, `price
 (18, 'Restaurant', 'Dinner for 4 at Asian Restaurant', 100.00),
 (19, 'Restaurant', 'Dinner for 2 at Mediterranean Restaurant', 60.00),
 (20, 'Restaurant', 'Dinner for 3 at Mediterranean Restaurant', 80.00),
-(21, 'Restaurant', 'Dinner for 4 at Mediterranean Restaurant', 100.00);
-
+(21, 'Restaurant', 'Dinner for 4 at Mediterranean Restaurant', 100.00)
+(22, 'Gym', '1h Class with Trainer', 80.00),
+(23, 'Gym', '1h gym session', 35.00),
+(24, 'Bar', '1 Cocktail', 10.00),
+(25, 'Bar', '2 Cocktails', 15.00),
+(26, 'Bar', '3 Cocktails', 20.00),
+(27, 'Bar', '4 Cocktails', 25.00),
+(28, 'Bar', '5 Cocktails', 30.00);
 
 
 
