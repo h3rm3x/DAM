@@ -450,40 +450,45 @@ CREATE PROCEDURE add_extras()
         -- Get the number of tickets in the reservation
         SET number_of_tickets = (SELECT RAND() * 5) + 1;
         
+        -- number of categories
+        SET number_of_categories = (SELECT COUNT(DISTINCT(service_category)) FROM categories);
 
         
 
         -- Get the JSON object containing all categories
-        FOR i IN 0..number_of_tickets DO
-            SET var_service_category = (SELECT service_category FROM categories ORDER BY RAND() LIMIT 1);
-            SET var_service_name = (SELECT service_name FROM services WHERE service_category = var_service_category ORDER BY RAND() LIMIT 1);
-            SET var_service_date = (SELECT (check_in + INTERVAL FLOOR(RAND() * DATEDIFF(var_check_out, var_check_in)) DAY) FROM reservations WHERE reservation_id = var_reservation_id);
-            SET var_service_price = (SELECT service_price FROM services WHERE service_name = var_service_name);
-
-            -- Create a JSON object for the ticket
-            SET ticket = JSON_OBJECT(
-                'service_name', var_service_name,
-                'date', var_service_date,
-                'service_price', var_service_price
-            );
-
-            -- Add the ticket to the JSON object
-            SET var_extras_json = JSON_SET(var_extras_json, CONCAT('$.', var_service_category, '.tickets[', i, ']'), ticket);
-        END FOR; 
-        
-   
-        
-
-
+        WHILE category_index < number_of_categories DO
+            -- Extract the category name by index
+            SET category_name = (SELECT service_category FROM categories ORDER BY RAND() LIMIT 1);
+            SET var_extras_json = JSON_OBJECT(category_name, JSON_OBJECT('total', 0, 'tickets', JSON_ARRAY()));
             
-            
-        
+            FOR i IN 0..number_of_tickets DO
+                SET var_service_category = (SELECT service_category FROM categories ORDER BY RAND() LIMIT 1);
+                SET var_service_name = (SELECT service_name FROM services WHERE service_category = var_service_category ORDER BY RAND() LIMIT 1);
+                SET var_service_date = (SELECT (check_in + INTERVAL FLOOR(RAND() * DATEDIFF(var_check_out, var_check_in)) DAY) FROM reservations WHERE reservation_id = var_reservation_id);
+                SET var_service_price = (SELECT service_price FROM services WHERE service_name = var_service_name);
+
+                -- Create a JSON object for the ticket
+                SET ticket = JSON_OBJECT(
+                    "ticket_id", i,
+                    "service_name", var_service_name,
+                    "date", var_service_date,
+                    "service_price", var_service_price
+                );
+
+                -- Add the ticket to the JSON object
+                SET var_extras_json = JSON_SET(var_extras_json, CONCAT('$.', var_service_category, '.tickets[', i, ']'), ticket);
+            END FOR;
+            SET category_index = category_index + 1;
+        END WHILE; 
     END;
-
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- procedure to get the total price of a reservation
 -- reservation view
 CREATE VIEW reservation_view AS
 SELECT r.reservation_id, r.room_number, r.customer_id, r.check_in, r.check_out, r.number_of_guests, c.first_name, c.last_name, c.email, c.phone_number, c.address, r.price_per_night*(DATEDIFF(r.check_out,r.check_in)) AS subtotal
 FROM reservation r
+
+
 
 -- daily check-in 15:00
 -- daily check-out 8:00
