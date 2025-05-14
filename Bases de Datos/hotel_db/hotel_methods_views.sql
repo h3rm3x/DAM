@@ -419,82 +419,105 @@ CREATE PROCEDURE assign_cleaning(IN var_room_id INT)
         VALUES (var_employee_id, var_room_id, var_cleaning_date, var_cleaning_time, 'in_progress');
     END;
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- add random extras to the reservation
+DELIMITER $$
+
 CREATE PROCEDURE add_extras()
-    BEGIN
-        DECLARE var_reservation_id INT;
-        DECLARE var_service_category VARCHAR(255);
-        DECLARE var_service_name VARCHAR(255);
-        DECLARE var_service_date DATETIME;
-        DECLARE var_service_price DECIMAL(8,2);
-        DECLARE var_subtotal DECIMAL(10,2) DEFAULT 0;
-        DECLARE category_name VARCHAR(255);
-        DECLARE var_extras_json JSON;
-        DECLARE ticket JSON;
-        DECLARE category_index INT DEFAULT 0;
-        DECLARE total_categories INT;
-        DECLARE var_check_in DATE;
-        DECLARE var_check_out DATE;
-        DECLARE number_of_tickets DATE;
-        DECLARE number_of_categories INT;
-        DECLARE i INT DEFAULT 0;
-        DECLARE time_of_day TIME;
-        DECLARE var_service_date_time DATETIME;
-        DECLARE var_categories SET ('Spa', 'Restaurant', 'Bar', 'Gym');
-        
+BEGIN
+    DECLARE var_reservation_id INT ;
+    DECLARE var_service_category VARCHAR(255);
+    DECLARE var_service_name VARCHAR(255);
+    DECLARE var_service_date DATE;
+    DECLARE var_service_price DECIMAL(8,2);
+    DECLARE var_subtotal DECIMAL(10,2);
+    DECLARE var_check_in DATE;
+    DECLARE var_check_out DATE;
+    DECLARE number_of_tickets INT;
+    DECLARE i INT DEFAULT 0;
+    DECLARE time_of_day TIME;
+    DECLARE var_service_date_time DATETIME;
+    DECLARE var_extras_json JSON;
+    DECLARE ticket JSON;
 
-        -- Get a random reservation ID
-        SET var_reservation_id = 2; -- (SELECT reservation_id FROM reservations ORDER BY RAND() LIMIT 1);
+    -- Get the reservation dates
+    SELECT check_in, check_out, extras_json INTO var_check_in, var_check_out, var_extras_json
+    FROM reservations
+    WHERE reservation_id = var_reservation_id;
 
-        -- Get the check-in and check-out dates of the reservation
-        SELECT check_in, check_out INTO var_check_in, var_check_out FROM reservations WHERE reservation_id = var_reservation_id;
-        -- Get the number of tickets in the reservation
-        SET number_of_tickets = FLOOR(( RAND() * 5) + 1);
-        
-        -- number of categories
-        SET number_of_categories = (SELECT COUNT(DISTINCT(service_category)) FROM services);
-        -- Get the JSON object containing all categories
-        SET var_extras_json = (SELECT extras_json FROM reservations WHERE reservation_id = var_reservation_id);
+    -- Generate a random number of tickets (0 to 5)
+    SET number_of_tickets = FLOOR(RAND() * 5) ;
 
-        IF (var_extras_json IS NULL) THEN
-           
-            -- Get the JSON object containing all categories
-            WHILE category_index < number_of_categories+1 DO
-                -- Extract the category name by index
-                SET category_name = (SELECT service_category FROM services ORDER BY RAND() LIMIT 1);
-                SET var_extras_json = JSON_OBJECT(category_name, JSON_OBJECT('total', var_subtotal, 'tickets', JSON_ARRAY()));
+    -- Loop to create tickets
+    SET i = 0;
+    WHILE i < number_of_tickets DO
+        -- Select a random service category and name
+        SELECT service_category, service_name, price
+        INTO var_service_category, var_service_name, var_service_price
+        FROM services
+        ORDER BY RAND()
+        LIMIT 1;
 
-                SELECT "THIS IS THE FIRST TIME";
+        -- Generar fecha aleatoria entre check-in y check-out
+        SET var_service_date = DATE_ADD(var_check_in, INTERVAL FLOOR(RAND() * DATEDIFF(var_check_out, var_check_in)) DAY);
 
-                FOR i IN 0..number_of_tickets DO
-                    SET var_service_category = (SELECT service_category FROM services ORDER BY RAND() LIMIT 1);
-                    SET var_service_name = (SELECT service_name FROM services WHERE service_category = var_service_category ORDER BY RAND() LIMIT 1);
-                    SET var_service_date = (SELECT (check_in + INTERVAL FLOOR(RAND() * DATEDIFF(var_check_out, var_check_in)) DAY) FROM reservations WHERE reservation_id = var_reservation_id);
-                    SET var_service_price = (SELECT price FROM services WHERE service_name = var_service_name);
-                    SET var_subtotal = var_subtotal + var_service_price;
-                    -- Get a random time of day
-                    SET time_of_day = (TIME_FORMAT(ADDDATE('10:00:00', FLOOR(RAND() * 28800)), '%H:%i:%s'));
-                    SET var_service_date_time = CONCAT(var_service_date, ' ', time_of_day);
+        -- Asignar hora dependiendo de la categoría
+        IF var_service_category = 'Spa' THEN
+            SET time_of_day = ADDTIME('10:00:00', SEC_TO_TIME(FLOOR(RAND() * 28800)));
+        ELSEIF var_service_category = 'Restaurant' THEN
+            IF var_service_name LIKE '%breakfast%' THEN
+                SET time_of_day = ADDTIME('08:00:00', SEC_TO_TIME(FLOOR(RAND() * 14400)));
+            ELSEIF var_service_name LIKE '%lunch%' THEN
+                SET time_of_day = ADDTIME('13:00:00', SEC_TO_TIME(FLOOR(RAND() * 14400)));
+            ELSEIF var_service_name LIKE '%dinner%' THEN
+                SET time_of_day = ADDTIME('20:00:00', SEC_TO_TIME(FLOOR(RAND() * 14400)));
+            END IF;
+        ELSEIF var_service_category = 'Gym' THEN
+            SET time_of_day = ADDTIME('10:00:00', SEC_TO_TIME(FLOOR(RAND() * 75600)));
+        ELSEIF var_service_category = 'Bar' THEN
+            IF var_service_name LIKE '%cocktail%' THEN
+                SET time_of_day = ADDTIME('20:00:00', SEC_TO_TIME(FLOOR(RAND() * 14400)));
+            ELSEIF var_service_name LIKE '%snack%' THEN
+                SET time_of_day = ADDTIME('10:00:00', SEC_TO_TIME(FLOOR(RAND() * 36000)));
+            END IF;
+        END IF;
 
-                    -- Create a JSON object for the ticket
-                    SET ticket = JSON_OBJECT(
-                        "ticket_id", i, 
-                        "service_name", var_service_name,
-                        "date", var_service_date_time,
-                        "service_price", var_service_price
-                    );
+        SET var_service_date_time = CONCAT(var_service_date, ' ', time_of_day);
+        SET var_subtotal = var_service_price;
 
-                    -- Add the ticket to the JSON object
-                    SET var_extras_json = JSON_ARRAY_APPEND(var_extras_json, CONCAT('$.', var_service_category, '.tickets'), ticket);
-                END FOR;
-                SET category_index = category_index + 1;
-            END WHILE;
-            UPDATE reservations
-            SET extras_json = var_extras_json
-            WHERE reservation_id = var_reservation_id;
-        END IF; 
-    END
+        -- Create ticket JSON object
+        SET ticket = JSON_OBJECT(
+            'ticket_id', i,
+            'service_name', var_service_name,
+            'date', var_service_date_time,
+            'service_price', var_service_price
+        );
+
+        -- Add ticket to the JSON object
+        SET var_extras_json = JSON_SET(
+            IFNULL(var_extras_json, JSON_OBJECT()),
+            CONCAT('$.', var_service_category, '.tickets[', i, ']'),
+            ticket
+        );
+
+        -- update the total price in the JSON object
+        SET var_extras_json = JSON_SET(
+            var_extras_json,
+            CONCAT('$.', var_service_category, '.total'),
+            IFNULL(JSON_EXTRACT(var_extras_json, CONCAT('$.', var_service_category, '.total')), 0) + var_subtotal
+        );
+
+        SET i = i + 1;
+    END WHILE;
+
+    -- Update JSON in the reservation table
+    UPDATE reservations
+    SET extras_json = var_extras_json
+    WHERE reservation_id = var_reservation_id;
+END$$
+
+DELIMITER ;
+
     -------------------------------------------------------------------------------------------------------------------------
 -- procedure to get the total price of a reservation
 -- reservation view
