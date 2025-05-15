@@ -518,8 +518,33 @@ END$$
 
 DELIMITER ;
 
-    -------------------------------------------------------------------------------------------------------------------------
--- procedure to get the total price of a reservation
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- procedure to clean the rooms after check-out
+CREATE PROCEDURE clean_rooms()
+BEGIN
+    DECLARE var_room_number INT;
+    DECLARE var_check_in DATE;
+    DECLARE var_check_out DATE;
+    DECLARE var_price_per_night INT;
+    DECLARE var_number_of_guests INT;
+    DECLARE var_reservation_id INT;
+
+    -- Get the room number of the reservation
+    SELECT room_number, check_in, check_out, price_per_night, number_of_guests, reservation_id 
+    INTO var_room_number, var_check_in, var_check_out, var_price_per_night, var_number_of_guests, var_reservation_id
+    FROM reservations
+    WHERE check_out = CURDATE();
+
+    -- Assign cleaning to the room
+    CALL assign_cleaning(var_room_number);
+    -- Update the cleaning status in the cleaning table
+    UPDATE cleaning
+    SET cleaning_status = 'completed'
+    WHERE room_number = var_room_number
+    AND cleaning_date = CURDATE()
+    AND cleaning_time = CURTIME();
+    
+END$$
 -- reservation view
 CREATE VIEW reservation_view AS
 SELECT r.reservation_id, r.room_number, r.customer_id, r.check_in, r.check_out, r.number_of_guests, c.first_name, c.last_name, c.email, c.phone_number, c.address, r.price_per_night*(DATEDIFF(r.check_out,r.check_in)) AS subtotal
