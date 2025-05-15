@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EX_8.1/EX_8.1.iml" filepath="$PROJECT_DIR$/EX_8.1/EX_8.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_8.3/EX_8.3.iml" filepath="$PROJECT_DIR$/EX_8.3/EX_8.3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/UD8 Refactorizacion.iml" filepath="$PROJECT_DIR$/.idea/UD8 Refactorizacion.iml" />
+    </modules>
+  </component>
+</project>
