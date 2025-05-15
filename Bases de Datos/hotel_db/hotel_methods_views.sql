@@ -458,10 +458,10 @@ BEGIN
         ORDER BY RAND()
         LIMIT 1;
 
-        -- Generar fecha aleatoria entre check-in y check-out
+        -- Generar random date between check-in y check-out
         SET var_service_date = DATE_ADD(var_check_in, INTERVAL FLOOR(RAND() * DATEDIFF(var_check_out, var_check_in)) DAY);
 
-        -- Asignar hora dependiendo de la categoría
+        -- Asignar a time of day depending on the service category
         IF var_service_category = 'Spa' THEN
             SET time_of_day = ADDTIME('10:00:00', SEC_TO_TIME(FLOOR(RAND() * 28800)));
         ELSEIF var_service_category = 'Restaurant' THEN
@@ -523,28 +523,39 @@ DELIMITER ;
 CREATE PROCEDURE clean_rooms()
 BEGIN
     DECLARE var_room_number INT;
-    DECLARE var_check_in DATE;
-    DECLARE var_check_out DATE;
-    DECLARE var_price_per_night INT;
-    DECLARE var_number_of_guests INT;
     DECLARE var_reservation_id INT;
+    DECLARE var_employee_id INT;
 
+    -- Get a random employee ID 
+    SET var_employee_id = CALL assign_employee_to_room(var_room_number);
     -- Get the room number of the reservation
-    SELECT room_number, check_in, check_out, price_per_night, number_of_guests, reservation_id 
-    INTO var_room_number, var_check_in, var_check_out, var_price_per_night, var_number_of_guests, var_reservation_id
+    SELECT room_number, reservation_id 
+    INTO var_room_number, var_reservation_id
     FROM reservations
     WHERE check_out = CURDATE();
 
-    -- Assign cleaning to the room
-    CALL assign_cleaning(var_room_number);
+
     -- Update the cleaning status in the cleaning table
-    UPDATE cleaning
-    SET cleaning_status = 'completed'
-    WHERE room_number = var_room_number
-    AND cleaning_date = CURDATE()
-    AND cleaning_time = CURTIME();
-    
+    INSERT INTO cleaning (employee_id, room_number, time_in, time_out, cleaning_status)
+    VALUES  var_employee_id, var_room_number, CURTIME(), (CURTIME()+ (RAND()*30)+10, 'Completed');
 END$$
+DELIMITER;
+---------------------------------------------------------------------------------------------------------------------------------------------
+--- Function to assign an employee to a room
+CREATE FUNCTION assign_employee_to_room (var_room_number INT)
+RETURNS INT
+BEGIN
+    DECLARE var_employee_id INT;
+    
+
+    -- Get the employee ID based on the room number and current time
+    SET var_employee_id = (SELECT employee_id 
+                           FROM employees 
+                           WHERE employee_id NOT IN (SELECT DISTINCT(employee_id) FROM cleaning WHERE cleaning_status='in progress') 
+                           AND (SELECT COUNT(*) FROM cleaning WHERE employee_id = var_employee_id AND DAY(time_in) = DAY(CURDATE()) AND MONTH(time_in) = MONTH(CURDATE()) AND YEAR(time_in) = YEAR(CURDATE()) ) < 8 AND position = 'Room Attendant' 
+                           ORDER BY RAND() LIMIT 1);
+    RETURN var_employee_id;
+END;
 -- reservation view
 CREATE VIEW reservation_view AS
 SELECT r.reservation_id, r.room_number, r.customer_id, r.check_in, r.check_out, r.number_of_guests, c.first_name, c.last_name, c.email, c.phone_number, c.address, r.price_per_night*(DATEDIFF(r.check_out,r.check_in)) AS subtotal
