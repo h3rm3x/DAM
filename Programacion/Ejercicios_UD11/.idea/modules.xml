@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Contador/Contador.iml" filepath="$PROJECT_DIR$/Contador/Contador.iml" />
       <module fileurl="file://$PROJECT_DIR$/DemoMenu/DemoMenu.iml" filepath="$PROJECT_DIR$/DemoMenu/DemoMenu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/EX_11.8/EX_11.8.iml" filepath="$PROJECT_DIR$/EX_11.8/EX_11.8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_11.7/EX_11.7.iml" filepath="$PROJECT_DIR$/EX_11.7/EX_11.7.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Ejercicios_UD11.iml" filepath="$PROJECT_DIR$/.idea/Ejercicios_UD11.iml" />
     </modules>
   </component>
