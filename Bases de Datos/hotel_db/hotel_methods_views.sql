@@ -520,26 +520,28 @@ DELIMITER ;
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- procedure to clean the rooms after check-out
-CREATE PROCEDURE clean_rooms()
+CREATE PROCEDURE clean_rooms(IN var_room_number INT)
 BEGIN
-    DECLARE var_room_number INT;
-    DECLARE var_reservation_id INT;
+    
+    DECLARE var_reservation_id INT; 
     DECLARE var_employee_id INT;
+  
+
 
     -- Get a random employee ID 
-    SET var_employee_id = CALL assign_employee_to_room(var_room_number);
+    SET var_employee_id = assign_employee_to_room(var_room_number);
     -- Get the room number of the reservation
-    SELECT room_number, reservation_id 
-    INTO var_room_number, var_reservation_id
-    FROM reservations
-    WHERE check_out = CURDATE();
-
-
+    -- SELECT room_number, reservation_id 
+    -- INTO var_room_number, var_reservation_id
+    -- FROM reservations
+    -- WHERE check_out = CURDATE();
+    -- LIMIT 1;
     -- Update the cleaning status in the cleaning table
     INSERT INTO cleaning (employee_id, room_number, time_in, time_out, cleaning_status)
-    VALUES  var_employee_id, var_room_number, CURTIME(), (CURTIME()+ (RAND()*30)+10, 'Completed');
+    VALUES  (var_employee_id, var_room_number, CURRENT_TIMESTAMP(), (CURRENT_TIMESTAMP()+ (RAND()*30)+10, 'Completed'));
+    
 END$$
-DELIMITER;
+DELIMITER ;
 ---------------------------------------------------------------------------------------------------------------------------------------------
 --- Function to assign an employee to a room
 CREATE FUNCTION assign_employee_to_room (var_room_number INT)
@@ -552,10 +554,41 @@ BEGIN
     SET var_employee_id = (SELECT employee_id 
                            FROM employees 
                            WHERE employee_id NOT IN (SELECT DISTINCT(employee_id) FROM cleaning WHERE cleaning_status='in progress') 
-                           AND (SELECT COUNT(*) FROM cleaning WHERE employee_id = var_employee_id AND DAY(time_in) = DAY(CURDATE()) AND MONTH(time_in) = MONTH(CURDATE()) AND YEAR(time_in) = YEAR(CURDATE()) ) < 8 AND position = 'Room Attendant' 
+                           AND (SELECT COUNT(*) FROM cleaning WHERE employee_id = var_employee_id DATE(time_in)= CURDATE() ) < 8 AND position = 'Room Attendant' 
                            ORDER BY RAND() LIMIT 1);
     RETURN var_employee_id;
 END;
+
+-- Procedure to do the daily cleaning for the rooms
+DELIMITER $$
+CREATE PROCEDURE daily_cleaning()
+BEGIN
+    DECLARE var_room_number INT;
+    DECLARE var_reservation_id INT;
+    DECLARE var_employee_id INT;
+   
+
+    -- Get the room number of the reservation
+    SELECT room_number, reservation_id 
+    INTO var_room_number, var_reservation_id
+    FROM reservations
+    WHERE status = 'check-in'
+    LIMIT 1;
+    -- Check if the room has not already been cleaned today
+    IF (SELECT COUNT(*) FROM cleaning WHERE room_number = var_room_number AND (cleaning_status = 'in progress' OR (cleaning_status = 'completed' AND DATE(time_out) = CURDATE() ))) > 0 THEN
+        SELECT 'Room is already being cleaned.';
+    ELSE
+        -- Get a random employee ID 
+        SET var_employee_id = assign_employee_to_room(var_room_number);
+
+
+        -- Insert the cleaning assignment into the cleaning table
+        INSERT INTO cleaning (employee_id, room_number, cleaning_date, cleaning_time, cleaning_status)
+        VALUES (var_employee_id, var_room_number, CURTIME(), DATE_ADD(CURTIME(), (RAND()*15+5)), 'completed');
+    END IF;
+    
+    
+END$$
 -- reservation view
 CREATE VIEW reservation_view AS
 SELECT r.reservation_id, r.room_number, r.customer_id, r.check_in, r.check_out, r.number_of_guests, c.first_name, c.last_name, c.email, c.phone_number, c.address, r.price_per_night*(DATEDIFF(r.check_out,r.check_in)) AS subtotal
