@@ -78,18 +78,15 @@ function applyFilter() {
         items[i].style.display = "flex";
         break;
       case "completed":
-        if (items[i].classList.contains("completed")) {
-          items[i].style.display = "flex";
-        } else {
+        items[i].classList.contains("completed")?
+          items[i].style.display = "flex" :
           items[i].style.display = "none";
-        }
+        
         break;
       case "pending":
-        if (items[i].classList.contains("pending")) {
-          items[i].style.display = "flex";
-        } else {
+        items[i].classList.contains("pending")?
+          items[i].style.display = "flex":
           items[i].style.display = "none";
-        }
         break;
     }
   }
