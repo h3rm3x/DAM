@@ -538,7 +538,7 @@ BEGIN
     -- LIMIT 1;
     -- Update the cleaning status in the cleaning table
     INSERT INTO cleaning (employee_id, room_number, time_in, time_out, cleaning_status)
-    VALUES  (var_employee_id, var_room_number, CURRENT_TIMESTAMP(), (CURRENT_TIMESTAMP()+ (RAND()*30)+10, 'Completed'));
+    VALUES  (var_employee_id, var_room_number, CURRENT_TIMESTAMP(), (CURRENT_TIMESTAMP()+ (RAND()*30)+10), 'Completed');
     
 END$$
 DELIMITER ;
@@ -583,8 +583,8 @@ BEGIN
 
 
         -- Insert the cleaning assignment into the cleaning table
-        INSERT INTO cleaning (employee_id, room_number, cleaning_date, cleaning_time, cleaning_status)
-        VALUES (var_employee_id, var_room_number, CURTIME(), DATE_ADD(CURTIME(), (RAND()*15+5)), 'completed');
+        INSERT INTO cleaning (employee_id, room_number, time_in, time_out, cleaning_status)
+        VALUES (var_employee_id, var_room_number, CURRENT_TIMESTAMP(), (CURRENT_TIMESTAMP()+(RAND()*15+5)), 'completed');
     END IF;
     
     
