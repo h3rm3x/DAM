@@ -67,7 +67,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "radioButton1"
 				"text": "ESO"
-				"$buttonGroup": new FormReference( "buttonGroup1" )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 130
 				"y": 155
@@ -75,7 +74,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "radioButton2"
 				"text": "Bachillerato"
-				"$buttonGroup": new FormReference( "buttonGroup1" )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 125
 				"height": 25
@@ -85,7 +83,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "radioButton3"
 				"text": "Grado Medio"
-				"$buttonGroup": new FormReference( "buttonGroup1" )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 145
 				"height": 25
@@ -95,7 +92,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "radioButton4"
 				"text": "Grado Superior"
-				"$buttonGroup": new FormReference( "buttonGroup1" )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 140
 				"height": 25
@@ -105,11 +101,6 @@ new FormModel {
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 30, 0 )
 			"size": new java.awt.Dimension( 400, 300 )
-		} )
-		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
-			name: "buttonGroup1"
-		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 316 )
 		} )
 	}
 }

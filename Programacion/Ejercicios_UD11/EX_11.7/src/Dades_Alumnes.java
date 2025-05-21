@@ -1,15 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
-import net.miginfocom.swing.*;
-/*
- * Created by JFormDesigner on Fri May 16 17:11:05 CEST 2025
- */
 
 
-
-/**
- * @author alanr
- */
 public class Dades_Alumnes {
     public Dades_Alumnes() {
         initComponents();
@@ -34,13 +26,13 @@ public class Dades_Alumnes {
 
         //======== contentPanel ========
         {
-            contentPanel.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
-            . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder
-            . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .
-            awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,contentPanel. getBorder () ) )
-            ; contentPanel. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-            ) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
-            ;
+            contentPanel.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
+            javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax
+            . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
+            . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
+            . Color .red ) ,contentPanel. getBorder () ) ); contentPanel. addPropertyChangeListener( new java. beans .
+            PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .
+            equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
             contentPanel.setLayout(null);
 
             //---- label1 ----
@@ -109,13 +101,6 @@ public class Dades_Alumnes {
                 contentPanel.setPreferredSize(preferredSize);
             }
         }
-
-        //---- buttonGroup1 ----
-        var buttonGroup1 = new ButtonGroup();
-        buttonGroup1.add(radioButton1);
-        buttonGroup1.add(radioButton2);
-        buttonGroup1.add(radioButton3);
-        buttonGroup1.add(radioButton4);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
