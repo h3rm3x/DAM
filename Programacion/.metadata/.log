@@ -1170,3 +1170,13 @@ Caused by: org.eclipse.core.internal.resources.ResourceException: Invalid projec
 
 !ENTRY com.microsoft.copilot.eclipse 1 0 2025-05-21 19:03:40.748
 !MESSAGE [Info] File is null or removed for editor: DemoMenu.java
+
+!ENTRY org.eclipse.ui.ide 4 4 2025-05-21 19:55:33.242
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2025-05-21 19:55:33.243
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-05-21 19:55:33.243
+!MESSAGE The project description file (.project) for 'EX_11.7' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-05-21 19:55:33.243
+!MESSAGE The project description file (.project) for 'Ejercicios_UD11' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.

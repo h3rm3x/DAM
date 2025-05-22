@@ -520,7 +520,7 @@ DELIMITER ;
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- procedure to clean the rooms after check-out
-CREATE PROCEDURE clean_rooms(IN var_room_number INT)
+CREATE PROCEDURE checkout_cleaning(IN var_room_number INT)
 BEGIN
     
     DECLARE var_reservation_id INT; 
@@ -530,12 +530,7 @@ BEGIN
 
     -- Get a random employee ID 
     SET var_employee_id = assign_employee_to_room(var_room_number);
-    -- Get the room number of the reservation
-    -- SELECT room_number, reservation_id 
-    -- INTO var_room_number, var_reservation_id
-    -- FROM reservations
-    -- WHERE check_out = CURDATE();
-    -- LIMIT 1;
+
     -- Update the cleaning status in the cleaning table
     INSERT INTO cleaning (employee_id, room_number, time_in, time_out, cleaning_status)
     VALUES  (var_employee_id, var_room_number, CURRENT_TIMESTAMP(), (CURRENT_TIMESTAMP()+ (RAND()*30)+10), 'Completed');
@@ -573,9 +568,10 @@ BEGIN
     INTO var_room_number, var_reservation_id
     FROM reservations
     WHERE status = 'check-in'
+    ORDER BY RAND()
     LIMIT 1;
     -- Check if the room has not already been cleaned today
-    IF (SELECT COUNT(*) FROM cleaning WHERE room_number = var_room_number AND (cleaning_status = 'in progress' OR (cleaning_status = 'completed' AND DATE(time_out) = CURDATE() ))) > 0 THEN
+    IF (SELECT COUNT(*) FROM cleaning WHERE room_number = var_room_number AND ((cleaning_status = 'in progress' OR cleaning_status = 'completed') AND DATE(time_out) = CURDATE()) OR (SELECT cleaning_status FROM rooms WHERE cleaning_status = 'CLEAN'))  > 0  THEN
         SELECT 'Room is already being cleaned.';
     ELSE
         -- Get a random employee ID 
@@ -585,9 +581,11 @@ BEGIN
         -- Insert the cleaning assignment into the cleaning table
         INSERT INTO cleaning (employee_id, room_number, time_in, time_out, cleaning_status)
         VALUES (var_employee_id, var_room_number, CURRENT_TIMESTAMP(), (CURRENT_TIMESTAMP()+(RAND()*15+5)), 'completed');
+
+        UPDATE rooms
+        SET cleaning_status = 'CLEAN'
+        WHERE room_number = var_room_number;
     END IF;
-    
-    
 END$$
 -- reservation view
 CREATE VIEW reservation_view AS
