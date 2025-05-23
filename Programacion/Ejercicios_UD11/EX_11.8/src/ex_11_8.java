@@ -1,11 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
-/*
- * Created by JFormDesigner on Wed May 21 19:17:46 CEST 2025
- */
-
-
 
 /**
  * @author alanr
@@ -15,13 +10,14 @@ public class ex_11_8 extends JFrame {
         initComponents();
     }
 
-    private void btnCalcular(ActionEvent e) {
-        double celcius = Double.parseDouble(textCelcius.getText());
-        double farenheit = (celcius * 9 / 5) + 32;
-        textFarenheit.setText(String.valueOf(farenheit));
+    private void calcularTemperatura(ActionEvent e) {
+        double Celsius = Double.parseDouble(textCelcius.getText());
+        double fahrenheit = (Celsius * 9 / 5) + 32;
+        textFarenheit.setText(String.valueOf(fahrenheit));
     }
 
-    private void initComponents() {
+
+    private  void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Alan Rabinerson Aranda
         label1 = new JLabel();
@@ -61,6 +57,10 @@ public class ex_11_8 extends JFrame {
         contentPane.add(label3, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 5, 10), 0, 0));
+
+        //---- textFarenheit ----
+        textFarenheit.setEditable(false);
+        textFarenheit.setEnabled(false);
         contentPane.add(textFarenheit, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 5, 10), 0, 0));
@@ -73,14 +73,14 @@ public class ex_11_8 extends JFrame {
 
         //---- btnCalcular ----
         btnCalcular.setText("Calcular");
-        btnCalcular.addActionListener(e -> btnCalcular(e));
+        btnCalcular.addActionListener(e -> calcularTemperatura(e));
         contentPane.add(btnCalcular, new GridBagConstraints(1, 4, 1, 1, -0.5, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 0, 10), 0, 0));
         setSize(295, 215);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
-
+        btnCalcular.addActionListener(e -> calcularTemperatura(e));
 
 
     }
