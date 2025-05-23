@@ -12,18 +12,32 @@ public class EX_11_9 {
     }
 
     private void abrirCardProfesor(ActionEvent e) {
-        CardLayout cl = (CardLayout) cardInicial.getLayout();
-        cl.show(cardInicial, "card3");
+        panelNuevoAlumno.setVisible(false);
+        panelNuevoProfesor.setVisible(false);
+        panelLeerFichero.setVisible(false);
+        cardInicial.setVisible(false);
+
+        // Mostrar solo el panel del profesor
+        panelNuevoProfesor.setVisible(true);
     }
 
     private void abrirCardAlumno(ActionEvent e) {
-        CardLayout cl = (CardLayout) cardInicial.getLayout();
-        cl.show(cardInicial, "card2");
+        panelNuevoAlumno.setVisible(false);
+        panelNuevoProfesor.setVisible(false);
+        panelLeerFichero.setVisible(false);
+        cardInicial.setVisible(false);
+
+        // Mostrar solo el panel del profesor
+        panelNuevoAlumno.setVisible(true);
     }
 
     private void leerFichero(ActionEvent e) {
-        CardLayout cl = (CardLayout) cardInicial.getLayout();
-        cl.show(cardInicial, "card4");
+        panelNuevoAlumno.setVisible(false);
+        panelNuevoProfesor.setVisible(false);
+        panelLeerFichero.setVisible(false);
+        cardInicial.setVisible(false);
+
+        panelLeerFichero.setVisible(true);
         StringBuilder sb = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader("Fichero.dat"));
@@ -42,6 +56,16 @@ public class EX_11_9 {
         }
 
         ObjetosLeidos.setText(sb.toString());
+
+
+        // Si la longitud de la cadena es mayor que la longitud máxima, se añade un scroll
+        if (sb.length() > 1000) {
+            JScrollPane scroll = new JScrollPane(ObjetosLeidos);
+            scroll.setPreferredSize(new Dimension(400, 200));
+            panelLeerFichero.add(scroll);
+        } else {
+            panelLeerFichero.add(ObjetosLeidos);
+        }
     }
 
     private void escribirFichero(ActionEvent e) {
@@ -101,6 +125,10 @@ public class EX_11_9 {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(ContentPanel, "La edad debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        panelLeerFichero.setVisible(false);
+        panelNuevoAlumno.setVisible(false);
+        panelNuevoProfesor.setVisible(false);
+        cardInicial.setVisible(true);
     }
 
     private void CrearProfesor(ActionEvent e) {
@@ -131,6 +159,23 @@ public class EX_11_9 {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(ContentPanel, "La edad debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        panelLeerFichero.setVisible(false);
+        panelNuevoAlumno.setVisible(false);
+        panelNuevoProfesor.setVisible(false);
+        // Mostrar solo el panel del inicial
+        cardInicial.setVisible(true);
+    }
+
+    private void volverPaginaInicial(ActionEvent e) {
+        // TODO add your code here
+        panelNuevoAlumno.setVisible(false);
+        panelNuevoProfesor.setVisible(false);
+        panelLeerFichero.setVisible(false);
+
+        // Mostrar solo el panel del inicial
+        cardInicial.setVisible(true);
+
+
     }
 
     private void initComponents() {
@@ -171,10 +216,10 @@ public class EX_11_9 {
         btnCrearProfesor = new JButton();
         panelLeerFichero = new JPanel();
         ObjetosLeidos = new JTextArea();
+        button1 = new JButton();
 
         //======== ContentPanel ========
         {
-            ContentPanel.setTitle("Gestión de Personas");
             var ContentPanelContentPane = ContentPanel.getContentPane();
             ContentPanelContentPane.setLayout(new CardLayout());
 
@@ -229,13 +274,19 @@ public class EX_11_9 {
 
             //======== cardInicial ========
             {
-                cardInicial.setLayout(new CardLayout());
-
-                // Panel inicial vacío
-                JPanel panelInicial = new JPanel();
-                cardInicial.add(panelInicial, "card1");
+                cardInicial.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+                border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER
+                , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font
+                .BOLD ,12 ), java. awt. Color. red) ,cardInicial. getBorder( )) ); cardInicial. addPropertyChangeListener (
+                new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072"
+                .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+                cardInicial.setLayout(new GridBagLayout());
+                ((GridBagLayout)cardInicial.getLayout()).columnWidths = new int[] {0, 0};
+                ((GridBagLayout)cardInicial.getLayout()).rowHeights = new int[] {0, 0};
+                ((GridBagLayout)cardInicial.getLayout()).columnWeights = new double[] {1.0, 1.0E-4};
+                ((GridBagLayout)cardInicial.getLayout()).rowWeights = new double[] {1.0, 1.0E-4};
             }
-            ContentPanelContentPane.add(cardInicial, "card1");
+            ContentPanelContentPane.add(cardInicial, "cardInicial");
 
             //======== panelNuevoAlumno ========
             {
@@ -249,61 +300,61 @@ public class EX_11_9 {
                 lblTituloAlumno.setText("CREAR NUEVO ALUMNO");
                 lblTituloAlumno.setFont(new Font("Inter", Font.BOLD, 16));
                 panelNuevoAlumno.add(lblTituloAlumno, new GridBagConstraints(4, 0, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- lblNombreAlumno ----
                 lblNombreAlumno.setText("Nombre");
                 panelNuevoAlumno.add(lblNombreAlumno, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
                 panelNuevoAlumno.add(textNombreAlumno, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- lblDNIAlumno ----
                 lblDNIAlumno.setText("DNI");
                 panelNuevoAlumno.add(lblDNIAlumno, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
                 panelNuevoAlumno.add(textDNI, new GridBagConstraints(4, 2, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- lblEdad ----
                 lblEdad.setText("Edad");
                 panelNuevoAlumno.add(lblEdad, new GridBagConstraints(3, 3, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
                 panelNuevoAlumno.add(textEdad, new GridBagConstraints(4, 3, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- lblNivel ----
                 lblNivel.setText("Nivel");
                 panelNuevoAlumno.add(lblNivel, new GridBagConstraints(3, 4, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- Nivel ----
                 Nivel.setModel(new DefaultComboBoxModel<>(new String[] {
-                        "ESO",
-                        "Bachillerato",
-                        "Grado Medio",
-                        "Grado Superior"
+                    "ESO",
+                    "Bachillerato",
+                    "Grado Medio",
+                    "Grado Superior"
                 }));
                 panelNuevoAlumno.add(Nivel, new GridBagConstraints(4, 4, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- btnCrearAlumno ----
                 btnCrearAlumno.setText("Crear Alumno");
                 btnCrearAlumno.addActionListener(e -> CrearAlumno(e));
                 panelNuevoAlumno.add(btnCrearAlumno, new GridBagConstraints(4, 5, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
             }
-            cardInicial.add(panelNuevoAlumno, "card2");
+            ContentPanelContentPane.add(panelNuevoAlumno, "cardAlumno");
 
             //======== panelNuevoProfesor ========
             {
@@ -315,70 +366,87 @@ public class EX_11_9 {
                 lblTituloProfesor.setText("CREAR NUEVO PROFESOR");
                 lblTituloProfesor.setFont(new Font("Inter", Font.BOLD, 16));
                 panelNuevoProfesor.add(lblTituloProfesor, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- lblNombreProfesor ----
                 lblNombreProfesor.setText("Nombre");
                 panelNuevoProfesor.add(lblNombreProfesor, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
                 panelNuevoProfesor.add(textNombreProfesor, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- lblDNIProfesor ----
                 lblDNIProfesor.setText("DNI");
                 panelNuevoProfesor.add(lblDNIProfesor, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
                 panelNuevoProfesor.add(textDNIProfesor, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- lblEdadProfesor ----
                 lblEdadProfesor.setText("Edad");
                 panelNuevoProfesor.add(lblEdadProfesor, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
                 panelNuevoProfesor.add(textEdadProfesor, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- lblAsignatura ----
                 lblAsignatura.setText("Asignatura");
                 panelNuevoProfesor.add(lblAsignatura, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
                 panelNuevoProfesor.add(textAsignatura, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 10, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 10, 5), 0, 0));
 
                 //---- btnCrearProfesor ----
                 btnCrearProfesor.setText("Crear Profesor");
                 btnCrearProfesor.addActionListener(e -> CrearProfesor(e));
                 panelNuevoProfesor.add(btnCrearProfesor, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 0, 5), 0, 0));
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 0, 5), 0, 0));
             }
-            cardInicial.add(panelNuevoProfesor, "card3");
+            ContentPanelContentPane.add(panelNuevoProfesor, "cardProfesor");
 
             //======== panelLeerFichero ========
             {
-                panelLeerFichero.setLayout(new BorderLayout());
 
                 //---- ObjetosLeidos ----
                 ObjetosLeidos.setEditable(false);
                 ObjetosLeidos.setText(" ");
-                ObjetosLeidos.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
-                JScrollPane scrollPane = new JScrollPane(ObjetosLeidos);
-                panelLeerFichero.add(scrollPane, BorderLayout.CENTER);
+                //---- button1 ----
+                button1.setText("Volver a la pagina inicial");
+                button1.addActionListener(e -> volverPaginaInicial(e));
+
+                GroupLayout panelLeerFicheroLayout = new GroupLayout(panelLeerFichero);
+                panelLeerFichero.setLayout(panelLeerFicheroLayout);
+                panelLeerFicheroLayout.setHorizontalGroup(
+                    panelLeerFicheroLayout.createParallelGroup()
+                        .addComponent(ObjetosLeidos, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, panelLeerFicheroLayout.createSequentialGroup()
+                            .addContainerGap(114, Short.MAX_VALUE)
+                            .addComponent(button1)
+                            .addGap(105, 105, 105))
+                );
+                panelLeerFicheroLayout.setVerticalGroup(
+                    panelLeerFicheroLayout.createParallelGroup()
+                        .addGroup(panelLeerFicheroLayout.createSequentialGroup()
+                            .addComponent(ObjetosLeidos, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(button1)
+                            .addGap(0, 6, Short.MAX_VALUE))
+                );
             }
-            cardInicial.add(panelLeerFichero, "card4");
-
-            ContentPanel.setSize(600, 400);
-            ContentPanel.setLocationRelativeTo(null);
+            ContentPanelContentPane.add(panelLeerFichero, "cardLeerFichero");
+            ContentPanel.pack();
+            ContentPanel.setLocationRelativeTo(ContentPanel.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -420,5 +488,6 @@ public class EX_11_9 {
     private JButton btnCrearProfesor;
     private JPanel panelLeerFichero;
     private JTextArea ObjetosLeidos;
+    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
