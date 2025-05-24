@@ -1,19 +1,23 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const BASE_URL = window.location.hostname === "127.0.0.1"? "" : "/Activitats_LMSGI_Alan";
+document.addEventListener("DOMContentLoaded", function () {    
     const menuButton = document.getElementById("menu");
     const closeButton = document.getElementById("cerrar-menu");
     const menu = document.getElementById("lista-paginas");
-    const nba = document.getElementById ("NBA")
-    const acb = document.getElementById("ACB")
-    const euroliga = document.getElementById("Euroliga")
 
+
+    // añadir evento click al boton de menu
     menuButton.addEventListener("click", function() {
         menu.classList.remove("menu-hidden");
         menu.classList.add("menu-visible");
     });
-
+    // añadir evento click al boton de cerrar menu
     closeButton.addEventListener("click", function() {
         menu.classList.remove("menu-visible");
         menu.classList.add("menu-hidden");
     });
+    // añadr evento click al boton de login
+    const loginButton = document.querySelector(".login-button");
+    loginButton.addEventListener("click", function() {
+        window.open(`./login.html`);
+    });
+
 });

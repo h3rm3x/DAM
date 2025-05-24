@@ -165,17 +165,18 @@ footer {
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
 }
 
-.footer-content .logo {
-  font-size: 18px;
-  font-weight: bold;
+.footer-content .logo img {
+  width: 6em;
+  height: auto;
 }
 
 footer nav a {
