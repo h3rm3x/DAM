@@ -19,5 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loginButton.addEventListener("click", function() {
         window.open(`./login.html`);
     });
+    
 
 });
+

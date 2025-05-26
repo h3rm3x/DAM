@@ -29,7 +29,7 @@ main{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 70vh;
+    height: 80vh;
 }
 
 
@@ -51,7 +51,6 @@ form{
     align-items: center;
     justify-content: center;
     border: 1px solid var(--accent_color);
-    height: 90%;
     padding: 30px;
     border-radius: 10px;
     background-color: var(--color_primario);
