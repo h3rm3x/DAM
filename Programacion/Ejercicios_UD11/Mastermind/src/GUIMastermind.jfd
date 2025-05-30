@@ -1,0 +1,60 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.6" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:195:p, comp label1:::p::p, space ::196:x}, seq l {par t {seq t {space :::p, comp button1:::p:137:p}, seq l {space :p:31:p, par l {comp label2:::p::p, comp textField1:::p:143:p}}}, space ::141:x, par l {comp label3:::p:109:p, comp scrollPane1:::p:186:p}, space :p:32:p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p::p, space :p:62:p, par b {comp label2::b:p::p, comp label3::b:p::p}, space :::p, par l {seq {comp textField1:::p::p, space :::p, comp button1:::p::p}, comp scrollPane1:::p:227:p}, space :::x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "MASTERMIND"
+				"font": new java.awt.Font( "Inter", 1, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Nueva Tirada"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Comprobar"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+					"lineWrap": true
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Lista Tiradas"
+				"font": new java.awt.Font( "Inter", 1, 13 )
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "Partidas"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": "Ver Partidas"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": "Guardar Partidas"
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 535, 405 )
+		} )
+	}
+}

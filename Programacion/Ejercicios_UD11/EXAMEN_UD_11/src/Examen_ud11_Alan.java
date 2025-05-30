@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
 import javax.swing.*;
 
 
@@ -16,7 +17,8 @@ public class Examen_ud11_Alan {
     public Examen_ud11_Alan() {
         initComponents();
     }
-
+    public static HashMap<String,Double> productos = new HashMap<>(); // creamos un hashmap para almacenar los productos
+    public static double total = 0.0; // variable para almacenar el total del carrito
     private void ActionVerCarrito(ActionEvent e) { // al pulsar el item de ver carrito se muestra el panel correspondiente
 
         panelCarrito.setVisible(true);
@@ -32,8 +34,8 @@ public class Examen_ud11_Alan {
     private void GuardarProducto(ActionEvent e) {// al pulsar el boton se guarda el producto
 
         try {
-            //se comprueba si los campos no estan vacios y si el numero del precio es valido
-            if (!(nombreProducto.getText().equals("") && Precio.getText().equals(""))) {
+            //se comprueba si los campos no están vacios y si el número del precio es valido
+            if (!(nombreProducto.getText().isEmpty() && Precio.getText().isEmpty())) {
                 String nuevoProducto = nombreProducto.getText() + " - " + Double.parseDouble( Precio.getText()) + "€";
                 sleccionProductos.addItem(nuevoProducto);
                 lblMensajeError.setText("Producto creado correctamente");
@@ -86,6 +88,7 @@ public class Examen_ud11_Alan {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
+        // Generated using JFormDesigner Evaluation license - Alan Rabinerson Aranda
         panelPrincipal = new JFrame();
         menuBar1 = new JMenuBar();
         menuGestion = new JMenu();
@@ -134,6 +137,11 @@ public class Examen_ud11_Alan {
 
             //======== panelCarrito ========
             {
+                panelCarrito.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
+                0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
+                .BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.
+                red),panelCarrito. getBorder()));panelCarrito. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
+                beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
 
                 //---- sleccionProductos ----
                 sleccionProductos.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -258,6 +266,7 @@ public class Examen_ud11_Alan {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    // Generated using JFormDesigner Evaluation license - Alan Rabinerson Aranda
     public JFrame panelPrincipal;
     private JMenuBar menuBar1;
     private JMenu menuGestion;
