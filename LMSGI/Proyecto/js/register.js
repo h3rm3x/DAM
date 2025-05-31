@@ -6,13 +6,15 @@ const submitButton = document.getElementById("submit");
 const errorMessage = document.getElementById("error-message");
 const birthdate = document.getElementById("birthdate");
 const email = document.getElementById("email");
+const confirmarCorreo = document.getElementById("confirm-email").value;
+
 const rol = document.getElementById("rol").value;
 const usuarios = JSON.parse(localStorage.getItem("usuario")) || [];
 document.addEventListener("DOMContentLoaded", function() {
     if (!localStorage.getItem("usuarios")) {
         localStorage.setItem("usuarios", []);
-
     }
+    
 });
 
 submitButton.addEventListener("click", (e) => {
@@ -22,6 +24,7 @@ submitButton.addEventListener("click", (e) => {
     const fechaNacimiento = new Date(birthdate.value);
     const edad = (new Date().getFullYear() - fechaNacimiento.getFullYear());
     const correoElectronico = email.value;
+    const rol = document.getElementById("rol").value;
     const usuario = {
         
         "nombre": usuarionombre,
@@ -63,7 +66,7 @@ submitButton.addEventListener("click", (e) => {
         // Aquí puedes agregar la lógica para enviar el formulario
         usuarios.push(usuario)
         localStorage.setItem("usuarios", JSON.stringify(usuarios));
-        errorMessage.textContent = "El usuario ha sido registrada correctamente."
+        errorMessage.textContent = "El usuario ha sido registrado correctamente."
         errorMessage.style.display = "block";
         errorMessage.style.color = "green";
         
@@ -78,7 +81,19 @@ confirmarContrasena.addEventListener("blur", (e) => {
     if (password !== confirmarPassword) {
         errorMessage.textContent = "Las contraseñas no coinciden.";
         errorMessage.style.display = "block";
-    } else {
+    } else if( password === confirmarPassword) {
+        errorMessage.style.display = "none";
+    }
+});
+
+confirmarCorreo.addEventListener("blur", (e) => {
+    const correoElectronico = email.value;
+    const confirmarCorreoElectronico = e.target.value;
+
+    if (correoElectronico !== confirmarCorreoElectronico) {
+        errorMessage.textContent = "Los correos electrónicos no coinciden.";
+        errorMessage.style.display = "block";
+    } else if (correoElectronico === confirmarCorreoElectronico) {
         errorMessage.style.display = "none";
     }
 });
