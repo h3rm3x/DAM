@@ -78,7 +78,7 @@ form button{
     padding: 10px;
 }
 
-.error-message{
+#error-message{
     background-color: white;
     color: red;
     font-size: 1em;

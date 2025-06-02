@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
         nba[i].href = `${BASE_URL}../views/NBA.html`;
     }
 
+
+
     
     // añadir evento click al boton de menu
     menuButton.addEventListener("click", function() {
@@ -46,17 +48,22 @@ document.addEventListener("DOMContentLoaded", function () {
         window.open(`../views/login.html`);
     });
 
-    if (localStorage.getItem("usuarios")) {
-        const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-        // Si hay usuarios logueados, mostrar el enlace de admin
-        for (const value of usuarios) {
-            if (value.login && value.rol === "admin") {
+    if (localStorage.getItem("usuarioLogeado")) {
+        try {
+            const usuario = JSON.parse(localStorage.getItem("usuarioLogeado"));
+            loginButton.style.display = "none"; // Ocultar el botón de login si hay un usuario logueado
+            
+            // Si hay usuarios logueados, mostrar el enlace de admin
+            if (usuario && usuario.rol === "admin") {
                 admin.style.display = "block";
-                break;
             } else {
                 // Si no hay usuarios logueados, ocultar el enlace de admin
                 admin.style.display = "none";
-            }
+            }    
+        } catch (error) {
+            console.error("Error parsing user data:", error);
+            localStorage.removeItem("usuarioLogeado"); // Clear invalid data
+            admin.style.display = "none";
         }
     }
     

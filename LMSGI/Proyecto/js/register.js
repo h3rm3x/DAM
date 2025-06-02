@@ -6,7 +6,7 @@ const submitButton = document.getElementById("submit");
 const errorMessage = document.getElementById("error-message");
 const birthdate = document.getElementById("birthdate");
 const email = document.getElementById("email");
-const confirmarCorreo = document.getElementById("confirm-email").value;
+const confirmarCorreo = document.getElementById("confirm-email");
 
 const rol = document.getElementById("rol").value;
 const usuarios = JSON.parse(localStorage.getItem("usuario")) || [];
@@ -14,7 +14,11 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!localStorage.getItem("usuarios")) {
         localStorage.setItem("usuarios", []);
     }
-    
+
+    // Limpiar el usuario logueado al cargar la página
+    if (localStorage.getItem("usuarioLogeado")) {
+        localStorage.removeItem("usuarioLogeado"); 
+    }
 });
 
 submitButton.addEventListener("click", (e) => {
@@ -31,10 +35,9 @@ submitButton.addEventListener("click", (e) => {
         "contrasena": password,
         "fechaNacimiento": fechaNacimiento,
         "correoElectronico": correoElectronico,
-        "rol": rol,
-        "login": false
-        
+        "rol": rol
     }
+    
     e.preventDefault();
     if (!usuarionombre || !password || !confirmarPassword || !fechaNacimiento || !correoElectronico) {
         errorMessage.textContent = "Por favor, completa todos los campos.";
@@ -48,7 +51,7 @@ submitButton.addEventListener("click", (e) => {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correoElectronico)) {
         errorMessage.style.display = "block";
         errorMessage.textContent = "Por favor, introduce un correo electrónico válido.";
-    } else if ( !/^[a-z0-9]{8,}+$/.test(password)) {
+    } else if ( !/^[A-Za-z0-9]+$/.test(password) && password.length < 8) {
         errorMessage.style.display = "block";
         errorMessage.textContent = "La contraseña debe tener al menos 8 caracteres y tener al menos una mayuscula y un número.";
     } else if (usuario.length < 4 && !/^[a-z0-9]+$/.test(usuarionombre)) {
