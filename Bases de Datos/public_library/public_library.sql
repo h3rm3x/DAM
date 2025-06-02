@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2025 at 09:14 PM
+-- Generation Time: Jun 02, 2025 at 05:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -22,6 +22,26 @@ SET time_zone = "+00:00";
 --
 
 DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `flag_customers_with_overdue_books` ()   BEGIN
+    DECLARE number_of_customers INT ;
+    DECLARE var_customer_nie VARCHAR(20);
+    DECLARE var_overdue_books INT;
+
+    SET number_of_customers = (SELECT DISTINCT COUNT(customer_NIE) FROM customers);
+
+    FOR i IN 1..number_of_customers DO
+        SET var_customer_nie = (SELECT customer_NIE FROM customers ORDER BY RAND() LIMIT 1);
+        SET var_overdue_books = (SELECT COUNT(*) FROM books WHERE customer_NIE = var_customer_nie AND return_date > DATE_DIFF(CURDATE(), 365));
+
+        IF var_overdue_books > 2 THEN
+            UPDATE customers SET red_flag = 1 WHERE customer_NIE = var_customer_nie;
+        END IF;
+    END FOR;
+END$$
+
 --
 -- Functions
 --
@@ -212,34 +232,37 @@ CREATE TABLE `reservations` (
   `customer_NIE` varchar(255) NOT NULL,
   `date_in` date NOT NULL,
   `date_out` date NOT NULL,
-  `returned_late` tinyint(1) NOT NULL DEFAULT 0
+  `returned_late` tinyint(1) NOT NULL DEFAULT 0,
+  `real_date_out` date DEFAULT NULL,
+  `real_date_in` date DEFAULT NULL,
+  `reservation_state` enum('collected','pending','returned','') NOT NULL DEFAULT 'collected'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`reservation_id`, `book_ISBN`, `customer_NIE`, `date_in`, `date_out`, `returned_late`) VALUES
-(41, '9780385265706', 'X1234567A', '2025-05-01', '2025-05-08', 0),
-(42, '9780385265751', 'Y2345678B', '2025-05-02', '2025-05-09', 0),
-(43, '9780385265775', 'Z3456789C', '2025-05-03', '2025-05-10', 1),
-(44, '9780385265782', 'X4567890D', '2025-05-04', '2025-05-11', 0),
-(45, '9780385265799', 'Y5678901E', '2025-05-05', '2025-05-12', 0),
-(46, '9780385265806', 'Z6789012F', '2025-05-06', '2025-05-13', 0),
-(47, '9780385265813', 'X7890123G', '2025-05-07', '2025-05-14', 1),
-(48, '9780385265820', 'Y8901234H', '2025-05-08', '2025-05-15', 0),
-(49, '9780385265837', 'Z9012345I', '2025-05-09', '2025-05-16', 0),
-(50, '9780385265844', 'X0123456J', '2025-05-10', '2025-05-17', 0),
-(51, '9780385265851', 'Y1234567K', '2025-05-11', '2025-05-18', 1),
-(52, '9780385265868', 'Z2345678L', '2025-05-12', '2025-05-19', 0),
-(53, '9780385265875', 'X3456789M', '2025-05-13', '2025-05-20', 0),
-(54, '9780385265899', 'Y4567890N', '2025-05-14', '2025-05-21', 0),
-(55, '9780385265906', 'Z5678901O', '2025-05-15', '2025-05-22', 1),
-(56, '9780385265913', 'X1234567A', '2025-05-16', '2025-05-23', 0),
-(57, '9780385265920', 'Y2345678B', '2025-05-17', '2025-05-24', 0),
-(58, '9780385265937', 'Z3456789C', '2025-05-18', '2025-05-25', 0),
-(59, '9780385265944', 'X4567890D', '2025-05-19', '2025-05-26', 0),
-(60, '9780385265951', 'Y5678901E', '2025-05-20', '2025-05-27', 1);
+INSERT INTO `reservations` (`reservation_id`, `book_ISBN`, `customer_NIE`, `date_in`, `date_out`, `returned_late`, `real_date_out`, `real_date_in`, `reservation_state`) VALUES
+(1, '9780385265706', 'X1234567A', '2025-05-01', '2025-05-08', 0, NULL, NULL, 'returned'),
+(2, '9780385265751', 'Y2345678B', '2025-05-02', '2025-05-09', 0, NULL, NULL, 'returned'),
+(3, '9780385265775', 'Z3456789C', '2025-05-03', '2025-05-10', 1, NULL, NULL, 'collected'),
+(4, '9780385265782', 'X4567890D', '2025-05-04', '2025-05-11', 0, NULL, NULL, 'collected'),
+(5, '9780385265799', 'Y5678901E', '2025-05-05', '2025-05-12', 0, NULL, NULL, 'collected'),
+(6, '9780385265806', 'Z6789012F', '2025-05-06', '2025-05-13', 0, NULL, NULL, 'collected'),
+(7, '9780385265813', 'X7890123G', '2025-05-07', '2025-05-14', 1, NULL, NULL, 'collected'),
+(8, '9780385265820', 'Y8901234H', '2025-05-08', '2025-05-15', 0, NULL, NULL, 'collected'),
+(9, '9780385265837', 'Z9012345I', '2025-05-09', '2025-05-16', 0, NULL, NULL, 'collected'),
+(10, '9780385265844', 'X0123456J', '2025-05-10', '2025-05-17', 0, NULL, NULL, 'collected'),
+(11, '9780385265851', 'Y1234567K', '2025-05-11', '2025-05-18', 1, NULL, NULL, 'collected'),
+(12, '9780385265868', 'Z2345678L', '2025-05-12', '2025-05-19', 0, NULL, NULL, 'collected'),
+(13, '9780385265875', 'X3456789M', '2025-05-13', '2025-05-20', 0, NULL, NULL, 'collected'),
+(14, '9780385265899', 'Y4567890N', '2025-05-14', '2025-05-21', 0, NULL, NULL, 'collected'),
+(15, '9780385265906', 'Z5678901O', '2025-05-15', '2025-05-22', 1, NULL, NULL, 'collected'),
+(16, '9780385265913', 'X1234567A', '2025-05-16', '2025-05-23', 0, NULL, NULL, 'collected'),
+(17, '9780385265920', 'Y2345678B', '2025-05-17', '2025-05-24', 0, NULL, NULL, 'collected'),
+(18, '9780385265937', 'Z3456789C', '2025-05-18', '2025-05-25', 0, NULL, NULL, 'collected'),
+(19, '9780385265944', 'X4567890D', '2025-05-19', '2025-05-26', 0, NULL, NULL, 'collected'),
+(20, '9780385265951', 'Y5678901E', '2025-05-20', '2025-05-27', 1, NULL, NULL, 'collected');
 
 -- --------------------------------------------------------
 
@@ -314,6 +337,16 @@ ALTER TABLE `reservations`
 ALTER TABLE `reservations`
   ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`book_ISBN`) REFERENCES `books` (`ISBN`),
   ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`customer_NIE`) REFERENCES `customers` (`NIE`);
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `flag_customers_with_overdue_books_event` ON SCHEDULE EVERY 1 DAY STARTS '2025-06-02 15:46:39' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+    CALL flag_customers_with_overdue_books();
+END$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

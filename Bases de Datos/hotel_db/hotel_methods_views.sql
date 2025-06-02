@@ -599,4 +599,16 @@ FROM reservation r
 -- Fill cleaning table for check-outs 8:00
 -- Tick cleaning table for check-outs 15:00
 
+-- View to get all the extras of a reservation
+CREATE VIEW reservation_extras_view AS
+SELECT r.reservation_id, jt.service_name, jt.service_price, jt.service_date
+FROM reservation r, JSON_TABLE(
+    r.extras_json,
+    '$.*' COLUMNS (
+        service_name VARCHAR(255) PATH '$.service_name',
+        service_price DECIMAL(8,2) PATH '$.service_price',
+        service_date DATETIME PATH '$.date'
+    )
+) AS jt 
+
 

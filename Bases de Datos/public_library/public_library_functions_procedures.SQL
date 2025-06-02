@@ -9,6 +9,7 @@ BEGIN
 END$$
 
 DELIMITER $$
+-- procedure to flag customers with more than 2 overdue books in the last year
 CREATE PROCEDURE flag_customers_with_overdue_books()
 BEGIN
     DECLARE number_of_customers INT ;
@@ -27,11 +28,35 @@ BEGIN
     END FOR;
 END$$
 
+-- event to automatically flag customers with more than 2 overdue books in the last year
+CREATE EVENT flag_customers_with_overdue_books_event
+ON SCHEDULE EVERY 1 DAY
+DO
+BEGIN
+    CALL flag_customers_with_overdue_books();
+END$$
 -- VIEW to display all the information about books and the number of times they have been borrowed
 CREATE VIEW book_borrowing_info AS
 SELECT 
-    b.book_id,
-    b.title,
-    b.author,
-    b.genre,
-    COUNT(bb.borrow_id) AS times_borrowed
+    b.*
+    COUNT(r.reservation_id) AS times_borrowed
+FROM   
+    books b
+LEFT JOIN
+    reservations r ON b.ISBN= r.book_ISBN
+GROUP BY 
+    b.ISBN, b.title, b.author, b.genre;
+
+
+-- trigger to update the availability of a book when a reservation is returned
+DELIMITER $$
+CREATE TRIGGER `reservation_trigger` AFTER UPDATE ON `reservations`
+FOR EACH ROW 
+BEGIN
+    IF (OLD.reservation_state = 'collected' AND NEW.reservation_state = 'returned') THEN 
+        UPDATE books 
+        SET availiability = 'on_site'
+        WHERE ISBN = NEW.book_ISBN;
+    END IF;
+END$$
+DELIMITER ;
