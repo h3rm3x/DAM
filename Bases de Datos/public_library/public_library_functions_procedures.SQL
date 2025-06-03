@@ -60,3 +60,55 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+
+-- view to display the aviliable books in the library
+CREATE VIEW available_books AS
+SELECT b.*
+FROM books b
+WHERE b.availability = 'on_site';
+
+-- function to check the availability of a book in a given period
+DELIMITER $$
+CREATE FUNCTION check_availability (var_ISBN INT, var_borrow_date DATE, var_return_date DATE)
+RETURNS BOOLEAN DETERMINISTIC
+BEGIN
+    DECLARE var_availability BOOLEAN;
+    SET var_availability = TRUE;
+    IF (SELECT COUNT(*) FROM reservations WHERE book_ISBN = var_ISBN AND borrow_date <= var_return_date AND return_date >= var_borrow_date) > 0 THEN
+        SET var_availability = FALSE;
+    END IF;
+
+    RETURN var_availability;
+END$$
+DELIMITER;
+
+-- Procedure to return all the openings in the availability for a given book
+DELIMITER $$
+CREATE PROCEDURE showBookFreeDates ()
+BEGIN
+    DECLARE var_ISBN INT;
+    DECLARE var_borrow_date DATE;
+    DECLARE var_return_date DATE;
+    DECLARE var_book_name VARCHAR(255);
+    DECLARE var_book_author VARCHAR(255);
+
+
+    DECLARE i INT DEFAULT 0;
+    DECLARE attempts INT DEFAULT 0;
+    DECLARE max_attempts INT DEFAULT 100;
+
+    WHILE (i < 10 AND attempts < max_attempts) DO
+        SET attempts = attempts + 1;
+        SET var_ISBN = (SELECT ISBN FROM books ORDER BY RAND() LIMIT 1);
+        SET var_borrow_date = DATE_ADD('2024-01-01', INTERVAL FLOOR(RAND() * DATEDIFF('2026-12-31', '2024-01-01')) DAY);
+        SET var_return_date = (SELECT DATE_ADD(var_borrow_date, INTERVAL FLOOR(RAND() * 7) DAY));
+        SET var_book_name = (SELECT title FROM books WHERE ISBN = var_ISBN);
+        SET var_book_author = (SELECT author FROM books WHERE ISBN = var_ISBN);
+        
+        IF check_availability(var_ISBN, var_borrow_date, var_return_date) THEN
+            SELECT var_ISBN, var_book_name, var_book_author, var_borrow_date, var_return_date;
+            SET i = i + 1;
+        END IF;
+    END WHILE;
+END$$
+DELIMITER;

@@ -44,7 +44,8 @@ BEGIN
         SET var_availability = FALSE;
     END IF;
     RETURN var_availability;
-END$$DELIMITER ;
+END$$
+DELIMITER ;
 
 -- procedure that returns the openings in the avaliability for a given car
 DELIMITER $$
