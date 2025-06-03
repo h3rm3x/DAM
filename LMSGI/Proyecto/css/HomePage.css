@@ -145,7 +145,6 @@ article.principal, .otros {
 article p {
   font-size: 14px;
   color: var(--color_texto);
-  margin-bottom: 10px;
   word-wrap: break-word;
   overflow-wrap: break-word ;
   white-space: normal;
@@ -179,9 +178,15 @@ article p {
   margin-top: 10px;
 }
 
+.like-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
 .principal .like-button, .otros .like-button {
   display: block;
-  margin: 10px auto;
   padding: 5px 10px;
   background-color: #007bff;
   color: white;

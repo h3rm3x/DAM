@@ -72,6 +72,9 @@ submitButton.addEventListener("click", (e) => {
         errorMessage.textContent = "El usuario ha sido registrado correctamente."
         errorMessage.style.display = "block";
         errorMessage.style.color = "green";
+        setTimeout(() => {
+            window.location.href = "../views/login.html";
+        }, 2000);
         
     }
     

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const inicio = document.getElementsByClassName("Inicio");
     const articulos = document.getElementsByClassName("read-more");
     const admin = document.getElementById("admin");
+    const logoutButton = document.querySelector(".logout-button");
 
     // añadir el atibuto href a los enlaces de la barra de navegación y a los enlaces de los articulos
     let i;
@@ -24,13 +25,19 @@ document.addEventListener("DOMContentLoaded", function () {
     for (i= 0; i < articulos.length; i++) {
         articulos[i].href = `${BASE_URL}../views/Articulo.html`;
     }
-  
     for (i= 0; i < nba.length; i++) {
         nba[i].href = `${BASE_URL}../views/NBA.html`;
     }
 
 
+    logoutButton.addEventListener("click", function() {
+        // Eliminar el usuario logueado del localStorage
+        localStorage.removeItem("usuarioLogeado");
+        // Redirigir al usuario a la página de inicio
+        window.location.href = `${BASE_URL}../root/index.html`;
 
+
+    });
     
     // añadir evento click al boton de menu
     menuButton.addEventListener("click", function() {
@@ -49,22 +56,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (localStorage.getItem("usuarioLogeado")) {
-        try {
-            const usuario = JSON.parse(localStorage.getItem("usuarioLogeado"));
-            loginButton.style.display = "none"; // Ocultar el botón de login si hay un usuario logueado
-            
-            // Si hay usuarios logueados, mostrar el enlace de admin
-            if (usuario && usuario.rol === "admin") {
-                admin.style.display = "block";
-            } else {
-                // Si no hay usuarios logueados, ocultar el enlace de admin
-                admin.style.display = "none";
-            }    
-        } catch (error) {
-            console.error("Error parsing user data:", error);
-            localStorage.removeItem("usuarioLogeado"); // Clear invalid data
+        
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogeado"));
+        loginButton.style.display = "none"; // Ocultar el botón de login si hay un usuario logueado
+        logoutButton.style.display = "block"; // Mostrar el botón de logout si hay un usuario logueado    
+        // Si hay usuarios logueados, mostrar el enlace de admin
+        if (usuario && usuario.rol === "admin") {
+            admin.style.display = "block";
+        } else {
+            // Si no hay usuarios logueados, ocultar el enlace de admin
             admin.style.display = "none";
-        }
+        }    
+    } else  {            
+        localStorage.removeItem("usuarioLogeado"); // Clear invalid data
+        admin.style.display = "none";
+        loginButton.style.display = "block"; // Mostrar el botón de login si no hay un usuario logueado
+        logoutButton.style.display = "none"; // Ocultar el botón de logout si no hay un usuario logueado
     }
     
 

@@ -163,7 +163,7 @@ header ul li a:hover {
   color: #ddd;
 }
   
-.login-button {
+.login-button, .logout-button {
   display: inline-block;
   background-color: #007bff;
   color: #fff;
