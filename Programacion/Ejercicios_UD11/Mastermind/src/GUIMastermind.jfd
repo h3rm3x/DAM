@@ -3,57 +3,63 @@ JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.6" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :p:195:p, comp label1:::p::p, space ::196:x}, seq l {par t {seq t {space :::p, comp button1:::p:137:p}, seq l {space :p:31:p, par l {comp label2:::p::p, comp textField1:::p:143:p}}}, space ::141:x, par l {comp label3:::p:109:p, comp scrollPane1:::p:186:p}, space :p:32:p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p::p, space :p:62:p, par b {comp label2::b:p::p, comp label3::b:p::p}, space :::p, par l {seq {comp textField1:::p::p, space :::p, comp button1:::p::p}, comp scrollPane1:::p:227:p}, space :::x}}"
-		} ) {
-			name: "this"
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "MASTERMIND"
-				"font": new java.awt.Font( "Inter", 1, 20 )
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "textField1"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "Nueva Tirada"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
-				"text": "Comprobar"
-			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane1"
-				add( new FormComponent( "javax.swing.JTextArea" ) {
-					name: "textArea1"
-					"lineWrap": true
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.CardLayout ) ) {
+			name: "ContentPanel"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:184:p, comp lblTitulo:::p::p, space ::207:x}, seq l {space :p:28:p, par l:::p {comp lblTirada:::p::p, comp fieldTiradas::::154:x, comp btnComprobartirada::l::154:x}, space ::125:x, par l {comp scrollListaTiradas:::p:206:p, comp lblListaTiradas:::p::p}, space :p:20:p}}"
+				"$verticalGroup": "par l {seq l {comp lblTitulo:::p::p, space :p:34:p, par b {comp lblTirada::b:p::p, comp lblListaTiradas::b:p::p}, space :::p, par l {seq {comp fieldTiradas:::p::p, space s:::p, comp btnComprobartirada:::p::p}, comp scrollListaTiradas:::p:197:p}, space :0:72:x}}"
+			} ) {
+				name: "panelPartida"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblTitulo"
+					"text": "MASTERMIND"
+					"font": new java.awt.Font( "Inter", 1, 20 )
 				} )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label3"
-				"text": "Lista Tiradas"
-				"font": new java.awt.Font( "Inter", 1, 13 )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "fieldTiradas"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblTirada"
+					"text": "Nueva Tirada"
+					"font": new java.awt.Font( "Inter", 1, 14 )
+					"labelFor": new FormReference( "fieldTiradas" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnComprobartirada"
+					"text": "Comprobar"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "ComprobarTirada", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollListaTiradas"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "areaListaTiradas"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblListaTiradas"
+					"text": "Lista Tiradas "
+					"font": new java.awt.Font( "Inter", 1, 14 )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "card7"
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "menu1"
+					name: "menuPartidas"
 					"text": "Partidas"
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem1"
-						"text": "Ver Partidas"
+						name: "itemNuevaPartida"
+						"text": "Nueva Partida"
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem2"
-						"text": "Guardar Partidas"
+						name: "itemVerPartidas"
+						"text": "Ver Partidas"
 					} )
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
+			"location": new java.awt.Point( 35, 0 )
 			"size": new java.awt.Dimension( 535, 405 )
 		} )
 	}
