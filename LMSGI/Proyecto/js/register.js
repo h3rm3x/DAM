@@ -4,15 +4,17 @@ const contrasena = document.getElementById("password");
 const confirmarContrasena = document.getElementById("confirm-password");
 const submitButton = document.getElementById("submit");
 const errorMessage = document.getElementById("error-message");
-const birthdate = document.getElementById("birthdate");
+const fechaNacimiento = document.getElementById("birthdate");
 const email = document.getElementById("email");
 const confirmarCorreo = document.getElementById("confirm-email");
 
-const rol = document.getElementById("rol").value;
-const usuarios = JSON.parse(localStorage.getItem("usuario")) || [];
+// Corregido: obtener usuarios existentes del localStorage con la clave correcta
+const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
 document.addEventListener("DOMContentLoaded", function() {
+    // Inicializar el array de usuarios solo si no existe
     if (!localStorage.getItem("usuarios")) {
-        localStorage.setItem("usuarios", []);
+        localStorage.setItem("usuarios", JSON.stringify([]));
     }
 
     // Limpiar el usuario logueado al cargar la página
@@ -22,15 +24,21 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    // Obtener usuarios actualizados del localStorage antes de validar
+    const usuariosActuales = JSON.parse(localStorage.getItem("usuarios")) || [];
+    
     const usuarionombre = nombreUsuario.value;
     const password = contrasena.value;
     const confirmarPassword = confirmarContrasena.value;
     const fechaNacimiento = new Date(birthdate.value);
     const edad = (new Date().getFullYear() - fechaNacimiento.getFullYear());
     const correoElectronico = email.value;
+    const confirmarCorreoElectronico = confirmarCorreo.value;
     const rol = document.getElementById("rol").value;
+    
     const usuario = {
-        
         "nombre": usuarionombre,
         "contrasena": password,
         "fechaNacimiento": fechaNacimiento,
@@ -38,46 +46,67 @@ submitButton.addEventListener("click", (e) => {
         "rol": rol
     }
     
-    e.preventDefault();
-    if (!usuarionombre || !password || !confirmarPassword || !fechaNacimiento || !correoElectronico) {
-        errorMessage.textContent = "Por favor, completa todos los campos.";
-        errorMessage.style.display = "block";
-    } else if (password !== confirmarPassword) {
-        errorMessage.textContent = "Las contraseñas no coinciden.";
-        errorMessage.style.display = "block";
-    } else if (edad < 14) {
-        errorMessage.style.display = "block";
-        errorMessage.textContent = "Debes tener al menos 14 años para registrarte.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correoElectronico)) {
-        errorMessage.style.display = "block";
-        errorMessage.textContent = "Por favor, introduce un correo electrónico válido.";
-    } else if ( !/^[A-Za-z0-9]+$/.test(password) && password.length < 8) {
-        errorMessage.style.display = "block";
-        errorMessage.textContent = "La contraseña debe tener al menos 8 caracteres y tener al menos una mayuscula y un número.";
-    } else if (usuario.length < 4 && !/^[a-z0-9]+$/.test(usuarionombre)) {
-        errorMessage.style.display = "block";
-        errorMessage.textContent = "El nombre de usuario debe tener al menos 4 caracteres y tener al menos una letra y un número.";
-    } else if (containsEmail(usuarios, correoElectronico)) {
-        errorMessage.textContent = "El correo electrónico ya está registrado.";
-        errorMessage.style.display = "block";
-    }  else if (containsNombreUsuario(usuarios, usuarionombre)) {
-        errorMessage.textContent = "El nombre de usuario ya está registrado.";
-        errorMessage.style.display = "block";
-    }  
-    else {
-        errorMessage.style.display = "none";
-        // Aquí puedes agregar la lógica para enviar el formulario
-        usuarios.push(usuario)
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
-        errorMessage.textContent = "El usuario ha sido registrado correctamente."
-        errorMessage.style.display = "block";
-        errorMessage.style.color = "green";
-        setTimeout(() => {
-            window.location.href = "../views/login.html";
-        }, 2000);
-        
+    // Validaciones
+    if (!usuarionombre || !password || !confirmarPassword || !fechaNacimiento || !correoElectronico || !confirmarCorreoElectronico) {
+        mostrarError("Por favor, completa todos los campos.");
+        return;
     }
     
+    if (password !== confirmarPassword) {
+        mostrarError("Las contraseñas no coinciden.");
+        return;
+    }
+    
+    if (correoElectronico !== confirmarCorreoElectronico) {
+        mostrarError("Los correos electrónicos no coinciden.");
+        return;
+    }
+    
+    if (calcularEdad(fechaNacimiento) < 14) {
+        mostrarError("Debes tener al menos 14 años para registrarte.");
+        return;
+    }
+    
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correoElectronico)) {
+        mostrarError("Por favor, introduce un correo electrónico válido.");
+        return;
+    }
+    
+    // Corregida la validación de contraseña: debe tener al menos 8 caracteres Y contener mayúsculas y números
+    if (password.length < 8 || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+        mostrarError("La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.");
+        return;
+    }
+    
+    // Corregida la validación de nombre de usuario: debe tener al menos 4 caracteres
+    if (usuarionombre.length < 4 || !/^[a-zA-Z0-9]+$/.test(usuarionombre)) {
+        mostrarError("El nombre de usuario debe tener al menos 4 caracteres y contener solo letras y números.");
+        return;
+    }
+    
+    if (containsEmail(usuariosActuales, correoElectronico)) {
+        mostrarError("El correo electrónico ya está registrado.");
+        return;
+    }
+    
+    if (containsNombreUsuario(usuariosActuales, usuarionombre)) {
+        mostrarError("El nombre de usuario ya está registrado.");
+        return;
+    }
+    
+    // Si todas las validaciones pasan, agregar el usuario
+    errorMessage.style.display = "none";
+    usuariosActuales.push(usuario);
+    localStorage.setItem("usuarios", JSON.stringify(usuariosActuales));
+    
+    // Mostrar mensaje de éxito
+    errorMessage.textContent = "El usuario ha sido registrado correctamente.";
+    errorMessage.style.display = "block";
+    errorMessage.style.color = "green";
+    
+    setTimeout(() => {
+        window.location.href = "../views/login.html";
+    }, 2000);
 });
 
 confirmarContrasena.addEventListener("blur", (e) => {
@@ -85,9 +114,8 @@ confirmarContrasena.addEventListener("blur", (e) => {
     const confirmarPassword = e.target.value;
 
     if (password !== confirmarPassword) {
-        errorMessage.textContent = "Las contraseñas no coinciden.";
-        errorMessage.style.display = "block";
-    } else if( password === confirmarPassword) {
+        mostrarError("Las contraseñas no coinciden.");
+    } else if (password === confirmarPassword && password !== "") {
         errorMessage.style.display = "none";
     }
 });
@@ -97,26 +125,59 @@ confirmarCorreo.addEventListener("blur", (e) => {
     const confirmarCorreoElectronico = e.target.value;
 
     if (correoElectronico !== confirmarCorreoElectronico) {
-        errorMessage.textContent = "Los correos electrónicos no coinciden.";
-        errorMessage.style.display = "block";
-    } else if (correoElectronico === confirmarCorreoElectronico) {
+        mostrarError("Los correos electrónicos no coinciden.");
+    } else if (correoElectronico === confirmarCorreoElectronico && correoElectronico !== "") {
         errorMessage.style.display = "none";
     }
 });
 
-function containsEmail(array, value) {
-    for (value of array) {
-        if (value.correoElectronico === email.value) {
-            return true;
-        }
+nombreUsuario.addEventListener("blur", (e) => {
+    const usuarionombre = e.target.value;
+
+    if (usuarionombre.length < 4 || !/^[a-zA-Z0-9]+$/.test(usuarionombre)) {
+        mostrarError("El nombre de usuario debe tener al menos 4 caracteres y contener solo letras y números.");
+        nombreUsuario.style.borderColor = "red";
+    } else {
+        errorMessage.style.display = "none";
+        nombreUsuario.style.borderColor = "none";
     }
+
+
+});
+// Función auxiliar para mostrar errores
+function mostrarError(mensaje) {
+    // Limpiar el mensaje de error anterior
+    errorMessage.textContent = "";
+    errorMessage.textContent = mensaje;
+    errorMessage.style.display = "block";
+    errorMessage.style.color = "red";
+    
+    setTimeout(() => {
+        errorMessage.style.display = "none";
+    }, 5000);
 }
 
-function containsNombreUsuario(array, value) {
-    for (value of array) {
-        if (value.nombre === nombreUsuario.value) {
-            return true;
-        }
+function calcularEdad(fechaNacimiento) {
+    const hoy = new Date();
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    const mesActual = hoy.getMonth();
+    const diaActual = hoy.getDate();
+    const mesNacimiento = fechaNacimiento.getMonth();
+    const diaNacimiento = fechaNacimiento.getDate();
+    
+    // Si aún no ha llegado el cumpleaños este año, restar 1
+    if (mesActual < mesNacimiento || (mesActual === mesNacimiento && diaActual < diaNacimiento)) {
+        edad--;
     }
-    return false;
+    
+    return edad;
+}
+// Función corregida para verificar si el email ya existe
+function containsEmail(array, email) {
+    return array.some(usuario => usuario.correoElectronico === email);
+}
+
+// Función corregida para verificar si el nombre de usuario ya existe
+function containsNombreUsuario(array, nombre) {
+    return array.some(usuario => usuario.nombre === nombre);
 }
