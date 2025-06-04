@@ -20,7 +20,7 @@ BEGIN
         SET var_initial_date = DATE_ADD('2024-01-01', 
                                 INTERVAL FLOOR(RAND() * DATEDIFF('2026-12-31', '2024-01-01')) DAY);
         SET var_final_date = (SELECT DATE_ADD(var_initial_date, INTERVAL FLOOR(RAND() * 7) DAY));
-        SET var_price_per_day = (SELECT class_price_per_day FROM car_class WHERE car_id = var_car_id);
+        SET var_price_per_day = (SELECT class_price FROM car_class WHERE car_id = var_car_id);
         
         
 
@@ -35,12 +35,12 @@ DELIMITER ;
 
 -- function to check the availability of a car in a given period
 DELIMITER $$
-CREATE FUNCTION check_availability (var_car_id INT, var_initial_date DATE, var_final_date DATE)
+CREATE FUNCTION check_availability (var_car_id INT, var_date_in DATE, var_date_out DATE)
 RETURNS BOOLEAN DETERMINISTIC
 BEGIN
     DECLARE var_availability BOOLEAN;
     SET var_availability = TRUE;
-    IF (SELECT COUNT(*) FROM reservation WHERE car_id = var_car_id AND initial_date <= var_final_date AND final_date >= var_initial_date) > 0 THEN
+    IF (SELECT COUNT(*) FROM reservation WHERE car_id = var_car_id AND date_in <= var_date_out AND date_out >=  var_date_in) > 0 THEN
         SET var_availability = FALSE;
     END IF;
     RETURN var_availability;

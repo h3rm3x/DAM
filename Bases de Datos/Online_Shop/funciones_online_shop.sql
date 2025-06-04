@@ -24,7 +24,7 @@ BEGIN
         VALUES (var_customer_id, var_product_id, var_quantity);  
         ON DUPLICATE KEY UPDATE quantity = var_quantity + quantity  
     END WHILE;
-END;º
+END;
 
 
 -- Insert data into the order table
