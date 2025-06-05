@@ -113,4 +113,14 @@ BEGIN
 END$$
 DELIMITER ;
                                              
-    
+-- procedure to show one available car per class
+CREATE PROCEDURE show_available_cars_per_class (var_date_in DATE, var_date_out DATE)
+BEGIN
+    SELECT cc.class_name, c.*
+    FROM car c
+    INNER JOIN car_class cc ON cc.car_id = c.car_id
+    WHERE c.car_id NOT IN (SELECT r.car_id FROM reservation r WHERE r.date_in <= var_date_out AND r.date_out >= var_date_in)
+    GROUP BY cc.class_name, c.car_id
+    ORDER BY cc.class_name;
+END$$
+DELIMITER ;

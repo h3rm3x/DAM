@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2025 at 08:15 PM
+-- Generation Time: Jun 05, 2025 at 05:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -55,10 +55,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addReservations` ()   BEGIN
     END WHILE;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `avaliable_cars_per_class` (IN `var_date_in` DATE, IN `var_date_out` DATE)   SELECT car_class, COUNT(car_id) AS Number_of_cars
-FROM car
-WHERE car_id NOT IN (SELECT car_id FROM reservation WHERE date_in<= var_date_out AND date_out >= var_date_in)
-GROUP BY car_class$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `avaliable_cars_per_class` (IN `var_date_in` DATE, IN `var_date_out` DATE)   SELECT cc.class_name, c.*
+    FROM car c
+    INNER JOIN car_class cc ON cc.car_id = c.car_id
+    WHERE c.car_id NOT IN (SELECT r.car_id FROM reservation r WHERE r.date_in <= var_date_out AND r.date_out >= var_date_in)
+    GROUP BY cc.class_name, c.car_id
+    ORDER BY cc.class_name$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `showCarsFreeDates` ()   BEGIN
     DECLARE var_car_id INT;
@@ -85,61 +87,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `showCarsFreeDates` ()   BEGIN
     END WHILE;
 
 
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_reservation_dates` ()   BEGIN
-    DECLARE done INT DEFAULT FALSE;
-    DECLARE var_reservation_id INT;
-    DECLARE var_date_in DATE;
-    DECLARE var_date_out DATE;
-    DECLARE duration INT;
-    
-    -- Cursor para recorrer todas las reservas
-    DECLARE cur CURSOR FOR 
-        SELECT reservation_id FROM reservation;
-    
-    -- Handler para cuando no hay más reservas
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
-    
-    -- Abrir el cursor
-    OPEN cur;
-    
-    -- Recorrer todas las reservas
-    read_loop: LOOP
-        FETCH cur INTO var_reservation_id;
-        
-        IF done THEN
-            LEAVE read_loop;
-        END IF;
-        
-        -- Generar una fecha inicial aleatoria entre 2024-01-01 y 2025-12-31
-        SET var_date_in = DATE_ADD('2024-01-01', 
-                                INTERVAL FLOOR(RAND() * DATEDIFF('2026-12-31', '2024-01-01')) DAY);
-        
-        -- Obtener la duración actual de la reserva
-        SELECT DATEDIFF(date_out, date_in) INTO duration 
-        FROM reservation 
-        WHERE reservation_id = var_reservation_id;
-        
-        -- Asegurar que la duración sea al menos 1 día
-        IF duration < 1 THEN
-            SET duration = 1;
-        END IF;
-        
-        -- Calcular la fecha final basada en la duración original
-        SET var_date_out = DATE_ADD(var_date_in, INTERVAL duration DAY);
-        
-        -- Actualizar la reserva con las nuevas fechas
-        UPDATE reservation 
-        SET date_in = var_date_in,
-            date_out = var_date_out
-        WHERE reservation_id = var_reservation_id;
-    END LOOP;
-    
-    -- Cerrar el cursor
-    CLOSE cur;
-    
-    SELECT CONCAT('Se actualizaron las fechas de ', (SELECT COUNT(*) FROM reservation), ' reservas') AS result;
 END$$
 
 --
@@ -779,16 +726,51 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
+-- Indexes for table `car`
+--
+ALTER TABLE `car`
+  ADD PRIMARY KEY (`car_id`);
+
+--
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`class_name`,`start_date`,`end_date`);
 
 --
+-- Indexes for table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`client_id`);
+
+--
 -- Indexes for table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`reservation_id`);
+  ADD PRIMARY KEY (`reservation_id`),
+  ADD KEY `car_id` (`car_id`),
+  ADD KEY `client_id` (`client_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `client`
+--
+ALTER TABLE `client`
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`),
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`);
 
 DELIMITER $$
 --
