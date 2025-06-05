@@ -169,8 +169,6 @@ nombreUsuario.addEventListener("blur", (e) => {
         errorMessage.style.display = "none";
         nombreUsuario.style.borderColor = "none";
     }
-
-
 });
 
 // Función para validar la fortaleza de la contraseña
@@ -191,12 +189,21 @@ contrasena.addEventListener("input", (e) => {
     }
 });
 
-// Función para alternar la visibilidad de la contraseña
+// Función para alternar la visibilidad de la contraseña - CORREGIDA
 togglePassword.addEventListener("click", () => {
-    const showPWdIcon = document.querySelector("#toggle-password visible");
-    const hidePWdIcon = document.querySelector("#toggle-password hidden");
+    // Corregir los selectores - buscar las imágenes dentro del botón
+    const showPWdIcon = togglePassword.querySelector(".visible");
+    const hidePWdIcon = togglePassword.querySelector(".hidden");
     const passwordField = contrasena;
+    
+    // Verificar que los elementos existen antes de acceder a sus propiedades
+    if (!showPWdIcon || !hidePWdIcon) {
+        console.error("No se encontraron los iconos de mostrar/ocultar contraseña");
+        return;
+    }
+    
     const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+    
     if (type === "text") {
         showPWdIcon.style.display = "none";
         hidePWdIcon.style.display = "block";
@@ -204,15 +211,25 @@ togglePassword.addEventListener("click", () => {
         showPWdIcon.style.display = "block";
         hidePWdIcon.style.display = "none";
     }
+    
     passwordField.setAttribute("type", type);
 });
 
-// Función para alternar la visibilidad de la confirmación de contraseña
+// Función para alternar la visibilidad de la confirmación de contraseña - CORREGIDA
 toggleConfirmPassword.addEventListener("click", () => {
-    const showPWdIcon = document.querySelector("#toggle-confirm-password visible");
-    const hidePWdIcon = document.querySelector("#toggle-confirm-password hidden");
+    // Corregir los selectores - buscar las imágenes dentro del botón
+    const showPWdIcon = toggleConfirmPassword.querySelector(".visible");
+    const hidePWdIcon = toggleConfirmPassword.querySelector(".hidden");
     const confirmPasswordField = confirmarContrasena;
+    
+    // Verificar que los elementos existen antes de acceder a sus propiedades
+    if (!showPWdIcon || !hidePWdIcon) {
+        console.error("No se encontraron los iconos de mostrar/ocultar confirmación de contraseña");
+        return;
+    }
+    
     const type = confirmPasswordField.getAttribute("type") === "password" ? "text" : "password";
+    
     if (type === "text") {
         showPWdIcon.style.display = "none";
         hidePWdIcon.style.display = "block";
@@ -220,6 +237,7 @@ toggleConfirmPassword.addEventListener("click", () => {
         showPWdIcon.style.display = "block";
         hidePWdIcon.style.display = "none";
     }
+    
     confirmPasswordField.setAttribute("type", type);
 });
 
@@ -251,7 +269,6 @@ function calcularEdad(fechaNacimiento) {
     
     return edad;
 }
-
 
 // Función corregida para verificar si el nombre de usuario ya existe
 function containsNombreUsuario(array, nombre) {
