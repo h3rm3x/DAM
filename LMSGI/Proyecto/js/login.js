@@ -10,7 +10,34 @@ document.addEventListener("DOMContentLoaded", function () {
     // Añadir el atributo href al enlace de registro
     registerLink.href = `${BASE_URL}Register.html`;
 
-
+    function login_valido(usuarios, nombreUsuario, password) {
+        // Verificar si hay usuarios registrados
+        if (!usuarios || usuarios.length === 0) {
+            return false;
+        }
+        
+        // Parsear el JSON si es necesario
+        let usuariosArray;
+        try {
+            usuariosArray = typeof usuarios === 'string' ? JSON.parse(usuarios) : usuarios;
+        } catch (error) {
+            console.error("Error al parsear usuarios:", error);
+            return false;
+        }
+        
+        // Buscar el usuario en el array
+        for (const usuario of usuariosArray) {
+            console.log(`Validando usuario: ${usuario.nombre}`);
+            console.log(`Usuario ingresado: ${nombreUsuario}, Contraseña ingresada: ${password}`);
+            console.log(`Usuario encontrado: ${usuario.nombre}, Contraseña: ${usuario.contrasena}`);
+            
+            if (usuario.nombre === nombreUsuario && usuario.contrasena === password) {
+                return true; // Usuario y contraseña correctos
+            }
+        }
+        
+        return false; // Usuario no encontrado o contraseña incorrecta
+    }
     submitButton.addEventListener("click", (e) => {
         const usuario = nombreUsuario.value;
         const password = contrasena.value;
@@ -22,8 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
             errorMessage.style.display = "block";
             
             e.preventDefault(); // Evitar el envío del formulario
-        } else if (!login_valido(localStorage.getItem("usuarios"), usuario)) {
-            console.log(localStorage.getItem("usuarios"));
+        } else if (!login_valido(localStorage.getItem("usuarios"), usuario, password)) {
             errorMessage.textContent = "Usuario o contraseña incorrectos.";
             errorMessage.style.display = "block";
             e.preventDefault(); // Evitar el envío del formulario
@@ -50,25 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    function login_valido(usuarios, nombreUsuario) {
-        let usr = "";
-        let contrasena = "";
-        usuarios = JSON.parse(usuarios) || [];
-        if (!usuarios || usuarios.length === 0) {
-            return false; // No hay usuarios registrados
-        }
-        for (const value of usuarios) {
-            console.log(value);
-            if (value.nombre === nombreUsuario) {
-                usr = value.nombre;
-                contrasena = value.contrasena;            
-                console.log(nombreUsuario + " " + value.contrasena + " " + contrasena + " " + (contrasena === value.contrasena && usr === nombreUsuario));
 
-                return true; // Usuario encontrado
-            }  
-            return usr === nombreUsuario && contrasena === value.contrasena;
-
-        }
-    }
 
 });

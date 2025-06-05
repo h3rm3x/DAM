@@ -7,6 +7,8 @@ const errorMessage = document.getElementById("error-message");
 const fechaNacimiento = document.getElementById("birthdate");
 const email = document.getElementById("email");
 const confirmarCorreo = document.getElementById("confirm-email");
+const togglePassword = document.getElementById("toggle-password");
+const toggleConfirmPassword = document.getElementById("toggle-confirm-password");
 
 // Corregido: obtener usuarios existentes del localStorage con la clave correcta
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -46,12 +48,43 @@ submitButton.addEventListener("click", (e) => {
         "rol": rol
     }
     
-    // Validaciones
-    if (!usuarionombre || !password || !confirmarPassword || !fechaNacimiento || !correoElectronico || !confirmarCorreoElectronico) {
-        mostrarError("Por favor, completa todos los campos.");
+    // Comprobar si los campos están vacíos o nulos
+    if (!usuarionombre || usuarionombre.trim() === "" || usuarionombre === null) {
+        mostrarError("El nombre de usuario es obligatorio.");
         return;
     }
     
+    if (!password || password.trim() === "" || password === null) {
+        mostrarError("La contraseña es obligatoria.");
+        return;
+    }
+    
+    if (!confirmarPassword || confirmarPassword.trim() === "" || confirmarPassword === null) {
+        mostrarError("Debe confirmar la contraseña.");
+        return;
+    }
+    
+    if (!birthdate.value || birthdate.value.trim() === "" || birthdate.value === null) {
+        mostrarError("La fecha de nacimiento es obligatoria.");
+        return;
+    }
+    
+    if (!correoElectronico || correoElectronico.trim() === "" || correoElectronico === null) {
+        mostrarError("El correo electrónico es obligatorio.");
+        return;
+    }
+    
+    if (!confirmarCorreoElectronico || confirmarCorreoElectronico.trim() === "" || confirmarCorreoElectronico === null) {
+        mostrarError("Debe confirmar el correo electrónico.");
+        return;
+    }
+    
+    if (!rol || rol.trim() === "" || rol === null) {
+        mostrarError("Debe seleccionar un rol.");
+        return;
+    }
+    
+    // validaciones adicionales
     if (password !== confirmarPassword) {
         mostrarError("Las contraseñas no coinciden.");
         return;
@@ -81,11 +114,6 @@ submitButton.addEventListener("click", (e) => {
     // Corregida la validación de nombre de usuario: debe tener al menos 4 caracteres
     if (usuarionombre.length < 4 || !/^[a-zA-Z0-9]+$/.test(usuarionombre)) {
         mostrarError("El nombre de usuario debe tener al menos 4 caracteres y contener solo letras y números.");
-        return;
-    }
-    
-    if (containsEmail(usuariosActuales, correoElectronico)) {
-        mostrarError("El correo electrónico ya está registrado.");
         return;
     }
     
@@ -144,6 +172,57 @@ nombreUsuario.addEventListener("blur", (e) => {
 
 
 });
+
+// Función para validar la fortaleza de la contraseña
+contrasena.addEventListener("input", (e) => {
+    const password = e.target.value;
+    const strengthText = document.getElementById("strength-text");
+    const strengthBar = document.getElementById("strength-bar");
+
+    if (password.length < 6) {
+        strengthText.textContent = "Muy débil";
+        strengthBar.className = "weak";
+    } else if (password.length < 9|| !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+        strengthText.textContent = "Débil";
+        strengthBar.className = "medium";
+    } else {
+        strengthText.textContent = "Fuerte";
+        strengthBar.className = "strong";
+    }
+});
+
+// Función para alternar la visibilidad de la contraseña
+togglePassword.addEventListener("click", () => {
+    const showPWdIcon = document.querySelector("#toggle-password visible");
+    const hidePWdIcon = document.querySelector("#toggle-password hidden");
+    const passwordField = contrasena;
+    const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+    if (type === "text") {
+        showPWdIcon.style.display = "none";
+        hidePWdIcon.style.display = "block";
+    } else {
+        showPWdIcon.style.display = "block";
+        hidePWdIcon.style.display = "none";
+    }
+    passwordField.setAttribute("type", type);
+});
+
+// Función para alternar la visibilidad de la confirmación de contraseña
+toggleConfirmPassword.addEventListener("click", () => {
+    const showPWdIcon = document.querySelector("#toggle-confirm-password visible");
+    const hidePWdIcon = document.querySelector("#toggle-confirm-password hidden");
+    const confirmPasswordField = confirmarContrasena;
+    const type = confirmPasswordField.getAttribute("type") === "password" ? "text" : "password";
+    if (type === "text") {
+        showPWdIcon.style.display = "none";
+        hidePWdIcon.style.display = "block";
+    } else {
+        showPWdIcon.style.display = "block";
+        hidePWdIcon.style.display = "none";
+    }
+    confirmPasswordField.setAttribute("type", type);
+});
+
 // Función auxiliar para mostrar errores
 function mostrarError(mensaje) {
     // Limpiar el mensaje de error anterior
@@ -172,10 +251,7 @@ function calcularEdad(fechaNacimiento) {
     
     return edad;
 }
-// Función corregida para verificar si el email ya existe
-function containsEmail(array, email) {
-    return array.some(usuario => usuario.correoElectronico === email);
-}
+
 
 // Función corregida para verificar si el nombre de usuario ya existe
 function containsNombreUsuario(array, nombre) {
