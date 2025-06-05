@@ -1,7 +1,4 @@
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -12,8 +9,13 @@ public class Mastermind {
     static char[] combinacionIntentada = new char[4];
     public static void main(String[] args) {
         try{
-            FileReader fr = new FileReader("partidas.txt");
-        } catch (IOException e) {
+
+            ObjectInputStream ois = new ObjectInputStream( new FileInputStream("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD10\\EX_10_12\\src\\partidas.dat"));
+            while (ois.available() != 0) {
+                Partida partidaLeida = (Partida) ois.readObject();
+                partidas.put(partidaLeida.getNombreJugador(), partidaLeida);
+            }
+        } catch (Exception e) {
             e.getMessage();
         }
         while (true) {
@@ -80,7 +82,7 @@ public class Mastermind {
             }
         }
         partidas.put(partida.getNombreJugador(), partida);
-        FileOutputStream fos = new FileOutputStream("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD10\\EX_10_12\\src\\partidas.txt");
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD10\\EX_10_12\\src\\partidas.dat");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(partidas);
         oos.close();

@@ -87,14 +87,14 @@ public class Partida implements Serializable {
     public String toString() {
         String tiradas = "";
         for (Tirada tirada : listaTiradas) {
-            tiradas += tirada.toString() + "\n";
+            tiradas += tirada.toString() + " ";
         }
         return "Partida:\n" +
                 "Jugador: " + nombreJugador + "\n" +
                 "Combinación secreta: " + Arrays.toString(combinacionSecreta) + "\n" +
                 "Puntuación: " + puntuacion + "\n" +
                 "Estado: " + (EstadoFinal ? "Ganada" : "Perdida") + "\n" +
-                "Tiradas:\n" + tiradas;
+                "Tiradas: " + tiradas;
     }
 
 }

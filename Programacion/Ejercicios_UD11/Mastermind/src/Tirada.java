@@ -43,7 +43,7 @@ public class Tirada implements Serializable {
     public String toString() {
         String sb = " ";
         for (char c : combinacionInentada) {
-            sb += c + "\n";
+            sb += c + " ";
         }
         return sb;
     }
