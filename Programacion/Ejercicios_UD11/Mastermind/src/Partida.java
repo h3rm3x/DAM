@@ -11,6 +11,7 @@ public class Partida implements Serializable {
     private boolean EstadoFinal;
     private char[] colores = {'R', 'B', 'G', 'M', 'Y', 'C'};
 
+
     public Partida(String nombreJugador) {
         this.nombreJugador = nombreJugador;
 
@@ -54,7 +55,7 @@ public class Partida implements Serializable {
         int malColocados = 0;
         boolean[] controlSecreta = {false, false, false, false};
         boolean[] controlIntentada = {false, false, false, false};
-        char[] combinacionIntentada = Tirada.getCombinacionInentada();
+        char[] combinacionIntentada = tirada.getCombinacionInentada();
 
         for (int i = 0; i < combinacionSecreta.length; i++) {
             if (combinacionIntentada[i] == combinacionSecreta[i]) {
@@ -76,18 +77,21 @@ public class Partida implements Serializable {
             }
         }
         tirada.setResultadoTirada(aciertos*2+malColocados);
-        puntuacion += tirada.getResultadoTirada();
+        puntuacion += Tirada.getResultadoTirada();
+        tirada.setRespuestaOrdenador(new int[]{aciertos, malColocados});
+        listaTiradas.add(tirada);
         if (aciertos == 4) {
             EstadoFinal = true;
         }
+
         return new int[]{aciertos, malColocados};
     }
 
     @Override
     public String toString() {
         String tiradas = "";
-        for (Tirada tirada : listaTiradas) {
-            tiradas += tirada.toString() + " ";
+        for (Tirada tir : listaTiradas) {
+            tiradas += tir.toString() + "aciertos " + tir.getRespuestaOrdenador()[0]+ " mal colocados "+ tir.getRespuestaOrdenador()[1] +"\n";
         }
         return "Partida:\n" +
                 "Jugador: " + nombreJugador + "\n" +

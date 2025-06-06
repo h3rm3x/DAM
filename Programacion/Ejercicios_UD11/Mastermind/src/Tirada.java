@@ -2,21 +2,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Tirada implements Serializable {
-    private static char[] combinacionInentada;
-    private static ArrayList<String> listacombinacionIntentada = new ArrayList<>();
+    private  static char[] combinacionInentada;
     private int[] respuestaOrdenador;
 
     private static int resultadoTirada;
 
     public Tirada(char[] combinacionInentada) {
-        Tirada.combinacionInentada = combinacionInentada;
+        this.combinacionInentada = combinacionInentada;
         this.respuestaOrdenador = new int[2];
         resultadoTirada = 0;
-        StringBuilder sb = new StringBuilder();
-        for (char c : combinacionInentada) {
-            sb.append(c);
+        if (combinacionInentada != null) {
+            StringBuilder sb = new StringBuilder();
+            for (char c : combinacionInentada) {
+                sb.append(c);
+            }
         }
-        listacombinacionIntentada.add(sb.toString());
+
 
     }
 

@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.*;
@@ -28,6 +25,7 @@ public class GUIMastermind_diseño {
 
     private void ComprobarTirada(ActionEvent e) {
         String textotirada = fieldTiradas.getText().replaceAll(" ",""); // Eliminar espacios en blanco
+        textotirada = textotirada.toUpperCase(); // Convertir a mayúsculas para evitar problemas de coincidencia
         if (textotirada.length() != 4) {
             JOptionPane.showMessageDialog(ContentPanel, "La tirada debe tener exactamente 4 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -38,7 +36,7 @@ public class GUIMastermind_diseño {
 
 
 
-        areaListaTiradas.append("Tirada: " + tirada + "Resultado: [" + resultado[0] + ", " + resultado[1] +"]\n");
+        areaListaTiradas.append("Tirada: " + tirada + " resultado: ["+ resultado[0] + ","+ resultado[1] +"]\n");
         partida.getListaTiradas().add(tirada);
         fieldTiradas.setText("");
         if (partida.getEstadoFinal()) {
@@ -47,7 +45,10 @@ public class GUIMastermind_diseño {
             btnComprobartirada.setEnabled(false);
             partidas.put(nombreJugador, partida);
         } else if (partida.getListaTiradas().size() >= 16) {
-            JOptionPane.showMessageDialog(ContentPanel, "Has alcanzado el número máximo de tiradas. Fin del juego.", "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(ContentPanel, "Has alcanzado el número máximo de tiradas. La combinación " +
+                            "correcta es: " + Arrays.toString(partida.getCombinacionSecreta()) + "\n" +
+                            " Fin del juego.",
+                    "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
             fieldTiradas.setEnabled(false);
             btnComprobartirada.setEnabled(false);
         }
@@ -61,13 +62,7 @@ public class GUIMastermind_diseño {
         GuardarPartidas();
         for (String key : partidas.keySet()) {
             Partida partida = partidas.get(key);
-            areaListaPartidas.append("Jugador: " + partida.getNombreJugador() + "\n");
-            areaListaPartidas.append("Combinación Secreta: " + Arrays.toString(partida.getCombinacionSecreta()) + "\n");
-            areaListaPartidas.append("Tiradas:\n");
-            for (Tirada tirada : partida.getListaTiradas()) {
-                areaListaPartidas.append(" - " + tirada + "\n");
-            }
-            areaListaPartidas.append("\n");
+            areaListaPartidas.append(partida + "\n");
         }
         
     }
@@ -253,8 +248,13 @@ public class GUIMastermind_diseño {
                 lblListaTiradas.setFont(new Font("Inter", Font.BOLD, 14));
 
                 //---- lblColores ----
-                lblColores.setText("<html>Colores:<br>R (Red), B (Blue),<br>M (Magenta), C (Cyan),<br>Y (Yellow), G (Green)</html>");
-
+                lblColores.setText("<html>Colores:<br>" +
+                        "<span style='color: red;'>R (Red)</span>, " +
+                        "<span style='color: blue;'>B (Blue)</span>,<br>" +
+                        "<span style='color: #ff00ff;'>M (Magenta)</span>, " +
+                        "<span style='color: #00ffff;'>C (Cyan)</span>,<br>" +
+                        "<span style='color: #FFD700;'>Y (Yellow)</span>, " +
+                        "<span style='color: green;'>G (Green)</span></html>");
                 GroupLayout panelPartidaLayout = new GroupLayout(panelPartida);
                 panelPartida.setLayout(panelPartidaLayout);
                 panelPartidaLayout.setHorizontalGroup(
@@ -345,9 +345,19 @@ public class GUIMastermind_diseño {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
     private void leerFicheroPartidas() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD11\\Mastermind\\src\\partidas.dat"))) {
-            partidas = (HashMap<String, Partida>) ois.readObject();
-        } catch (Exception e) {
+        try (
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD11\\Mastermind\\src\\partidas.dat"))) {
+            try {
+                // Leer el fichero hasta que no haya más objetos
+                while (true) {
+                    Partida partidaLeida = (Partida) ois.readObject();
+                    partidas.put(partidaLeida.getNombreJugador(), partidaLeida);
+                }
+            } catch (EOFException | ClassCastException | InvalidClassException e
+            ) {
+                // Fin del fichero alcanzado, no hacer nada
+            }
+        } catch (Exception e ) {
             e.printStackTrace();
         }
     }
