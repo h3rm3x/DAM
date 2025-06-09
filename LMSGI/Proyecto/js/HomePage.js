@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-/**
- * Inicializa el sistema de likes en localStorage si no existe
- */
+/*
+ Inicializa el sistema de likes en localStorage si no existe
+*/
 function initializeLikesSystem() {
     if (!localStorage.getItem("articlesLikes")) {
         const initialLikes = {

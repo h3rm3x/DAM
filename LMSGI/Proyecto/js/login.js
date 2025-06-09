@@ -69,9 +69,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     break;
                 }
             }
-            setTimeout(() => {
-                window.location.href = `${BASE_URL}../root/index.html`;
-            }, 3000);
+            if (rol === "editor") {
+                setTimeout(() => {
+                    window.location.href = `${BASE_URL}../views/Admin.html`;
+                }, 3000);
+            } else {
+                setTimeout(() => {
+                    window.location.href = `${BASE_URL}../root/index.html`;
+                }, 3000);
+            }
             
         }
     });

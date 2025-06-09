@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded", function() {
     if (localStorage.getItem("usuarioLogeado")) {
         localStorage.removeItem("usuarioLogeado"); 
     }
+    // Limpiar el mensaje de error al cargar la página
+    errorMessage.textContent = "";
+    errorMessage.style.display = "none";
+    // Limpiar el formulario al cargar la página
+    nombreUsuario.focus();
 });
 
 submitButton.addEventListener("click", (e) => {
@@ -131,7 +136,7 @@ submitButton.addEventListener("click", (e) => {
     errorMessage.textContent = "El usuario ha sido registrado correctamente.";
     errorMessage.style.display = "block";
     errorMessage.style.color = "green";
-    
+    form.reset(); // Limpiar el formulario
     setTimeout(() => {
         window.location.href = "../views/login.html";
     }, 2000);
@@ -143,8 +148,12 @@ confirmarContrasena.addEventListener("blur", (e) => {
 
     if (password !== confirmarPassword) {
         mostrarError("Las contraseñas no coinciden.");
+        confirmarContrasena.style.borderColor = "red";
+        confirmarContrasena.focus();
     } else if (password === confirmarPassword && password !== "") {
         errorMessage.style.display = "none";
+        confirmarContrasena.style.borderColor = "none";
+        submitButton.disabled = false; // Habilitar el botón de envío si las contraseñas coinciden
     }
 });
 
@@ -154,8 +163,11 @@ confirmarCorreo.addEventListener("blur", (e) => {
 
     if (correoElectronico !== confirmarCorreoElectronico) {
         mostrarError("Los correos electrónicos no coinciden.");
+        confirmarCorreo.style.borderColor = "red";
+        confirmarCorreo.focus();
     } else if (correoElectronico === confirmarCorreoElectronico && correoElectronico !== "") {
         errorMessage.style.display = "none";
+        confirmarCorreo.style.borderColor = "none";
     }
 });
 
@@ -165,9 +177,11 @@ nombreUsuario.addEventListener("blur", (e) => {
     if (usuarionombre.length < 4 || !/^[a-zA-Z0-9]+$/.test(usuarionombre)) {
         mostrarError("El nombre de usuario debe tener al menos 4 caracteres y contener solo letras y números.");
         nombreUsuario.style.borderColor = "red";
+        nombreUsuario.focus();
     } else {
         errorMessage.style.display = "none";
         nombreUsuario.style.borderColor = "none";
+        submitButton.disabled = false; // Habilitar el botón de envío si el nombre de usuario es válido
     }
 });
 
@@ -180,6 +194,7 @@ contrasena.addEventListener("input", (e) => {
     if (password.length < 6) {
         strengthText.textContent = "Muy débil";
         strengthBar.className = "weak";
+        submitButton.disabled = true; // Deshabilitar el botón de envío si la contraseña es muy débil
     } else if (password.length < 9|| !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
         strengthText.textContent = "Débil";
         strengthBar.className = "medium";
@@ -189,44 +204,12 @@ contrasena.addEventListener("input", (e) => {
     }
 });
 
-// Función para alternar la visibilidad de la contraseña - CORREGIDA
-togglePassword.addEventListener("click", () => {
-    // Corregir los selectores - buscar las imágenes dentro del botón
-    const showPWdIcon = togglePassword.querySelector(".visible");
-    const hidePWdIcon = togglePassword.querySelector(".hidden");
-    const passwordField = contrasena;
-    
-    // Verificar que los elementos existen antes de acceder a sus propiedades
-    if (!showPWdIcon || !hidePWdIcon) {
-        console.error("No se encontraron los iconos de mostrar/ocultar contraseña");
-        return;
-    }
-    
-    const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
-    
-    if (type === "text") {
-        showPWdIcon.style.display = "none";
-        hidePWdIcon.style.display = "block";
-    } else {
-        showPWdIcon.style.display = "block";
-        hidePWdIcon.style.display = "none";
-    }
-    
-    passwordField.setAttribute("type", type);
-});
-
-// Función para alternar la visibilidad de la confirmación de contraseña - CORREGIDA
+// Función para alternar la visibilidad de la confirmación de contraseña 
 toggleConfirmPassword.addEventListener("click", () => {
     // Corregir los selectores - buscar las imágenes dentro del botón
     const showPWdIcon = toggleConfirmPassword.querySelector(".visible");
     const hidePWdIcon = toggleConfirmPassword.querySelector(".hidden");
     const confirmPasswordField = confirmarContrasena;
-    
-    // Verificar que los elementos existen antes de acceder a sus propiedades
-    if (!showPWdIcon || !hidePWdIcon) {
-        console.error("No se encontraron los iconos de mostrar/ocultar confirmación de contraseña");
-        return;
-    }
     
     const type = confirmPasswordField.getAttribute("type") === "password" ? "text" : "password";
     
@@ -248,6 +231,8 @@ function mostrarError(mensaje) {
     errorMessage.textContent = mensaje;
     errorMessage.style.display = "block";
     errorMessage.style.color = "red";
+    submitButton.disabled = true; // Deshabilitar el botón de envío si hay un error
+
     
     setTimeout(() => {
         errorMessage.style.display = "none";
