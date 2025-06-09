@@ -77,7 +77,7 @@ public class Partida implements Serializable {
             }
         }
         tirada.setResultadoTirada(aciertos*2+malColocados);
-        puntuacion += Tirada.getResultadoTirada();
+        puntuacion += tirada.getResultadoTirada();
         tirada.setRespuestaOrdenador(new int[]{aciertos, malColocados});
         listaTiradas.add(tirada);
         if (aciertos == 4) {

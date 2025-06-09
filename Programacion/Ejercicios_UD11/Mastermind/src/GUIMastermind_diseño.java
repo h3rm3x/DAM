@@ -37,7 +37,6 @@ public class GUIMastermind_diseño {
 
 
         areaListaTiradas.append("Tirada: " + tirada + " resultado: ["+ resultado[0] + ","+ resultado[1] +"]\n");
-        partida.getListaTiradas().add(tirada);
         fieldTiradas.setText("");
         if (partida.getEstadoFinal()) {
             JOptionPane.showMessageDialog(ContentPanel, "¡Felicidades! Has adivinado la combinación secreta.", "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
@@ -51,6 +50,7 @@ public class GUIMastermind_diseño {
                     "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
             fieldTiradas.setEnabled(false);
             btnComprobartirada.setEnabled(false);
+            partidas.put(generarClavePartida(nombreJugador), partida);
         }
     }
 
@@ -71,6 +71,7 @@ public class GUIMastermind_diseño {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\alanr\\Documents\\DAM" +
                     "\\Programacion\\Ejercicios_UD11\\Mastermind\\src\\partidas.dat"));
+            oos.writeInt(partidas.size()); // Escribir el número de partidas primero
             for (Partida partida : partidas.values()) {
                 oos.writeObject(partida);
             }
@@ -93,6 +94,10 @@ public class GUIMastermind_diseño {
         partida = new Partida(nombreJugador);
         
         
+    }
+
+    private String generarClavePartida(String nombreJugador) {
+        return "Partida_" + nombreJugador + "_" + System.currentTimeMillis();
     }
 
     private void NuevaPartida(ActionEvent e) {
@@ -346,16 +351,12 @@ public class GUIMastermind_diseño {
     }
     private void leerFicheroPartidas() {
         try (
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\alanr\\Documents\\DAM\\Programacion\\Ejercicios_UD11\\Mastermind\\src\\partidas.dat"))) {
-            try {
-                // Leer el fichero hasta que no haya más objetos
-                while (true) {
-                    Partida partidaLeida = (Partida) ois.readObject();
-                    partidas.put(partidaLeida.getNombreJugador(), partidaLeida);
-                }
-            } catch (EOFException | ClassCastException | InvalidClassException e
-            ) {
-                // Fin del fichero alcanzado, no hacer nada
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\alanr\\Documents\\DAM" +
+                    "\\Programacion\\Ejercicios_UD11\\Mastermind\\src\\partidas.dat"))) {
+            int numPartidas = ois.readInt(); // Leer el número de partidas
+            for (int i = 0; i < numPartidas; i++) {
+                Partida partidaLeida = (Partida) ois.readObject();
+                partidas.put(partidaLeida.getNombreJugador(), partidaLeida);
             }
         } catch (Exception e ) {
             e.printStackTrace();

@@ -2,10 +2,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Tirada implements Serializable {
-    private  static char[] combinacionInentada;
+    private char[] combinacionInentada;
     private int[] respuestaOrdenador;
 
-    private static int resultadoTirada;
+    private int resultadoTirada;
 
     public Tirada(char[] combinacionInentada) {
         this.combinacionInentada = combinacionInentada;
@@ -21,7 +21,7 @@ public class Tirada implements Serializable {
 
     }
 
-    public static char[] getCombinacionInentada() {
+    public char[] getCombinacionInentada() {
         return combinacionInentada;
     }
 
@@ -29,12 +29,12 @@ public class Tirada implements Serializable {
         return respuestaOrdenador;
     }
 
-    public static int getResultadoTirada() {
+    public  int getResultadoTirada() {
         return resultadoTirada;
     }
 
-    public static void setResultadoTirada(int resultadoTirada) {
-        Tirada.resultadoTirada = resultadoTirada;
+    public void setResultadoTirada(int resultadoTirada) {
+        this.resultadoTirada = resultadoTirada;
     }
 
     public void setRespuestaOrdenador(int[] respuestaOrdenador) {
