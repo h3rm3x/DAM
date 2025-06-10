@@ -42,7 +42,7 @@ public class GUIMastermind_diseño {
             JOptionPane.showMessageDialog(ContentPanel, "¡Felicidades! Has adivinado la combinación secreta.", "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
             fieldTiradas.setEnabled(false);
             btnComprobartirada.setEnabled(false);
-            partidas.put(nombreJugador, partida);
+            partidas.put(generarClavePartida(nombreJugador), partida);
         } else if (partida.getListaTiradas().size() >= 16) {
             JOptionPane.showMessageDialog(ContentPanel, "Has alcanzado el número máximo de tiradas. La combinación " +
                             "correcta es: " + Arrays.toString(partida.getCombinacionSecreta()) + "\n" +
