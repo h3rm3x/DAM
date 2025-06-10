@@ -46,8 +46,8 @@ function initializeLikesSystem() {
 }
 
 /**
- * Obtiene los datos de likes desde localStorage
- */
+* Obtiene los datos de likes desde localStorage
+*/
 function getLikesData() {
     const likesData = localStorage.getItem("articlesLikes");
     return likesData ? JSON.parse(likesData) : {};
@@ -115,7 +115,7 @@ function handleLikeClick(buttonElement, usuario) {
 }
 
 /**
- * Actualiza la imagen del botón de like
+ Actualiza la imagen del botón de like
  */
 function updateButtonImage(buttonElement, isLiked) {
     const img = buttonElement.querySelector("img");

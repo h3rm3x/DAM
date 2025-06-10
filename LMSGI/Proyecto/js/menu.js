@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const euroliga = document.getElementsByClassName("Euroliga");
   const inicio = document.getElementsByClassName("Inicio");
   const articulos = document.getElementsByClassName("read-more");
-  const admin = document.getElementsByClassName("admin");
+  const admin = document.getElementsByClassName("admin")[0];
   const loginButton = document.querySelector(".login-button");
   const logoutButton = document.querySelector(".logout-button");
   const activityEvents = [
@@ -35,12 +35,18 @@ document.addEventListener("DOMContentLoaded", function () {
       alert(
         "Has estado inactivo por más de 2 minutos. Serás redirigido a la página de inicio."
       );
+      localStorage.removeItem("usuarioLogeado"); // Limpiar el usuario logueado
       window.location.href = `${BASE_URL}/root/index.html`;
     }, maxTiempoInactividad);
   }
   
-  // Iniciar el temporizador de inactividad al cargar la página
-  reiniciarTemporizador();
+  // Iniciar el temporizador de inactividad si hay un usuario logueado
+  const usuarioLogeado = localStorage.getItem("usuarioLogeado");
+  console.log(usuarioLogeado);
+  if (usuarioLogeado) {
+    reiniciarTemporizador();
+    console.log("timer");
+  }
 
   // Añadir eventos de actividad al documento
   activityEvents.forEach((event) => {
@@ -104,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (usuarioLogeado) {
       try {
         const usuario = JSON.parse(usuarioLogeado);
+        const admin = document.querySelector(".admin");
 
         // Hay usuario logueado - mostrar logout, ocultar login
 
@@ -138,8 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (logoutButton) {
       logoutButton.style.display = "none";
     }
-    if (admin) {
-      admin.style.display = "none";
+    for (let i = 0; i < admin.length; i++) {
+      admin[i].style.display = "none";
+      console.log("Admin button hidden because no user is logged in");
     }
   }
 

@@ -5,10 +5,11 @@ const submitButton = document.getElementById("submit");
 const errorMessage = document.getElementById("error-message");
 const BASE_URL = window.location.hostname === "127.0.0.1" ? "" : "/Activitats_LMSGI_Alan";    
 const registerLink = document.querySelector(".register-link a");
+const rol = localStorage.getItem("rol") || "lector"; // Por defecto, rol lector si no se ha establecido
 document.addEventListener("DOMContentLoaded", function () {
 
     // Añadir el atributo href al enlace de registro
-    registerLink.href = `${BASE_URL}Register.html`;
+    registerLink.href = `./Register.html`;
 
     function login_valido(usuarios, nombreUsuario, password) {
         // Verificar si hay usuarios registrados
