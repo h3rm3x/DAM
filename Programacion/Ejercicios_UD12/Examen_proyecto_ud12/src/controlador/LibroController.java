@@ -212,4 +212,42 @@ public class LibroController {
             return false;
         }
     }
+
+    // buscar libros disponibles
+    public List<Libro> buscarLibrosDisponibles(String busqueda) {
+        List<Libro> libros = new ArrayList<>();
+        String sql = "SELECT * FROM books WHERE availiability = 'available' AND " +
+                "(title LIKE ? OR author LIKE ? OR ISBN LIKE ? OR genre LIKE ?)";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            String parametroBusqueda = "%" + busqueda + "%";
+            for (int i = 1; i <= 4; i++) {
+                pstmt.setString(i, parametroBusqueda);
+            }
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                libros.add(crearLibroDesdeResultSet(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al buscar libros disponibles: " + e.getMessage());
+        }
+        return libros;
+    }
+
+    private Libro crearLibroDesdeResultSet(ResultSet rs) throws SQLException {
+        return new Libro(
+                rs.getString("ISBN"),
+                rs.getString("title"),
+                rs.getString("author"),
+                rs.getString("editorial"),
+                rs.getInt("number_of_pages"),
+                rs.getInt("edition"),
+                rs.getString("genre"),
+                rs.getInt("year_released"),
+                rs.getString("availiability")
+        );
+    }
 }

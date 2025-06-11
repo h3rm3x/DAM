@@ -50,7 +50,100 @@ public class ClienteController {
         }
     }
 
-    // ... (otros métodos similares con el mismo patrón)
+    public Cliente obtenerClientePorNIE(String nie) {
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE NIE = ?";
+        
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setString(1, nie);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Cliente(
+                            rs.getString("NIE"),
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
+                            rs.getString("phone"),
+                            rs.getDate("birth_date").toLocalDate(),
+                            rs.getString("email"),
+                            rs.getBoolean("red_flag")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            handleSQLException("Error al obtener cliente por NIE", e);
+        }
+        return null;
+    }
+
+    public boolean actualizarCliente(Cliente cliente) {
+        String sql = "UPDATE " + TABLE_NAME + 
+                " SET first_name = ?, last_name = ?, phone = ?, birth_date = ?, email = ?, red_flag = ? " +
+                " WHERE NIE = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cliente.getNombre());
+            pstmt.setString(2, cliente.getApellido());
+            pstmt.setString(3, cliente.getTelefono());
+            pstmt.setDate(4, Date.valueOf(cliente.getFechaNacimiento()));
+            pstmt.setString(5, cliente.getEmail());
+            pstmt.setBoolean(6, cliente.isRedFlag());
+            pstmt.setString(7, cliente.getNIE());
+
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            handleSQLException("Error al actualizar cliente", e);
+            return false;
+        }
+    }
+
+    public boolean eliminarCliente(String nie) {
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE NIE = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, nie);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            handleSQLException("Error al eliminar cliente", e);
+            return false;
+        }
+    }
+
+    public List<Cliente> obtenerTodosLosClientesPorNombre(String nombre) {
+        List<Cliente> clientes = new ArrayList<>();
+        String sql = "SELECT * FROM " + TABLE_NAME + 
+                " WHERE LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ? OR LOWER(NIE) LIKE ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            String busqueda = "%" + nombre.toLowerCase() + "%";
+            pstmt.setString(1, busqueda);
+            pstmt.setString(2, busqueda);
+            pstmt.setString(3, busqueda);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    clientes.add(new Cliente(
+                            rs.getString("NIE"),
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
+                            rs.getString("phone"),
+                            rs.getDate("birth_date").toLocalDate(),
+                            rs.getString("email"),
+                            rs.getBoolean("red_flag")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            handleSQLException("Error al buscar clientes por nombre", e);
+        }
+        return clientes;
+    }
 
     private void setClienteParameters(PreparedStatement pstmt, Cliente cliente) throws SQLException {
         pstmt.setString(1, cliente.getNIE());
