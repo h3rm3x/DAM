@@ -1,8 +1,0 @@
-<<<<<<< HEAD
-2025/05/23-15:45:13.002 4974 Reusing MANIFEST C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Sync Data\LevelDB/MANIFEST-000001
-2025/05/23-15:45:13.004 4974 Recovering log #3
-2025/05/23-15:45:13.004 4974 Reusing old log C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Sync Data\LevelDB/000003.log 
-=======
-2025/05/22-16:53:44.655 21fc Creating DB C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Sync Data\LevelDB since it was missing.
-2025/05/22-16:53:44.663 21fc Reusing MANIFEST C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Sync Data\LevelDB/MANIFEST-000001
->>>>>>> ED

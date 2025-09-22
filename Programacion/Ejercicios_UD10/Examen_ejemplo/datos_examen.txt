@@ -1,7 +1,0 @@
-producte;quantitat;preu_unitari
-Patates;5;1.25
-Arròs;3;2.10
-Oli;2;4.75
-Pomes;6;0.80
-Pasta;4;1.15
-Formatge;1;8.50
