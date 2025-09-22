@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"sts":[{"expiry":1779471005.620356,"host":"OuKlWsMW1dkkbI1X/oi6o0Y95ZNSWnSoeaIXAEYPlv4=","mode":"force-https","sts_include_subdomains":true,"sts_observed":1747935005.620369}],"version":2}
+=======
+{"sts":[{"expiry":1779462309.143939,"host":"OuKlWsMW1dkkbI1X/oi6o0Y95ZNSWnSoeaIXAEYPlv4=","mode":"force-https","sts_include_subdomains":true,"sts_observed":1747926309.143942}],"version":2}
+>>>>>>> ED

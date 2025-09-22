@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 2025/05/23-15:45:14.627 3830 Reusing MANIFEST C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
 2025/05/23-15:45:14.628 3830 Recovering log #3
 2025/05/23-15:45:14.631 3830 Reusing old log C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.log 
+=======
+2025/05/22-16:54:04.037 3944 Creating DB C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage since it was missing.
+2025/05/22-16:54:04.055 3944 Reusing MANIFEST C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
+>>>>>>> ED

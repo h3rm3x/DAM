@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -30,11 +31,16 @@
       <change beforePath="$PROJECT_DIR$/../Ejercicios_UD11/Mastermind/src/partidas.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../Ejercicios_UD11/Mastermind/src/partidas.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Ejercicios_UD11/out/production/Mastermind/partidas.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../Ejercicios_UD11/out/production/Mastermind/partidas.dat" afterDir="false" />
     </list>
+=======
+  <component name="ChangeListManager">
+    <list default="true" id="701b4ae2-4c37-4108-b092-e6d719395f5f" name="Changes" comment="" />
+>>>>>>> ED
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -64,12 +70,35 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Alan-Rabinerson"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/h3rm3x/DAM.git",
+    "accountId": "b04e0b70-5619-46dd-9abd-44599191848b"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2yKGfoEcH9y25huf5z76tsCMOms" />
+>>>>>>> ED
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+<<<<<<< HEAD
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.MainWindow.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -94,6 +123,18 @@
       <recent name="C:\Users\alanr\Documents\DAM\Programacion\Ejercicios_UD12\Examen_proyecto_ud12\lib" />
     </key>
   </component>
+=======
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "programacion",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+>>>>>>> ED
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -104,6 +145,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="e47d3d65-9f3c-4af7-bb29-e6d79bf44800" name="Changes" comment="" />
       <created>1749503734853</created>
       <option name="number" value="Default" />
@@ -111,6 +153,14 @@
       <updated>1749503734853</updated>
       <workItem from="1749503736004" duration="709000" />
       <workItem from="1749505010370" duration="4804000" />
+=======
+      <changelist id="701b4ae2-4c37-4108-b092-e6d719395f5f" name="Changes" comment="" />
+      <created>1749575957019</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1749575957019</updated>
+      <workItem from="1749575958213" duration="191000" />
+>>>>>>> ED
     </task>
     <servers />
   </component>

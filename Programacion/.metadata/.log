@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 !SESSION 2025-05-22 19:17:08.901 -----------------------------------------------
+=======
+!SESSION 2025-05-22 16:53:31.400 -----------------------------------------------
+>>>>>>> ED
 eclipse.buildId=4.36.0.20250508-0813
 java.version=21.0.7
 java.vendor=Eclipse Adoptium
@@ -6,10 +10,17 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
 Framework arguments:  -product org.eclipse.epp.package.java.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
 
+<<<<<<< HEAD
 !ENTRY ch.qos.logback.classic 1 0 2025-05-22 19:17:11.198
 !MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
 
 !ENTRY org.apache.felix.scr 4 0 2025-05-22 19:17:12.052
+=======
+!ENTRY ch.qos.logback.classic 1 0 2025-05-22 16:53:34.362
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.apache.felix.scr 4 0 2025-05-22 16:53:35.807
+>>>>>>> ED
 !MESSAGE bundle org.apache.felix.scr:2.2.12 (60) Circular reference detected trying to get service {org.eclipse.m2e.core.project.IMavenProjectChangedListener}={service.id=273, service.bundleid=288, service.scope=bundle, osgi.ds.satisfying.condition.target=(osgi.condition.id=true), component.name=org.eclipse.m2e.core.internal.project.WorkspaceStateWriter, component.id=34}
  stack of references: ServiceReference: {org.eclipse.m2e.core.project.IMavenProjectChangedListener}={service.id=273, service.bundleid=288, service.scope=bundle, osgi.ds.satisfying.condition.target=(osgi.condition.id=true), component.name=org.eclipse.m2e.core.internal.project.WorkspaceStateWriter, component.id=34}
 ServiceReference: {org.eclipse.m2e.core.project.IMavenProjectRegistry}={service.id=266, service.bundleid=288, service.scope=bundle, osgi.ds.satisfying.condition.target=(osgi.condition.id=true), component.name=org.eclipse.m2e.core.internal.project.registry.MavenProjectManager, component.id=37}
@@ -133,7 +144,11 @@ java.lang.Exception: stack trace
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
 
+<<<<<<< HEAD
 !ENTRY org.apache.felix.scr 4 0 2025-05-22 19:17:12.059
+=======
+!ENTRY org.apache.felix.scr 4 0 2025-05-22 16:53:35.823
+>>>>>>> ED
 !MESSAGE bundle org.apache.felix.scr:2.2.12 (60) Circular reference detected trying to get service {org.eclipse.m2e.core.project.IMavenProjectChangedListener}={service.id=273, service.bundleid=288, service.scope=bundle, osgi.ds.satisfying.condition.target=(osgi.condition.id=true), component.name=org.eclipse.m2e.core.internal.project.WorkspaceStateWriter, component.id=34}
  stack of references: ServiceReference: {org.eclipse.m2e.core.project.IMavenProjectChangedListener}={service.id=273, service.bundleid=288, service.scope=bundle, osgi.ds.satisfying.condition.target=(osgi.condition.id=true), component.name=org.eclipse.m2e.core.internal.project.WorkspaceStateWriter, component.id=34}
     Dependency: DependencyManager: Component [Component: org.eclipse.m2e.core.internal.project.registry.MavenProjectManager (37)] reference [MavenProjectChangedListener]
@@ -276,6 +291,7 @@ java.lang.Exception: stack trace
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1431)
 
+<<<<<<< HEAD
 !ENTRY ch.qos.logback.classic 1 0 2025-05-22 19:17:12.258
 !MESSAGE Logback config file: C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
 
@@ -286,12 +302,25 @@ java.lang.Exception: stack trace
 !MESSAGE [Info] Lsp agent started successfully.
 
 !ENTRY org.eclipse.egit.ui 2 0 2025-05-22 19:17:17.525
+=======
+!ENTRY ch.qos.logback.classic 1 0 2025-05-22 16:53:36.096
+!MESSAGE Logback config file: C:\Users\alanr\Documents\DAM\Programacion\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-05-22 16:53:45.809
+!MESSAGE [Info] Starting language server with binary lsp agent.
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-05-22 16:53:45.846
+!MESSAGE [Info] Lsp agent started successfully.
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-05-22 16:53:45.898
+>>>>>>> ED
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\alanr'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.lsp4e 1 0 2025-05-22 19:17:18.670
 !MESSAGE [Info]	[lsp] GitHub Copilot Language Server 1.321.0 initialized
 
@@ -1176,3 +1205,22 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 	 at com.microsoft.copilot.eclipse.core.completion.CompletionProvider$CompletionJob.runCompletion(CompletionProvider.java:161)
 	 at com.microsoft.copilot.eclipse.core.completion.CompletionProvider$CompletionJob.run(CompletionProvider.java:142)
 	 at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+=======
+!ENTRY org.eclipse.lsp4e 1 0 2025-05-22 16:53:47.884
+!MESSAGE [Info]	[lsp] GitHub Copilot Language Server 1.321.0 initialized
+
+!ENTRY org.eclipse.lsp4e 1 0 2025-05-22 16:53:48.196
+!MESSAGE [Info]	[certificates] Removed 8 expired certificates
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-05-22 16:56:40.514
+!MESSAGE [Info] File is null or removed for editor: Consultas.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-05-22 16:56:41.235
+!MESSAGE [Info] File is null or removed for editor: OperacionesDepart.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-05-22 16:56:41.540
+!MESSAGE [Info] File is null or removed for editor: OperacionesEmple.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-05-22 16:56:41.774
+!MESSAGE [Info] File is null or removed for editor: Principal.java
+>>>>>>> ED
