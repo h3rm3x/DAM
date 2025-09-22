@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="matricula">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="alumno" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre" type="xs:string"/>
+                            <xs:element name="curso" type="xs:string"/>
+                            <xs:element name="asignaturas">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="diw" type="tipusNota"/>
+                                        <xs:element name="cliente" type="tipusNota"/>
+                                        <xs:element name="servidor" type="tipusNota"/> 
+                                        <xs:choice>
+                                            <xs:element name="optativa1" type="tipusNota"/>
+                                            <xs:element name="optativa2" type="tipusNota"/>
+                                        </xs:choice>
+                                    </xs:sequence>
+                                   
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="tipusNota">
+        <xs:simpleContent>
+            <xs:extension base="xs:positiveInteger">
+                <xs:attribute name="aprovado" type="xs:boolean"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>

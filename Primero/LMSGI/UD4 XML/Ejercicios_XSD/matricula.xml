@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<matricula
+  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+  xs:noNamespaceSchemaLocation="matricula.xsd">
+  <alumne>
+    <nom>Nikolay</nom>
+    <curs>2025-2026</curs>
+    <assignatures>
+      <diw></diw>
+      <dwec></dwec>
+      <dwes></dwes>
+      <daweb></daweb>
+      <ipo2></ipo2>
+      <angles></angles>
+      <sostenibilitat/>
+      <optativa1></optativa1>
+    </assignatures>   
+  </alumne>
+  <alumne>
+    <nom>Sam</nom>
+    <curs>2025-2026</curs>
+    <assignatures>
+      <diw></diw>
+      <dwec></dwec>
+      <dwes></dwes>
+      <angles></angles>
+      <sostenibilitat/>
+      <optativa2></optativa2>
+    </assignatures>   
+  </alumne>
+  <alumne>
+    <nom>Pere</nom>
+    <curs>2025-2026</curs>
+    <assignatures>
+      <diw></diw>
+      <dwec></dwec>
+      <angles></angles>
+      <sostenibilitat/>
+    </assignatures>   
+  </alumne>
+</matricula>

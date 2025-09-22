@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title>Activitat 4 Alan</title>
+</head>
+<body>
+    <ul>
+        <li>Science
+            <ul>
+                <li>1. Physics
+                    <ul>
+                        <li>Mechanics</li>
+                        <li>Electromagnetism</li>
+                        <li>Thermodynamics</li>
+                    </ul>
+                </li>
+                <li>2. Chemistry
+                    <ul>
+                        <li>Inorganic Chemistry</li>
+                        <li>Organic Chemistry</li>
+                        <li>Physical Chemistry</li>
+                    </ul>
+                </li>
+                <li>3. Biology
+                    <ul>
+                        <li>Zoology</li>
+                        <li>Botany</li>
+                        <li>Microbiology</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>History
+            <ul>
+                <li>Ancient History</li>
+                <li>Medieval History</li>
+                <li>Modern History</li>
+            </ul>
+        </li>
+        <li>Art
+            <ul>
+                <li>1. Painting
+                    <ul>
+                        <li>Oil Painting</li>
+                        <li>Watercolor Painting</li>
+                        <li>Acrylic Painting</li>
+                    </ul>
+                </li>
+                <li>2. Sculpture
+                    <ul>
+                        <li>Stone Sculpture</li>
+                        <li>Metal Sculpture</li>
+                        <li>Wood Sculpture</li>
+                    </ul>
+                </li>
+                <li>3. Music
+                    <ul>
+                        <li>Classical Music</li>
+                        <li>Jazz Music</li>
+                        <li>Rock Music</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

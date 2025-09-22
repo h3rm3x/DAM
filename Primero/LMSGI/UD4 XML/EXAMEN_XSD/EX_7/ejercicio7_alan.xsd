@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="datos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="agrupacion" maxOccurs="unbounded">
+                    <xs:complexType>
+                    
+                        <xs:sequence>
+                            <xs:element name="categoria">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Alta"/>
+                                        <xs:enumeration value="Media"/>
+                                        <xs:enumeration value="Baixa"/>
+                                    </xs:restriction>   
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="cantidad" type="xs:positiveInteger" minOccurs="1"/>
+                            <xs:element name="descripcion" type="xs:string"/>
+                        </xs:sequence>
+                        <xs:attribute name="id" use="required" type="xs:positiveInteger"/>
+                        <xs:attribute name="tipo" use="required" type="tipo_agrupacion"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="tipo_agrupacion">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Normal"/>
+            <xs:enumeration value="Especial"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

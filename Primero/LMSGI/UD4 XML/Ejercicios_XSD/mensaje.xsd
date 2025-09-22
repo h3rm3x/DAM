@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="mensaje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="emisor">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="apellido" type="xs:string" minOccurs="0" maxOccurs="2"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="texto">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="p" type="tipoparrafo" minOccurs="1" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="destinatario" type="xs:string"/>
+                <xs:element name="fecha" >
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element name="año" type="xs:integer"/>
+                        </xs:sequence>
+
+                        <xs:attribute name="dia" type="xs:integer" use="optional" default="1"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Elemento Simple
+    <xs:element name="mensaje2" type="xs:string"/>
+    -->
+    <xs:simpleType name="tipoparrafo">
+        <xs:restriction base="xs:string"></xs:restriction>
+    </xs:simpleType>
+</xs:schema>

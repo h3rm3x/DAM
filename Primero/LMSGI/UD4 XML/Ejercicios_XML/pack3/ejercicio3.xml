@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ejercicio3.dtd" type="application/xml-dtd"?>
+<pedido>
+    <libro titulo="El señor de los anillos"></libro>
+    <lapiz>
+        <numero>29</numero>
+    </lapiz>
+    <cuaderno></cuaderno>
+    <cuaderno num_hojas="250" />
+    <lapiz>
+        <numero>15</numero>
+    </lapiz>
+    <libro titulo="El hobbit"></libro>
+    <cuaderno num_hojas="100"></cuaderno>
+    <lapiz>
+        <numero>10</numero>
+    </lapiz>
+    <lapiz>
+        <numero>13</numero>
+    </lapiz>
+    <lapiz>
+        <numero>20</numero>
+    </lapiz>
+    <libro titulo="El Quijote" />
+</pedido>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="empleados">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="empleado" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fecha_inicio">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="dia" type="xs:gDay"/>
+                                        <xs:element name="mes" type="xs:gMonth"/>
+                                        <xs:element name="ano" type="xs:gYear"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="puesto" type="xs:string"/>
+                            <xs:element name="puesto_anterior" type="xs:string" minOccurs="0"/>
+                            <xs:element name="titulacioAcademica" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="titulo" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="superior_directo">
+                                <xs:complexType>
+                                    <xs:attribute name="id" type="xs:IDREF"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="sueldo" type="xs:decimal"/>
+                            <xs:element name="sede">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Barcelona"/>
+                                        <xs:enumeration value="Madrid"/>
+                                        <xs:enumeration value="Valencia"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="observaciones" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="meritos" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="demeritos" type="xs:string" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="nombre" type="xs:string"/>
+                        <xs:attribute name="id_empleado" type="xs:ID"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

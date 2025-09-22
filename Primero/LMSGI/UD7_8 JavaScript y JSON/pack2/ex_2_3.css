@@ -1,0 +1,56 @@
+body{
+    height: 99vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+body.modal-open {
+    transition: opacity 0.3s ease;
+}
+
+#contenedor {
+    text-align: center;
+    
+    transform: translate(-50%, -50%);
+}
+
+#boton {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #888;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+#boton.visible {
+    display: flex;
+}
+
+#boton-content {
+    animation: fadeIn 0.3s ease;
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: blue ;
+    color: white;
+}
+
+.confirmacion {
+    margin-top: 20px;
+    font-weight: bold;
+    color: green;
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="factura">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="encabezado">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fecha">
+                                <xs:complexType>
+                                    <xs:attribute name="dia" type="dia"/>
+                                    <xs:attribute name="mes" type="mes"/>
+                                    <xs:attribute name="año" type="año"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="info_cliente">
+                                <xs:complexType>
+                                    <xs:attribute name="nombre_fiscal" type="xs:string"/>
+                                    <xs:attribute name="NIF" type="xs:string"/>
+                                    <xs:attribute name="nombre_comercial" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="info_proveedor">
+                                <xs:complexType>
+                                    <xs:attribute name="nombre_fiscal" type="xs:string"/>
+                                    <xs:attribute name="NIF" type="xs:string" use="required"/>
+                                    <xs:attribute name="nombre_comercial" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id_factura" type="xs:ID" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="linea" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="articulo">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="descripcion" type="xs:string"/>
+                                        <xs:element name="precio_sin_iva" type="xs:decimal"/>
+                                        <xs:element name="precio_con_iva">
+                                        <xs:complexType>
+                                            <xs:simpleContent>
+                                                <xs:extension base="xs:decimal">
+                                                    <xs:attribute name="tipo_iva" type="tipo_iva" use="required"/>
+                                                </xs:extension>
+                                            </xs:simpleContent>
+                                        </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id_articulo" type="xs:ID"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="num_unidades" type="xs:positiveInteger"/>
+                            <xs:element name="importe_total" type="xs:decimal"/>
+                        </xs:sequence>
+                        <xs:attribute name="id_linea" type="xs:ID"/>
+                        <xs:attribute name="articulo_ref" type="xs:IDREF"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="resumen_total">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="subtotal" >
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="con_iva_4" type="xs:decimal" minOccurs="0"/>
+                                        <xs:element name="con_iva_10" type="xs:decimal" minOccurs="0"/>
+                                        <xs:element name="con_iva_21" type="xs:decimal" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="total_sin_iva" type="xs:decimal"/>
+                            <xs:element name="total_con_iva" type="xs:decimal"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="tipo_iva">
+        <xs:restriction base="xs:integer">
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="10"/>
+            <xs:enumeration value="21"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="dia">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="31"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="mes">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="año">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1900"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

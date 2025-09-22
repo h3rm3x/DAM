@@ -1,0 +1,19 @@
+*{
+  font: gil sans;
+  margin: 0;
+  padding: 0;
+}
+body{
+  display: flex;
+}
+header{
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 1em;
+  display: flex;
+}
+header img{
+  width: 5em;
+}
+
