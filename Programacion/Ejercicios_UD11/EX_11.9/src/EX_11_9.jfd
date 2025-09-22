@@ -1,0 +1,245 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.6" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.CardLayout ) ) {
+			name: "ContentPanel"
+			auxiliary() {
+				"JavaCodeGenerator.variableModifiers": 1
+			}
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0:1.0"
+				"$rowSpecs": "0:1.0"
+				"$alignTop": true
+				"$alignLeft": true
+			} ) {
+				name: "cardInicial"
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "cardInicial"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0, 0, 0, 0, 0, 0, 0, 0"
+				"$rowSpecs": "51, 0, 0, 0, 0, 0, 0"
+				"$hGap": 5
+				"$vGap": 10
+				"$alignTop": true
+				"$alignLeft": true
+			} ) {
+				name: "panelNuevoAlumno"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblTituloAlumno"
+					"text": "CREAR NUEVO ALUMNO"
+					"font": &Font0 new java.awt.Font( "Inter", 1, 16 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 4
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblNombreAlumno"
+					"text": "Nombre"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 3
+					"gridy": 1
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textNombreAlumno"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 4
+					"gridy": 1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblDNIAlumno"
+					"text": "DNI"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 3
+					"gridy": 2
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textDNI"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 4
+					"gridy": 2
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblEdad"
+					"text": "Edad"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 3
+					"gridy": 3
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textEdad"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 4
+					"gridy": 3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblNivel"
+					"text": "Nivel"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 3
+					"gridy": 4
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "Nivel"
+					"model": new javax.swing.DefaultComboBoxModel {
+						selectedItem: "ESO"
+						addElement( "ESO" )
+						addElement( "Bachillerato" )
+						addElement( "Grado Medio" )
+						addElement( "Grado Superior" )
+					}
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 4
+					"gridy": 4
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnCrearAlumno"
+					"text": "Crear Alumno"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "CrearAlumno", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 4
+					"gridy": 5
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "cardAlumno"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0, 0, 0"
+				"$rowSpecs": "0, 0, 0, 0, 0, 0"
+				"$hGap": 5
+				"$vGap": 10
+				"$alignTop": true
+			} ) {
+				name: "panelNuevoProfesor"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblTituloProfesor"
+					"text": "CREAR NUEVO PROFESOR"
+					"font": #Font0
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblNombreProfesor"
+					"text": "Nombre"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 1
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textNombreProfesor"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+					"gridy": 1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblDNIProfesor"
+					"text": "DNI"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 2
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textDNIProfesor"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+					"gridy": 2
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblEdadProfesor"
+					"text": "Edad"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 3
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textEdadProfesor"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+					"gridy": 3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblAsignatura"
+					"text": "Asignatura"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 4
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textAsignatura"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+					"gridy": 4
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnCrearProfesor"
+					"text": "Crear Profesor"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "CrearProfesor", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+					"gridy": 5
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "cardProfesor"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {comp ObjetosLeidos::l::403:x, seq t {space ::114:x, comp button1:::p::p, space :p:105:p}}"
+				"$verticalGroup": "par l {seq l {comp ObjetosLeidos:::p:201:p, space :::p, comp button1:::p::p, space :0:6:x}}"
+			} ) {
+				name: "panelLeerFichero"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "ObjetosLeidos"
+					"editable": false
+					"text": " "
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Volver a la pagina inicial"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "volverPaginaInicial", true ) )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "cardLeerFichero"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				"preferredSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuFichero"
+					"text": "      Fichero      "
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "itemLeerFichero"
+						"text": "Leer fichero"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "leerFichero", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "itemEscribirFichero"
+						"text": "Escribir fichero"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "escribirFichero", true ) )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuProfesor"
+					"text": "   Profesor  "
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "itemProfesor"
+						"text": "Nuevo Profesor"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "abrirCardProfesor", true ) )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuAlumno"
+					"text": "    Alumno    "
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "itemAlumno"
+						"text": "Nuevo alumno"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "abrirCardAlumno", true ) )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JMenuItem" ) {
+					name: "itemCerrar"
+					"text": "Cerrar"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cerrar", true ) )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 25, 0 )
+			"size": new java.awt.Dimension( 405, 300 )
+		} )
+	}
+}

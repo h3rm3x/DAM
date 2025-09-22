@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/EXAMEN_tema5_6/EXAMEN_tema5_6.iml" filepath="$PROJECT_DIR$/EXAMEN_tema5_6/EXAMEN_tema5_6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_6_10/EX_6_10.iml" filepath="$PROJECT_DIR$/EX_6_10/EX_6_10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_6_11/EX_6_11.iml" filepath="$PROJECT_DIR$/EX_6_11/EX_6_11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_6_12/EX_6_12.iml" filepath="$PROJECT_DIR$/EX_6_12/EX_6_12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_6_13/EX_6_13.iml" filepath="$PROJECT_DIR$/EX_6_13/EX_6_13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX_6_8/EX_6_8.iml" filepath="$PROJECT_DIR$/EX_6_8/EX_6_8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex_6_7/Ex_6_7.iml" filepath="$PROJECT_DIR$/Ex_6_7/Ex_6_7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Examen_2024/Examen_2024.iml" filepath="$PROJECT_DIR$/Examen_2024/Examen_2024.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Proyecto_tema6/Proyecto_tema6.iml" filepath="$PROJECT_DIR$/Proyecto_tema6/Proyecto_tema6.iml" />
       <module fileurl="file://$PROJECT_DIR$/ejercicios_POO.iml" filepath="$PROJECT_DIR$/ejercicios_POO.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_6_1/ex_6_1.iml" filepath="$PROJECT_DIR$/ex_6_1/ex_6_1.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_6_2/ex_6_2.iml" filepath="$PROJECT_DIR$/ex_6_2/ex_6_2.iml" />
@@ -9,6 +18,10 @@
       <module fileurl="file://$PROJECT_DIR$/ex_6_4/ex_6_4.iml" filepath="$PROJECT_DIR$/ex_6_4/ex_6_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_6_5/ex_6_5.iml" filepath="$PROJECT_DIR$/ex_6_5/ex_6_5.iml" />
       <module fileurl="file://$PROJECT_DIR$/ex_6_6/ex_6_6.iml" filepath="$PROJECT_DIR$/ex_6_6/ex_6_6.iml" />
+<<<<<<< HEAD:Primero/Programacion/ejercicios_POO/.idea/modules.xml
+=======
+      <module fileurl="file://$PROJECT_DIR$/ex_6_9/ex_6_9.iml" filepath="$PROJECT_DIR$/ex_6_9/ex_6_9.iml" />
+>>>>>>> programacion:Programacion/ejercicios_POO/.idea/modules.xml
     </modules>
   </component>
 </project>

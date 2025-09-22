@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="d76e59cf-cd68-4b92-8950-423d749448a0" name="Changes" comment="ex 7, 8 , FinestraCaotica y examen prueba terminado">
       <change beforePath="$PROJECT_DIR$/../../LMSGI/Proyecto/css/HomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../LMSGI/Proyecto/css/HomePage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LMSGI/Proyecto/js/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../LMSGI/Proyecto/js/HomePage.js" afterDir="false" />
@@ -11,11 +12,15 @@
       <change beforePath="$PROJECT_DIR$/../../LMSGI/Proyecto/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../LMSGI/Proyecto/js/register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LMSGI/Proyecto/root/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../LMSGI/Proyecto/root/index.html" afterDir="false" />
     </list>
+=======
+    <list default="true" id="86ad7cfc-c498-40fc-a3ec-56be3c854c8f" name="Changes" comment="" />
+>>>>>>> programacion
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -26,6 +31,14 @@
     </option>
   </component>
   <component name="Git.Settings">
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="BBDD" />
+      </map>
+    </option>
+>>>>>>> programacion
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -41,10 +54,16 @@
   }
 }</component>
   <component name="ProjectColorInfo">{
+<<<<<<< HEAD
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2y0a6HPGIvKyNei9vBF4iRDNauQ" />
+=======
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2x8PO4w9Ho1c7MFo8tkcfEzfm7x" />
+>>>>>>> programacion
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -54,6 +73,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+<<<<<<< HEAD
     &quot;Application.FinestraCaotica.executor&quot;: &quot;Run&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;JUnit.InvoiceProcessorTest.executor&quot;: &quot;Run&quot;,
@@ -69,15 +89,31 @@
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;lmsgi&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/alanr/Documents/DAM/E.D/UD8 Refactorizacion/EX_8.8/src&quot;,
+=======
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.FicheroAleatorioVentana.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Principal.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;programacion&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/alanr/Documents/DAM/E.D/UD8 Refactorizacion/EX_8.3/src&quot;,
+>>>>>>> programacion
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+<<<<<<< HEAD
+=======
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/alanr/Documents/DAM/E.D/UD8 Refactorizacion/EX_8.3/src/Main.java&quot;,
+>>>>>>> programacion
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+<<<<<<< HEAD
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
     </key>
@@ -95,6 +131,11 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
+=======
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\alanr\Documents\DAM\E.D\UD8 Refactorizacion\EX_8.3\src" />
+      <recent name="C:\Users\alanr\Documents\DAM\E.D\UD8 Refactorizacion" />
+>>>>>>> programacion
     </key>
   </component>
   <component name="SharedIndexes">
@@ -107,6 +148,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="d76e59cf-cd68-4b92-8950-423d749448a0" name="Changes" comment="" />
       <created>1748973767554</created>
       <option name="number" value="Default" />
@@ -123,6 +165,24 @@
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1748990776747</updated>
+=======
+      <changelist id="86ad7cfc-c498-40fc-a3ec-56be3c854c8f" name="Changes" comment="" />
+      <created>1747316692058</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747316692058</updated>
+      <workItem from="1747316693246" duration="5342000" />
+      <workItem from="1747327843481" duration="21000" />
+      <workItem from="1747932705975" duration="7000" />
+    </task>
+    <task id="LOCAL-00001" summary="tema 8 refactorizacion ex 1,2,3,4">
+      <option name="closed" value="true" />
+      <created>1747322870376</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747322870376</updated>
+>>>>>>> programacion
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -131,7 +191,12 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+<<<<<<< HEAD
     <MESSAGE value="ex 7, 8 , FinestraCaotica y examen prueba terminado" />
     <option name="LAST_COMMIT_MESSAGE" value="ex 7, 8 , FinestraCaotica y examen prueba terminado" />
+=======
+    <MESSAGE value="tema 8 refactorizacion ex 1,2,3,4" />
+    <option name="LAST_COMMIT_MESSAGE" value="tema 8 refactorizacion ex 1,2,3,4" />
+>>>>>>> programacion
   </component>
 </project>

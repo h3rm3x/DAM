@@ -121,4 +121,10 @@
       </item>
     </group>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="uidesigner-configuration">
+    <option name="DEFAULT_LAYOUT_MANAGER" value="CardLayout" />
+  </component>
+>>>>>>> programacion
 </project>
