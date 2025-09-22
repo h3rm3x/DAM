@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header, footer {
+  background-color: #ccc;
+}
+
+main {  
+  background-color: rgb(140, 180, 145);
+}
+
+/* CENTRAT HORITZONTAL */
+/* Elements en línia: aplicar text-align: center; al pare */
+header {
+  text-align: center; /*Per centrar horitzonalment la imatge*/
+}
+
+/* Elements en bloc que tenguin una amplada: margin X auto; a l'element */
+footer div {
+  width: 50%;
+  border: 1px solid black;
+  margin: 0 auto;  /* Per centrar el contenidor div enmig del footer*/
+  /* text-align: center; */  /*Això serviria per centrar el contingut del div*/
+}
+
+/* Diversos elements en bloc en una mateixa fila:
+  - text-align: center al pare
+  - display: inline-block als elements
+  - Han de tenir amplada assignada
+*/
+main {
+  text-align: center;
+}
+main section {
+  display: inline-block;
+  width: 10em;
+  border: 1px solid black;
+}
+
+/* CENTRAT VERTICAL */
+/* Elements en línia o bloc: aplicar el mateix padding dalt i baix */
+/* Si l'element pare NO té height assignat no importarà el valor que li assignem
+  de padding per centrar l'element en línia que el conté. En cas contrari sí.*/
+header, footer {
+  padding: 20px 0;
+}
+
+/*No funcionarà*/
+/* main {
+  height: 500px;
+  padding: 50px;
+} */
+
+/* Emprant display:table i vertical-align:middle dins de l'element d'una taula o si 
+ho simulem amb la propietat display. En aquest cas el pare ha de tenir una alçada fixa
+*/
+main {
+  display: table;
+  height: 500px;
+  margin: 0 auto;
+}
+
+main section {
+  display: table-cell;
+  padding: 20px;
+  vertical-align: middle;
+}

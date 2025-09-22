@@ -1,0 +1,53 @@
+ALGORITHM 
+    TYPE
+        tabla_cadenas : ARRAY [1...1000] OF cadena
+    ENDTYPE
+
+    VAR 
+      frase  : tabla_cadenas
+      palabra : cadena
+      palabraMaxVocales : char
+      Maxvocales : int
+      vocales : int
+    ENDVAR
+
+    WRITE("Escribe una frase")
+    READ(frase) 
+    contarVocales(frase)
+
+
+
+
+    PROCEDURE contarVocales (VAR frase : tabla_cadenas)
+        VAR
+            index_palabra : int
+        ENDVAR
+
+        FOR i € frase.length
+            WHILE frase[i] != " " THEN
+                palabra= frase[i]
+                FOR j € [1..palabra.length]
+                    IF palabra[j] = a OR palabra[j] = e OR palabra[j] = i OR palabra[j] = o OR palabra[j] = u
+                        vocales= vocales + 1
+                    ENDIF
+                    IF(vocales>Maxvocales)
+                        Maxvocales = vocales
+                        palabraMaxVocales = palabra
+                    ENDIF
+                ENDFOR
+            ENDWHILE 
+        ENDFOR
+        WRITE ("en la frase ", frase, " la palabra con mas vocales es ", palabraMaxVocales, " con ", Maxvocales, "vocales")
+    ENDPROCEDURE
+ENDALGORITHM
+
+           
+
+                
+
+
+
+
+     
+
+    

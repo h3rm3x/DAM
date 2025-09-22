@@ -1,0 +1,3 @@
+CREATE DEFINER=`root`@`localhost` FUNCTION `age`(`birthdate` DATE) RETURNS int(11)
+    DETERMINISTIC
+RETURN FLOOR((DATEDIFF(CURDATE(),birthdate)/365))

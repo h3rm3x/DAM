@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+}
+
+body{
+    display: grid;
+    grid-template-columns:  1fr;/* tambien se puede poner auto */
+    grid-template-rows: 80px 5fr 1fr 80px;
+    height: 100vh;
+    grid-template-areas: 
+        "cabecera"
+        "principal"
+        "lateral"
+        "pie";
+}
+
+header, footer{
+    background-color: #ff8000;
+}
+header{
+    grid-area: cabecera;
+}
+footer{
+    grid-area: pie;
+}
+
+main{
+    background-color: #fc00b0;
+    grid-area: principal;
+}
+
+aside{
+    background-color: green;
+    grid-area: lateral;
+}
+
+@media (min-width: 768px){
+    body{
+        grid-template-columns: 1fr 4fr;
+        grid-template-rows: 80px auto 80px;
+        grid-template-areas: 
+        "cabecera cabecera"
+        "lateral principal"
+        "pie pie";
+    }
+
+
+}

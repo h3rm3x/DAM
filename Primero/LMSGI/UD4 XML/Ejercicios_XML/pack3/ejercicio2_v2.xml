@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ejercicio2.dtd" type="application/xml-dtd"?>
+<instituto>
+    <listacursos>
+        <curso>
+            <alumno>
+                <nombre>Pepe</nombre>
+                <apellido1>Perez</apellido1>
+                <apellido2>Garcia</apellido2>
+                <dni>12345678A</dni>
+                <asignatura codigo="1">
+                    <nombre_asignatura>Matematicas</nombre_asignatura>
+                    <profesor>
+                        <NRP>12345678A</NRP>
+                        <nombre>Juan</nombre>
+                        <apellido1>Perez</apellido1>
+                    </profesor>
+                </asignatura>
+                <asignatura codigo="2">
+                    <nombre_asignatura>Ingles</nombre_asignatura>
+                    <profesor>
+                        <NRP>12345678A</NRP>
+                        <nombre>Alberto</nombre>
+                        <apellido1>1_Diaz</apellido1>
+                        <apellido2>Montero</apellido2>
+                    </profesor>
+                </asignatura>
+            </alumno>
+
+            <alumno>
+                <nombre>Carmen</nombre>
+                <apellido1>Lopez</apellido1>
+                <dni>1785678A</dni>
+                <asignatura codigo="1">
+                    <nombre_asignatura>Matematicas</nombre_asignatura>
+                    <profesor>
+                        <NRP>12345678A</NRP>
+                        <nombre>Antonio</nombre>
+                        <apellido1>Nuñez</apellido1>
+                    </profesor>
+                </asignatura>
+                <asignatura codigo="2">
+                    <nombre_asignatura>Aleman</nombre_asignatura>
+                    <profesor>
+                        <NRP>6587478A</NRP>
+                        <nombre>Diego</nombre>
+                        <apellido1>Weiss</apellido1>
+                    </profesor>
+                </asignatura>
+            </alumno>
+        </curso>
+    </listacursos>
+</instituto>

@@ -1,0 +1,164 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+    text-decoration: none;
+}
+/* estilos comunes */
+body {
+    color: #252323;
+    background-color: #FEF9FF;
+    height: 100vh;
+}
+
+.menu-item {
+    margin: 0 10px;  
+}
+  
+.menu-item:hover {
+    cursor: pointer;
+}
+/* Header */
+header {  
+    color:#CAD178;
+    height: 70px;
+    background-color: #434960;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-primary, .logo-square, .nav-text{
+    display: none;    
+}  
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+}
+
+.logo-square {
+    height: 80px;
+}
+  
+.logo-landscape {
+    height: 25px;  
+}
+  
+.nav-primary .menu-item:hover {
+    text-decoration: underline;
+}
+/* Main */
+
+main {
+    display: flex;
+    
+    flex-direction: column-reverse;
+}
+  
+aside {
+    padding: 10px;
+    background-color: #CAD178;
+    
+}
+
+aside nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+  
+a {
+    padding: 10px 0;
+    color: #252323;
+}
+  
+a:hover {
+    font-weight: bold;  
+}
+  
+.item {
+    padding: 100px;
+    margin: 10px;
+    background-color: #95818D;
+}
+  
+.item:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+/* Responsive */
+/* Tablet */
+@media (min-width: 768px) {
+    header {
+        height: 100px;
+    }
+    .nav-text {
+        display: flex;
+        align-items: center;
+    }
+    .menu-item {
+       display: flex;
+       gap: 5px;
+    }
+    .logo-square {
+        display: initial;
+    }
+    .logo-landscape {
+        display: none;  
+    }
+}
+
+/* Desktop */
+
+@media (min-width: 992px) {
+    header {
+        height: 120px;
+    }
+
+    .nav-primary {
+        display: flex;
+        gap: 10px;
+    }
+    .nav-text {
+        display: flex;
+        align-items: center;
+    }
+    .fa-bars {
+        display: none;
+    }
+
+    main{
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+    .products-container {
+        justify-content:flex-start;
+    }
+
+
+    aside nav{
+        justify-content: flex-end;
+        width: 200px;
+        height: calc(100vh - 120px);
+    }
+    
+
+
+    
+}
+

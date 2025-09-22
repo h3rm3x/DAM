@@ -1,0 +1,50 @@
+.completed {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+  text-decoration: line-through;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+.pending {
+  background-color: #ffcdcd;
+  border-color: #ffc1ba;
+  color: #850404;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+li {
+  list-style-type: none;
+  margin: 10px 0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button {
+  margin-left: 10px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+#task-list {
+  padding: 0;
+  margin-top: 20px;
+}
+
+#task-input {
+  padding: 5px;
+  width: 300px;
+}
+
+select, #add-task {
+  padding: 5px;
+  margin: 10px 0;
+}

@@ -1,0 +1,99 @@
+ALGORITHM
+  TYPE
+    libro: REGISTER(
+      titulo: cadena
+      autor: cadena
+      prestado: boolean
+      fecha_inicio: date
+      fecha_fin: date
+      )
+
+    tabla_libreria: ARRAY[1..1000] OF libro  
+  ENDTYPE
+  VAR
+    libro: datos_libro
+    libreria: tabla_libreria
+    index: integer
+    opcion: integer
+    autor : cadena
+    titulo : cadena
+  ENDVAR 
+  index = 1
+  DO
+    WRITE "Introduzca la opcion de programa que quiere usar: "
+    WRITE "0. Salir"
+    WRITE "1. Introducir un libro"
+    WRITE "2. Mostrar todos los libros de un autor"
+    WRITE "3. Prestar un libro"
+    WRITE "4. Marcar un libro como devuelto/no prestado"
+    READ(elemento)
+
+    CASE opcion OF
+      0: break
+
+      1:
+        nuevoLibro()
+      2:
+        WRITE ("Escribe el nombre del autor")
+        READ(autor)
+        buscarxAUtor(libro, autor)
+      3:
+        WRITE("Escribe el titulo del libro que quiere tomar prestado")
+        READ(titulo)
+        prestarLibro(libro, autor)
+      4: 
+        WRITE("escribe el titulo del libro que quiere devolver)
+        READ("titulo")
+        devolverLibro(libro, titulo)
+    ENDCASE
+  WHILE true
+  
+  PROCEDURE nuevoLibro(VAR libros : tabla_libreria, VAR indexLibro: int)
+    VAR
+      nuevoLibro : libro
+    ENDVAR
+
+    WRITE("Introduce el nombre del libro")
+    READ(libro.titulo)
+    WRITE("escribe el nombre del autor)
+    READ(libro.autor)
+    libros[indexLibro] = nuevoLibro
+    indexLibro=indexLibro+1
+  ENDPROCEDURE
+
+  PROCEDURE prestarLibro (VAR libros: tabla_libreria, VAR tituloBuscado: cadena)
+    FOR i€ [1..indexLibro]
+      IF libros.titulo = tituloBuscado THEN
+        IF libro[i].prestado = false THEN
+          libros[i].prestado = true
+          libros[i].fecha_inicio = HOY()
+        ELSE 
+          WRITE("el libro ya esta prestado")  
+        ENDIF
+      ENDIF
+    ENDFOR
+  ENDPROCEDURE
+
+  PROCEDURE buscarxAUtor (VAR libros: tabla_libreria, VAR autor : cadena, VAR )
+    WRITE("los lobros de ", autor, " son: ")
+    FOR I €[1..indexLibro]
+      IF libros[i].autor = autor THEN
+        WRITE(libros[i].titulo)
+      ENDIF
+    ENDFOR
+  ENDPROCEDURE
+
+  PROCEDURE devolverLibro (VAR libros : tabla_libreria, VAR tituloBuscado : cadena)
+    FOR i€ [1..indexLibro]
+      IF libros.titulo = tituloBuscado THEN
+        IF libro[i].prestado = true THEN
+          libros[i].prestado = false
+          libros[i].fecha_fin = HOY()
+        ELSE 
+          WRITE("el libro no esta prestado")  
+        ENDIF
+      ENDIF
+    ENDFOR
+  ENDPROCEDURE
+ENDALGORITHM
+

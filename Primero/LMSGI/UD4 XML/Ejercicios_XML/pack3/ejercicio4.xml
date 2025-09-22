@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ejercicio4.dtd" type="application/xml-dtd"?>
+<acciones>
+    <futuro precio="400">
+        <producto>Accion NVIDIA</producto>
+        <mercado nombre="Nueva_York" />
+    </futuro>
+
+    <futuro precio="200">
+        <producto>Accion APPLE</producto>
+        <mercado nombre="Nueva_York" />
+        <pais_procedencia>EEUU</pais_procedencia>
+    </futuro>
+    
+    <divisa precio="45">
+        <mercado nombre="Tokyo" />
+        <nombre>Yen</nombre>
+        <tipo_de_cambio moneda="$">123.5</tipo_de_cambio>
+        <estable />
+    </divisa>
+
+    <divisa precio="1.5">
+        <mercado nombre="Madrid" />
+        <nombre>Euro</nombre>
+        <tipo_de_cambio moneda="Yen">123.5</tipo_de_cambio>
+        <tipo_de_cambio moneda="$">1.1</tipo_de_cambio>
+    </divisa>
+
+    <bono precio="150">
+        <mercado nombre="Madrid" />
+        <pais_procedencia>Portugal </pais_procedencia>
+        <valor_deseado>130</valor_deseado>
+        <valor_minimo>110</valor_minimo>
+        <valor_maximo>150</valor_maximo>
+    </bono>
+
+    <letra precio="100">
+        <mercado nombre="Madrid" />
+        <pais_emisor pais="España" />
+        <tipo_interes>4%</tipo_interes>
+    </letra>
+
+    <letra precio="200">
+        <mercado nombre="Frankfurt" />
+        <pais_emisor pais="Alemania" />
+        <tipo_interes>5%</tipo_interes>
+    </letra>
+    
+</acciones>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quadres de diàleg</title>
+</head>
+<body>
+  <script>
+    //alert(<missatge>): mostra un missatge a l'usuari i no torna cap valor.
+    alert("Hola, caracola");
+
+    /*prompt(<missatge>[,<text per defecte>]): mostra un missatge a l'usuari i un camp que pot
+      contenir o no text per defecte. El que introdueixi l'usuari s'emmagatzemarà en una variable
+      a la qual s'assigna.*/
+    let resposta = prompt("Quin és el teu nom?", "Introdueix un nom");
+    alert ("Hola, "+resposta);
+
+    /*confirm(<missatge>): mostra un missatge a l'usuari i dos botons. 
+      Si l'usuari prem "Acceptar" retorna true; 
+      si prem "Cancel" o tanca la finestra retorna false.*/
+    let resposta2 = confirm("T'agrada javascript?");
+    //if (resposta2==true) alert ("¡Me m\'alegro!");
+    //else alert ("Doncs és una pena!");
+    alert((resposta2) ? "Me n\'alegro!" : "Doncs és una llàstima!");
+  </script>
+  
+</body>
+</html>

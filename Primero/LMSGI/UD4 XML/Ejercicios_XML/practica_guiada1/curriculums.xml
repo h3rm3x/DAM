@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<curriculums>
+    <cv>
+        <nombre>Alan</nombre>
+        <apellido>Rabinerson</apellido>
+        <fecha_nacimiento dia="24" mes="10" año="2001"/>
+        <residencia provisional="false">
+            <ciudad>Barcelona</ciudad>
+            <pais>España</pais>
+        </residencia>
+        <datos_de_contacto>
+            <telefono>123456789</telefono>
+            <email>email@ejemplo.com</email>
+            <perfil_linkedin>Linkedin.com/Alan</perfil_linkedin>
+        </datos_de_contacto>
+        <descripcion_general> ekaecema lkednewlaafna</descripcion_general>
+        <competencias>
+            <competencia nombre="progrmacion"  nivel="medio">
+                programacion en C, C++, Java, Python
+            </competencia>
+            <competencia nombre="idiomas"  nivel="C1">
+                Ingles, Español
+            </competencia>
+            <competencia nombre="idiomas"  nivel="B2">
+                frances
+            </competencia>
+        </competencias>
+        <formacion>
+            <titulacion nombre="ESO" centro="IES Cap De llevant" año="2017" />
+            <titulacion nombre="Bachillerato" centro="IES Cap De llevant" año="2019" />
+            <titulacion nombre="Grado en Ingenieria Informatica" centro="UPC" año="2023" />
+        </formacion>
+        <experiencia_laboral>
+            <puesto nombre="becario" empresa="Google" fecha_inicio="2021" fecha_fin="2022" />
+            <puesto nombre="becario" empresa="Facebook" fecha_inicio="2022" fecha_fin="2023" />
+        </experiencia_laboral>
+
+    </cv>
+</curriculums>

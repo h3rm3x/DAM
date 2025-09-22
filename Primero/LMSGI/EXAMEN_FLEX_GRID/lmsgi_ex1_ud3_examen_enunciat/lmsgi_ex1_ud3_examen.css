@@ -1,0 +1,218 @@
+:root{
+  --red: hsl(14, 86%, 42%);
+  --green: hsl(159, 69%, 38%);
+  --rose-50: hsl(20, 50%, 98%);
+  --rose-100: hsl(13, 31%, 94%);
+  --rose-300: hsl(14, 25%, 72%);
+  --rose-400: hsl(7, 20%, 60%);
+  --rose-500: hsl(12, 20%, 44%);
+  --rose-900: hsl(14, 65%, 9%);  
+}
+
+@font-face {
+  font-family: RedHat;
+  src: url('./assets/fonts/RedHatText-VariableFont_wght.ttf');
+}
+
+/* Reset bàsic */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: RedHat;
+  font-size: 16px;
+  background-color: var(--rose-50);
+}
+
+h1, h3 {
+  color: var(--rose-900);
+}
+
+h2 {
+  color: var(--red);
+  font-size: 1.5em;
+}
+main{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 50px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.container{
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+aside{
+  width: 25%;
+}
+
+.product-section{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-direction: row;
+}
+
+/*Estils contenidor producte*/
+.product-card{
+  display: flex;
+  flex-direction: column;
+  width: calc(33.333% - 20px);
+  flex-grow: 1;
+  border: none;
+  border-radius: 8px;
+  position: relative;  
+  gap: 4px;
+} 
+
+/*Imatge del producte*/
+.product-card img{
+  max-width: 100%; 
+  height: auto; 
+  object-fit: cover; 
+  border-radius: 8px;
+}  
+
+/*Imatge seleccionada. El fitxer javaScript afegeix o treu la classe .selected*/
+.product-card img.selected{
+  border: solid 2px var(--red); 
+} 
+
+/*Botó del producte*/
+.add-to-cart{
+  background-color: white;
+  color: var(--rose-900);
+  font-weight: 500;
+  text-align: center;
+  padding: 10px 20px;
+  border: 1px solid var(--rose-500);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 73px; 
+  display: flex;
+  justify-content: center;
+}
+
+/*Botó del producte en passar el cursor per damunt*/
+.add-to-cart:hover{
+  background-color: var(--red);
+  color: white;
+  border-color: var(--red); 
+}  
+
+/*Textos dels productes*/
+.product-card span{
+  color: var(--rose-500);
+  font-size: 0.9em;
+  margin-top: 20px; 
+}
+
+
+/*Text 2*/
+.product-card h3{
+font-size: 1em;
+  font-weight: 600;
+  color: var(--rose-900); 
+}
+
+/*Text 3*/
+.product-card .price{
+  font-weight: 700;
+  color: var(--red); 
+}
+/*Carret*/
+.cart-section{
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/*Per a cada element del carret*/
+.cart-section ul{
+  list-style: none;
+}
+.cart-section li{
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/*Unitats*/
+.cart-units{
+  font-size: 0.9em;
+  color: var(--red);
+  font-weight: 500;
+} 
+
+/*Nom*/
+.cart-item{ 
+  font-size: 0.9em;
+  color: var(--rose-500);
+  margin-left: 10px; 
+}
+/*Preu*/
+.cart-price{
+ font-weight: 500;
+  color: var(--rose-500);
+}
+
+/*Linía total*/
+.total{
+  padding: 10px 0;
+  color: var(--rose-900); 
+  display: flex;
+  justify-content: space-between;
+}
+
+/*Import total*/
+.total-import {
+  font-weight: bold;
+}
+
+/*Text informació carbon-neutral*/
+.cart-section .cart-info{
+    background-color: var(--rose-50);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+ } 
+
+/*Text remarcat info carbon-neutral*/
+.carbon-neutral{
+  font-weight: 500;
+}  
+
+/*Botó carret compra*/
+.cart-section button{
+  background-color: var(--red);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+} 
+/*Botó en passar ratolí per damunt*/
+.cart-section button:hover{
+   background-color: color-mix(in srgb, var(--red) 90%, black 10%);
+}

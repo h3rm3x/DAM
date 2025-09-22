@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulari de registre – La meva web.</title>
+    <style>
+        .red{
+        color: #BF0000;
+        }
+        </style>
+</head>
+<body>
+    <h1>Formulari de registre</h1>
+    <form action="#" method="get">
+        <!-- Input del nobre -->
+        <label for="nombre">Nom:<span class="red">*</span></label>
+        <input autofocus type="text" id="nombre" name="nombre" minlength="2" maxlength="30" required>
+        <br><br>
+
+        <!-- input primer apellido -->
+        <label for="primer-apellido">Primer cognom:<span class="red">*</span></label>
+        <input type="text" id="primer-apellido" name="primer-apellido" maxlength="50" required>
+        <br><br>
+
+        <!-- input segundo apellido -->
+        <label for="segundo-apellido">Segon cognom:</label>
+        <input type="text" id="segundo-apellido" name="segundo-apellido" maxlength="50">
+        <br><br>
+
+        <!-- genero -->
+        <label for="genero">Gènero:<span class="red">*</span></label>
+        <input type="radio" id="mujer" name="genero" value="Mujer" required> Mujer
+        <input type="radio" id="hombre" name="genero" value="Home" required> Hombre
+        <input type="radio" id="no-binario" name="genero" value="No binario" required> No binario
+        <br><br>
+
+        <!-- Email  -->
+        <label for="email">Email:<span class="red">*</span></label>
+        <input type="email" id="email" name="email" maxlength="100" required>
+        <br><br>
+
+        <!-- Descripcion -->
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" maxlength="300" rows="7" cols="30" placeholder="Escribe una descripcion de maximo 300 caracteres"></textarea>
+        <br><br>
+    </form>
+    <hr style="border: 1px solid black;">
+
+    <!-- consentimiento -->
+    <form>
+        <h2>Consentimiento</h2>
+        <input type="checkbox" id="novedades" name="novedades" checked>
+        <label for="novedades">Vull rebre informació amb les darreres novetats i ofertes personalitzades.</label>
+        <br><br>
+        <input type="checkbox" id="condiciones" name="condiciones" required>
+        <label for="condiciones">Declaro haber leido y aceptado las <a href="#condicions">condiciones generales</a> de la aplicación de la normativa sobre protección de datos.</label>
+        <br><br>
+
+        <!-- Boton enviar -->
+        <button type="submit">Enviar</button>
+
+ <hr style="border: 1px solid black;">
+
+  <h3 id="condiciones">Condiciones generales</h3>
+<p><strong>Identificación del tratamiento:</strong> Nombre y apellidos.</p>
+<p><strong>Responsable del tratamiento:</strong> Empresa S.L.</p>
+<p><strong>Finalidad del tratamiento:</strong> Gestionar los diferentes envios de informacion derivados del registro del usuario.</p>
+<p><strong>Legitimación:</strong> Consentimiento de la persona interesada.</p>
+<p><strong>Personas destinatarias:</strong>Las encargadas del tratamiento que provienen, por cuenta de la empres. Los datos no se counicaran a otros categorias de destinatarios, excepto en los casos previstos por la ley </p>
+<p><strong>Derecos de las personas interesadas:</strong> solicitar el acceso, rectificación o supresión de los datos, y la limitación o oposicion al tratamiento. Es necesario utilizar los formularios y el procedimiento disponibles</p>
+
+
+        
+        
+
+    </form>
+</body>
+    
+</footer>
+</html>

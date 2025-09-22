@@ -1,0 +1,15 @@
+<!ELEMENT elementos (entrega*)>
+<!ELEMENT entrega (lote*)>
+<!ELEMENT lote (pale*)>
+<!ELEMENT pale (numero_cajas, peso, forma_manipulacion, contenido*)>
+<!ELEMENT numero_cajas (#PCDATA)>
+<!ELEMENT peso (#PCDATA)>
+<!ELEMENT forma_manipulacion (#PCDATA)>
+<!ELEMENT contenido (nombre_componente, procedencia?, numero_serie, peso)> <!-- puede hacerse o con el asterisco o interrogante en procedencia o en el el subelemento pais-->
+<!ELEMENT nombre_componente (#PCDATA)>
+<!ELEMENT procedencia (pais*)>
+<!ELEMENT pais (#PCDATA)>
+<!ELEMENT numero_serie (#PCDATA)>
+<!ATTLIST peso unidades CDATA #IMPLIED>
+<!ATTLIST lote id CDATA #REQUIRED>
+<!ATTLIST pale id CDATA #REQUIRED>

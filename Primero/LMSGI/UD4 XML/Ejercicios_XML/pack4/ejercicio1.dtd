@@ -1,0 +1,3 @@
+<!ELEMENT factura (encabezado, lineas)>
+<!ELEMENT encabezado (fecha, info_cliente, info_proveedor)>
+<!ELEMENT lineas (linea+)>

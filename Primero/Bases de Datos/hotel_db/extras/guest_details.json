@@ -1,0 +1,26 @@
+{
+    "number_of_guests": "X",
+    "guest_details": [
+        {
+            "first_name": "",
+            "last_name": "",
+            "NIE": ""
+        },
+        {
+            "first_name": "",
+            "last_name": "",
+            "NIE": ""
+        },
+        {
+            "first_name": "",
+            "last_name": "",
+            "NIE": ""
+        },
+        {
+            "first_name": "",
+            "last_name": "",
+            "NIE": ""
+        }
+    ]
+}
+    

@@ -1,0 +1,76 @@
+{
+  "Restaurant": {
+    "total": 235.0,
+    "tickets": [
+      {
+        "ticket_id": 1,
+        "service_name": "3 course Dinner for 2 room service",
+        "date": "2025-05-17 19:00:00",
+        "service_price": 70.0
+      },
+      {
+        "ticket_id": 4,
+        "service_name": "2 course Lunch for 2 room service",
+        "date": "2025-05-18 12:00:00",
+        "service_price": 60.0
+      },
+      {
+        "ticket_id": 7,
+        "service_name": "3 course Dinner for 2",
+        "date": "2025-05-19 19:00:00",
+        "service_price": 50.0
+      },
+      {
+        "ticket_id": 8,
+        "service_name": "2 course Lunch for 2",
+        "date": "2025-05-20 12:00:00",
+        "service_price": 45.0
+      }
+    ]
+  },
+  "Spa": {
+    "total": 250.0,
+    "tickets": [
+      {
+        "ticket_id": 2,
+        "service_name": "1h Massage",
+        "date": "2025-05-18 10:00:00",
+        "service_price": 100.0
+      },
+      {
+        "ticket_id": 5,
+        "service_name": "1h in Spa Circuit",
+        "date": "2025-05-18 11:00:00",
+        "service_price": 150.0
+      }
+    ]
+  },
+  "Gym": {
+    "total": 160.0,
+    "tickets": [
+      {
+        "ticket_id": 3,
+        "service_name": "1h Class with Trainer",
+        "date": "2025-05-19 10:30:00",
+        "service_price": 80.0
+      },
+      {
+        "ticket_id": 6,
+        "service_name": "1h Class with Trainer",
+        "date": "2025-05-20 10:30:00",
+        "service_price": 80.0
+      }
+    ]
+  },
+  "Bar": {
+    "total": 50.0,
+    "tickets": [
+      {
+        "ticket_id": 9,
+        "service_name": "2 Cocktails",
+        "date": "2025-05-19 21:00:00",
+        "service_price": 50.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+<form>
+    <fieldset>
+      <legend>Fruit juice size</legend>
+      <p>
+        <input type="radio" name="size" id="size_1" value="small" />
+        <label for="size_1">Small</label>
+      </p>
+      <p>
+        <input type="radio" name="size" id="size_2" checked value="medium" />
+        <label for="size_2">Medium</label>
+      </p>
+      <p>
+        <input type="radio" name="size" id="size_3" value="large" />
+        <label for="size_3">Large</label>
+      </p>
+      <p>
+        <label for="accept">Aceptar</label>
+        <input type="checkbox" name="accept" id="accept">
+      </p>
+      <p>
+        <textarea name="desc" cols="30" rows="10" placeholder="Escribe una descricion"></textarea>
+      </p>
+      <p>
+        <label for="Pais">Pais</label>
+        <input list="paises" name="pais" id="pais" requiered>
+        <datalist id="paises">
+            <option value="Esp"></option>
+            <option value="UK"></option>
+            <option value="USA"></option>
+        </datalist>
+      </p>
+      <p>
+        <input type="submit" value="Enviar">
+        <button>Cancelar</button>
+      </p>
+    </fieldset>
+  </form>
+  

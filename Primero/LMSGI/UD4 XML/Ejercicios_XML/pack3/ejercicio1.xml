@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ejercicio1.dtd" type="application/xml-dtd"?>
+<elementos>
+    <entrega>
+        <lote id="1">
+            <pale id="1"> 
+                <numero_cajas>10</numero_cajas>              
+                <peso >1000</peso>
+                <forma_manipulacion>enfardado</forma_manipulacion>
+                <contenido>
+                    <nombre_componente>copas</nombre_componente>
+                    <procedencia>
+                        <pais>Italia</pais>
+                    </procedencia>
+                    <numero_serie>123</numero_serie>
+                    <peso unidades="kg"></peso>
+                </contenido>
+            </pale>
+
+            <pale id="2"> 
+                <numero_cajas>14</numero_cajas>              
+                <peso >2500</peso>
+                <forma_manipulacion>co-packaging</forma_manipulacion>
+                <contenido>
+                    <nombre_componente>valvulas de motor</nombre_componente>
+                    <procedencia>
+                        <pais>Francia</pais>
+                        <pais>Italia</pais>
+                    </procedencia>
+                    <numero_serie>12445</numero_serie>
+                    <peso >40</peso>
+                </contenido>
+            </pale>
+        </lote>
+
+        <lote id="2">
+            <pale id="1">
+                <numero_cajas>20</numero_cajas>              
+                <peso >1000</peso>
+                <forma_manipulacion>enfardados</forma_manipulacion>
+                <contenido>
+                    <nombre_componente>Pastillas para la tos</nombre_componente>
+                    <numero_serie>14557</numero_serie>
+                    <peso unidades="kg">25</peso>
+                </contenido>
+            </pale>
+        </lote>
+    </entrega>
+
+
+</elementos>

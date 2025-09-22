@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datos
+  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+  xs:noNamespaceSchemaLocation="ejercicio7.xsd">
+  <agrupacion id="1" tipo="Normal">
+    <categoria>Alta</categoria>
+    <cantidad>15</cantidad>
+    <descripcion>Primera agrupación</descripcion>
+  </agrupacion>
+  <agrupacion id="2" tipo="Especial">
+    <categoria>Media</categoria>
+    <cantidad>8</cantidad>
+    <descripcion>Segunda agrupación</descripcion>
+  </agrupacion>
+</datos>

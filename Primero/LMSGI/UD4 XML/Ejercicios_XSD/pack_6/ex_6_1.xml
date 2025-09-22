@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ex_6_1.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<empleados>
+    <empleado nombre="Alan" id_empleado="A123">
+        <fecha_inicio>
+            <dia>---01</dia>
+            <mes>--01</mes>
+            <ano>2010</ano>
+        </fecha_inicio>
+        <puesto>Analista de sistemas</puesto>
+        <puesto_anterior>Analista de sistemas</puesto_anterior>
+        <titulacioAcademica>
+            <titulo>Ingeniero Técnico en Informática de Sistemas</titulo>
+        </titulacioAcademica>
+        <superior_directo id="B223"/>
+        <sueldo>2000</sueldo>
+        <sede>Valencia</sede>
+    </empleado>
+
+    <empleado nombre="Juan" id_empleado="B223">
+        <fecha_inicio>
+            <dia>---01</dia>
+            <mes>--04</mes>
+            <ano>2009</ano>
+        </fecha_inicio>
+        <puesto>Jefe Departamento</puesto>
+        <puesto_anterior>Analista de sistemas, Programador Junior</puesto_anterior>
+        <superior_directo id="A12"/>
+        <sueldo>3800</sueldo>
+        <sede>Madrid</sede>
+        <observaciones>
+            <meritos>Conocimientos de Python</meritos>
+        </observaciones>
+    </empleado>
+
+    <empleado nombre="Juan" id_empleado="C478">
+        <fecha_inicio>
+            <dia>---24</dia>
+            <mes>--05</mes>
+            <ano>2015</ano>
+        </fecha_inicio>
+        <puesto>Programador</puesto>
+        <superior_directo id="B223"/>
+        <sueldo>2000</sueldo>
+        <sede>Barcelona</sede>
+        <observaciones>
+            <meritos>Conocimientos de Java</meritos>
+        </observaciones>
+    </empleado>
+
+    <empleado nombre="Juan" id_empleado="A347">
+        <fecha_inicio>
+            <dia>---01</dia>
+            <mes>--04</mes>
+            <ano>2008</ano>
+        </fecha_inicio>
+        <puesto>Jefe Regional</puesto>
+        <puesto_anterior>Jefe Departamento, Programador Senior, Programador Junior</puesto_anterior>
+        <superior_directo id="A12"/>
+        <sueldo>5000</sueldo>
+        <sede>Madrid</sede>
+    </empleado>
+
+    <empleado nombre="Juan" id_empleado="A12">
+        <fecha_inicio>
+            <dia>---01</dia>
+            <mes>--04</mes>
+            <ano>2005</ano>
+        </fecha_inicio>
+        <puesto>Jefe Nacional </puesto>
+        <puesto_anterior>Jefe Departamento, Programador Senior, Programador Junior</puesto_anterior>
+        <superior_directo id="A12"/>
+        <sueldo>7000</sueldo>
+        <sede>Madrid</sede>
+    </empleado>
+
+
+
+</empleados>

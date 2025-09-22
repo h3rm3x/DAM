@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="matricula">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="alumne" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nom" type="xs:string"/>
+              <xs:element name="curs" type="xs:string"/>
+              <xs:element name="assignatures">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="diw" type="tipus_buit" minOccurs="0"/>
+                    <xs:element name="dwec" minOccurs="0">
+                      <xs:complexType/>
+                    </xs:element>
+                    <xs:element name="dwes" minOccurs="0">
+                      <xs:complexType>
+                        <xs:complexContent>
+                          <xs:restriction base="xs:anyType"></xs:restriction>
+                        </xs:complexContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="daweb" type="tipus_buit" minOccurs="0"/>
+                    <xs:element name="ipo2" type="tipus_buit" minOccurs="0"/>
+                    <xs:element name="angles" type="tipus_buit" minOccurs="0"/>
+                    <xs:element name="sostenibilitat" type="tipus_buit" minOccurs="0"/>
+                    <xs:choice minOccurs="0">
+                      <xs:element name="optativa1">
+                        <xs:complexType/>
+                      </xs:element>
+                      <xs:element name="optativa2">
+                        <xs:complexType/>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:sequence>                  
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="tipus_buit"/>
+
+</xs:schema>

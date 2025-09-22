@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    width: 1000px;
+    gap: 10px;
+    background-color: darkslateblue;
+    padding: 10px;
+}
+
+.box{
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 200px;
+    /* posible shortcut*/
+    /* flex: 0 1 200px; */
+    border: 1px solid white;
+    color: white;
+    padding: 10px;
+    background-color: rgb(155, 132, 176);
+
+}

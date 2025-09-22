@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulari de registre – La meva web.</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <style>
+        .red{
+        color: #BF0000;
+        }
+        .adreça{
+            margin-left: 40px;
+        }
+
+        </style>
+
+</head>
+<body>
+    <h1>Formulari de registre</h1>
+    <form action="" method="get">
+        <!-- Input del nobre -->
+        <label for="nombre">Nom:<span class="red">*</span></label>
+        <input type="text" id="nombre" name="nombre" minlength="2" maxlength="30" required>
+        <br><br>
+
+        <!-- input primer apellido -->
+        <label for="primer-apellido">Cognom:<span class="red">*</span></label>
+        <input type="text" id="primer-apellido" name="primer-apellido" maxlength="50" required>
+        <br><br>
+
+        <!-- DNI -->
+        <label for="DNI">DNI:<span class="red">*</span></label>
+        <input type="text" id="DNI" name="DNI"  maxlength="8" required> 
+        <br><br>
+
+        <!-- Telefono  -->
+        <label for="telefono">Telèfon:<span class="red">*</span></label>
+        <input type="number" id="telefono" name="telefono"  maxlength="100" required>
+        <br><br>
+
+        <!-- fecha nacimiento -->
+        <label for="Data naixement">Data naixement:</label>
+        <input type="date" id="Data naixement" name="Data naixement" >
+        
+        <br><br>
+         <!-- genero-->
+        <label for="genero">Gènero:<span class="red">*</span></label>
+        <input type="radio" id="mujer" name="genero" value="Mujer" required> Mujer
+        <input type="radio" id="hombre" name="genero" value="Home" required> Hombre
+        <input type="radio" id="no-binario" name="genero" value="No binario" required> No binario
+        <br><br>
+        
+        <label for="via-type">Adreça:<span class="red">*</span></label><br><br>
+        <p class="adreça">
+        <!-- Llista desplegable amb tipus de vies -->
+        <label for="via-type">Tipus de via:</label>
+        <input list="via-list" id="via-type" name="via-type" placeholder="Selecciona o escriu...">
+        <datalist id="via-list">
+            <option value="Carrer"></option>
+            <option value="Avinguda"></option>
+            <option value="Carretera"></option>
+            <option value="Ronda"></option>
+            <option value="Autopista"></option>
+            <option value="Rambla"></option>
+            <option value="Camí"></option>
+        </datalist><br><br>
+
+        <!-- Camp de text per al nom de la via -->
+        <label for="via-name">Nom de la via:</label>
+        <input type="text" id="via-name" name="via-name" placeholder="Escriu el nom de la via" required><br><br>
+
+        <!-- Camp de text per al nombre -->
+        <label for="via-number">Nombre:</label>
+        <input type="text" id="via-number" name="via-number" placeholder="Especifica el nombre" required><br><br>
+
+        <!--Poblacio-->
+        <label for="Poblacio">Poblacio: </label>
+        <input list="poble" id="Poblacio" name="Poblacio" placeholder="Selecciona o escriu la poblacio..." >
+        <datalist id="poble">
+            <option value="Maó"></option>
+            <option value="Sant Lluis"></option>
+            <option value="Mercadal"></option>
+            <option value="Alaior"></option>
+            <option value="Ferreries"></option>
+            <option value="Ciutadella"></option>
+            <option value="Es Migjorn"></option>
+            <option value="Altres"></option>
+        </datalist><br><br>
+       
+        <!--Codi Postal-->
+        <label for="Codi Postal">Codi Postal: </label>
+        <input type="text" id="Codi Postal" name="Codi Postal"><br><br>
+         </p>
+         <!--Club -->
+        <label for="Club">Club: </label>
+        <input type="text" id="Club" name="Club"><br><br>
+        <!--Camiseta-->
+        <label for="camiseta">Camiseta</label>
+        <select id="camiseta">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>           
+        </select>
+        
+    </input>
+        <br><br>
+    </form>
+
+    <h2>Dades de la cursa</h2>
+    <form action="" method="get">
+    <label for="Cursa">Tria la cursa<span class="red">*</span></label>
+    <input type="radio" id="verd" name="Cursa" value="verd" required>Cursa mini(Verd 1700m aprox)
+    <input type="radio" id="blau" name="Cursa" value="blau" required>Cursa mitjana(Blau 4995m aprox)
+    <input type="radio" id="vermell" name="Cursa" value="vermell" required>Cursa gran(Vermell 10000m aprox)
+    <br>
+    <textarea name="comentaris" id="comentaris" maxlength="200" placeholder="Escriu un comentari (max 200 caracters)"></textarea>
+    <br><br>
+
+
+
+    
+
+    <fieldset >
+    <input type="checkbox" id="normes" name="normes" required>
+    <label for="normes">Accepto i assumeixo les normes de participació que regulen la Cursa Popular Ciutat de XYZ.<span class="red">*</span></label>
+    <br>
+    <input type="checkbox" id="informacio" name="informacio" required>
+    <label for="informacio">Estic interessat/da en rebre informació sobre les activitats esportives organitzades per l’Ajuntament i dono el meu consentiment per a la tramesa d’informació al respecte.<span class="red">*</span></label>
+    </fieldset>
+
+    <button type="submit">Enviar</button>
+
+</form>
+
+</body>

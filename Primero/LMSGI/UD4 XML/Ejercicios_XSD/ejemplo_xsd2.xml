@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ejemplo_xsd2.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<matricula 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ejemplo_xsd2.xsd">
+    
+    <alumno>
+        <nombre>Alan</nombre>
+        <curso>2025/26</curso>
+        <asignaturas>
+            <diw aprovado="true" >8</diw>
+            <cliente aprovado="true"> 9</cliente>
+            <servidor aprovado="true"> 7</servidor>
+            <optativa1 aprovado="true"> 10</optativa1>
+        </asignaturas>
+
+    </alumno>
+
+</matricula>

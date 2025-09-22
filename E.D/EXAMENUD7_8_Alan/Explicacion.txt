@@ -1,0 +1,5 @@
+- He creado la clase combinacion donde en el metodo leerIntento he refactorizado la parte del codigo donde se lee los numeros introducidos por el usuario
+- En la clase mastermind la parte donde se genera la combinacion secreta ha sido tambien refactorizada en un metodo para mejor legibilidad.
+- He creado la clase VañidarEntrada donde he adaptado la parte el codigo para validar la entrada. Mediante este metodo comprobamos la validez del intento y actualizamos el valor de partes e intento dependiendo del exito de la validacion. de esta manera el codigo de Mastermind es mas simple
+- En la clase ComprobarCombinacion comprobamos el numero de aciertos o coincidencias de la combinacion y actualizamos mediante metodos de la clase los valores de aciertos y coincidencias
+- En la clase Resultado se rtorna un mensaje acorde con el numero de aciertos o fallos para mayor simpleza
