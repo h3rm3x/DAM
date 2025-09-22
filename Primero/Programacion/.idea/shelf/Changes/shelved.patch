@@ -1,0 +1,19 @@
+Index: Ejercicios_UD7/EX_7_1/src/Ahorcado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Ahorcado {\r\n    private String palabra;\r\n    private String palabraOculta;\r\n    private char[] letrasIntentadas;\r\n    private boolean juegoTerminado;\r\n\r\n    public Ahorcado(String palabra) {\r\n        this.palabra = palabra;\r\n        this.palabraOculta = palabra.replaceAll(\" \", \"_\");\r\n        this.letrasIntentadas = new char[26];\r\n        this.juegoTerminado = false;\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Ejercicios_UD7/EX_7_1/src/Ahorcado.java b/Ejercicios_UD7/EX_7_1/src/Ahorcado.java
+--- a/Ejercicios_UD7/EX_7_1/src/Ahorcado.java	(revision 67bc5f7fc3e75f1121627832e2afcdf9d4f22b53)
++++ b/Ejercicios_UD7/EX_7_1/src/Ahorcado.java	(date 1738857217958)
+@@ -6,7 +6,7 @@
+ 
+     public Ahorcado(String palabra) {
+         this.palabra = palabra;
+-        this.palabraOculta = palabra.replaceAll(" ", "_");
++        this.palabraOculta = palabra.replaceAll(".", "_");
+         this.letrasIntentadas = new char[26];
+         this.juegoTerminado = false;
+ 

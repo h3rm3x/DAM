@@ -1,0 +1,287 @@
+Index: ex_4_5/src/Profesor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ex_4_5/src/Profesor.java b/ex_4_5/src/Profesor.java
+new file mode 100644
+--- /dev/null	(date 1733255526158)
++++ b/ex_4_5/src/Profesor.java	(date 1733255526158)
+@@ -0,0 +1,20 @@
++public class Profesor extends Persona {
++    String asignatura;
++
++    public Profesor(String nombre, String dni, int edad, String asignatura) {
++        super(nombre, dni, edad);
++        this.asignatura = asignatura;
++    }
++    public String getAsignatura() {
++        return asignatura;
++    }
++    public void setAsignatura(String asignatura) {
++        this.asignatura = asignatura;
++    }
++
++    @Override
++    public void mostrarInformacion() {
++        super.mostrarInformacion();
++        System.out.println("Asignatura: " + asignatura);
++    }
++}
+Index: ex_4_5/src/Alumno.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ex_4_5/src/Alumno.java b/ex_4_5/src/Alumno.java
+new file mode 100644
+--- /dev/null	(date 1733255341093)
++++ b/ex_4_5/src/Alumno.java	(date 1733255341093)
+@@ -0,0 +1,17 @@
++public class Alumno extends Persona{
++    String nivel;
++    public Alumno(String nombre, String DNI, int edad,String nivel) {
++        super(nombre, DNI, edad);
++        this.nivel = nivel;
++    }
++    public String getNivel() {
++        return nivel;
++    }
++    public void setNivel(String nivel) {
++        this.nivel = nivel;
++    }
++    public void imprimir() {
++        super.mostrarInformacion();
++        System.out.println("Nivel: " + nivel);
++    }
++}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision e35d392ef662820392a7978857f29b05a39ca707)
++++ b/.idea/misc.xml	(date 1733254266512)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23_PREVIEW">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: ex_6_4/src/Fecha.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Fecha {\r\n    private int dia;\r\n    private int mes;\r\n    private int ano;\r\n\r\n    public Fecha(int dia, int mes, int ano) {\r\n        if (esValida(dia, mes, ano)) {\r\n\r\n            this.dia = dia;\r\n            this.mes = mes;\r\n            this.ano = ano;\r\n\r\n        }\r\n    }\r\n\r\n    private boolean esValida(int dia, int mes, int ano) {\r\n        if (dia < 1 || mes < 1 || mes > 12) {\r\n            return false;\r\n        }\r\n        int diasDelmes = DiasDelMes(mes);\r\n       // System.out.println(diasDelmes<=dia);    //test\r\n       // System.out.println(diasDelmes+\" <=\"+ dia); //test\r\n        return diasDelmes >= dia;\r\n    }\r\n    private int DiasDelMes(int mes) {\r\n        int dias = 0;\r\n        switch (mes) {\r\n            case 4: case 6: case 9: case 11:\r\n                dias = 30;\r\n                break;\r\n            case 2:\r\n                if (Esbisiesto(ano)) {\r\n                    dias = 29;\r\n               }\r\n                else\r\n                    dias = 28;\r\n                break;\r\n            default: dias = 31; break;\r\n        }\r\n        return dias;\r\n    }\r\n    private boolean Esbisiesto(int ano) {\r\n        if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0) {\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n    public void SetDia(int dia) {\r\n        this.dia = dia;\r\n    }\r\n    public void SetMes(int mes) {\r\n        this.mes = mes;\r\n    }\r\n    public void SetAno(int ano) {\r\n        this.ano = ano;\r\n    }\r\n    public int GetDia() {\r\n        return this.dia;\r\n    }\r\n    public int GetMes() {\r\n        return this.mes;\r\n    }\r\n    public int GetAno() {\r\n        return this.ano;\r\n    }\r\n    public Fecha manana(){\r\n        dia+=1;\r\n        if (dia>DiasDelMes(mes)) {\r\n            dia=1;\r\n            mes+=1;\r\n            if (mes>12){\r\n                mes=1;\r\n                ano+=1;\r\n            }\r\n        }\r\n        return Fecha.this;\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ex_6_4/src/Fecha.java b/ex_6_4/src/Fecha.java
+--- a/ex_6_4/src/Fecha.java	(revision e35d392ef662820392a7978857f29b05a39ca707)
++++ b/ex_6_4/src/Fecha.java	(date 1733253825505)
+@@ -40,10 +40,7 @@
+         return dias;
+     }
+     private boolean Esbisiesto(int ano) {
+-        if (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0) {
+-            return true;
+-        }
+-        return false;
++        return ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0;
+     }
+     public void SetDia(int dia) {
+         this.dia = dia;
+@@ -67,7 +64,8 @@
+         dia+=1;
+         if (dia>DiasDelMes(mes)) {
+             dia=1;
+-            mes+=1;
++            mes++;
++
+             if (mes>12){
+                 mes=1;
+                 ano+=1;
+Index: ex_4_5/ex_4_5.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ex_4_5/ex_4_5.iml b/ex_4_5/ex_4_5.iml
+new file mode 100644
+--- /dev/null	(date 1733254128665)
++++ b/ex_4_5/ex_4_5.iml	(date 1733254128665)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="jdk" jdkName="openjdk-23" jdkType="JavaSDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ex_4_5/src/Persona.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ex_4_5/src/Persona.java b/ex_4_5/src/Persona.java
+new file mode 100644
+--- /dev/null	(date 1733255526165)
++++ b/ex_4_5/src/Persona.java	(date 1733255526165)
+@@ -0,0 +1,44 @@
++// Clase base Persona
++public class Persona {
++    private String nombre;
++    private String dni;
++    private int edat;
++
++    // Constructor
++    public Persona(String nombre, String dni, int edat) {
++        this.nombre = nombre;
++        this.dni = dni;
++        this.edat = edat;
++    }
++
++    // Getters y Setters
++    public String getNombre() {
++        return nombre;
++    }
++
++    public void setNombre(String nombre) {
++        this.nombre = nombre;
++    }
++
++    public String getDni() {
++        return dni;
++    }
++
++    public void setDni(String dni) {
++        this.dni = dni;
++    }
++
++    public int getEdad() {
++        return edat;
++    }
++
++    public void setEdat(int edad) {
++        this.edat = edad;
++    }
++
++    // Método para mostrar información
++    public void mostrarInformacion() {
++        System.out.println("Nom: " + nombre + ", DNI: " + dni + ", Edat: " + edat);
++    }
++}
++
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/ejercicios_POO.iml\" filepath=\"$PROJECT_DIR$/ejercicios_POO.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/ex_6_1/ex_6_1.iml\" filepath=\"$PROJECT_DIR$/ex_6_1/ex_6_1.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/ex_6_2/ex_6_2.iml\" filepath=\"$PROJECT_DIR$/ex_6_2/ex_6_2.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/ex_6_3/ex_6_3.iml\" filepath=\"$PROJECT_DIR$/ex_6_3/ex_6_3.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/ex_6_4/ex_6_4.iml\" filepath=\"$PROJECT_DIR$/ex_6_4/ex_6_4.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+--- a/.idea/modules.xml	(revision e35d392ef662820392a7978857f29b05a39ca707)
++++ b/.idea/modules.xml	(date 1733254128670)
+@@ -3,6 +3,7 @@
+   <component name="ProjectModuleManager">
+     <modules>
+       <module fileurl="file://$PROJECT_DIR$/ejercicios_POO.iml" filepath="$PROJECT_DIR$/ejercicios_POO.iml" />
++      <module fileurl="file://$PROJECT_DIR$/ex_4_5/ex_4_5.iml" filepath="$PROJECT_DIR$/ex_4_5/ex_4_5.iml" />
+       <module fileurl="file://$PROJECT_DIR$/ex_6_1/ex_6_1.iml" filepath="$PROJECT_DIR$/ex_6_1/ex_6_1.iml" />
+       <module fileurl="file://$PROJECT_DIR$/ex_6_2/ex_6_2.iml" filepath="$PROJECT_DIR$/ex_6_2/ex_6_2.iml" />
+       <module fileurl="file://$PROJECT_DIR$/ex_6_3/ex_6_3.iml" filepath="$PROJECT_DIR$/ex_6_3/ex_6_3.iml" />
+Index: ex_4_5/src/Instituto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ex_4_5/src/Instituto.java b/ex_4_5/src/Instituto.java
+new file mode 100644
+--- /dev/null	(date 1733262562802)
++++ b/ex_4_5/src/Instituto.java	(date 1733262562802)
+@@ -0,0 +1,75 @@
++import java.util.Scanner;
++
++public class Instituto {
++    static Scanner sc = new Scanner(System.in);
++    public static void main(String[] args) {
++        Persona[] personas = new Persona[100];
++        int index = 0;
++        Scanner sc = new Scanner(System.in);
++
++        System.out.println("MENU");
++        System.out.println("0 - Salir");
++        System.out.println("1 - Crear Persona");
++        System.out.println("2 - Listar todas las personas");
++        System.out.println();
++        int opcion = 1;
++        while (opcion != 0) {
++            opcion = sc.nextInt();
++            switch (opcion) {
++                case 0:
++                    break;
++                case 1: {
++                    System.out.println("Introduzca el si quiere añadir una persona, alumno o profesor");
++                    String persona = sc.nextLine().toLowerCase();
++                    if (persona.equals("alumno")) {
++                        System.out.println("Escribe el nombre del alumno");
++                        String nombre = sc.nextLine();
++                        System.out.println("Escribe el DNI");
++                        String dni = sc.nextLine();
++                        System.out.println("Escribe la edad");
++                        int edad = sc.nextInt();
++                        sc.nextLine();
++                        System.out.println("Escribe el nivel: ESO, CFGM, CFGS, Universidad");
++                        String nivel = sc.nextLine();
++                        personas[index] = new Alumno(nombre, dni, edad, nivel);
++                        index++;
++                    }
++                    else if (persona.equals("profesor")) {
++                        System.out.println("Escribe el nombre del profesor");
++                        String nombre = sc.nextLine();
++                        System.out.println("Escribe el DNI");
++                        String dni = sc.nextLine();
++                        System.out.println("Escribe la edad");
++                        int edad = sc.nextInt();
++                        sc.nextLine();
++                        System.out.println("Escribe la asignatura imparte");
++                        String asignatura = sc.nextLine();
++                        index++;
++                    }
++                    else {
++                        System.out.println("Escribe el nombre de la persona");
++                        String nombre = sc.nextLine();
++                        System.out.println("Escribe el DNI");
++                        String dni = sc.nextLine();
++                        System.out.println("Escribe la edad");
++                        int edad = sc.nextInt();
++                        sc.nextLine();
++                        personas[index] = new Persona(nombre, dni, edad);
++                        index++;
++                    }
++                    break;
++                    }
++                    case 2:{
++                        for ( int i = 0; i < index; i++ ) {
++                            personas[i].mostrarInformacion();
++                        }
++                        break;
++
++                    }
++                }
++            }
++        }
++    }
++
++
++

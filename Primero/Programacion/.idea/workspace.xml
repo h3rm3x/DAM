@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d09d25a1-d521-4243-97bd-f5743e51349f" name="Changes" comment="Correccion examen">
+      <change beforePath="$PROJECT_DIR$/../E.D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../E.D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="programacion" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;h3rm3x&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/h3rm3x/DAM.git&quot;,
+    &quot;accountId&quot;: &quot;b04e0b70-5619-46dd-9abd-44599191848b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2nnr2EwNCXnsAL3ghqBNnHHYUSt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;programacion&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/alanr/Documents/DAM/Programacion&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d09d25a1-d521-4243-97bd-f5743e51349f" name="Changes" comment="" />
+      <created>1729619472244</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729619472244</updated>
+      <workItem from="1729619473349" duration="352000" />
+      <workItem from="1729702532685" duration="663000" />
+      <workItem from="1730227963831" duration="87000" />
+      <workItem from="1730228381502" duration="136000" />
+      <workItem from="1732114706214" duration="39000" />
+      <workItem from="1733857796174" duration="34000" />
+      <workItem from="1734006796806" duration="38000" />
+      <workItem from="1734006849869" duration="11000" />
+      <workItem from="1734544374655" duration="9000" />
+      <workItem from="1738857043406" duration="1431000" />
+      <workItem from="1738858949106" duration="91000" />
+      <workItem from="1738864857249" duration="42000" />
+      <workItem from="1739384836484" duration="49000" />
+      <workItem from="1739468976437" duration="63000" />
+      <workItem from="1739987827008" duration="9000" />
+      <workItem from="1741264422136" duration="2000" />
+      <workItem from="1741364427253" duration="47000" />
+      <workItem from="1741781616611" duration="38000" />
+      <workItem from="1741782580414" duration="1043000" />
+      <workItem from="1741801699974" duration="48000" />
+      <workItem from="1741865883945" duration="3000" />
+      <workItem from="1741866219896" duration="21000" />
+      <workItem from="1741962907383" duration="1841000" />
+      <workItem from="1741964866199" duration="31000" />
+      <workItem from="1742497223211" duration="367000" />
+      <workItem from="1742570846486" duration="288000" />
+      <workItem from="1742928791767" duration="6000" />
+      <workItem from="1742928825198" duration="192000" />
+      <workItem from="1742930127685" duration="125000" />
+      <workItem from="1742930531402" duration="3000" />
+      <workItem from="1742940420411" duration="28000" />
+      <workItem from="1743529881936" duration="7000" />
+      <workItem from="1743612703767" duration="37000" />
+      <workItem from="1746570644074" duration="1396000" />
+      <workItem from="1746627952277" duration="341000" />
+      <workItem from="1746628395806" duration="3796000" />
+      <workItem from="1746723696159" duration="46000" />
+      <workItem from="1749503698013" duration="36000" />
+    </task>
+    <task id="LOCAL-00001" summary="algorritmos ordenacion">
+      <option name="closed" value="true" />
+      <created>1739384865391</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739384865391</updated>
+    </task>
+    <task id="LOCAL-00002" summary="añadidas las finciones en el casting_db">
+      <option name="closed" value="true" />
+      <created>1739469017207</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739469017207</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Correccion examen">
+      <option name="closed" value="true" />
+      <created>1741964714408</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741964714408</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Correccion examen">
+      <option name="closed" value="true" />
+      <created>1746628216068</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746628216068</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Correccion examen">
+      <option name="closed" value="true" />
+      <created>1746639557797</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746639557797</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Correccion examen">
+      <option name="closed" value="true" />
+      <created>1746639641625</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746639641625</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="algorritmos ordenacion" />
+    <MESSAGE value="añadidas las finciones en el casting_db" />
+    <MESSAGE value="Correccion examen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correccion examen" />
+  </component>
+</project>
