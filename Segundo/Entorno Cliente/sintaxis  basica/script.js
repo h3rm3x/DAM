@@ -205,10 +205,151 @@ const FRUTAS = ["manzana", "banana", "pera", "naranja"];
 // console.log(frutas_combinadas);
 // FRUTAS.sort(); // ordena los elementos del array por el valor Unicode
 // console.log(FRUTAS);
-let ciudades = ["Madrid", "Barcelona", "Valencia", "Àvila", "Zaragoza", "Sevilla"];
+/* let ciudades = ["Madrid", "Barcelona", "Valencia", "Àvila", "Zaragoza", "Sevilla"];
 let numeros = [1, 9, 10, 26, 3, 5, 7, 8, 2, 4, 6];
 console.log(ciudades.sort());
 // console.log(numeros.sort());
 // console.log(numeros.sort((a, b) => a - b)); // ordena los elementos del array de menor a mayor
 // console.log(ciudades.sort((a, b) => a.toLowerCase() > b.toLowerCase() ? 1 : a.toLowerCase() < b.toLowerCase() ? -1 : 0)); // ordena los elementos del array alfabeticamente sin importar mayusculas o minusculas
-console.log(ciudades.sort((a, b) => a.localeCompare(b))); // ordena los elementos del array alfabeticamente sin importar mayusculas, minusculas o acentos - recomendado
+console.log(ciudades.sort((a, b) => a.localeCompare(b))); // ordena los elementos del array alfabeticamente sin importar mayusculas, minusculas o acentos - recomendado */
+
+
+// estructuras de control
+// if, else if, else
+/* let hora = 10;
+if (hora < 12) {
+    console.log("Buenos dias");
+} else if (hora < 18) {
+    console.log("Buenas tardes");
+} else {
+    console.log("Buenas noches");
+} */
+
+// switch
+/* let nombre = "frodo";
+let edad = -Infinity;
+switch (nombre) {
+    case "Gandalf":
+        edad = 1230; 
+        break;
+    case "aragon":
+        edad = 532; 
+        break;
+    case "frodo":
+        edad = 34; 
+        break;
+    case "sam":
+        edad = 34; 
+        break;
+    default:
+        edad = -1; 
+        break;
+}
+console.log("edad:", edad); */
+
+// ternario ?:
+// let hora = 20;
+// let mensaje = hora <= 12 ? "Buenos días" : hora < 18 ? "Buenas tardes" : "Buenas noches";
+// console.log(mensaje);
+
+
+//  ITERACIONES
+// while
+/* let contador = 0;
+while (contador < 5) {
+    console.log("contador:", contador);
+    contador++;
+} */
+
+// do while
+/* let contador = 10;
+do {
+    console.log("contador:", contador);
+    contador++;
+} while (contador < 5); */
+
+// for
+/* for (let i = 0; i < 5; i++) {
+    console.log("i:", i);
+} */
+
+
+
+// FUNCIONES
+/* function saludar() {
+    console.log("Hola Mundo");
+}
+//saludar();
+
+function sumar(a, b) {
+    return a + b;
+}
+console.log(sumar(5, 10)); */
+
+
+
+
+// OBJETOS {} clave-valor
+/* let cliente = {
+    nombre: "Peter Jackson",
+    "Dirección del cliente": "c/ desconocida, 123",
+    pago: {
+        tipo: "Visa",
+        numero: "1234-5678-9012-3456",
+        "fecha de caducidad": "12/29"
+    }
+};
+
+cliente.nombre = "Alan Rabinerson"; // modifica el valor de una propiedad
+cliente["Dirección del cliente"] = "c/ conocida, 456"; // modifica el valor de una propiedad con espacio en el nombre
+console.log(cliente.nombre);
+console.log(cliente["Dirección del cliente"]); // accede al valor de una propiedad con espacio en el nombre */
+
+// JSON
+// number, string, boolean, array, object, function
+
+
+// METODOS COMO DATOS
+/* let estudiante = {
+    id: 1,
+    nombre: "Alan",
+    diHola: function() {
+        console.log("Hola, soy " + this.nombre);
+    }
+};
+
+estudiante.edad = 23; // agrega una nueva propiedad al objeto
+estudiante.diAdios = function() { // agrega un nuevo metodo al objeto
+    console.log("Adios, soy " + this.nombre);
+}; */
+// console.log(estudiante);
+
+// CONSTRUCTORES
+
+function Web(url, nombre) {
+    this.url = url;
+    this.nombre = nombre;
+    this.muestraUrl = function() {
+        console.log(this.url+ " :" + this.nombre);
+    }
+};
+/*
+let unaWeb = new Web("http://google.com", "Google");
+console.log(unaWeb);
+unaWeb.muestraUrl();
+ let web1 = new Web();
+console.log(web1);
+web1.muestraUrl();
+let web2 = new Web();
+web2.url = "http://fcbarcelona.cat";
+web2.nombre = "Mes que un club";
+console.log(web2);
+web2.muestraUrl(); */
+
+Web.prototype.visitas = 12; // agrega una nueva propiedad a todas las instancias del objeto
+Web.prototype.saludar = function() { // agrega un nuevo metodo a todas las instancias del objeto
+    console.log("Hola, soy " + this.nombre);
+};
+let unaWeb = new Web("http://google.com", "Google");
+unaWeb.saludar();
+console.log(unaWeb.visitas);
