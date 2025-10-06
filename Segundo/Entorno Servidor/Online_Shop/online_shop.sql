@@ -47,14 +47,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `order_data_dump` (IN `var_number_of
     SET i = 1;
 
     WHILE i <= var_number_of_orders DO
-        SET var_customer_id = (SELECT customer_id FROM shopping_cart ORDER BY RAND() LIMIT 1);
-        SET var_product_id = (SELECT product_id FROM shopping_cart WHERE customer_id = var_customer_id ORDER BY RAND() LIMIT 1);
+        SET var_customer_id = (SELECT customer_id FROM 024-shopping_cart ORDER BY RAND() LIMIT 1);
+        SET var_product_id = (SELECT product_id FROM 024-shopping_cart WHERE customer_id = var_customer_id ORDER BY RAND() LIMIT 1);
         IF var_customer_id IS NOT NULL THEN
-            INSERT INTO order_table (customer_id, product_id, quantity, order_date, adress_id, method_id)
+            INSERT INTO 024-order_table (customer_id, product_id, quantity, order_date, adress_id, method_id)
             SELECT customer_id, product_id, quantity, NOW(), get_address(var_customer_id), get_payment_method(customer_id)
-            FROM shopping_cart
+            FROM 024-shopping_cart
             WHERE customer_id = var_customer_id AND product_id = var_product_id;
-            DELETE FROM shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id ;
+            DELETE FROM 024-shopping_cart WHERE customer_id = var_customer_id AND product_id = var_product_id ;
             SET i = i + 1;   
         END IF;
     END WHILE;
@@ -77,7 +77,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `shopping_cart_data_dump` (IN `var_n
         SET var_product_id = FLOOR(1+RAND()*10);
         SET var_quantity = FLOOR(1+RAND()*10);
         SET i = i + 1;
-        INSERT INTO shopping_cart (customer_id, product_id, quantity)
+        INSERT INTO 024-shopping_cart (customer_id, product_id, quantity)
         VALUES (var_customer_id, var_product_id, var_quantity)  
         ON DUPLICATE KEY UPDATE quantity = var_quantity + quantity; 
     END WHILE;
@@ -92,7 +92,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `age` (`birthdate` DATE) RETURNS INT(
 CREATE DEFINER=`root`@`localhost` FUNCTION `full_name` (`first_name` VARCHAR(100), `last_name` VARCHAR(100)) RETURNS VARCHAR(210) CHARSET utf8mb4 COLLATE utf8mb4_general_ci DETERMINISTIC RETURN CONCAT(first_name,' ',last_name)$$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_address` (`var_customer_id` INT) RETURNS INT(11)  BEGIN
-RETURN (SELECT adress_id FROM adress_customer WHERE customer_id = var_customer_id LIMIT 1);
+RETURN (SELECT adress_id FROM 024-adress_customer WHERE customer_id = var_customer_id LIMIT 1);
 END$$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_payment_method` (`var_customer_id` INT) RETURNS INT(11)  BEGIN
@@ -123,7 +123,7 @@ DELIMITER ;
 -- Table structure for table `adress`
 --
 
-CREATE TABLE `adress` (
+CREATE TABLE `024-adress` (
   `adress_id` int(11) NOT NULL,
   `street` varchar(100) NOT NULL,
   `city` varchar(100) NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE `adress` (
 -- Dumping data for table `adress`
 --
 
-INSERT INTO `adress` (`adress_id`, `street`, `city`, `province`, `zip_code`) VALUES
+INSERT INTO `024-adress` (`adress_id`, `street`, `city`, `province`, `zip_code`) VALUES
 (1, '1234 Main St', 'Mahon', 'Islas Baleares', '07701'),
 (2, '5678 1st St', 'Barcelona', 'Cataluña', '08011'),
 (3, '9101 2nd St', 'Madrid', 'Comunidad de Madrid', '28001'),
@@ -153,7 +153,7 @@ INSERT INTO `adress` (`adress_id`, `street`, `city`, `province`, `zip_code`) VAL
 -- Table structure for table `adress_customer`
 --
 
-CREATE TABLE `adress_customer` (
+CREATE TABLE `024-adress_customer` (
   `adress_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -162,7 +162,7 @@ CREATE TABLE `adress_customer` (
 -- Dumping data for table `adress_customer`
 --
 
-INSERT INTO `adress_customer` (`adress_id`, `customer_id`) VALUES
+INSERT INTO `024-adress_customer` (`adress_id`, `customer_id`) VALUES
 (1, 1),
 (1, 9),
 (2, 2),
@@ -189,7 +189,7 @@ INSERT INTO `adress_customer` (`adress_id`, `customer_id`) VALUES
 -- Table structure for table `category`
 --
 
-CREATE TABLE `category` (
+CREATE TABLE `024-category` (
   `category_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(100) NOT NULL
@@ -199,7 +199,7 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`category_id`, `name`, `description`) VALUES
+INSERT INTO `024-category` (`category_id`, `name`, `description`) VALUES
 (1, 'Football', 'All football related products'),
 (2, 'Basketball', 'All basketball related products'),
 (3, 'Tennis', 'All tennis related products'),
@@ -215,7 +215,7 @@ INSERT INTO `category` (`category_id`, `name`, `description`) VALUES
 -- Table structure for table `customer`
 --
 
-CREATE TABLE `customer` (
+CREATE TABLE `024-customer` (
   `customer_id` int(11) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
@@ -230,7 +230,7 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `email`, `username`, `password`, `phone`, `birth_date`) VALUES
+INSERT INTO `024-customer` (`customer_id`, `first_name`, `last_name`, `email`, `username`, `password`, `phone`, `birth_date`) VALUES
 (1, 'John', 'Doe', 'example@gmail.com', 'johndoe', '123456', '1234567890', '1965-11-25'),
 (2, 'Jane', 'Doe', 'example@hotmail.com', 'janedoe', '123456', '1234567890', '1999-06-11'),
 (3, 'John', 'Smith', 'example@outlook.com', 'johnsmith', '123456', '1234567890', '1985-03-30'),
@@ -248,7 +248,7 @@ INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `email`, `user
 -- Table structure for table `order_table`
 --
 
-CREATE TABLE `order_table` (
+CREATE TABLE `024-order_table` (
   `order_number` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -262,7 +262,7 @@ CREATE TABLE `order_table` (
 -- Dumping data for table `order_table`
 --
 
-INSERT INTO `order_table` (`order_number`, `customer_id`, `product_id`, `quantity`, `order_date`, `adress_id`, `method_id`) VALUES
+INSERT INTO `024-order_table` (`order_number`, `customer_id`, `product_id`, `quantity`, `order_date`, `adress_id`, `method_id`) VALUES
 (1, 1, 1, 1, '2024-03-12 00:00:00', 1, 1),
 (1, 1, 9, 1, '2024-03-12 00:00:00', 1, 1),
 (2, 2, 2, 2, '2024-01-02 00:00:00', 2, 2),
@@ -550,7 +550,7 @@ CREATE TABLE `product_view` (
 -- Table structure for table `shopping_cart`
 --
 
-CREATE TABLE `shopping_cart` (
+CREATE TABLE `024-shopping_cart` (
   `shopping_cart_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -561,7 +561,7 @@ CREATE TABLE `shopping_cart` (
 -- Dumping data for table `shopping_cart`
 --
 
-INSERT INTO `shopping_cart` (`shopping_cart_id`, `customer_id`, `product_id`, `quantity`) VALUES
+INSERT INTO `024-shopping_cart` (`shopping_cart_id`, `customer_id`, `product_id`, `quantity`) VALUES
 (3, 1, 7, 1),
 (4, 5, 2, 3),
 (7, 8, 9, 7),
@@ -684,7 +684,7 @@ CREATE TABLE `wishlist` (
   `customer_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   PRIMARY KEY (`wishlist_id`, `customer_id`, `product_id`),
-  FOREIGN KEY (`customer_id`) REFERENCES `customer`(`customer_id`),
+  FOREIGN KEY (`customer_id`) REFERENCES `024-customer`(`customer_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
 );
 
@@ -738,7 +738,7 @@ CREATE TABLE `total_money_spent_view` (
 --
 DROP TABLE IF EXISTS `order_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `order_view`  AS SELECT `o`.`order_number` AS `order_number`, `o`.`customer_id` AS `customer_id`, `c`.`first_name` AS `first_name`, `c`.`last_name` AS `last_name`, `o`.`product_id` AS `product_id`, `p`.`name` AS `name`, `o`.`quantity` AS `quantity`, `o`.`order_date` AS `order_date`, `p`.`price` AS `price`, `p`.`price`* `o`.`quantity` AS `total_price`, concat_ws(', ',`a`.`street`,`a`.`city`,`a`.`province`,`a`.`zip_code`) AS `delivery_adress`, `pm`.`method_name` AS `method_name` FROM ((((`order_table` `o` join `customer` `c` on(`o`.`customer_id` = `c`.`customer_id`)) join `product` `p` on(`o`.`product_id` = `p`.`product_id`)) join `adress` `a` on(`o`.`adress_id` = `a`.`adress_id`)) join `payment_method` `pm` on(`o`.`method_id` = `pm`.`method_id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `order_view`  AS SELECT `o`.`order_number` AS `order_number`, `o`.`customer_id` AS `customer_id`, `c`.`first_name` AS `first_name`, `c`.`last_name` AS `last_name`, `o`.`product_id` AS `product_id`, `p`.`name` AS `name`, `o`.`quantity` AS `quantity`, `o`.`order_date` AS `order_date`, `p`.`price` AS `price`, `p`.`price`* `o`.`quantity` AS `total_price`, concat_ws(', ',`a`.`street`,`a`.`city`,`a`.`province`,`a`.`zip_code`) AS `delivery_adress`, `pm`.`method_name` AS `method_name` FROM ((((`024-order_table` `o` join `024-customer` `c` on(`o`.`customer_id` = `c`.`customer_id`)) join `product` `p` on(`o`.`product_id` = `p`.`product_id`)) join `024-adress` `a` on(`o`.`adress_id` = `a`.`adress_id`)) join `payment_method` `pm` on(`o`.`method_id` = `pm`.`method_id`)) ;
 
 -- --------------------------------------------------------
 
@@ -756,7 +756,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `shopping_cart_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `shopping_cart_view`  AS SELECT `sc`.`shopping_cart_id` AS `shopping_cart_id`, `sc`.`customer_id` AS `customer_id`, `c`.`first_name` AS `first_name`, `c`.`last_name` AS `last_name`, `sc`.`product_id` AS `product_id`, `p`.`name` AS `name`, `sc`.`quantity` AS `quantity`, `p`.`price` AS `price`, `p`.`price`* `sc`.`quantity` AS `total_price` FROM ((`shopping_cart` `sc` join `customer` `c` on(`sc`.`customer_id` = `c`.`customer_id`)) join `product` `p` on(`sc`.`product_id` = `p`.`product_id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `shopping_cart_view`  AS SELECT `sc`.`shopping_cart_id` AS `shopping_cart_id`, `sc`.`customer_id` AS `customer_id`, `c`.`first_name` AS `first_name`, `c`.`last_name` AS `last_name`, `sc`.`product_id` AS `product_id`, `p`.`name` AS `name`, `sc`.`quantity` AS `quantity`, `p`.`price` AS `price`, `p`.`price`* `sc`.`quantity` AS `total_price` FROM ((`024-shopping_cart` `sc` join `024-customer` `c` on(`sc`.`customer_id` = `c`.`customer_id`)) join `product` `p` on(`sc`.`product_id` = `p`.`product_id`)) ;
 
 -- --------------------------------------------------------
 
@@ -781,34 +781,34 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Alan`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
--- Indexes for table `adress`
+-- Indexes for table `024-adress`
 --
-ALTER TABLE `adress`
+ALTER TABLE `024-adress`
   ADD PRIMARY KEY (`adress_id`);
 
 --
 -- Indexes for table `adress_customer`
 --
-ALTER TABLE `adress_customer`
+ALTER TABLE `024-adress_customer`
   ADD PRIMARY KEY (`adress_id`,`customer_id`),
   ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Indexes for table `category`
 --
-ALTER TABLE `category`
+ALTER TABLE `024-category`
   ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `customer`
 --
-ALTER TABLE `customer`
+ALTER TABLE `024-customer`
   ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `order_table`
 --
-ALTER TABLE `order_table`
+ALTER TABLE `024-order_table`
   ADD PRIMARY KEY (`order_number`,`product_id`,`customer_id`),
   ADD KEY `product_id` (`product_id`),
   ADD KEY `adress_id` (`adress_id`),
@@ -854,9 +854,9 @@ ALTER TABLE `shopping_cart`
 --
 
 --
--- AUTO_INCREMENT for table `adress`
+-- AUTO_INCREMENT for table `024-adress`
 --
-ALTER TABLE `adress`
+ALTER TABLE `024-adress`
   MODIFY `adress_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
@@ -866,9 +866,9 @@ ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `customer`
+-- AUTO_INCREMENT for table `024-customer`
 --
-ALTER TABLE `customer`
+ALTER TABLE `024-customer`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
@@ -892,7 +892,7 @@ ALTER TABLE `product`
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
-ALTER TABLE `shopping_cart`
+ALTER TABLE `024-shopping_cart`
   MODIFY `shopping_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=236;
 
 --
@@ -902,38 +902,38 @@ ALTER TABLE `shopping_cart`
 --
 -- Constraints for table `adress_customer`
 --
-ALTER TABLE `adress_customer`
-  ADD CONSTRAINT `adress_customer_ibfk_1` FOREIGN KEY (`adress_id`) REFERENCES `adress` (`adress_id`),
-  ADD CONSTRAINT `adress_customer_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+ALTER TABLE `024-adress_customer`
+  ADD CONSTRAINT `adress_customer_ibfk_1` FOREIGN KEY (`adress_id`) REFERENCES `024-adress` (`adress_id`),
+  ADD CONSTRAINT `adress_customer_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `024-customer` (`customer_id`);
 
 --
 -- Constraints for table `order_table`
 --
 ALTER TABLE `order_table`
   ADD CONSTRAINT `order_table_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-  ADD CONSTRAINT `order_table_ibfk_2` FOREIGN KEY (`adress_id`) REFERENCES `adress` (`adress_id`),
+  ADD CONSTRAINT `order_table_ibfk_2` FOREIGN KEY (`adress_id`) REFERENCES `024-adress` (`adress_id`),
   ADD CONSTRAINT `order_table_ibfk_3` FOREIGN KEY (`method_id`) REFERENCES `payment_method` (`method_id`),
-  ADD CONSTRAINT `order_table_ibfk_4` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+  ADD CONSTRAINT `order_table_ibfk_4` FOREIGN KEY (`customer_id`) REFERENCES `024-customer` (`customer_id`);
 
 --
 -- Constraints for table `payment_customer`
 --
 ALTER TABLE `payment_customer`
   ADD CONSTRAINT `payment_customer_ibfk_1` FOREIGN KEY (`method_id`) REFERENCES `payment_method` (`method_id`),
-  ADD CONSTRAINT `payment_customer_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+  ADD CONSTRAINT `payment_customer_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `024-customer` (`customer_id`);
 
 --
 -- Constraints for table `product_category`
 --
 ALTER TABLE `product_category`
   ADD CONSTRAINT `product_category_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-  ADD CONSTRAINT `product_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
+  ADD CONSTRAINT `product_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `024-category` (`category_id`);
 
 --
 -- Constraints for table `shopping_cart`
 --
-ALTER TABLE `shopping_cart`
-  ADD CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
+ALTER TABLE `024-shopping_cart`
+  ADD CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `024-customer` (`customer_id`),
   ADD CONSTRAINT `shopping_cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 
 DELIMITER $$
