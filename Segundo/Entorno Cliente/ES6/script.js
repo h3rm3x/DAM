@@ -77,7 +77,7 @@ console.log(sumar2(1,2,3,4,5)); // 15
 // Metodos de arrays
 
 // forEach
-const numeros = [1,2,3,4,5];
+const numeros = [1,2,3,4,5,6];
 //numeros.forEach( numero => console.log(numero*2) );
 
 // map()
@@ -91,7 +91,36 @@ console.log(numerosPares); // [2,4,6]
 const numerosMayoresQueTres = numeros.filter( numero => numero >= 3 && numero < 7 );
 console.log(numerosMayoresQueTres); // [4,5,6]
 */
-
+/*
 // reduce()
 const suma = numeros.reduce( (acumulador, numero) => acumulador + numero, 0);
 console.log(suma); // 15
+*/
+/*
+// find()
+// devuelve el primer elemento que cumple la condición
+const encontrar = numeros.find( numero => numero % 2 === 0 && numero > 2 );
+console.log(encontrar); // 4
+*/
+/*
+// findIndex()
+// devuelve el índice del primer elemento que cumple la condición
+const encontrarIndice = numeros.findIndex( numero => numero % 2 === 0 && numero > 2 );
+//console.log(encontrarIndice); // 3 (índice del número 4)
+const encontrarUltimoIndice = numeros.findLastIndex( numero => numero % 2 === 0 && numero > 2 );
+console.log(encontrarUltimoIndice); // 5 (índice del número 6)
+
+// some()
+const hayPares = numeros.some( numero => numero % 2 === 0 );
+console.log(hayPares); // true
+const hayMayoresQueDiez = numeros.some( numero => numero > 10 );
+console.log(hayMayoresQueDiez); // false
+
+
+// every()
+// todos los elementos cumplen la condición
+const todosPares = numeros.every( numero => numero % 2 === 0 );
+console.log(todosPares);
+const todosPositivos = numeros.every( numero => numero > 0 );
+console.log(todosPositivos); // true
+*/
