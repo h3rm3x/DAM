@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #242333;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    height: 100vH;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+}
+
+.letras{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    gap: 5px;
+}   
+
+.fila{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+}
+
+.letra{
+    background-color: #4C4B63;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.letra:hover{
+    background-color: #6b6a82;
+    transform: scale(1.2);
+}
+
+.letra.erronea{
+    background-color: #dd0a0a;
+    cursor: not-allowed;
+}
+
+.letra.acertada{
+    background-color: #0add5a;
+    cursor: not-allowed;
+}
+
+.ahorcado{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px; 
+    text-align: center;
+    gap: 10px;
+}
+.palabra{
+    font-size: 4em;
+   
+}
