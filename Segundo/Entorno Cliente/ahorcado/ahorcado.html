@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Juego del Ahorcado</h1>
-    <form action="POST" >
+    <form action="" >
         <label for="categoria">Selecciona una categoría:</label>
         <select name="categoria" id="categoria" class="categoria">
             <option value="animales">Animales</option>
@@ -18,8 +18,9 @@
             <option value="geografia">Geografía</option>
             <option value="deportes">Deportes</option>
         </select>
-        <label for="Adivinar palabra">Adivinar palabra:</label>
-        <input type="text" id="Adivinar palabra" class="adivinar-palabra">
+        <label for="Adivinar palabra">Adivinar la palabra completa:</label>
+        <input type="text" id="Adivinar palabra" class="adivinar-palabra" defaultValue="Escribe aqui si ya sabes la palabra completa" />
+        <button type="submit" class="reiniciar-juego">Reiniciar Juego</button>
 
     </form>
     <div class="ahorcado">
