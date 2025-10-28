@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuButton = document.getElementById("menu");
   const closeButton = document.getElementById("cerrar-menu");
   const menu = document.getElementById("lista-paginas");
-  const BASE_URL =
-    window.location.hostname === "127.0.0.1" ? "" : "/Activitats_LMSGI_Alan";
+  const BASE_URL = window.location.hostname === "127.0.0.1" ? "" : "/Activitats_LMSGI_Alan";
   const nba = document.getElementsByClassName("NBA");
   const acb = document.getElementsByClassName("ACB");
   const euroliga = document.getElementsByClassName("Euroliga");
