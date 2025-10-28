@@ -192,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => { // para asegurar que el DO
         if (e.key === "Enter") {
             const intento = e.target.value.toLowerCase().trim();
             if (intento === palabraSecreta) {
+                palabraElemento.textContent = palabraSecreta.split("").join(" ");
                 partidaGanada();
             } else {
                 intentosRestantes--;
