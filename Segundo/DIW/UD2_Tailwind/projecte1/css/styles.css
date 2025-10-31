@@ -1,4 +1,11 @@
-body {
-    background-color: blue;
+@import "tailwindcss";
 
+@theme {
+    --color-brand: #4fb286;
+}
+
+@layer components{
+    .product{
+        @apply bg-brand p-2 rounded-lg flex max-w-66 mb-1 justify-center items-center sm:max-w-90 hover:shadow-md md:max-w-120 md:text-3xl;
+    }
 }
