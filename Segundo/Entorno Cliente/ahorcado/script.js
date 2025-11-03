@@ -3,6 +3,7 @@ const informatica = ["javascript", "html", "css", "programacion", "desarrollo", 
 const deportes = ["futbol", "baloncesto", "tenis", "voleibol", "natacion", "ciclismo", "atletismo", "golf", "rugby", "hockey", "boxeo", "esgrima", "karate", "judo", "taekwondo", "surf", "esqui", "snowboard"];
 const animales = ["elefante", "jirafa", "tigre", "leon", "cebra", "rinoceronte", "hipopotamo", "cocodrilo", "serpiente", "camaleon", "delfin", "ballena", "tiburon", "pulpo", "medusa", "estrella", "cangrejo"];
 const frutas = ["manzana", "banana", "naranja", "fresa", "kiwi", "mango", "piña", "cereza", "uva", "pera", "durazno", "ciruela", "melon", "sandia", "coco", "limon", "mandarina"];
+const debug = ["alan"];
 const palabras = [];
 let palabraSecreta = "";
 let letrasAdivinadas = [];
@@ -14,13 +15,16 @@ const tiempoElemento = document.querySelector(".tiempo");
 let tiempoInicio;
 let tiempo;
 let tiempoIniciado = false;
-let partidas = localStorage.getItem("partidas") ? JSON.parse(localStorage.getItem("partidas")) : []; // cargamos el historial de partidas desde localStorage, en caso que no exista inicializamos un array vacío
+let partidas =  {}; // cargamos el historial de partidas desde localStorage, en caso que no exista inicializamos un array vacío
 const categoriaSelect = document.querySelector(".categoria");
 let categoria = categoriaSelect ? categoriaSelect.value : "informatica";
 let categoriaSeleccionada = categoria;
 let adivinarPalabra = document.querySelector(".adivinar-palabra");
 let letras = document.querySelectorAll(".letra");
 let btnReiniciar = document.querySelector(".reiniciar-juego");
+let btnIniciar = document.querySelector(".iniciar-juego");
+let InputNombreUsuario = document.querySelector(".nombre-usuario");
+let nombreUsuario = "";
 
 // Funciones del juego
 function manejarLetra(letra) {
@@ -56,36 +60,41 @@ function reiniciarJuego() {
 }
 
 function partidaGanada() {
-    mensajeElemento.textContent = "¡Felicidades! Has ganado. Lo has completado en " + tiempoElemento.textContent.split(": ")[1]; // mostrar mensaje de victoria con tiempo en verde
+    mensajeElemento.textContent = "¡Felicidades! Has ganado. Lo has completado en :" ; // mostrar mensaje de victoria con tiempo en verde
     mensajeElemento.style.color = "green";
     clearInterval(tiempo);
     document.querySelectorAll(".letra").forEach(b => b.disabled = true); // deshabilitar botones de letras
-    tiempoElemento.textContent = "Tiempo transcurrido: " + tiempoElemento.textContent.split(": ")[1]; // mantener el tiempo final una vez ganada la partida 
-    partidas.push({ // guardar partida en el historial
+    tiempoElemento.textContent = "Tiempo transcurrido: " + tiempoElemento.textContent.split(": ")[1]; // mantener el tiempo final una vez ganada la partida
+    const key = nombreUsuario + ' ' + (tiempoInicio || Date.now());
+    partidas[key] = {
         palabra: palabraSecreta,
+        nombreUsuario: nombreUsuario,
         tiempo: tiempoElemento.textContent.split(": ")[1],
         errores: 6 - intentosRestantes,
         estado: "ganada"
-    });
+    };
     localStorage.setItem("partidas", JSON.stringify(partidas));
-        setTimeout(() => {  // esperar 3 segundos antes de reiniciar el juego
+    setTimeout(() => {  // esperar 3 segundos antes de reiniciar el juego
         reiniciarJuego();
     }, 5000);
 
 }
+
 
 function partidaPerdida() {
     mensajeElemento.textContent = `¡Has perdido! La palabra era: ${palabraSecreta}`; // mostrar mensaje de derrota con la palabra correcta en rojo
     mensajeElemento.style.color = "red";
     document.querySelectorAll(".letra").forEach(boton => boton.disabled = true); // deshabilitar botones de letras
     clearInterval(tiempo); // detener el temporizador
-    partidas.push({ // guardar partida en el historial
+    const key = nombreUsuario + ' ' + (tiempoInicio || Date.now());
+        partidas[key] = {
         palabra: palabraSecreta,
+        nombreUsuario: nombreUsuario,
         tiempo: tiempoElemento.textContent.split(": ")[1],
-        errores: 6,
+        errores: 6 - intentosRestantes,
         estado: "perdida"
-    });
-    localStorage.setItem("partidas", JSON.stringify(partidas));
+    };
+localStorage.setItem("partidas", JSON.stringify(partidas));
     setTimeout(() => {  // esperar 5 segundos antes de reiniciar el juego
         reiniciarJuego();
     }, 5000);
@@ -116,8 +125,11 @@ function cargarPalabras(categoria) {
         case "frutas":
             palabras.push(...frutas);
             break;
+        case "debug":
+            palabras.push(...debug);
+            break;
         default:
-            palabras.push(...informatica);
+            palabras.push(...debug);
     }
 }
 
@@ -131,6 +143,13 @@ function actualizarPantalla() {
 
 document.addEventListener("DOMContentLoaded", () => { // para asegurar que el DOM esté cargado
     // Inicializar el juego
+    btnIniciar.addEventListener("click", (event) => {
+        event.preventDefault();
+        document.querySelector("section").style.display = "block";
+        btnIniciar.style.display = "none";
+        InputNombreUsuario.disabled = true;
+        nombreUsuario = InputNombreUsuario.value;
+    });
     if (!localStorage.getItem("partidas")) {
         localStorage.setItem("partidas", JSON.stringify([]));
     }
