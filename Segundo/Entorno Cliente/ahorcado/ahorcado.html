@@ -1,78 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Ahorcado</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Juego del Ahorcado</h1>
     <form action="" class="login">
-        <label for="nombre-usuario">Nombre de usuario:</label>
-        <input type="text" id="nombre-usuario" class="nombre-usuario" defaultValue="Escribe tu nombre de usuario aquí" />
-        <button type="submit" class="iniciar-juego">Iniciar Juego</button>
+      <label for="nombre-usuario">Nombre de usuario:</label>
+      <input type="text" id="nombre-usuario" class="nombre-usuario" placeholder="Escribe tu nombre de usuario aquí" />
+      <button type="submit" class="iniciar-juego">Iniciar Juego</button>
     </form>
     <section>
-        <form action="" class="juego">
-            <label for="categoria">Selecciona una categoría:</label>
-            <select name="categoria" id="categoria" class="categoria">
-                <option value="animales">Animales</option>
-                <option value="frutas">Frutas</option>
-                <option value="paises">Países</option>
-                <option value="informatica">Informática</option>
-                <option value="debug">debug</option>
-                <option value="deportes">Deportes</option>
-            </select>
-            <label for="Adivinar palabra">Adivinar la palabra completa:</label>
-            <input type="text" id="Adivinar palabra" class="adivinar-palabra" defaultValue="Escribe aqui si ya sabes la palabra completa" />
-            <button type="submit" class="reiniciar-juego">Reiniciar Juego</button>
+      <form action="" class="juego">
+        <label for="categoria">Selecciona una categoría:</label>
+        <select name="categoria" id="categoria" class="categoria">
+          <option value="animales">Animales</option>
+          <option value="frutas">Frutas</option>
+          <option value="paises">Países</option>
+          <option value="informatica">Informática</option>
+          <option value="debug">debug</option>
+          <option value="deportes">Deportes</option>
+        </select>
+      </form>
+      <div class="ahorcado">
+        <div class="palabra">_ _ _ _ _</div>
+        <div class="intentos">
+          Le quedan <span class="numero">6</span> intentos
+        </div>
+      </div>
+      <div class="letras">
+        <div class="fila">
+          <button class="letra">A</button>
+          <button class="letra">B</button>
+          <button class="letra">C</button>
+          <button class="letra">D</button>
+          <button class="letra">E</button>
+          <button class="letra">F</button>
+          <button class="letra">G</button>
+          <button class="letra">H</button>
+        </div>
+        <div class="fila">
+          <button class="letra">I</button>
+          <button class="letra">J</button>
+          <button class="letra">K</button>
+          <button class="letra">L</button>
+          <button class="letra">M</button>
+          <button class="letra">N</button>
+          <button class="letra">Ñ</button>
+          <button class="letra">O</button>
+        </div>
+        <div class="fila">
+          <button class="letra">P</button>
+          <button class="letra">Q</button>
+          <button class="letra">R</button>
+          <button class="letra">S</button>
+          <button class="letra">T</button>
+          <button class="letra">U</button>
+          <button class="letra">V</button>
+          <button class="letra">W</button>
+        </div>
+        <div class="fila">
+          <button class="letra">X</button>
+          <button class="letra">Y</button>
+          <button class="letra">Z</button>
+        </div>
+      </div>
 
-        </form>
-        <div class="ahorcado">
-            <div class="palabra">_ _ _ _ _</div>
-            <div class="intentos">Le quedan <span class="numero">6</span> intentos</div>
-        </div>
-        <div class="letras">
-            <div class="fila">
-                <button class="letra">A</button>
-                <button class="letra">B</button>
-                <button class="letra">C</button>
-                <button class="letra">D</button>
-                <button class="letra">E</button>
-                <button class="letra">F</button>
-                <button class="letra">G</button>
-                <button class="letra">H</button>
-            </div>
-            <div class="fila">
-                <button class="letra">I</button>
-                <button class="letra">J</button>
-                <button class="letra">K</button>
-                <button class="letra">L</button>
-                <button class="letra">M</button>
-                <button class="letra">N</button>
-                <button class="letra">Ñ</button>
-                <button class="letra">O</button>
-            </div>
-            <div class="fila">
-                <button class="letra">P</button>
-                <button class="letra">Q</button>
-                <button class="letra">R</button>
-                <button class="letra">S</button>
-                <button class="letra">T</button>
-                <button class="letra">U</button>
-                <button class="letra">V</button>
-                <button class="letra">W</button>
-            </div>
-            <div class="fila">
-                <button class="letra">X</button>
-                <button class="letra">Y</button>
-                <button class="letra">Z</button>
-            </div>
-        </div>
-        <div class="mensaje"> Has cometido <span class="numero">0</span> errores</div>
-        <div class="tiempo"></div>
+      <div class="mensaje">
+        Has cometido <span class="numero">0</span> errores
+      </div>
+      <div class="tiempo"></div>
+      <button type="submit" class="reiniciar-juego">Reiniciar Juego</button>
     </section>
+    <form class="adivinar">
+      <label for="Adivinar palabra">Escribe aqui si ya sabes la palabra completa: </label>
+      <p> (un fallo contará como intento incorrecto)</p>
+      <input type="text" id="Adivinar palabra" class="adivinar-palabra"  />
+      
+    </form>
+
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>

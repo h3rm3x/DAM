@@ -12,19 +12,20 @@ body{
     color: #fff;
     align-items: center;
     justify-content: center;
-    height: 100vH;
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
 }
 
 h1{
-    padding: 0 0 20px 0;
-    margin: 80px 0 20px 0;
+    margin-bottom: 20px;
 }
 
 section{
     display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .letras{
@@ -112,7 +113,7 @@ section{
     font-size: 1em;
     border-radius: 5px;
     border: none;
-    width: 200px;
+    width: calc(100% + 30%);
 }
 
 #nombre-usuario:focus{
@@ -159,4 +160,17 @@ section{
     color: #fff;
     cursor: pointer;
 }
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.mensaje{
+    text-align: center;
+}
+
+
 

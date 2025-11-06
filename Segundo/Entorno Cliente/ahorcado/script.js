@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => { // para asegurar que el DO
     // Inicializar el juego
     btnIniciar.addEventListener("click", (event) => {
         event.preventDefault();
-        document.querySelector("section").style.display = "block";
+        document.querySelector("section").style.display = "flex";
         btnIniciar.style.display = "none";
         InputNombreUsuario.disabled = true;
         nombreUsuario = InputNombreUsuario.value;

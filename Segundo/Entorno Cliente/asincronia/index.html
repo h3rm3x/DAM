@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asincronia</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Tienda de articulos Deportivos</h1>
+        <div>
+            <img src="./img/IMG_2060.jpg" alt="" width="100px" height="200px">
+        </div>
+        <p>Gestiona los productos de la tienda y aprende Asincronia.</p>
+        
+    </header>
+    <main>
+        <section class="product-list">
+            <h2>Productos Disponibles</h2>
+            <div id="products">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+        </section>
+        <section class="product-form">
+            <form action="" id="product-form">
+                <h2>Añadir producto</h2>
+                <label for="product-name">Nombre del Producto:</label>
+                <input type="text" id="product-name" name="product-name" required>
+                <label for="product-price">Precio del Producto:</label>
+                <input type="number" id="product-price" name="product-price" required>
+                <button type="submit">Agregar Producto</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>Practica sobre la propagación asincrona </p>
+    </footer>
+    <script src="./script-async.js"></script>
+</body>
+</html>
