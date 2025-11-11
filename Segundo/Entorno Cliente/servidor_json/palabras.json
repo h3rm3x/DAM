@@ -1,22 +1,24 @@
 {
-    "palabras": [{
-        "id": "1",
-        "palabra": "ejemplo",
-        "dificultad": "1"
+  "palabras": [
+    {
+      "id": "1",
+      "palabra": "ejemplo",
+      "dificultad": "1"
     },
     {
-        "id": "2",
-        "palabra": "prueba",
-        "dificultad": "2"
+      "id": "2",
+      "palabra": "prueba",
+      "dificultad": "1"
     },
     {
-        "id": "3",
-        "palabra": "desarrollo",
-        "dificultad": "3"
+      "id": "3",
+      "palabra": "desarrollo",
+      "dificultad": "2"
     },
     {
-        "id": "4",
-        "palabra": "javascript",
-        "dificultad": "2"
-    }]
+      "id": "4",
+      "palabra": "javascript",
+      "dificultad": "1"
+    }
+  ]
 }
