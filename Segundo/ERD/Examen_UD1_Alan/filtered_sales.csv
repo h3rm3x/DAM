@@ -1,1 +1,1 @@
-client_id,name,age,city,gender,order_id,product_id,units,order_date,product_name,category,price,total_price,year,month,cost_unitari,benefici,benefici_normalitzat
+order_id,client_id,product_id,units,order_date,name,age,city,gender,product_name,category,price,total_price,year,month,cost_unitari,benefici,benefici_normalitzat
