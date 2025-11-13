@@ -1,11 +1,6 @@
 {
   "palabras": [
     {
-      "id": "1",
-      "palabra": "ejemplo",
-      "dificultad": "1"
-    },
-    {
       "id": "2",
       "palabra": "prueba",
       "dificultad": "1"
@@ -17,8 +12,13 @@
     },
     {
       "id": "4",
-      "palabra": "javascript",
-      "dificultad": "1"
+      "palabra": "Amunike",
+      "dificultad": "3"
+    },
+    {
+      "id": "5",
+      "palabra": "gerundio",
+      "dificultad": "2"
     }
   ]
 }

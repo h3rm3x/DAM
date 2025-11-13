@@ -25,6 +25,28 @@ let btnReiniciar = document.querySelector(".reiniciar-juego");
 let btnIniciar = document.querySelector(".iniciar-juego");
 let InputNombreUsuario = document.querySelector(".nombre-usuario");
 let nombreUsuario = "";
+const tiempoIntentoElemento = document.querySelector(".tiempo-intento");
+
+
+// Inicializar el juego
+btnIniciar.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.querySelector("section").style.display = "flex";
+    btnIniciar.style.display = "none";
+    InputNombreUsuario.disabled = true;
+    nombreUsuario = InputNombreUsuario.value;
+});
+if (!localStorage.getItem("partidas")) {
+    localStorage.setItem("partidas", JSON.stringify([]));
+}
+cargarPalabras(categoria);
+palabraSecreta = palabras[Math.floor(Math.random() * palabras.length)];
+letrasAdivinadas = [];
+intentosRestantes = 6;    
+actualizarPantalla();
+
+
+
 
 // Funciones del juego
 function manejarLetra(letra) {
@@ -110,6 +132,14 @@ function actualizarTiempo() {
     }, 1000); 
 }
 
+function tiempoIntento() {
+    return setInterval(() => { // Actualizar el tiempo del intento actual cada segundo
+        let tiempoIntento = 10;
+        tiempoIntento --;
+        tiempoIntentoElemento.textContent = `Tiempo en el intento actual: ${tiempoIntento} segundos`;
+    }, 1000);
+}
+
 function cargarPalabras(categoria) {
     palabras.length = 0; // Limpiar el array de palabras
     switch (categoria) {
@@ -137,61 +167,41 @@ function actualizarPantalla() {
     // Mostrar la palabra con letras adivinadas y guiones bajos
     palabraElemento.textContent = palabraSecreta.split("").map(letra => (letrasAdivinadas.includes(letra) ? letra : "_")).join(" ");
     intentosElemento.textContent = `Le quedan ${intentosRestantes} intentos`;
-    mensajeElemento.textContent = `Has cometido ${6 - intentosRestantes} errores`;
-       
+    mensajeElemento.textContent = `Has cometido ${6 - intentosRestantes} errores`;      
 }
 
-document.addEventListener("DOMContentLoaded", () => { // para asegurar que el DOM esté cargado
-    // Inicializar el juego
-    btnIniciar.addEventListener("click", (event) => {
-        event.preventDefault();
-        document.querySelector("section").style.display = "flex";
-        btnIniciar.style.display = "none";
-        InputNombreUsuario.disabled = true;
-        nombreUsuario = InputNombreUsuario.value;
-    });
-    if (!localStorage.getItem("partidas")) {
-        localStorage.setItem("partidas", JSON.stringify([]));
-    }
-    cargarPalabras(categoria);
-    palabraSecreta = palabras[Math.floor(Math.random() * palabras.length)];
-    letrasAdivinadas = [];
-    intentosRestantes = 6;
-    
-    actualizarPantalla();
-    
-    
-    // Eventos
-    letras.forEach(btn => {
-        btn.addEventListener("click", (event) => {
-            // start the timer on the first valid click
-            if (!tiempoIniciado && !event.target.disabled) {
-                tiempoInicio = Date.now();
-                tiempo = actualizarTiempo();
-                tiempoIniciado = true;
+// Eventos
+letras.forEach(btn => {
+    btn.addEventListener("click", (event) => {
+        // start the timer on the first valid click
+        if (!tiempoIniciado && !event.target.disabled) {
+            tiempoInicio = Date.now();
+            tiempo = actualizarTiempo();
+            tiempoIniciado = true;
+            
+        }
+        const letraClickeada = event.target.textContent.toLowerCase();
+        const resultado = manejarLetra(letraClickeada);
+        if (resultado === true) { // letra acertada
+            event.target.classList.add("acertada");
+            if (!palabraElemento.textContent.includes("_")) { // si no quedan guiones bajos, se ha ganado
+                partidaGanada();
             }
-            const letraClickeada = event.target.textContent.toLowerCase();
-            const resultado = manejarLetra(letraClickeada);
-            if (resultado === true) { // letra acertada
-                event.target.classList.add("acertada");
-                if (!palabraElemento.textContent.includes("_")) { // si no quedan guiones bajos, se ha ganado
-                    partidaGanada();
-                }
-            } else { // letra errónea
-                event.target.classList.add("erronea");
-                if (intentosRestantes <= 0) {
-                    partidaPerdida();
-                }
+        } else { // letra errónea
+            event.target.classList.add("erronea");
+            if (intentosRestantes <= 0) {
+                partidaPerdida();
             }
-        });
+        }
     });
+});
     
     
-        categoriaSelect.addEventListener("change", (event) => {
-            // actualizar la variable 'categoria' con el valor seleccionado
-            categoria = event.target.value;
-            categoriaSeleccionada = event.target.value;
-        cargarPalabras(categoriaSeleccionada);
+categoriaSelect.addEventListener("change", (event) => {
+    // actualizar la variable 'categoria' con el valor seleccionado
+    categoria = event.target.value;
+    categoriaSeleccionada = event.target.value;
+    cargarPalabras(categoriaSeleccionada);
     palabraSecreta = palabras[Math.floor(Math.random() * palabras.length)];
     letrasAdivinadas = [];
     intentosRestantes = 6;
@@ -199,36 +209,33 @@ document.addEventListener("DOMContentLoaded", () => { // para asegurar que el DO
     clearInterval(tiempo);
     tiempoIniciado = false;
     tiempoElemento.textContent = "Tiempo transcurrido: 00:00:00";
-        document.querySelectorAll(".letra").forEach(boton => {
-            boton.disabled = false;
-            boton.classList.remove("acertada", "erronea");
-        });
-        actualizarPantalla();
-        });
-    
+    document.querySelectorAll(".letra").forEach(boton => {
+        boton.disabled = false;
+        boton.classList.remove("acertada", "erronea");
+    });
+    actualizarPantalla();
+});
 
-    adivinarPalabra.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            const intento = e.target.value.toLowerCase().trim();
-            if (intento === palabraSecreta) {
-                palabraElemento.textContent = palabraSecreta.split("").join(" ");
-                partidaGanada();
-            } else {
-                intentosRestantes--;
-                actualizarPantalla();
-                if (intentosRestantes <= 0) {
-                    partidaPerdida();
-                }
+adivinarPalabra.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        const intento = e.target.value.toLowerCase().trim();
+        if (intento === palabraSecreta) {
+            palabraElemento.textContent = palabraSecreta.split("").join(" ");
+            partidaGanada();
+        } else {
+            intentosRestantes--;
+            actualizarPantalla();
+            if (intentosRestantes <= 0) {
+                partidaPerdida();
             }
-            e.target.value = "";
-            e.preventDefault();
         }
-
-    });
-    
-    btnReiniciar.addEventListener("click", (e) => {
+        e.target.value = "";
         e.preventDefault();
-        reiniciarJuego();
-    });
+    }
+});
+    
+btnReiniciar.addEventListener("click", (e) => {
+    e.preventDefault();
+    reiniciarJuego();
+});
 
-}); // fin del DOMContentLoaded
