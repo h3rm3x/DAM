@@ -1,0 +1,67 @@
+$green: #aeccae;
+$grey: #1a0d0d;
+$font: Arial, sans-serif;
+
+@mixin size($width, $height, $color) {
+    width: $width;
+    height: $height;
+    background-color: $color;
+    padding: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    color: black;
+    background-color: $green;
+}
+
+header{
+    h1{
+        font-size: 40px;
+    }
+
+    > nav{
+        > span{
+            padding: 0 15px;
+        }
+    }
+
+    nav, div{
+        display: inline;
+    }
+
+
+}
+main{
+    p{
+        color: $grey;
+        font-family: $font;
+    }
+    
+    section{
+        &:first-of-type{
+            @include size(150px, 200px, red);
+        }
+        @include size(300px, 200px, blue);
+        color: white;
+    }
+
+}
+
+.card{
+    text-decoration: underline;
+}
+
+.card2{
+    @extend .card;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+

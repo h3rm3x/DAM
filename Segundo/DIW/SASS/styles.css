@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: black;
+  background-color: #aeccae;
+}
+
+header h1 {
+  font-size: 40px;
+}
+
+header > nav > span {
+  padding: 0 15px;
+}
+
+header nav, header div {
+  display: inline;
+}
+
+main p {
+  color: #1a0d0d;
+  font-family: Arial, sans-serif;
+}
+
+main section {
+  width: 300px;
+  height: 200px;
+  background-color: blue;
+  padding: 20px;
+  color: white;
+}
+
+main section:first-of-type {
+  width: 150px;
+  height: 200px;
+  background-color: red;
+  padding: 20px;
+}
+
+.card, .card2 {
+  text-decoration: underline;
+}
+
+.card2 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
