@@ -15,15 +15,70 @@ body{
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 h1{
     margin-bottom: 20px;
 }
+
+.ver-estadisticas{
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #4C4B63;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.ver-estadisticas:hover{
+    background-color: #6b6a82;
+    transform: scale(1.1);
+}
+
+#cerrar-estadisticas{
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #dd0a0a;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+}
 .estadisticas{
     margin-top: 20px;
     text-align: center;
     display: none;
+    position: fixed;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 30px);
+    margin: 15px 10px;
+    top: 0;
+    left: 0;
+    background-color: #6b6a82;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    font-size: .8em;
+
+}
+
+.partidas{
+    display: flex;
+    align-items: center;
+    text-wrap: wrap;
+}
+
+.partidas span{
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: calc(100% / 3 - 40px);
 }
 .introduccion{
     display: flex;
@@ -69,10 +124,10 @@ h1{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 
 .letra:hover{

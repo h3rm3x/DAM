@@ -89,6 +89,28 @@
         { "palabra": "limon", "id": 16 },
         { "palabra": "mandarina", "id": 17 }
       ]
+    },
+    {
+      "categoria": "deportistas",
+      "palabras": [
+        { "palabra": "lamine", "id": 1 },
+        { "palabra": "ronaldo", "id": 2 },
+        { "palabra": "messi", "id": 3 },
+        { "palabra": "nadal", "id": 4 },
+        { "palabra": "federer", "id": 5 },
+        { "palabra": "phelps", "id": 6 },
+        { "palabra": "bolt", "id": 7 },
+        { "palabra": "jordan", "id": 8 },
+        { "palabra": "lebron", "id": 9 },
+        { "palabra": "kobe", "id": 10 },
+        { "palabra": "murray", "id": 11 },
+        { "palabra": "djokovic", "id": 12 },
+        { "palabra": "agassi", "id": 13 },
+        { "palabra": "alcaraz", "id": 14 },
+        { "palabra": "iniesta", "id": 15 },
+        { "palabra": "xavi", "id": 16 },
+        { "palabra": "casillas", "id": 17 }
+      ]
     }
   ]
 }
