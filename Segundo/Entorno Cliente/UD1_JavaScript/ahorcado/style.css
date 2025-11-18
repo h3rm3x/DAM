@@ -20,8 +20,26 @@ body{
 h1{
     margin-bottom: 20px;
 }
+.estadisticas{
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+}
+.introduccion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0;
+}
 
-section{
+.introduccion p{
+    max-width: 600px;
+    text-align: center;
+}
+
+.contenedor-juego{
     display: none;
     align-items: center;
     justify-content: center;

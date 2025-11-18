@@ -1,0 +1,94 @@
+{
+  "palabras": [
+    {
+      "categoria": "informatica",
+      "palabras": [
+        { "palabra": "javascript", "id": 1 },
+        { "palabra": "html", "id": 2 },
+        { "palabra": "css", "id": 3 },
+        { "palabra": "programacion", "id": 4 },
+        { "palabra": "desarrollo", "id": 5 },
+        { "palabra": "frontend", "id": 6 },
+        { "palabra": "backend", "id": 7 },
+        { "palabra": "fullstack", "id": 8 },
+        { "palabra": "variable", "id": 9 },
+        { "palabra": "funcion", "id": 10 },
+        { "palabra": "objeto", "id": 11 },
+        { "palabra": "arreglo", "id": 12 },
+        { "palabra": "metodo", "id": 13 },
+        { "palabra": "clase", "id": 14 },
+        { "palabra": "herencia", "id": 15 },
+        { "palabra": "polimorfismo", "id": 16 },
+        { "palabra": "encapsulamiento", "id": 17 },
+        { "palabra": "abstraccion", "id": 18 }
+      ]
+    },
+    {
+      "categoria": "deportes",
+      "palabras": [
+        { "palabra": "futbol", "id": 1 },
+        { "palabra": "baloncesto", "id": 2 },
+        { "palabra": "tenis", "id": 3 },
+        { "palabra": "voleibol", "id": 4 },
+        { "palabra": "natacion", "id": 5 },
+        { "palabra": "ciclismo", "id": 6 },
+        { "palabra": "atletismo", "id": 7 },
+        { "palabra": "golf", "id": 8 },
+        { "palabra": "rugby", "id": 9 },
+        { "palabra": "hockey", "id": 10 },
+        { "palabra": "boxeo", "id": 11 },
+        { "palabra": "esgrima", "id": 12 },
+        { "palabra": "karate", "id": 13 },
+        { "palabra": "judo", "id": 14 },
+        { "palabra": "taekwondo", "id": 15 },
+        { "palabra": "surf", "id": 16 },
+        { "palabra": "esqui", "id": 17 },
+        { "palabra": "snowboard", "id": 18 }
+      ]
+    },
+    {
+      "categoria": "animales",
+      "palabras": [
+        { "palabra": "elefante", "id": 1 },
+        { "palabra": "jirafa", "id": 2 },
+        { "palabra": "tigre", "id": 3 },
+        { "palabra": "leon", "id": 4 },
+        { "palabra": "cebra", "id": 5 },
+        { "palabra": "rinoceronte", "id": 6 },
+        { "palabra": "hipopotamo", "id": 7 },
+        { "palabra": "cocodrilo", "id": 8 },
+        { "palabra": "serpiente", "id": 9 },
+        { "palabra": "camaleon", "id": 10 },
+        { "palabra": "delfin", "id": 11 },
+        { "palabra": "ballena", "id": 12 },
+        { "palabra": "tiburon", "id": 13 },
+        { "palabra": "pulpo", "id": 14 },
+        { "palabra": "medusa", "id": 15 },
+        { "palabra": "estrella", "id": 16 },
+        { "palabra": "cangrejo", "id": 17 }
+      ]
+    },
+    {
+      "categoria": "frutas",
+      "palabras": [
+        { "palabra": "manzana", "id": 1 },
+        { "palabra": "banana", "id": 2 },
+        { "palabra": "naranja", "id": 3 },
+        { "palabra": "fresa", "id": 4 },
+        { "palabra": "kiwi", "id": 5 },
+        { "palabra": "mango", "id": 6 },
+        { "palabra": "piña", "id": 7 },
+        { "palabra": "cereza", "id": 8 },
+        { "palabra": "uva", "id": 9 },
+        { "palabra": "pera", "id": 10 },
+        { "palabra": "durazno", "id": 11 },
+        { "palabra": "ciruela", "id": 12 },
+        { "palabra": "melon", "id": 13 },
+        { "palabra": "sandia", "id": 14 },
+        { "palabra": "coco", "id": 15 },
+        { "palabra": "limon", "id": 16 },
+        { "palabra": "mandarina", "id": 17 }
+      ]
+    }
+  ]
+}
