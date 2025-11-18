@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+// hooks
+import { useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [eventos, setEventos] = useState([
+    { titulo: 'Examen DWEC', id: 1 },
+    { titulo: "Concurso Programa-Me", id: 2 },
+    { titulo: "Puente de la Constitución", id: 3 },
+  ]);
 
+  const [mostrarEventos, setMostrarEventos] = useState(false);
+
+  const handleClick = (id) => {
+    // setEventos(eventos.filter(evento => {
+    //   return evento.id !== id;
+    // }));
+
+    setEventos( (prevEventos) => {
+      return prevEventos.filter(evento => evento.id !== id);
+    });
+  };
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <button onClick={() => setMostrarEventos(true)}>Mostrar Eventos</button>
+      {mostrarEventos && eventos.map((evento, index) => 
+        <div key={evento.id}>
+          <h2 >{index} - {evento.titulo}</h2>
+          <button onClick={()=> handleClick(evento.id)}>Eliminar Evento</button>
+        </div>
+      )}
+    </div>
   )
 }
 

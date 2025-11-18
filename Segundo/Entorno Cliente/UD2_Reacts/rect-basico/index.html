@@ -9,6 +9,39 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    
+    <h1>React Basico</h1>
+
+    <div id="banner"></div>
+    <footer>
+        <p>Alumno: Alan Rabinerson</p>
+        <p>Curso: DAW</p>
+    </footer>
+
+    <script type="text/babel">
+        const Banner = () => {
+            const titulo = "Bienvenidos a React Basico";
+            const subtitulo = "Esta es una introduccion a React";
+            const web = "www.fcbarcelona.cat";
+            const HandleClick = (nombre) => {
+                console.log("Nombre: "+ nombre);
+            };
+            const nombre = "Alan Rabinerson"
+            return (
+                <div className="banner">
+                    <h2>{titulo.toUpperCase()}</h2>
+                    <p>{subtitulo}</p>
+                    <p>Este es el componente banner</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis libero dolore eum aspernatur quidem architecto voluptates repellat. Est voluptatum odit numquam minima enim ipsa, iure itaque distinctio dolore ad voluptas!</p>
+                    <p>La fecha de hoy es: {new Date().toDateString()}</p>
+                    <p>Numero aleatorio entre 0 y 100: {Math.floor(Math.random() * 100)}</p>
+                    <p> <a href={"https://" + web}>Mes que un club</a></p>
+                    <button onClick={(e) => HandleClick(nombre)}>Click me</button>
+
+                </div>
+            );
+
+        };
+        ReactDOM.render(<Banner />, document.getElementById('banner'));
+    </script>
 </body>
 </html>
