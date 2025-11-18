@@ -63,5 +63,13 @@ main{
     margin-bottom: 10px;
 }
 
+@for $i from 1 through 3 {
+.box-#{$i} {
+width: $width * $i;
+height: $width;
+background-color: lighten($box-color, 10% * $i);
+margin-right: 15px;
+}
+}
 
 

@@ -3,7 +3,7 @@
     "watch": "npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch"
   },
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.16",
-    "tailwindcss": "^4.1.16"
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
   }
 }
