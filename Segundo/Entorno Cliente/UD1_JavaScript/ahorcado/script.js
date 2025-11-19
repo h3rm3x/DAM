@@ -1,5 +1,10 @@
 // Variables globales
 const enpointPalabras = "http://localhost:3000/palabras";
+const animales= [];
+const deportes= [];
+const frutas= [];
+const informatica= [];
+const deportistas= [];
 const debug = ["alan"];
 const arrayPalabras = [];
 let palabraSecreta = "";
@@ -84,7 +89,7 @@ function manejarLetra(letra) {
 }
 
 function verEstadisticas() {
-    // función para ver estadísticas del juego (no implementada)
+    // función para ver estadísticas del juego
     const divPartidas = document.querySelector(".partidas");
     if (!divPartidas) return;
     divPartidas.textContent = "";
@@ -105,8 +110,9 @@ function verEstadisticas() {
         const spanUsuario = document.createElement("span");
         divPartidas.appendChild(spanUsuario);
         spanUsuario.innerHTML += `<h3> Partidas de ${usuario}: </h3> `;
+        // iterar sobre las partidas del usuario
         Object.keys(userPartidas).forEach(ts => {
-            const p = userPartidas[ts];
+            const p = userPartidas[ts]; // partida actual
             const fechaPartida = new Date(parseInt(ts));
             const compararfecha = Date.now() - fechaPartida.getTime();
             // guardar última partida
@@ -127,9 +133,7 @@ function verEstadisticas() {
             }
             numeropartidas++;
             mediaErrores += p.errores;
-            const tiempoParts = p.tiempo.split(":").map(Number);
-            const tiempoSegundos = tiempoParts[0] * 3600 + tiempoParts[1] * 60 + tiempoParts[2];
-            mediaTiempo += tiempoSegundos;
+            mediaTiempo += tiemposeg;
             if (p.estado === "ganada") numGanadas++;
             if (p.estado === "perdida") numPerdidas++;
         });
@@ -272,40 +276,42 @@ function actualizarTiempoIntento() {
 
 // cargar palabras desde el endpoint según la categoría seleccionada
 async function cargarPalabras(categoria) {
-    const animales= [];
-    const deportes= [];
-    const frutas= [];
-    const informatica= [];
-    const deportistas= [];
-    try {
-        const response = await fetch(enpointPalabras);
-        const palabras = await response.json();
-        
-        if (palabras != null && palabras.length > 0) {
-            palabras.forEach(p => {
-                switch (p.categoria) {
-                    case "informatica":
-                        p.palabras.forEach(palabra => informatica.push(palabra.palabra));
-                        break;
-                    case "deportes":
-                        p.palabras.forEach(palabra => deportes.push(palabra.palabra));
-                        break;
-                    case "animales":
-                        p.palabras.forEach(palabra => animales.push(palabra.palabra));
-                        break;
-                    case "frutas":
-                        p.palabras.forEach(palabra => frutas.push(palabra.palabra));
-                        break;
-                    case "deportistas":
-                        p.palabras.forEach(palabra => deportistas.push(palabra.palabra));
-                        break;
-            }
-        });
-        } 
-    }catch (error) {
-        console.error('Error al cargar las palabras:', error);
-        return;
-    }   
+    if (informatica.length == 0 || deportes.length == 0 || animales.length == 0 || frutas.length == 0 || deportistas.length == 0) {
+        // solo cargar las palabras si no se han cargado ya
+        try {
+            const response = await fetch(enpointPalabras);
+            const palabras = await response.json();
+            
+            if (palabras != null && palabras.length > 0) {
+                palabras.forEach(p => {
+                    switch (p.categoria) {
+                        case "informatica":
+                            p.palabras.forEach(palabra => informatica.push(palabra.palabra));
+                            break;
+                        case "deportes":
+                            p.palabras.forEach(palabra => deportes.push(palabra.palabra));
+                            break;
+                        case "animales":
+                            p.palabras.forEach(palabra => animales.push(palabra.palabra));
+                            break;
+                        case "frutas":
+                            p.palabras.forEach(palabra => frutas.push(palabra.palabra));
+                            break;
+                        case "deportistas":
+                            p.palabras.forEach(palabra => deportistas.push(palabra.palabra));
+                            break;
+                }
+            });
+            } 
+        }catch (error) { // si hay un error al cargar las palabras, mostrar mensaje de error en pantalla
+            console.error('Error al cargar las palabras:', error);
+            document.querySelector(".mensaje-error").textContent = "Error al cargar las palabras. Por favor, inténtelo de nuevo más tarde o contacte con el administrador.";
+            document.querySelector(".mensaje-error").style.color = "red";
+            document.querySelector(".mensaje-error").style.fontWeight = "bold";
+            document.querySelector(".mensaje-error").style.fontSize = "1.2em";
+            return;
+        }   
+    }
     arrayPalabras.length = 0; // limpiar el array antes de cargar nuevas palabras
     switch (categoria) {
         case "informatica":
