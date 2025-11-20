@@ -1,7 +1,11 @@
-import './App.css'
-// hooks
-import { useState } from 'react'
+// CHILDREN PROPS
 
+import './App.css'
+import { useState } from 'react'
+import Ttitulo from './components/titulo';
+import React from 'react';
+import Modal from './components/Modal';
+import ListaEventos from './components/ListaEventos';
 const App = () => {
   const [eventos, setEventos] = useState([
     { titulo: 'Examen DWEC', id: 1 },
@@ -10,6 +14,8 @@ const App = () => {
   ]);
 
   const [mostrarEventos, setMostrarEventos] = useState(false);
+  const subtitulo = "Todos los eventos para Desarrollo de Aplicaciones Web";
+  const [mostrarModal, setMostrarModal] = useState(false);
 
   const handleClick = (id) => {
     // setEventos(eventos.filter(evento => {
@@ -20,15 +26,34 @@ const App = () => {
       return prevEventos.filter(evento => evento.id !== id);
     });
   };
+  console.log(mostrarModal)
+  const handleCerrar = () => {
+    setMostrarModal(false);
+  };
   return (
     <div className="App">
-      <button onClick={() => setMostrarEventos(true)}>Mostrar Eventos</button>
-      {mostrarEventos && eventos.map((evento, index) => 
-        <div key={evento.id}>
-          <h2 >{index} - {evento.titulo}</h2>
-          <button onClick={()=> handleClick(evento.id)}>Eliminar Evento</button>
-        </div>
-      )}
+      <Ttitulo titulo="Eventos de DAW" subtitulo={subtitulo} />
+
+
+      {
+        mostrarEventos ? <button onClick={() => setMostrarEventos(false)}>Ocultar Eventos</button> 
+        : <button onClick={() => setMostrarEventos(true)}>Mostrar Eventos</button> 
+      }
+
+      {mostrarEventos &&  
+        ListaEventos({eventos, handleClick})
+      }
+      <div>
+        <button onClick={() => setMostrarModal(true)}>Mostrar Modal</button>
+      </div>
+
+      {
+        mostrarModal && <Modal handleCerrar={handleCerrar}>
+        <h2>STEM Talks</h2>
+        <p>No te lo pierdas!</p>
+        <a href="">Enlace</a>
+      </Modal>}
+      
     </div>
   )
 }
