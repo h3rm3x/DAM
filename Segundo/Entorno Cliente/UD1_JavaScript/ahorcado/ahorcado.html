@@ -8,14 +8,16 @@
   </head>
   <body>
     <h1>Juego del Ahorcado</h1>
+    
     <button class="ver-estadisticas">Ver Estadísticas</button>
     <div class="estadisticas">
       <h2>Estadísticas del Juego</h2>
       <div class="partidas">
-
+        <!-- Aqui se mostrarán las partidas guardadas -->
       </div>
       <button id="cerrar-estadisticas">Cerrar Estadísticas</button>
     </div>
+    <!-- Sección de introducción y formulario de inicio de sesión -->
     <section class="introduccion">
       <p>
         ¡Bienvenido al juego del Ahorcado! El objetivo del juego es adivinar
@@ -30,6 +32,7 @@
       </form>
     </section>
     <section class="contenedor-juego">
+      <!-- Formulario para seleccionar categoría -->
       <form action="" class="juego">
         <label for="categoria">Selecciona una categoría:</label>
         <select name="categoria" id="categoria" class="categoria">
@@ -40,13 +43,16 @@
           <option value="deportistas">Deportistas</option>
         </select>
       </form>
+      <!-- Área del juego del ahorcado -->
       <div class="ahorcado">
-        <p class="mensaje-error"></p>
+        
+        <p class="mensaje-error"><!-- En caso de error, se mostrará un mensaje aquí --></p>
         <div class="palabra">_ _ _ _ _</div>
         <div class="intentos">
           Le quedan <span class="numero">6</span> intentos
         </div>
       </div>
+      <!-- Teclado de letras -->
       <div class="letras">
         <div class="fila">
           <button class="letra">A</button>
@@ -84,7 +90,7 @@
           <button class="letra">Z</button>
         </div>
       </div>
-
+      <!-- Mensajes de estado del juego y tiempo -->
       <div class="mensaje">
         Has cometido <span class="numero">0</span> errores
       </div>

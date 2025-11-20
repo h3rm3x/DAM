@@ -93,8 +93,8 @@ function verEstadisticas() {
     const divPartidas = document.querySelector(".partidas");
     if (!divPartidas) return;
     divPartidas.textContent = "";
-
-    let tiempoUltima = Infinity;
+    // inicializar variables para las estadísticas. TiempoUltima y mintiempo a infinito para comparar correctamente, las demas variables numericas a 0
+    let tiempoUltima = Infinity; 
     let numeropartidas = 0;
     let mediaErrores = 0;
     let mediaTiempo = 0;
@@ -104,25 +104,26 @@ function verEstadisticas() {
     let partidaMasRapida = null; 
     let ultimapartida = "";
     let partidaMasPerfecta = null;
-    // para cada usuario, listar sus partidas (timestamp -> datos) 
+    // para poder mostar las estadistica primero se ha de iterar sobre los usuarios ya que el objeto partidas tiene la siguiente estructura:
+    // { usuario1: { timestamp1: partidaObj1, timestamp2: partidaObj2, ...}, usuario2: { timestamp1: partidaObj1, ...}, ...} y no es posible iterar directamente sobre el
     usuarios.forEach(usuario => {
         const userPartidas = partidas[usuario] || {};
         const spanUsuario = document.createElement("span");
         divPartidas.appendChild(spanUsuario);
         spanUsuario.innerHTML += `<h3> Partidas de ${usuario}: </h3> `;
-        // iterar sobre las partidas del usuario
+        // iterar sobre las claves (timestamps) del objeto de partidas del usuario actual 
         Object.keys(userPartidas).forEach(ts => {
             const p = userPartidas[ts]; // partida actual
-            const fechaPartida = new Date(parseInt(ts));
-            const compararfecha = Date.now() - fechaPartida.getTime();
-            // guardar última partida
+            const fechaPartida = new Date(parseInt(ts)); // convertir timestamp a objeto Date para comparar fechas
+            const compararfecha = Date.now() - fechaPartida.getTime(); // tiempo transcurrido desde la partida en segundos
+            // comprobar si es la última partida jugada
             if (compararfecha < tiempoUltima) {
                 ultimapartida = `\n <p> Ultima Partida: Palabra: ${p.palabra} | Tiempo: ${p.tiempo} | Errores: ${p.errores} | Estado: ${p.estado} | Fecha: ${new Date(p.fecha).toLocaleString()}</p>`;
                 tiempoUltima = compararfecha;
             } 
-            let PartesTiempo = p.tiempo.split(":").map(Number);
+            let PartesTiempo = p.tiempo.split(":").map(Number); // convertir tiempo formato HH:MM:SS a segundos
             let tiemposeg = PartesTiempo[0] * 3600 + PartesTiempo[1] * 60 + PartesTiempo[2];
-            // guardar partida más perfecta (0 errores y menos tiempo)
+            // Primero comprobamos la partida más perfecta (0 errores y menos tiempo) debido a que puede coincidir con la partida más rápida
             if (p.errores == 0 && tiemposeg < mintiempo){
                 partidaMasPerfecta = `\n <p>Partida Mas Perfecta: Palabra: ${p.palabra} | Tiempo: ${p.tiempo} | Errores: ${p.errores} | Estado: ${p.estado} | Fecha: ${new Date(p.fecha).toLocaleString()}</p>`;
             }
@@ -165,7 +166,7 @@ function verEstadisticas() {
         partidaMasRapida = null;
         partidaMasPerfecta = null;
         divPartidas.innerHTML += "\n";
-        //navUsuario.style.width = `calc(100% / ${usuarios.length} - 20px)`;
+        divPartidas.style.width = `calc(100% / ${usuarios.length} - 20px)`;
     });
 }
 async function reiniciarJuego() {
@@ -284,6 +285,7 @@ async function cargarPalabras(categoria) {
             
             if (palabras != null && palabras.length > 0) {
                 palabras.forEach(p => {
+                    // llenar los arrays de palabras según la categoría
                     switch (p.categoria) {
                         case "informatica":
                             p.palabras.forEach(palabra => informatica.push(palabra.palabra));
