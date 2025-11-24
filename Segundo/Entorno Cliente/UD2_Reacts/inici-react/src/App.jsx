@@ -3,7 +3,6 @@
 import './App.css'
 import { useState } from 'react'
 import Ttitulo from './components/titulo';
-import React from 'react';
 import Modal from './components/Modal';
 import ListaEventos from './components/ListaEventos';
 const App = () => {
@@ -48,11 +47,11 @@ const App = () => {
       </div>
 
       {
-        mostrarModal && <Modal handleCerrar={handleCerrar}>
+        mostrarModal && <Modal handleCerrar={handleCerrar} esExterno={true}>
         <h2>STEM Talks</h2>
         <p>No te lo pierdas!</p>
-        <a href="">Enlace</a>
-      </Modal>}
+        </Modal>
+      }
       
     </div>
   )
