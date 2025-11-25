@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Ttitulo from './components/titulo';
 import Modal from './components/Modal';
 import ListaEventos from './components/ListaEventos';
+
 const App = () => {
   const [eventos, setEventos] = useState([
     { titulo: 'Examen DWEC', id: 1 },
