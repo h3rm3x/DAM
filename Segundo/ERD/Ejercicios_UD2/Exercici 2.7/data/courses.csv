@@ -1,0 +1,21 @@
+course_id,course_title,category,difficulty,num_lessons,publish_date
+1,Course 1,Languages,Intermediate,16,2023-10-23
+2,Course 2,Business,Intermediate,30,2023-10-19
+3,Course 3,Design,Beginner,18,2022-07-20
+4,Course 4,Business,Beginner,48,2024-02-04
+5,Course 5,Business,Beginner,27,2022-12-04
+6,Course 6,Data Science,Advanced,13,2022-02-06
+7,Course 7,Design,Advanced,34,2022-12-31
+8,Course 8,Design,Advanced,23,2021-06-11
+9,Course 9,Design,Intermediate,18,2021-07-21
+10,Course 10,Business,Advanced,35,2023-09-23
+11,Course 11,Languages,Intermediate,11,2021-09-27
+12,Course 12,Design,Intermediate,29,2023-03-27
+13,Course 13,Business,Advanced,37,2022-04-01
+14,Course 14,Data Science,Intermediate,16,2023-10-14
+15,Course 15,Languages,Advanced,17,2021-10-23
+16,Course 16,Data Science,Advanced,44,2022-12-21
+17,Course 17,Languages,Beginner,23,2021-12-04
+18,Course 18,Business,Advanced,26,2023-05-29
+19,Course 19,Programming,Beginner,45,2023-12-13
+20,Course 20,Languages,Advanced,49,2023-03-03
