@@ -1,0 +1,29 @@
+{
+    "asignaturas": [
+        {
+            "nombre" : "Desarrollo Web en Entorno Cliente",
+            "horas-totales" : 150,
+            "id" : 1,
+            "idioma": "Catalán"
+
+        },
+        {
+            "nombre" : "Desarrollo Web en Entorno Servidor",
+            "horas-totales" : 150,
+            "id" : 2,
+            "idioma": "Catalán"
+        },
+        {
+            "nombre" : "Despliegue de Aplicaciones Web",
+            "horas-totales" : 75,
+            "id" : 3,
+            "idioma": "Catalán"
+        },
+        {
+            "nombre" : "Diseño de Interfaces Web",
+            "horas-totales" : 75,
+            "id" : 4,
+            "idioma": "Inglés"
+        }
+    ]
+}

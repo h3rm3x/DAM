@@ -1,59 +1,79 @@
-// CHILDREN PROPS
-
 import './App.css'
-import { useState } from 'react'
-import Ttitulo from './components/titulo';
+
+// HOOKS
+// MÚLTIPLES COMPONENTES
+// PROPS
+// CHILDREN PROPS
+// FUNCIONES COMO PROPS
+import { useState } from 'react';
+import Titulo from './components/titulo';
 import Modal from './components/Modal';
+import EventoNuevoForm from './components/EventoNuevoForm';
 import ListaEventos from './components/ListaEventos';
 
 const App = () => {
-  const [eventos, setEventos] = useState([
-    { titulo: 'Examen DWEC', id: 1 },
-    { titulo: "Concurso Programa-Me", id: 2 },
-    { titulo: "Puente de la Constitución", id: 3 },
-  ]);
+
+  /* const [nombre, setNombre] = useState('Josep'); */
+
+  const [eventos, setEventos] = useState([]);
 
   const [mostrarEventos, setMostrarEventos] = useState(false);
+  const [muestraModal, setMuestraModal] = useState(false);
+
+  const addEvento = (evento) =>{
+    setEventos((eventosPrevios) => {
+      return [...eventosPrevios, evento];
+    });
+
+    setMuestraModal(false);
+  }
+
   const subtitulo = "Todos los eventos para Desarrollo de Aplicaciones Web";
-  const [mostrarModal, setMostrarModal] = useState(false);
 
   const handleClick = (id) => {
-    // setEventos(eventos.filter(evento => {
-    //   return evento.id !== id;
-    // }));
+    /* setNombre('Josep Falagán'); */
 
-    setEventos( (prevEventos) => {
-      return prevEventos.filter(evento => evento.id !== id);
+    /* setEventos(eventos.filter((evento) => {
+      return id !== evento.id;
+    })); */
+
+    setEventos((eventosPrevios) => {
+      return eventosPrevios.filter((evento) => {
+        return id != evento.id;
+      })
     });
-  };
-  console.log(mostrarModal)
+  }
+
   const handleCerrar = () => {
-    setMostrarModal(false);
-  };
+    setMuestraModal(false);
+  }
+
+
+
   return (
     <div className="App">
-      <Ttitulo titulo="Eventos de DAW" subtitulo={subtitulo} />
+      {/* <h1>Mi nombre es {nombre}</h1> */}
+      <Titulo titulo="Eventos de DAW" subtitulo={subtitulo}/>
+      {!mostrarEventos && (
+        <div>
+          <button onClick={() => setMostrarEventos(true)}>Mostrar Eventos</button>
+        </div>
+      )}
 
-
-      {
-        mostrarEventos ? <button onClick={() => setMostrarEventos(false)}>Ocultar Eventos</button> 
-        : <button onClick={() => setMostrarEventos(true)}>Mostrar Eventos</button> 
-      }
-
-      {mostrarEventos &&  
-        ListaEventos({eventos, handleClick})
-      }
-      <div>
-        <button onClick={() => setMostrarModal(true)}>Mostrar Modal</button>
-      </div>
-
-      {
-        mostrarModal && <Modal handleCerrar={handleCerrar} esExterno={true}>
-        <h2>STEM Talks</h2>
-        <p>No te lo pierdas!</p>
+      {mostrarEventos && (
+        <div>
+          <button onClick={() => setMostrarEventos(false)}>Ocultar Eventos</button>
+        </div>
+      )}
+      {/* <button onClick={handleClick}>Cambiar nombre</button> */}
+      {mostrarEventos && <ListaEventos eventos={eventos} handleClick={handleClick}></ListaEventos>}
+      {muestraModal && <Modal handleCerrar={handleCerrar}>
+          <EventoNuevoForm addEvento={addEvento}/>
         </Modal>
       }
-      
+      <div>
+        <button onClick={() => setMuestraModal(true)}>Crear Nuevo Evento</button>
+      </div>
     </div>
   )
 }
