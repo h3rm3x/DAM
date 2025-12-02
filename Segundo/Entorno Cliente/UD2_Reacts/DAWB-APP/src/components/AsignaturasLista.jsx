@@ -9,7 +9,7 @@ export default function AsignaturasLista() {
     
     // const fetchAsignaturas = useCallback(async () => {
     //   const response = await fetch(url);
-    //   const json = await response.json();
+    //  cre const json = await response.json();
     //   setAsignaturas(json);
     // }, [url]);
     // useEffect(() => {

@@ -1,12 +1,15 @@
 import './App.css'
 import AsignaturasLista from './components/AsignaturasLista'
+import { useState } from 'react'
 function App() {
+  const [muestraAsignaturas, setMuestraAsignaturas] = useState(true)
   
-  // useEffect permite ejecutar un codigo en momentos especificos si se cumplen unas condiciones
   return (
-    <>
-      <AsignaturasLista />
-    </>
+    <div>
+      <button onClick={() => setMuestraAsignaturas(false)}>Esconde asignaturas</button>
+      <button onClick={() => setMuestraAsignaturas(true)}>Muestra asignaturas</button>
+      {muestraAsignaturas && <AsignaturasLista />}
+    </div>
   )
 }
 

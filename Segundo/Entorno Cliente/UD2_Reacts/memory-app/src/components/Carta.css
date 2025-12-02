@@ -1,0 +1,10 @@
+.carta {
+    position: relative;
+}
+
+.carta img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid #fff;
+}
