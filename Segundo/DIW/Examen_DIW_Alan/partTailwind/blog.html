@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examen tema 3 - part Tailwind</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <header >
+    <div class="flex justify-between bg-blue-500 p-5 text-white lg:justify-around">
+      <h1 class="font-bold text-xl md:text-2xl lg:text-3xl">My Blog</h1>
+      <nav class="flex gap-2 cursor-pointer">
+        <a class="hover:text-gray-200" href="#">Home</a>
+        <a class="hover:text-gray-200" href="#">About</a>
+        <a class="hover:text-gray-200" href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="grid grid-cols-1 grid-rows-1 gap-2 p-2 md:text-md lg:text-lg lg:w-fit lg:gap-1 lg:content-center">
+    <section class="mt-2 lg:row-start-1 col-span-2">
+      <h1 class="font-bold text-md md:text-lg lg:text-xl">Title of the Post</h1>
+      <p>By <span class="font-semibold">Author</span> on <span class="italic">24 November 2024</span></p>
+    </section>
+
+    <section class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:grid-rows-3 lg:justify-center lg:place-self-center ">
+      <img src="img/600x400.png" alt="Image of the post" class="w-full lg:row-start-1 lg:col-start-1 lg:w-auto ">
+
+      <p class="md:row-start-1">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel euismod nisi. Donec eu nibh sit amet turpis bibendum dictum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium iure debitis ipsum sequi veniam libero inventore nihil cum beatae, ab natus asperiores saepe quo iste ipsa cupiditate alias consequuntur enim repellendus officiis placeat. Incidunt quis autem quia corrupti voluptate quod repellendus dolorum facere quasi modi dolorem, voluptas repellat sapiente nisi nec sodales nisi dictum turpis bibendum. Officiis placeat incidunt quis autem.
+      </p>
+
+      <p class="lg:row-start-2 lg:col-span-2">
+        Aenean fermentum mi vitae justo facilisis, nec sodales nisi dictum. Sed in vehicula mi, vitae blandit lorem. Donec scelerisque tincidunt metus non tincidunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam officiis placeat praesentium culpa deleniti error neque dignissimos? Adipisci, aperiam rerum?
+      </p>
+      <p class="lg:row-start-3 lg:col-span-2">
+        Fusce non nulla sit amet nulla eleifend tincidunt. Integer sed nulla ac neque pharetra mollis nec ut sapien. Curabitur eget elit vel augue scelerisque euismod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente voluptatibus laborum numquam enim magni culpa? Non officiis ipsa expedita saepe! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et doloribus cumque sunt.
+      </p>
+    </section>
+  </main>
+
+  <footer class="sticky bottom-0">
+    <div >
+      <p class="flex flex-col items-center bg-gray-950 text-white">
+        &copy; 2025 My Blog  
+        <a href="#">Privacy Policy</a>  
+        <a href="#">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

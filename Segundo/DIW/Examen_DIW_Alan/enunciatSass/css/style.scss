@@ -1,0 +1,82 @@
+
+$color-blanco: #f0f0f0;
+$color-negro: #333;
+$color-rojo: #ff6347;
+$color-gris-transparente: rgba(0,0,0,0.3);
+$color-negro-transparente: rgba(0,0,0,0.7);
+@font-face {
+    font-family: Fira Code;
+    src: url(../assets/fonts/Fira_Code/FiraCode-VariableFont_wght.ttf);
+};
+
+
+
+@mixin hoverEffect ($color, $box-shadow-color, $x-offset, $y-offset, $blur-radius){
+    background-color: $color;
+    box-shadow: $x-offset $y-offset $blur-radius $box-shadow-color;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Fira Code;
+}
+
+body{
+    box-sizing: border-box;
+    background-color: $color-blanco;
+    color: $color-negro;
+    height: 100vh;
+    width: 100vw;
+    header{
+        padding: 10px;
+        h1{
+            font-size: 1.5rem;
+        }
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        section{
+            padding: 5px;
+            h2{
+                font-size: 1.1rem;
+            }
+
+            ul{ 
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                li{
+                    padding: 5px;
+                    border: 1px solid $color-negro;
+                    &:hover{
+                        @include hoverEffect($color-rojo, $color-negro, 1px, 1px, 1px);
+                    }
+                }
+            }
+        }
+         button{
+                background-color: $color-negro;
+                color: $color-blanco;
+                padding: 10px;
+                width: fit-content;
+                margin: 0 auto;
+                &:hover{
+                    @include hoverEffect( $color-rojo, $color-negro, 2px, 2px, 2px)
+                }
+            }
+    }
+
+    footer{
+        margin-top: 10px;
+        background-color: lighten($color-gris-transparente, 50);
+        text-align: center;
+    }
+
+}
+
+
