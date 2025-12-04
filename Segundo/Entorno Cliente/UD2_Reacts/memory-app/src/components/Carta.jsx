@@ -1,14 +1,19 @@
-import 'Carta.css'
-export default function Carta(carta, handleEleccion) {
-    const handleClick = () => {
-        handleEleccion(carta)
+import './Carta.css';
+
+export default function Carta({carta, handleEleccion, volteada, deshabilitado}) {
+
+  const handleClick = () => {
+    if(!deshabilitado){
+      handleEleccion(carta);
     }
+  }
+
   return (
-    <div className='carta' onClick={handleClick}>
-        <div>
-            <img className='delante' src={carta.src} />
-            <img className='detras' src="/img/reverso.png" />
-        </div>
+    <div className='carta'>
+      <div className={volteada ? "volteada" : ""}>
+        <img className="delante" src={carta.src} />
+        <img className="detras" src="/img/reverso.png" onClick={handleClick} />
+      </div>
     </div>
   )
 }

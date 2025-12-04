@@ -1,22 +1,27 @@
 .App{
   max-width: 860px;
-  margin: 0 auto;
+  margin: 40px auto;
 }
 
-button {
+button{
   background: none;
+  border: 2px solid var(--anti-flash-white);
   padding: 6px 12px;
-  border: 2px solid #fff;
-  border-radius: 8px;
+  border-radius: 4px;
+  color: var(--anti-flash-white);
   font-weight: bold;
   cursor: pointer;
-  color: #fff;
-  font-size: 1em; 
+  font-size: 1em;
 }
 
-.grid-cartas {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+button:hover{
+  background: var(--orange);
+  color: var(--dark_blue);
+}
+
+.grid-carta{
   margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
 }
