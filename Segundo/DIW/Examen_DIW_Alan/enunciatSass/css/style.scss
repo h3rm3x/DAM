@@ -11,6 +11,7 @@ $color-negro-transparente: rgba(0,0,0,0.7);
 
 
 
+
 @mixin hoverEffect ($color, $box-shadow-color, $x-offset, $y-offset, $blur-radius){
     background-color: $color;
     box-shadow: $x-offset $y-offset $blur-radius $box-shadow-color;
