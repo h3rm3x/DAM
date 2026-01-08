@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 1</title>
+    <link rel="stylesheet" href="ex1.css">
+</head>
+<body>
+    <h1>Calculadora Simple</h1>
+    <form action="">
+        <label for="numero1" id="">Número 1:</label>
+        <input type="text" id="numero1" name="numero1">
+        <label for="numero2">Número 2:</label>
+        <input type="text" id="numero2" name="numero2">
+
+        <select id="operacion" name="operacion">
+            <option value="suma">Suma</option>
+            <option value="resta">Resta</option>
+            <option value="multiplicacio">Multiplicació</option>
+            <option value="divisio">Divisió</option>    
+        </select>
+        <button type="button" id="calcular">Calcular</button>
+    </form>
+
+    <p id="resultat"></p>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="ex1.js"></script>
+</body>
+</html>
