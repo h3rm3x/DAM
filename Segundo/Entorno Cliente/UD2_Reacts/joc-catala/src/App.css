@@ -40,3 +40,23 @@
 .read-the-docs {
   color: #888;
 }
+
+.sub-menu{
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.sub-link{
+    text-decoration: none;
+    color: #334155;
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background-color: #e2e8fc;
+}
+
+.sub-link.active{
+    background-color: #38bdf8;
+    color: #0f172a;
+}
