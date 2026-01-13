@@ -3,26 +3,28 @@ const numero2 = $('#numero2');
 const resultat = $('#resultat');
 const msgError = $('#msgError');
 const botoCalcular = $('#calcular');
+if (numero2.val() === '' || numero2.val() === null) {
+    numero2.val('0');
+}
+if (numero1.val() === '' || numero1.val() === null) {
+    numero1.val('0');
+}
 botoCalcular.on('click', () => {
     const operacion = $('#operacion').val();
     if (isNumeric(numero1.val()) && isNumeric(numero2.val())) {
         switch (operacion) {
             case 'suma':
                 resultat.text(`El resultat de la suma és: ${parseFloat(numero1.val()) + parseFloat(numero2.val())}`);
-                resultat.css('color', 'green');
                 break;
             case 'resta':
                 resultat.text(`El resultat de la resta és: ${parseFloat(numero1.val()) - parseFloat(numero2.val())}`);
-                resultat.css('color', 'green'); 
                 break;
             case 'multiplicacio':
                 resultat.text(`El resultat de la multiplicació és: ${parseFloat(numero1.val()) * parseFloat(numero2.val())}`);
-                resultat.css('color', 'green');
                 break;
             case 'divisio':
                 if (parseFloat(numero2.val()) !== 0) {
                     resultat.text(`El resultat de la divisió és: ${parseFloat(numero1.val()) / parseFloat(numero2.val())}`);
-                    resultat.css('color', 'green');
                 } else {
                     msgError.text('Error: No es pot dividir per zero.');
                     resultat.text('Resultat:'+ NaN);
@@ -36,13 +38,10 @@ botoCalcular.on('click', () => {
         msgError.css('color', 'red');
         resultat.text('Resultat:');
     }
-    setTimeout(() => {
-        resultat.text('');
-    }, 5000);
 
 });
 
-numero1.on('keyup', () => {
+numero1.on('blur', () => {
     if (!isNumeric(numero1.val())) {
         msgError.text('Si us plau, introdueix números vàlids.');
         resultat.text('Resultat:' + NaN);
@@ -57,7 +56,7 @@ numero1.on('keyup', () => {
     
 });
 
-numero2.on('keyup', () => {
+numero2.on('blur', () => {
     if (!isNumeric(numero2.val())) {
         msgError.text('Si us plau, introdueix números vàlids.');
         msgError.css('color', 'red');
