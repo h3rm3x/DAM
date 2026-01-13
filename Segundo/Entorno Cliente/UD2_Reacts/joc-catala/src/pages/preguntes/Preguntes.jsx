@@ -1,4 +1,4 @@
-
+import { NavLink, Outlet } from "react-router-dom"
 export default function Preguntes() {
   return (
     <div>
@@ -7,6 +7,7 @@ export default function Preguntes() {
         <NavLink className="sub-link" to="futbol">Futbol</NavLink>
         <NavLink className="sub-link" to="geografia">Geografia</NavLink>
       </nav>
+      <Outlet />
     </div>
   )
 }

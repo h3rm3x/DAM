@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Inici from './pages/Inici.jsx'
 import Vocabulari from './pages/vocabulari/Vocabulari.jsx'
 import Preguntes from './pages/preguntes/Preguntes.jsx'
@@ -8,6 +8,7 @@ import Animals from './pages/vocabulari/Animals.jsx'
 import Aliments from './pages/vocabulari/Aliments.jsx'
 import Futbol from './pages/preguntes/Futbol.jsx'
 import Geografia from './pages/preguntes/Geografia.jsx'
+import AnimalDetall from './pages/vocabulari/AnimalDetall.jsx'
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Inici />} />
         <Route path="/vocabulari" element={<Vocabulari />} >
+          <Route index element={<Navigate to="animals" replace />} />
           <Route path="animals" element={<Animals />} />
+          <Route path="animals/:id" element={<AnimalDetall />} />
           <Route path='aliments' element={<Aliments />} />
         </Route>
         <Route path="/preguntes" element={<Preguntes />} >
