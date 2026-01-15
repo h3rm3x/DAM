@@ -20,12 +20,12 @@ main {
     display: flex;
     gap: 20px;
     width: 100%;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 .contenedor {
     border: 2px solid #000;
-    width: 40%;
+    width: 20%;
     height: 500px;
     margin: 10px;
     padding: 10px;
@@ -41,14 +41,34 @@ main {
 }
 
 .postit {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 30px;
     border: 1px solid #000;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    padding: 10px;
     position: absolute;
     cursor: move;
     overflow: hidden;
+}
+
+.postit h3 {
+    margin-bottom: 5px;
+    font-size: 12px;
+    width: 100%;
+    border-bottom: 1px solid #000;
+}
+
+.postit p {
+    font-size: 10px;
+}
+
+.postit:hover {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.postit.maximizado {
+    width: 150px;
+    height: 100px;
+    font-size: 14px;
 }
 
 #contenedor1{
@@ -57,6 +77,79 @@ main {
 }
 
 #contenedor2{
-    background-color: #f8d7da;
+    background-color: #f8eed7;
+}
 
+#contenedor3{
+    background-color: #f8d7da;
+}
+
+img {
+    position: absolute;
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+}
+
+.minimizar {
+    position: absolute;
+    top: 2px;
+    right: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.maximizar {
+    position: absolute;
+    top: 2px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.pop-up-colores{
+    display: none;
+}
+
+.pop-up-colores.active{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+.pop-up-colores .colores{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.pop-up-colores .color{
+    width: 100%;
+    margin: 10px;
+    padding: 3px;
+    cursor: pointer;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+.pop-up-colores .color:hover{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.pop-up-colores #cerrarPopUp{
+    cursor: pointer;
+    border: none;
+    background: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
