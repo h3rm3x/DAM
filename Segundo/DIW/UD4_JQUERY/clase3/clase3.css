@@ -1,0 +1,20 @@
+.postit{
+    height: 200px;
+    width: 200px;
+    border-radius: .5em;
+    margin: 0.5em;
+}
+
+.container{
+    width: 100%;
+    background-color: lightgray;
+    height: 300px;
+}
+
+.groc{
+    background-color: rgb(196, 196, 63);
+}
+
+.verd{
+    background-color: rgb(33, 181, 33);
+}

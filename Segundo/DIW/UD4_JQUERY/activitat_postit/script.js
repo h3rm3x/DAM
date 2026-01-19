@@ -6,9 +6,39 @@ $(document).ready(function () {
     popupColor.addClass("active");
   });
 
+  
+
+  $( ".contenedor" ).droppable({
+    accept: function (draggable) {
+      return ($(this).data("aceptar") == draggable.data("estado"));
+    },
+    drop: function (event, ui) {
+      if ($(this).data("dropped") === "true") {
+        return;
+      }
+      const postit = this;
+      let contador = parseInt($(this).closest(".contenedor").find("p strong").text());
+      console.log(contador);
+      contador += 1;
+      $(this).closest(".contenedor").find("p strong").text(contador);
+      console.log($(this).find("p strong"))
+      $(this).data("dropped", "true");
+      console.log($(this).attr(""))
+    },
+    out: function (event, ui) {
+      const postit = this;
+      let contador = parseInt($(this).closest(".contenedor").find("p strong").text());
+      contador -= 1;
+      $(this).closest(".contenedor").find("p strong").text(contador);
+      $(this).data("dropped", "false");
+      
+    }
+  });
+
   function crearPostit(color) {
+    let estado = estados(color);
     const postit = $(
-      '<div class="postit" draggable="true"><h3 contenteditable="true">Nueva tarea</h3> <p contenteditable="true" class="descripcion">Descripción de la tarea</p></div>'
+      '<div class="postit" data-estado="' + estado + '" data-dropped="false"><h3 contenteditable="true">Nueva tarea</h3> <p contenteditable="true" class="descripcion">Descripción de la tarea</p></div>'
     );
     $(postit).css("background-color", color);
     const randomZona = Math.floor(Math.random() * 2);
@@ -24,6 +54,22 @@ $(document).ready(function () {
     $("main").append(postit);
     $(postit).find(".descripcion").hide();
     popupColor.removeClass("active");
+    // Configurar draggable con opcción cancel para permitir edición
+    $(postit).draggable({
+      cancel: "[contenteditable='true'], button",
+      handle: false
+    });
+  }
+
+  function estados(color) {
+    switch (color) {
+      case "rgb(209, 231, 221)":
+        return "completada";
+      case "rgb(248, 238, 215)":
+        return "proceso";
+      case "rgb(248, 215, 218)":
+        return "pendiente";
+    }
   }
 
   $(".pop-up-colores .color").click(function () {

@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activitat Postit</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <main>
         <h1>Organizador de Tareas</h1>
         <button id="crearPostit">Crear Post-it</button>
         <section class="contenedores">
-            <div id="contenedor1" class="contenedor">
+            <div id="contenedor1" class="contenedor" data-aceptar="completada">
                 <h2>Completados</h2>
                 <p>Tareas Completadas: <strong>0</strong></p>
             </div>
-            <div id="contenedor2" class="contenedor">
+            <div id="contenedor2" class="contenedor" data-aceptar="proceso">
                 <h2>En Proceso</h2>
                 <p>Tareas En Proceso: <strong>0</strong></p>
             </div>
-            <div id="contenedor3" class="contenedor">
+            <div id="contenedor3" class="contenedor" data-aceptar="pendiente">
                 <h2> Pendientes</h2>
                 <p>Tareas Pendientes: <strong>0</strong></p>
             </div>
@@ -37,6 +38,7 @@
         
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
