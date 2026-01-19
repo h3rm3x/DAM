@@ -12,7 +12,7 @@ export default function AnimalDetall() {
 
     useEffect(() => {
         if (!animal) {
-            //navigate('/vocabulari/animals');
+            navigate('/vocabulari/animals');
             return <Navigate to="/vocabulari/animals" replace />;
         }
     }, [])

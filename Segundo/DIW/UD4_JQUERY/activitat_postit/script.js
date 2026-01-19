@@ -8,7 +8,7 @@ $(document).ready(function () {
 
   function crearPostit(color) {
     const postit = $(
-      '<div class="postit"><h3 contenteditable="true">Nueva tarea</h3> <p contenteditable="true" class="descripcion">Descripción de la tarea</p></div>'
+      '<div class="postit" draggable="true"><h3 contenteditable="true">Nueva tarea</h3> <p contenteditable="true" class="descripcion">Descripción de la tarea</p></div>'
     );
     $(postit).css("background-color", color);
     const randomZona = Math.floor(Math.random() * 2);

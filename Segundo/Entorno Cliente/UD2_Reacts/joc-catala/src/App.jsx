@@ -9,6 +9,8 @@ import Aliments from './pages/vocabulari/Aliments.jsx'
 import Futbol from './pages/preguntes/Futbol.jsx'
 import Geografia from './pages/preguntes/Geografia.jsx'
 import AnimalDetall from './pages/vocabulari/AnimalDetall.jsx'
+import RutaProtegida from './auth/RutaProtegida.jsx'
+import Login from './pages/Login.jsx'
 
 
 function App() {
@@ -24,7 +26,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Inici />} />
-        <Route path="/vocabulari" element={<Vocabulari />} >
+        <Route path="/vocabulari" element={
+          <RutaProtegida>
+            <Vocabulari />
+          </RutaProtegida>
+          } >
           <Route index element={<Navigate to="animals" replace />} />
           <Route path="animals" element={<Animals />} />
           <Route path="animals/:id" element={<AnimalDetall />} />
@@ -34,6 +40,7 @@ function App() {
           <Route path="futbol" element={<Futbol/>} />
           <Route path="geografia" element={<Geografia/>} />
         </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   )
