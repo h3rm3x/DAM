@@ -13,25 +13,26 @@ $(document).ready(function () {
       return ($(this).data("aceptar") == draggable.data("estado"));
     },
     drop: function (event, ui) {
-      if ($(this).data("dropped") === "true") {
+      if ($(ui.draggable).data("dropped") === "true") {
+        console.log("no se puede soltar el mismo postit 2 veces")
         return;
       }
-      const postit = this;
-      let contador = parseInt($(this).closest(".contenedor").find("p strong").text());
+      console.log(ui.draggable);
+      const postit = ui.draggable;
+      let contador = parseInt($(this).find("p strong").text());
       console.log(contador);
       contador += 1;
-      $(this).closest(".contenedor").find("p strong").text(contador);
+      $(this).find("p strong").text(contador);
       console.log($(this).find("p strong"))
-      $(this).data("dropped", "true");
+      $(ui.draggable).data("dropped", "true");
       console.log($(this).attr(""))
     },
     out: function (event, ui) {
       const postit = this;
-      let contador = parseInt($(this).closest(".contenedor").find("p strong").text());
+      let contador = parseInt($(this).find("p strong").text());
       contador -= 1;
-      $(this).closest(".contenedor").find("p strong").text(contador);
-      $(this).data("dropped", "false");
-      
+      $(this).find("p strong").text(contador);
+      $(ui.draggable).data("dropped", "false");
     }
   });
 
