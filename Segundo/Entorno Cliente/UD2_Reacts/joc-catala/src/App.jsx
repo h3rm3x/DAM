@@ -11,6 +11,7 @@ import Geografia from './pages/preguntes/Geografia.jsx'
 import AnimalDetall from './pages/vocabulari/AnimalDetall.jsx'
 import RutaProtegida from './auth/RutaProtegida.jsx'
 import Login from './pages/Login.jsx'
+import PanelAdmin from './pages/PanelAdmin.jsx'
 
 
 function App() {
@@ -25,6 +26,11 @@ function App() {
 
 
       <Routes>
+        <Route path="/admin" element={
+          <RutaProtegida rol="admin">
+            <PanelAdmin />
+          </RutaProtegida>
+        }></Route>
         <Route path="/" element={<Inici />} />
         <Route path="/vocabulari" element={
           <RutaProtegida>

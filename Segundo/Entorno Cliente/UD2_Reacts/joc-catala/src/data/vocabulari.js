@@ -1,8 +1,8 @@
 const vocabulariAnimals = [
-    { id: 1, catala: 'Gos', castella: 'Perro' },
-    { id: 2, catala: 'Moix', castella: 'Gato' },
-    { id: 3, catala: 'Cavall', castella: 'Caballo' },
-    { id: 4, catala: 'Pardal', castella: 'Pájaro' }
+    { id: 1, catala: 'Gos', castella: 'Perro', nivell: 'facil' },
+    { id: 2, catala: 'Moix', castella: 'Gato', nivell: 'facil' },
+    { id: 3, catala: 'Cavall', castella: 'Caballo', nivell: 'mitja' },
+    { id: 4, catala: 'Pardal', castella: 'Pájaro', nivell: 'dificil' }
 ]
 
 const vocabulariAliments = [
