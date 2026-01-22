@@ -1,10 +1,37 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext'
 
 export default function Login() {
 
-    const {login} = useAuth();
+    const {login, register} = useAuth();
     const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+
+    async function handleLogin(e){
+      e.preventDefault();
+
+      try{
+        await login (email, password);
+        navigate('/vocabulari');
+      }catch (err){
+        setError('Error al iniciar sessió: ' + err.message);
+      }
+    }
+
+    async function handleRegister(e){
+      e.preventDefault();
+
+      try{
+        await register (email, password);
+        navigate('/vocabulari');
+      }catch (err){
+        setError('Error al registrar-se: ' + err.message);
+      }
+    }
 
     //function handleLogin() {
       //login();
@@ -23,9 +50,13 @@ export default function Login() {
   return (
     <div>
       <h2>Login</h2>
-      <p>Login super fake per accedir als minijocs</p>
-      <button onClick={entrarComAlumnat}>Entrar com Alumnat</button>
-      <button onClick={entrarComAdmin}>Entrar com Admin</button>
+      <form action="">
+        <input type="email" placeholder='email' value={email} onChange={e => setEmail(e.target.value)} />
+        <input type="password" placeholder='password' value={password} onChange={e => setPassword(e.target.value)} />
+        {error && <p style={{color: 'red'}}>{error}</p>}
+        <button onClick={handleLogin}>Iniciar sessió</button>
+        <button onClick={handleRegister}>Registrar-se</button>
+      </form>
     </div>
   )
 }

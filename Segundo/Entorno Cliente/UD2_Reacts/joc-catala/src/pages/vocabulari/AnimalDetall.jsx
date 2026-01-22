@@ -1,6 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom"
 import vocabulari from "../../data/vocabulari"
 import { useEffect } from "react";
+import { guardarProgresAnimals } from "../../firebase/services/progressServices";
+import { useAuth } from "../../auth/AuthContext";
+
 
 export default function AnimalDetall() {
 
@@ -9,16 +12,16 @@ export default function AnimalDetall() {
     const animal = vocabulari.find((a) => a.id === Number(id));
 
     const navigate = useNavigate();
+    const { usuari } = useAuth();
 
     useEffect(() => {
-        if (!animal) {
-            navigate('/vocabulari/animals');
-            return <Navigate to="/vocabulari/animals" replace />;
+        if (usuari && animal) {
+            guardarProgresAnimals(usuari.uid, animal.id);
         }
-    }, [])
+    }, [usuari, animal]);
     
     if (!animal) {
-        return null;
+        return <p>Animal no trobat</p>;
     }
   return (
     <div>
