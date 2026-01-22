@@ -9,22 +9,21 @@
 </head>
 <body>
     <main>
-        <h1>Organizador de Tareas</h1>
-        <button id="crearPostit">Crear Post-it</button>
         <section class="contenedores">
-            <div id="contenedor1" class="contenedor" data-aceptar="completada">
+            <div id="contenedor1" class="contenedor" data-estado="completada">
                 <h2>Completados</h2>
                 <p>Tareas Completadas: <strong>0</strong></p>
             </div>
-            <div id="contenedor2" class="contenedor" data-aceptar="proceso">
+            <div id="contenedor2" class="contenedor" data-estado="proceso">
                 <h2>En Proceso</h2>
                 <p>Tareas En Proceso: <strong>0</strong></p>
             </div>
-            <div id="contenedor3" class="contenedor" data-aceptar="pendiente">
+            <div id="contenedor3" class="contenedor" data-estado="pendiente">
                 <h2> Pendientes</h2>
                 <p>Tareas Pendientes: <strong>0</strong></p>
             </div>
         </section>
+        <button id="crearPostit">Crear Post-it</button>
         <div class="pop-up-colores">
             <img src="./assets/cerrar.png" alt="Cerrar" id="cerrarPopUp" />
             <h3>Selecciona el tipo de tarea que quieres crear</h3>
@@ -33,6 +32,12 @@
                 <button class="color" id="contenedor2" data-contenedor="proceso">En Proceso</button>
                 <button class="color" id="contenedor3" data-contenedor="pendiente">Pendiente</button>
             </div>
+        </div>
+
+        <div class="dialogo-cerrar" title="Cerrar Post-it">
+            <p>¿Estás seguro de que quieres cerrar este Post-it?</p>
+            <button id="confirmarCerrar">Sí</button>
+            <button id="cancelarCerrar">No</button>
         </div>
 
         
