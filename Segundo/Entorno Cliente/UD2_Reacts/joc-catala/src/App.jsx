@@ -12,6 +12,7 @@ import AnimalDetall from './pages/vocabulari/AnimalDetall.jsx'
 import RutaProtegida from './auth/RutaProtegida.jsx'
 import Login from './pages/Login.jsx'
 import PanelAdmin from './pages/PanelAdmin.jsx'
+import Progress from './pages/Progress.jsx'
 
 
 function App() {
@@ -47,6 +48,11 @@ function App() {
           <Route path="geografia" element={<Geografia/>} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/progress" element={
+          <RutaProtegida>
+            <Progress />
+          </RutaProtegida>
+        } />
       </Routes>
     </div>
   )
