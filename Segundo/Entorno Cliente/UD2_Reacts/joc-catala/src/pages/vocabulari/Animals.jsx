@@ -9,7 +9,7 @@ export default function Animals() {
   const [paraules, setParaules] = useState([]);
   const [carregant, setCarregant] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
-  const {user} = useAuth();
+  const { usuari } = useAuth();
   const [vistos, setVistos] = useState([]);
   const nivell = searchParams.get('nivell');
 
@@ -22,13 +22,13 @@ export default function Animals() {
 
   useEffect(() => {
     async function carregarProgres() {
-      if (user){
-        const dades = await getProgresAnimals(user.uid);
+      if (usuari){
+        const dades = await getProgresAnimals(usuari.uid);
         setVistos(dades);
       }
     }
     carregarProgres();
-  }, [user]);
+  }, [usuari]);
   if (carregant) {
     return <p>Carregant vocabulari...</p>
   }
@@ -47,7 +47,7 @@ export default function Animals() {
         
           return(
             <li key={paraula.id}> 
-              <span>{jaVist ? "v" : ""}</span>
+              <span>{jaVist ? "✓" : ""}</span>
               <Link to={`/vocabulari/animals/${paraula.id}`}>
                 <strong>{paraula.catala}</strong>
               </Link>
@@ -55,10 +55,10 @@ export default function Animals() {
           )})
         }
       </ul>
-      <h4>Filtrar per nivell</h4>
-      <button onClick={() => filtrar('facil')}>Fàcil</button>
+        <h4>Filtrar per nivell</h4>
+        <button onClick={() => filtrar('fàcil')}>Fàcil</button>
       <button onClick={() => filtrar('mitja')}>Mitja</button>
-      <button onClick={() => filtrar('dificil')}>Dificil</button>
+      <button onClick={() => filtrar('difícil')}>Difícil</button>
       <button onClick={() => setSearchParams({})}>Tots</button>
     </div>
   )
