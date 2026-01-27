@@ -1,9 +1,9 @@
-*{
+*{ /* Reset CSS */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body {
+body { 
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
 }
@@ -19,6 +19,7 @@ main {
     background-size: cover;
     height: 100vh;
 }
+/* Estilos para los contenedores */
 .contenedores {
     display: flex;
     gap: 20px;
@@ -42,6 +43,19 @@ main {
     width: 90px;
     height: 90px;
 }
+
+#contenedor1{
+    background-color: #d1e7dd;
+}
+
+#contenedor2{
+    background-color: #f8eed7;
+}
+
+#contenedor3{
+    background-color: #f8d7da;
+}
+
 #crearPostit {
     padding: 10px 20px;
     font-size: 16px;
@@ -50,7 +64,7 @@ main {
     background-color: #4853e8;
     color: #f0f0f0;
 }
-
+/* Estilos para los postits */
 .postit {
     width: 150px;
     height: 30px;
@@ -63,8 +77,20 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* Transiciones para animaciones */
+    transition: opacity 0.3s ease, transform 0.3s ease, height 0.25s ease, padding 0.2s ease;
+    
+}
+/* Estilos para la animación de eliminación */
+.postit.removing {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    height: 0;
+    padding: 0;
+    pointer-events: none;
 }
 
+/* Estilos internos del postit */
 .postit h3 {
     margin-bottom: 5px;
     font-size: 12px;
@@ -83,27 +109,14 @@ main {
     outline: none;
 }       
 
-
 .postit:hover {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
+
 .postit.maximizado {
     width: 150px;
     height: 100px;
     font-size: 14px;
-}
-
-#contenedor1{
-    background-color: #d1e7dd;
-
-}
-
-#contenedor2{
-    background-color: #f8eed7;
-}
-
-#contenedor3{
-    background-color: #f8d7da;
 }
 
 .postit img, .pop-up-colores img  {
@@ -120,7 +133,6 @@ main {
     background: none;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .minimizar {
@@ -130,7 +142,6 @@ main {
     background: none;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .maximizar {
@@ -140,9 +151,8 @@ main {
     background: none;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
-
+/* Estilos para el pop-up de selección de colores */
 .pop-up-colores{
     display: none;
 }
@@ -187,7 +197,7 @@ main {
     top: 5px;
     right: 5px;
 }
-
+/* Estilos para el dialogo de confirmacion al cerrar un postit */
 .dialogo-cerrar {
     display: none;
     position: absolute;
