@@ -27,7 +27,6 @@ $(document).ready(function () {
       $(this).find("p strong").text(contador); // Actualizar contador al soltar el postit
       //console.log($(this).find("p strong")) DEBUG
       $(postit).data("dropped", "true");
-      this.appendChild(postit);
     
     },
     out: function (event, ui) {
