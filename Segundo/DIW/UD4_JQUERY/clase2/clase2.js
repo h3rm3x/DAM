@@ -23,3 +23,4 @@ console.log($("div:has(p)"))    // no s'empra
 
 // es fa servir el metode .has()
 $("div").has("p").addClass("amb-paragraf"); // Selecciona los divs que contienen párrafos y les aplica un borde rojo
+$("div").not(":has(p)").removeClass("amb-paragraf"); // Selecciona los divs que no contienen párrafos y les aplica un borde azul

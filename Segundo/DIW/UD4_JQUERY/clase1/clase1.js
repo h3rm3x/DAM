@@ -41,7 +41,7 @@ console.log( $("h1").text() );
 $("h1").html( "<span>Hola</span>" );
 
 // Eventos
-$("input[type='button']").one("click", () => { // DEPRECATED: .click( ... )
+$("input[type='button']").on("click", () => { // DEPRECATED: .click( ... )
     //$("p").css("color", "red");
 
     //$("p").addClass("blau");
@@ -52,8 +52,8 @@ $("input[type='button']").one("click", () => { // DEPRECATED: .click( ... )
 });
 
 let boton = $("input[type='button']");
-boton.on("mouseover", () => {
-    $("this").css("color", "violet");
+boton.on("mouseover", function() {
+    $(this).css("color", "violet");
 });
 
 console.log(boton)
