@@ -1,52 +1,11 @@
-/**
- * SERVICIO DE BASE DE DATOS
- * 
- * INSTRUCCIONES DE CONFIGURACIÓN:
- * 
- * 1. Reemplaza la URL_BASE_DATOS con la URL real de tu base de datos
- * 2. Si usas Firebase:
- *    - Importa las funciones necesarias de Firebase
- *    - Configura tu objeto de configuración de Firebase
- *    - URL_BASE_DATOS = "https://tu-proyecto.firebaseio.com"
- * 
- * 3. Si usas otra API REST:
- *    - URL_BASE_DATOS = "https://tu-api.com/api"
- * 
- * 4. Si usas json-server local:
- *    - URL_BASE_DATOS = "http://localhost:3000"
- * 
- * Estructura esperada de la base de datos:
- * {
- *   "productos": [
- *     { "id": 1, "nombre": "Producto 1", "imagen": "/img/producto1.jpg", "precio": 29.99 },
- *     { "id": 2, "nombre": "Producto 2", "imagen": "/img/producto2.jpg", "precio": 39.99 },
- *     ...
- *   ],
- *   "palabras": [
- *     { "id": 1, "palabra": "TIENDA", "pista": "Lugar donde se compra" },
- *     { "id": 2, "palabra": "PRODUCTO", "pista": "Artículo que se vende" },
- *     ...
- *   ],
- *   "premios": [
- *     { "id": 1, "tipo": "cupon", "valor": 10, "nombre": "Cupón 10€" },
- *     { "id": 2, "tipo": "descuento", "valor": 15, "nombre": "15% Descuento" },
- *     { "id": 3, "tipo": "cupon", "valor": 25, "nombre": "Cupón 25€" },
- *     { "id": 4, "tipo": "descuento", "valor": 20, "nombre": "20% Descuento" },
- *     { "id": 5, "tipo": "cupon", "valor": 5, "nombre": "Cupón 5€" },
- *     { "id": 6, "tipo": "descuento", "valor": 10, "nombre": "10% Descuento" }
- *   ]
- * }
- */
-
-// PLACEHOLDER: Reemplaza con tu URL real
-const URL_BASE_DATOS = "http://remotehot.es/student024/Shop/endpoints/minijuego/api_productos.php";
+const URL_BASE_DATOS = "https://remotehost.es/student024/Shop/backend/endpoints/minijuego/api_productos.php";
 /**
  * Obtiene los productos de la tienda online para el juego de memoria
  * @returns {Promise<Array>} Array de productos con id, nombre, imagen, precio
  */
 export const obtenerProductos = async () => {
   try {
-    const response = await fetch(`${URL_BASE_DATOS}/productos`);
+    const response = await fetch(`${URL_BASE_DATOS}`);
     if (!response.ok) {
       throw new Error(`Error HTTP: ${response.status}`);
     }
@@ -64,18 +23,7 @@ export const obtenerProductos = async () => {
  * @returns {Promise<Array>} Array de palabras con id, palabra, pista
  */
 export const obtenerPalabras = async () => {
-  try {
-    const response = await fetch(`${URL_BASE_DATOS}/palabras`);
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`);
-    }
-    const palabras = await response.json();
-    return palabras;
-  } catch (error) {
-    console.error("Error al obtener palabras:", error);
-    // Retorna datos de ejemplo si falla la conexión
-    return obtenerPalabrasEjemplo();
-  }
+  return obtenerPalabrasEjemplo();
 };
 
 /**
@@ -83,64 +31,20 @@ export const obtenerPalabras = async () => {
  * @returns {Promise<Array>} Array de premios con id, tipo, valor, nombre
  */
 export const obtenerPremios = async () => {
-  try {
-    const response = await fetch(`${URL_BASE_DATOS}/premios`);
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`);
-    }
-    const premios = await response.json();
-    return premios;
-  } catch (error) {
-    console.error("Error al obtener premios:", error);
-    // Retorna datos de ejemplo si falla la conexión
-    return obtenerPremiosEjemplo();
-  }
+  return obtenerPremiosEjemplo();
 };
 
-/**
- * Guarda el premio ganado por el usuario
- * @param {Object} premio - El premio ganado
- * @param {string} juego - El juego donde se ganó (memory o palabras)
- * @returns {Promise<Object>} Respuesta del servidor
- */
-export const guardarPremioGanado = async (premio, juego) => {
-  try {
-    const response = await fetch(`${URL_BASE_DATOS}/premios-ganados`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        premio,
-        juego,
-        fecha: new Date().toISOString()
-      })
-    });
-    
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`);
-    }
-    
-    return await response.json();
-  } catch (error) {
-    console.error("Error al guardar premio:", error);
-    return { success: false, error: error.message };
-  }
-};
-
-// ========== DATOS DE EJEMPLO (Fallback) ==========
-// Estos datos se usan si la base de datos no está disponible
 
 function obtenerProductosEjemplo() {
   return [
-    { id: 1, nombre: "Producto 1", imagen: "/img/producto1.jpg", precio: 29.99 },
-    { id: 2, nombre: "Producto 2", imagen: "/img/producto2.jpg", precio: 39.99 },
-    { id: 3, nombre: "Producto 3", imagen: "/img/producto3.jpg", precio: 19.99 },
-    { id: 4, nombre: "Producto 4", imagen: "/img/producto4.jpg", precio: 49.99 },
-    { id: 5, nombre: "Producto 5", imagen: "/img/producto5.jpg", precio: 24.99 },
-    { id: 6, nombre: "Producto 6", imagen: "/img/producto6.jpg", precio: 34.99 },
-    { id: 7, nombre: "Producto 7", imagen: "/img/producto7.jpg", precio: 44.99 },
-    { id: 8, nombre: "Producto 8", imagen: "/img/producto8.jpg", precio: 54.99 }
+    { id: 1, nombre: "Camiseta Básica", imagen: "https://via.placeholder.com/150/FF6347/FFFFFF?text=Camiseta", precio: 19.99 },
+    { id: 2, nombre: "Pantalón Vaquero", imagen: "https://via.placeholder.com/150/4CAF50/FFFFFF?text=Pantalon", precio: 39.99 },
+    { id: 3, nombre: "Zapatillas Running", imagen: "https://via.placeholder.com/150/2196F3/FFFFFF?text=Zapatillas", precio: 59.99 },
+    { id: 4, nombre: "Sudadera con Capucha", imagen: "https://via.placeholder.com/150/9C27B0/FFFFFF?text=Sudadera", precio: 34.99 },
+    { id: 5, nombre: "Chaqueta Deportiva", imagen: "https://via.placeholder.com/150/FF9800/FFFFFF?text=Chaqueta", precio: 49.99 },
+    { id: 6, nombre: "Gorra de Béisbol", imagen: "https://via.placeholder.com/150/E91E63/FFFFFF?text=Gorra", precio: 14.99 },
+    { id: 7, nombre: "Mochila Escolar", imagen: "https://via.placeholder.com/150/00BCD4/FFFFFF?text=Mochila", precio: 29.99 },
+    { id: 8, nombre: "Reloj Digital", imagen: "https://via.placeholder.com/150/FFD700/000000?text=Reloj", precio: 79.99 }
   ];
 }
 

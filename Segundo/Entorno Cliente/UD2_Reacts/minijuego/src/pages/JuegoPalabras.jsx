@@ -80,7 +80,7 @@ export default function JuegoPalabras({ onJuegoGanado }) {
   const renderAhorcado = () => {
     const errores = 6 - intentosRestantes;
     const partes = [
-      '😟', // cabeza
+      '0', // cabeza
       '|',  // cuerpo
       '/',  // brazo izquierdo
       '\\', // brazo derecho

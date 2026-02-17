@@ -142,7 +142,7 @@
 
 .figura {
   position: absolute;
-  left: 100px;
+  left: 110px;
   top: 60px;
   text-align: center;
 }
@@ -150,6 +150,7 @@
 .cabeza {
   font-size: 2rem;
   margin-bottom: 5px;
+  color: var(--orange, #ff8800);
 }
 
 .cuerpo {

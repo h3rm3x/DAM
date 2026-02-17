@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { obtenerPremios, guardarPremioGanado } from '../services/dbService';
+import { obtenerPremios } from '../services/dbService';
 import './Ruleta.css';
 
 export default function Ruleta({ juego, puntuacion, onCerrar }) {
@@ -8,6 +8,7 @@ export default function Ruleta({ juego, puntuacion, onCerrar }) {
   const [premioGanado, setPremioGanado] = useState(null);
   const [rotacion, setRotacion] = useState(0);
   const [cargando, setCargando] = useState(true);
+  const [codigoDescuento, setCodigoDescuento] = useState('');
 
   // Cargar premios de la base de datos
   useEffect(() => {
@@ -40,12 +41,12 @@ export default function Ruleta({ juego, puntuacion, onCerrar }) {
     setRotacion(rotacionFinal);
 
     // Después de la animación, mostrar el premio
-    setTimeout(async () => {
+    setTimeout(() => {
       setGirando(false);
       setPremioGanado(premioSeleccionado);
-      
-      // Guardar premio en la base de datos
-      await guardarPremioGanado(premioSeleccionado, juego);
+      // Generar código de descuento estático
+      const codigo = 'PROMO' + Math.random().toString(36).substr(2, 8).toUpperCase();
+      setCodigoDescuento(codigo);
     }, 5000);
   };
 
@@ -72,7 +73,7 @@ export default function Ruleta({ juego, puntuacion, onCerrar }) {
     <div className="ruleta-modal">
       <div className="ruleta-contenido">
         <div className="ruleta-header">
-          <h2>🎉 ¡Felicitaciones!</h2>
+          <h2> ¡Felicitaciones!</h2>
           <p className="felicitacion">
             ¡Has ganado el juego de {juego === 'memory' ? 'memoria' : 'palabras'}!
           </p>
@@ -149,7 +150,7 @@ export default function Ruleta({ juego, puntuacion, onCerrar }) {
                 }
               </p>
               <div className="premio-ganado-codigo">
-                Código: <strong>PROMO{Math.random().toString(36).substr(2, 8).toUpperCase()}</strong>
+                Código: <strong>{codigoDescuento}</strong>
               </div>
             </div>
           </div>

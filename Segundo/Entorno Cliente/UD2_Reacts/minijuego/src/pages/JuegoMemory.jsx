@@ -69,7 +69,8 @@ export default function JuegoMemory({ onJuegoGanado }) {
   useEffect(() => {
     if (eleccionUno && eleccionDos) {
       setDeshabilitado(true);
-      if (eleccionDos.src === eleccionUno.src) {
+      // Verificar que sean cartas diferentes con la misma imagen
+      if (eleccionDos.src === eleccionUno.src && eleccionUno.id !== eleccionDos.id) {
         setCartas(cartasPrevias => {
           return cartasPrevias.map((carta) => {
             if (carta.src === eleccionUno.src) {
