@@ -1,9 +1,189 @@
-.App{
-  max-width: 860px;
-  margin: 40px auto;
+:root {
+  --orange: #ff8800;
+  --dark_blue: #1b1523;
+  --anti-flash-white: #f0f0f0;
 }
 
-button{
+.App {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Menu Principal */
+.menu-principal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.titulo-principal {
+  font-size: 4rem;
+  color: var(--orange);
+  margin-bottom: 15px;
+  text-shadow: 0 0 20px rgba(255, 136, 0, 0.5);
+  animation: brillar 2s ease-in-out infinite;
+}
+
+@keyframes brillar {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 136, 0, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 136, 0, 0.8);
+  }
+}
+
+.subtitulo {
+  font-size: 1.5rem;
+  color: var(--anti-flash-white);
+  opacity: 0.9;
+}
+
+.menu-juegos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carta-juego {
+  background: linear-gradient(135deg, rgba(255, 136, 0, 0.1), rgba(255, 136, 0, 0.05));
+  border: 3px solid var(--orange);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.carta-juego:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(255, 136, 0, 0.4);
+  border-color: #ffaa00;
+}
+
+.icono-juego {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  animation: flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.carta-juego h2 {
+  font-size: 2rem;
+  color: var(--orange);
+  margin-bottom: 15px;
+}
+
+.carta-juego p {
+  font-size: 1.1rem;
+  color: var(--anti-flash-white);
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.btn-jugar {
+  background: var(--orange);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  color: var(--dark_blue);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-jugar:hover {
+  background: #ffaa00;
+  transform: scale(1.05);
+}
+
+.menu-info {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background: rgba(255, 136, 0, 0.15);
+  border: 2px solid var(--orange);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+}
+
+.info-card h3 {
+  font-size: 1.8rem;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+
+.info-card ol {
+  text-align: left;
+  font-size: 1.2rem;
+  color: var(--anti-flash-white);
+  line-height: 2;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.info-card li {
+  margin: 10px 0;
+}
+
+/* Contenedor de Juego */
+.juego-contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.btn-volver {
+  background: transparent;
+  border: 2px solid var(--orange);
+  padding: 10px 25px;
+  border-radius: 8px;
+  color: var(--anti-flash-white);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: var(--orange);
+  color: var(--dark_blue);
+  transform: translateX(-5px);
+}
+
+/* Grid de cartas (para el juego de memoria en el componente original) */
+.grid-carta {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+/* Botones generales */
+button {
   background: none;
   border: 2px solid var(--anti-flash-white);
   padding: 6px 12px;
@@ -14,14 +194,40 @@ button{
   font-size: 1em;
 }
 
-button:hover{
+button:hover {
   background: var(--orange);
   color: var(--dark_blue);
 }
 
-.grid-carta{
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+/* Responsive */
+@media (max-width: 768px) {
+  .titulo-principal {
+    font-size: 3rem;
+  }
+
+  .menu-juegos {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-carta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-principal {
+    font-size: 2.5rem;
+  }
+
+  .subtitulo {
+    font-size: 1.2rem;
+  }
+
+  .carta-juego {
+    padding: 30px 20px;
+  }
+
+  .icono-juego {
+    font-size: 4rem;
+  }
 }

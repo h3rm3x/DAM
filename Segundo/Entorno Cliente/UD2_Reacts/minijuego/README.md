@@ -1,19 +1,153 @@
-# React + TypeScript + Vite
+# 🎮 Minijuegos con Premios
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto de minijuegos interactivos con sistema de recompensas mediante ruleta. Desarrollado con React + Vite.
 
-Currently, two official plugins are available:
+## ✨ Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Juego de Memoria** 🎴: Encuentra los pares de productos de la tienda
+- **Juego de Palabras** 📝: Adivina palabras con pistas (tipo ahorcado)
+- **Ruleta de Premios** 🎰: Gira la ruleta al ganar y obtén cupones o descuentos
+- **Interfaz dinámica y responsive**
+- **Conexión a base de datos** (con datos de ejemplo de fallback)
 
-## React Compiler
+## 🚀 Inicio Rápido
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Instalar dependencias
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 2. Configurar imágenes
+
+Crea las siguientes imágenes en `public/img/`:
+- `logo_con_slogan.PNG` - Logo para el reverso de las cartas
+- `producto1.jpg` hasta `producto8.jpg` - Imágenes de productos
+
+### 3. Configurar base de datos (Opcional)
+
+#### Opción A: JSON Server (Recomendado para desarrollo)
+
+```bash
+# Instalar json-server globalmente
+npm install -g json-server
+
+# Iniciar el servidor (el archivo db.json ya está incluido)
+json-server --watch db.json --port 3000
+```
+
+#### Opción B: Usar datos de ejemplo
+
+Si no configuras una base de datos, el proyecto usará datos de ejemplo automáticamente.
+
+### 4. Iniciar la aplicación
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en [http://localhost:5173](http://localhost:5173)
+
+## 📚 Documentación Completa
+
+Para instrucciones detalladas de configuración, consulta **[CONFIGURACION.md](./CONFIGURACION.md)**
+
+Incluye:
+- ✓ Configuración de imágenes
+- ✓ Configuración de base de datos (JSON Server, Firebase, API REST)
+- ✓ Personalización de productos, palabras y premios
+- ✓ Solución de problemas
+- ✓ Estructura del proyecto
+
+## 🎯 Cómo Jugar
+
+1. **Elige un juego** desde el menú principal
+2. **Completa el desafío**:
+   - **Memoria**: Encuentra todos los pares de productos
+   - **Palabras**: Adivina la palabra antes de completar el dibujo
+3. **Gira la ruleta** para ganar tu premio
+4. **Recibe tu cupón o descuento**
+
+## 🛠️ Tecnologías Utilizadas
+
+- **React 19.2.0** - Biblioteca de UI
+- **Vite 7.2.4** - Build tool y dev server
+- **CSS3** - Estilos y animaciones
+- **JSON Server** - Base de datos de desarrollo (opcional)
+
+## 📂 Estructura del Proyecto
+
+```
+minijuego/
+├── public/
+│   └── img/                    # Imágenes del juego
+├── src/
+│   ├── components/             # Componentes reutilizables
+│   │   ├── Carta.jsx          # Carta del juego de memoria
+│   │   └── Ruleta.jsx         # Ruleta de premios
+│   ├── pages/                  # Páginas de los juegos
+│   │   ├── JuegoMemory.jsx    # Juego de memoria
+│   │   └── JuegoPalabras.jsx  # Juego de palabras
+│   ├── services/               # Servicios
+│   │   └── dbService.js       # Conexión a base de datos
+│   ├── App.jsx                 # Componente raíz
+│   └── main.jsx                # Punto de entrada
+├── db.json                     # Base de datos JSON Server
+└── CONFIGURACION.md            # Documentación detallada
+```
+
+## 🎨 Personalización
+
+### Cambiar colores
+
+Edita las variables CSS en `src/index.css`:
+
+```css
+:root {
+  --orange: #ff8800;
+  --dark_blue: #1b1523;
+  --anti-flash-white: #f0f0f0;
+}
+```
+
+### Modificar productos
+
+Edita `db.json` o tu base de datos para cambiar productos, palabras o premios.
+
+## 🧪 Scripts Disponibles
+
+```bash
+npm run dev      # Modo desarrollo
+npm run build    # Compilar para producción
+npm run preview  # Vista previa de la build
+npm run lint     # Ejecutar linter
+```
+
+## 📝 Notas Importantes
+
+- **Imágenes**: Asegúrate de añadir las imágenes en `public/img/` antes de ejecutar
+- **Base de datos**: Si no configuras una base de datos, se usarán datos de ejemplo
+- **JSON Server**: Debe ejecutarse en puerto 3000 si lo usas
+
+## 🐛 Solución de Problemas
+
+### Las imágenes no aparecen
+- Verifica que estén en `public/img/`
+- Verifica que los nombres coincidan exactamente
+- Borra la caché del navegador
+
+### No se conecta a la base de datos
+- Verifica que json-server esté ejecutándose
+- Comprueba la URL en `src/services/dbService.js`
+- Los datos de ejemplo se usarán como fallback
+
+## 📄 Licencia
+
+Proyecto educativo - Desarrollo de Aplicaciones Web
+
+---
+
+Desarrollado con ❤️ usando React + Vite
 
 ```js
 export default defineConfig([

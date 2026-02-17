@@ -1,92 +1,95 @@
-import { useEffect, useState } from 'react';
-import './App.css'
-import Carta from './components/Carta';
+import { useState } from 'react';
+import './App.css';
+import JuegoMemory from './pages/JuegoMemory';
+import JuegoPalabras from './pages/JuegoPalabras';
+import Ruleta from './components/Ruleta';
 
 function App() {
+  const [vistaActual, setVistaActual] = useState('menu'); // 'menu', 'memory', 'palabras'
+  const [mostrarRuleta, setMostrarRuleta] = useState(false);
+  const [datosJuegoGanado, setDatosJuegoGanado] = useState(null);
 
-  const [cartas, setCartas] = useState([]);
-  const [turnos, setTurnos] = useState(0);
-  const [eleccionUno, setEleccionUno] = useState(null);
-  const [eleccionDos, setEleccionDos] = useState(null);
-  const [deshabilitado, setDeshabilitado] = useState(false);
-
-    const imagenesCartas = [
-    {src: "/img/foto1.jpg", "encontrada": false},
-    {src: "/img/foto2.jpg", "encontrada": false},
-    {src: "/img/foto3.jpg", "encontrada": false},
-    {src: "/img/foto4.jpg", "encontrada": false},
-    {src: "/img/foto5.jpg", "encontrada": false},
-    {src: "/img/foto6.jpg", "encontrada": false},
-    {src: "/img/foto7.jpg", "encontrada": false},
-    {src: "/img/foto8.jpg", "encontrada": false}
-    ]
-
-  const barajar = () => {
-    const cartasBarajadas = [...imagenesCartas, ...imagenesCartas]
-      .sort(() => Math.random()-0.5)
-      .map((carta) => ({...carta, id:Math.random()}));
-    
-    setCartas(cartasBarajadas);
-    setTurnos(0);
+  // Manejar cuando un juego es ganado
+  const handleJuegoGanado = (juego, puntuacion) => {
+    setDatosJuegoGanado({ juego, puntuacion });
+    setMostrarRuleta(true);
   };
 
-  const handleEleccion = (carta) => {
-    console.log(carta);
-    eleccionUno ? setEleccionDos(carta) : setEleccionUno(carta);
-  }
+  // Cerrar ruleta y volver al menú
+  const handleCerrarRuleta = () => {
+    setMostrarRuleta(false);
+    setDatosJuegoGanado(null);
+    setVistaActual('menu');
+  };
 
-  const resetear = () => {
-    setEleccionUno(null);
-    setEleccionDos(null);
-    setTurnos(turnosPrevios => turnosPrevios + 1);
-    setDeshabilitado(false);
-  }
+  // Renderizar el menu principal
+  const renderMenu = () => (
+    <div className="menu-principal">
+      <div className="menu-header">
+        <h1 className="titulo-principal">🎮 Minijuegos</h1>
+        <p className="subtitulo">¡Juega y gana premios increíbles!</p>
+      </div>
 
-  useEffect(() => {
-    if(eleccionUno && eleccionDos){
-      setDeshabilitado(true);
-      if(eleccionDos.src === eleccionUno.src){
-        setCartas(cartasPrevias => {
-          return cartasPrevias.map((carta) => {
-            if(carta.src === eleccionUno.src){
-              return {...carta, encontrada: true}
-            }else {
-              return carta;
-            }
-          });
-        });
-        resetear();
-      } else {
-        setTimeout(() => {
-          resetear();
-        },1000)
-      }
-    }
-  }, [eleccionUno, eleccionDos]);
+      <div className="menu-juegos">
+        <div className="carta-juego" onClick={() => setVistaActual('memory')}>
+          <div className="icono-juego">🎴</div>
+          <h2>Juego de Memoria</h2>
+          <p>Encuentra los pares de productos de nuestra tienda</p>
+          <button className="btn-jugar">Jugar Ahora</button>
+        </div>
 
+        <div className="carta-juego" onClick={() => setVistaActual('palabras')}>
+          <div className="icono-juego">📝</div>
+          <h2>Juego de Palabras</h2>
+          <p>Adivina la palabra antes de completar el dibujo</p>
+          <button className="btn-jugar">Jugar Ahora</button>
+        </div>
+      </div>
+
+      <div className="menu-info">
+        <div className="info-card">
+          <h3>🎁 ¿Cómo funciona?</h3>
+          <ol>
+            <li>Selecciona un minijuego</li>
+            <li>Completa el desafío</li>
+            <li>¡Gira la ruleta y gana premios!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className='App'>
-      <h1>Memory App</h1>
-      <button onClick={barajar}>Nueva Partida</button>
-
-      <div><p>Turnos: {turnos}</p></div>
-      <div className="grid-carta">
-        {
-          cartas.map((carta) => (
-            <Carta 
-              carta={carta}
-              key={carta.id}
-              handleEleccion={handleEleccion}
-              volteada={carta===eleccionUno || carta===eleccionDos || carta.encontrada}
-              deshabilitado={deshabilitado}
-            />
-          ))
-        }
-      </div>
+    <div className="App">
+      {vistaActual === 'menu' && renderMenu()}
       
+      {vistaActual === 'memory' && (
+        <div className="juego-contenedor">
+          <button className="btn-volver" onClick={() => setVistaActual('menu')}>
+            ← Volver al Menú
+          </button>
+          <JuegoMemory onJuegoGanado={handleJuegoGanado} />
+        </div>
+      )}
+      
+      {vistaActual === 'palabras' && (
+        <div className="juego-contenedor">
+          <button className="btn-volver" onClick={() => setVistaActual('menu')}>
+            ← Volver al Menú
+          </button>
+          <JuegoPalabras onJuegoGanado={handleJuegoGanado} />
+        </div>
+      )}
+
+      {mostrarRuleta && datosJuegoGanado && (
+        <Ruleta 
+          juego={datosJuegoGanado.juego}
+          puntuacion={datosJuegoGanado.puntuacion}
+          onCerrar={handleCerrarRuleta}
+        />
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
