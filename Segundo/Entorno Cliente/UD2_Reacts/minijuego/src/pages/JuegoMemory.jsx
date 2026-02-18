@@ -12,6 +12,20 @@ export default function JuegoMemory({ onJuegoGanado }) {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [juegoIniciado, setJuegoIniciado] = useState(false);
+  const [juegoFinalizado, setJuegoFinalizado] = useState(false);
+
+  const normalizarSrcProducto = (imagen, id, index) => {
+    if (typeof imagen === 'string' && imagen.trim() !== '') {
+      if (imagen.startsWith('http://') || imagen.startsWith('https://')) {
+        return imagen;
+      }
+      return imagen.startsWith('/') ? imagen : `/${imagen}`;
+    }
+
+    const fallbackId = Number.isFinite(Number(id)) ? Number(id) : index + 1;
+    const imagenId = ((fallbackId - 1) % 8) + 1;
+    return `/img/producto${imagenId}.jpg`;
+  };
 
   // Cargar productos de la base de datos
   useEffect(() => {
@@ -20,8 +34,8 @@ export default function JuegoMemory({ onJuegoGanado }) {
       const productosDB = await obtenerProductos();
       // Seleccionar solo 6 productos para el juego
       const productosSeleccionados = productosDB.slice(0, 6);
-      setProductos(productosSeleccionados.map(p => ({
-        src: p.imagen,
+      setProductos(productosSeleccionados.map((p, index) => ({
+        src: normalizarSrcProducto(p.imagen, p.id, index),
         nombre: p.nombre,
         encontrada: false
       })));
@@ -41,6 +55,7 @@ export default function JuegoMemory({ onJuegoGanado }) {
     setEleccionUno(null);
     setEleccionDos(null);
     setJuegoIniciado(true);
+    setJuegoFinalizado(false);
   };
 
   // Manejar la elección de una carta
@@ -58,12 +73,13 @@ export default function JuegoMemory({ onJuegoGanado }) {
 
   // Verificar si el juego ha sido ganado
   useEffect(() => {
-    if (cartas.length > 0 && cartas.every(carta => carta.encontrada)) {
+    if (!juegoFinalizado && cartas.length > 0 && cartas.every(carta => carta.encontrada)) {
+      setJuegoFinalizado(true);
       setTimeout(() => {
         onJuegoGanado('memory', turnos);
       }, 500);
     }
-  }, [cartas, onJuegoGanado, turnos]);
+  }, [cartas, juegoFinalizado, onJuegoGanado, turnos]);
 
   // Comparar las cartas seleccionadas
   useEffect(() => {
@@ -100,7 +116,7 @@ export default function JuegoMemory({ onJuegoGanado }) {
   return (
     <div className="juego-memory">
       <div className="juego-header">
-        <h2>🎮 Juego de Memoria - Productos</h2>
+        <h2>Juego de Memoria - Productos</h2>
         <p className="descripcion">
           ¡Encuentra todos los pares de productos para ganar un premio!
         </p>

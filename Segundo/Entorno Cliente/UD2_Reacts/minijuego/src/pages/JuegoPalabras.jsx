@@ -10,6 +10,7 @@ export default function JuegoPalabras({ onJuegoGanado }) {
   const [juegoIniciado, setJuegoIniciado] = useState(false);
   const [cargando, setCargando] = useState(true);
   const [estadoJuego, setEstadoJuego] = useState('jugando'); // 'jugando', 'ganado', 'perdido'
+  const [juegoFinalizado, setJuegoFinalizado] = useState(false);
 
   const abecedario = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
 
@@ -34,6 +35,7 @@ export default function JuegoPalabras({ onJuegoGanado }) {
     setIntentosRestantes(6);
     setJuegoIniciado(true);
     setEstadoJuego('jugando');
+    setJuegoFinalizado(false);
   };
 
   // Manejar selección de letra
@@ -55,15 +57,16 @@ export default function JuegoPalabras({ onJuegoGanado }) {
     const palabraArray = palabraActual.palabra.split('');
     const palabraAdivinada = palabraArray.every(letra => letrasAdivinadas.includes(letra));
 
-    if (palabraAdivinada && estadoJuego === 'jugando') {
+    if (palabraAdivinada && estadoJuego === 'jugando' && !juegoFinalizado) {
       setEstadoJuego('ganado');
+      setJuegoFinalizado(true);
       setTimeout(() => {
         onJuegoGanado('palabras', 6 - intentosRestantes);
       }, 1000);
     } else if (intentosRestantes === 0 && estadoJuego === 'jugando') {
       setEstadoJuego('perdido');
     }
-  }, [letrasAdivinadas, intentosRestantes, palabraActual, juegoIniciado, estadoJuego, onJuegoGanado]);
+  }, [letrasAdivinadas, intentosRestantes, palabraActual, juegoIniciado, estadoJuego, juegoFinalizado, onJuegoGanado]);
 
   // Renderizar palabra con letras ocultas/mostradas
   const renderPalabra = () => {
